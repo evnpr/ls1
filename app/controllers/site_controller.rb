@@ -105,11 +105,17 @@ class SiteController < ApplicationController
   def savecontent
     r = params[:r]
     path = r.gsub(/\-\_\_\-/, "\/")
+    apps_name = r.split("-__-")[1]
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
     file.write(c)
     file.close
+    Dir.chdir(@@directory+"/"+apps_name){
+        `git add .`
+        `git commit -m 'save change on #{path}`
+        `git push lsorigin2 master`
+    }
     redirect_to "/content/?r="+r and return
   end
 
@@ -200,7 +206,6 @@ class SiteController < ApplicationController
         }
         redirect_to "/list" and return
     end
-    
   end
 
 
