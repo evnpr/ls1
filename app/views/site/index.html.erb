@@ -5,13 +5,13 @@
 <h1>Host your apps. in just a second</h1>
 <br><br>
 </center>
-<div id="name" class="well">
 
+<div id="name" class="well span5 offset1">
 <form action="/site/upload" enctype="multipart/form-data" method="post"> 
 <input type="text" name="username" placeholder="your ID [without special character]" style="height:30px;"><br>
 <input type="text" name="name" placeholder="name of your app" style="height:30px;"><br>
 <br>
-<a onclick="showDatabaseForm()" style="cursor:pointer">use database?</a>
+<a onclick="showDatabaseForm()" id="cursordb" style="cursor:pointer">use database?</a>
 <br>
 <span id="databaseform" style="display: none">
 <input type="text" name="database_name" placeholder="database name" style="height:30px;"><br>
@@ -25,7 +25,7 @@
 
 
 </div>
-
+<div style="clear:both"></div>
 <br><br>
 
 
@@ -65,5 +65,6 @@
 <script type="text/javascript" charset="utf-8">
     function showDatabaseForm(){
         document.getElementById("databaseform").style.display="block";
+        document.getElementById("cursordb").style.display="none";
     }
 </script>
