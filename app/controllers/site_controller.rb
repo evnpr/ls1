@@ -114,7 +114,7 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
-        `git commit -m 'save change on #{path}`
+        `git commit -m 'save change on #{path}'`
         `git push lsorigin2 master`
     }
     redirect_to "/content/?r="+r and return
