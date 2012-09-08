@@ -104,13 +104,14 @@ class SiteController < ApplicationController
 
   def savecontent
     r = params[:r]
-    path = r.gsub(/\-\_\_\-/, "\/")
     apps_name = r.split("-__-")[1]
+    path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
     file.write(c)
     file.close
+    `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
         `git commit -m 'save change on #{path}`
