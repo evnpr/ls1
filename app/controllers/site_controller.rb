@@ -33,7 +33,7 @@ class SiteController < ApplicationController
             f.puts "\n"
             f.puts "[group g#{apps_name}]\n"
             f.puts "writable = #{apps_name} \n"
-            f.puts "members = evan@evan-Lenovo ls #{user_name} \n"
+            f.puts "member = evan@evan-Lenovo ls #{user_name} \n"
         end
         `ruby push.rb`
     }
