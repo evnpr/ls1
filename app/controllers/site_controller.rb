@@ -214,7 +214,7 @@ class SiteController < ApplicationController
         if User.exists?(:key => publickey) then
             redirect_to "/site/index" and return
         end
-        u = User.where(:username => user_name)
+        u = User.where(:username => user_name).first
         u.key = publickey
         u.save
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
