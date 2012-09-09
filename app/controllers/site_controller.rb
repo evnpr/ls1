@@ -21,9 +21,9 @@ class SiteController < ApplicationController
         u.save
     end
 
-    if Apps.exists?(:name => apps_name) then
-        redirect_to "/site/index" and return
-    end
+#    if Apps.exists?(:name => apps_name) then
+#        redirect_to "/site/index" and return
+#    end
     a = Apps.new(:name => apps_name)
     a.user_id = User.where(:username => user_name).first.id
     a.save
