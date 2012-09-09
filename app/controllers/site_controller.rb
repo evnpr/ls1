@@ -104,12 +104,19 @@ class SiteController < ApplicationController
 
   def savecontent
     r = params[:r]
+    apps_name = r.split("-__-")[1]
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
     file.write(c)
     file.close
+    `sudo chmod -R 777 #{@@directory}/#{apps_name}`
+    Dir.chdir(@@directory+"/"+apps_name){
+        `git add .`
+        `git commit -m 'save change on #{path}'`
+        `git push lsorigin2 master`
+    }
     redirect_to "/content/?r="+r and return
   end
 
@@ -123,7 +130,7 @@ class SiteController < ApplicationController
     path = r.gsub(/\-\_\_\-/, "\/")
     if(request.GET[:g].nil?) then
         Dir.chdir(@@directory+"/#{path}"){
-            `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+           # `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
         }
     end
     Dir.chdir(@@directory+"/#{path}"){
@@ -141,7 +148,7 @@ class SiteController < ApplicationController
     from = params[:r]
     username = 'evnpr'
     namerepos = 'lst'
-    `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+    #`git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
     Dir.chdir(@@directory+"/#{path}"){
         `git pull lsorigin master -f`
     }
@@ -200,7 +207,6 @@ class SiteController < ApplicationController
         }
         redirect_to "/list" and return
     end
-    
   end
 
 
@@ -218,4 +224,7 @@ class SiteController < ApplicationController
     
   end
 
+
+
 end
+
