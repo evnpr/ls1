@@ -21,11 +21,12 @@ class SiteController < ApplicationController
         u.save
     end
 
-    unless Apps.exists?(:name => apps_name)
-        a = Apps.new(:name => apps_name)
-        a.user_id = User.where(:username => user_name).first.id
-        a.save
+    if Apps.exists?(:name => apps_name) then
+        redirect_to "site/index" and return
     end
+    a = Apps.new(:name => apps_name)
+    a.user_id = User.where(:username => user_name).first.id
+    a.save
 
     unless database_name.nil? || database_name == ''
         sql = ActiveRecord::Base.connection();
