@@ -23,6 +23,7 @@ class SiteController < ApplicationController
 
     unless Apps.exists?(:name => apps_name)
         a = Apps.new(:name => apps_name)
+        a.user_id = user_name
         a.save
     end
 
