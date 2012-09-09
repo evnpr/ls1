@@ -130,7 +130,7 @@ class SiteController < ApplicationController
     path = r.gsub(/\-\_\_\-/, "\/")
     if(request.GET[:g].nil?) then
         Dir.chdir(@@directory+"/#{path}"){
-           # `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+            `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
         }
     end
     Dir.chdir(@@directory+"/#{path}"){
@@ -148,7 +148,7 @@ class SiteController < ApplicationController
     from = params[:r]
     username = 'evnpr'
     namerepos = 'lst'
-    #`git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+    `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
     Dir.chdir(@@directory+"/#{path}"){
         `git pull lsorigin master -f`
     }
@@ -224,31 +224,6 @@ class SiteController < ApplicationController
     
   end
 
-  def newfile
-    r = params[:r]
-    newfile = 'newfile'
-    r.split!("-__-")
-    r.pop
-    r.join!("-__-")
-    dirfolder = r.gsub(/\-\_\_\-/, "\/")
-    `touch #{@@directory}/#{dirfolder}/#{newfile}`
-    redirect_to "/list?r="+params[:r] and return
-  end
-
-  def renamefile
-    r = params[:r]
-    n = params[:n]
-    r.split!("-__-")
-    r.pop
-    r.join!("-__-")
-    dirfolder = r.gsub(/\-\_\_\-/, "\/")
-    path = r.gsub(/\-\_\_\-/, "\/")+"/"+n
-    newname = params[:newname]
-    `mv #{@@directory}/#{path} #{@@directory}/#{dirfolder}/#{newname}`
-    redirect_to "/list?r="+params[:r] and return
-  end
-
 
 
 end
-
