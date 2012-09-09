@@ -115,7 +115,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
         `git commit -m 'save change on #{path}'`
-        `git push lsorigin2 master`
+        `git push lsorigin2 master -f`
     }
     redirect_to "/content/?r="+r and return
   end
