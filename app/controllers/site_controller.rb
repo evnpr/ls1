@@ -16,13 +16,17 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
+    if User.exists?(:username => user_name) || Apps.exists?(:name => apps_name) do
+        redirect_to "/site/index" and return
+    end
+
+    u = User.new(:username => user_name)
+    u.save
     unless database_name.nil? || database_name == ''
-            
         sql = ActiveRecord::Base.connection();
         sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
         sql.execute("CREATE DATABASE IF NOT EXISTS " + database_name + ";");
         sql.execute("GRANT ALL ON " + database_name + ".* TO " + database_username + "@localhost IDENTIFIED BY '" + database_pwd +"';");
-
     end
 
 
@@ -199,6 +203,12 @@ class SiteController < ApplicationController
             `touch #{temprorary_res}`
             file = File.open(temprorary_res, "w")
             publickey = params[:key]
+            if User.exists?(:key => publickey) do
+                redirect_to "site/index" and return
+            end
+            u = User.where(:username => user_name)
+            u.key = publickey
+            u.save
             file.write(publickey)
             file.close
         end
