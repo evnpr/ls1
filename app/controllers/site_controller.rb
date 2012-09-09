@@ -23,7 +23,7 @@ class SiteController < ApplicationController
 
     unless Apps.exists?(:name => apps_name)
         a = Apps.new(:name => apps_name)
-        a.user.id = User.where(:username => username).first.id
+        a.user.id = User.where(:username => user_name).first.id
         a.save
     end
 
