@@ -62,13 +62,16 @@
 <%= @directory %>
 
 <script type="text/javascript" charset="utf-8">
-    rename(){
+    
+    function rename(){
+        document.getElementById("newfilebutton").style.display="none";
         document.getElementById("renamebutton").style.display="none";
         document.getElementById("renameform").style.display="block";
     }
 
-    newfile(){
+    function newfile(){
         document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
         document.getElementById("newfileform").style.display="block";
     }
 </script>   
