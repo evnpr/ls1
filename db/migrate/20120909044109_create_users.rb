@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :username
       t.string :password
       t.string :email
-      t.string :key
+      t.text :userkey, :limit => 10000
 
       t.timestamps
     end
