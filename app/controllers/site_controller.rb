@@ -208,15 +208,15 @@ class SiteController < ApplicationController
             `touch #{temprorary_res}`
             file = File.open(temprorary_res, "w")
             publickey = params[:key]
-            if User.exists?(:key => publickey) then
-                redirect_to "site/index" and return
-            end
-            u = User.where(:username => user_name)
-            u.key = publickey
-            u.save
             file.write(publickey)
             file.close
         end
+        if User.exists?(:key => publickey) then
+            redirect_to "site/index" and return
+        end
+        u = User.where(:username => user_name)
+        u.key = publickey
+        u.save
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
             `ruby push.rb`
         }
