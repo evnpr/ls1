@@ -16,12 +16,11 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
-    if User.exists?(:username => user_name) || Apps.exists?(:name => apps_name) then
-        redirect_to "/site/index" and return
+    unless User.exists?(:username => user_name) || Apps.exists?(:name => apps_name)
+        u = User.new(:username => user_name)
+        u.save
     end
 
-    u = User.new(:username => user_name)
-    u.save
     unless database_name.nil? || database_name == ''
         sql = ActiveRecord::Base.connection();
         sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
