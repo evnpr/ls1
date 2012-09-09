@@ -204,15 +204,15 @@ class SiteController < ApplicationController
     if request.post?
         user_name = params[:user_name]
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+params[:user_name]+'.pub'
+        publickey = params[:key]
         unless File.exists?("#{temprorary_res}")
             `touch #{temprorary_res}`
             file = File.open(temprorary_res, "w")
-            publickey = params[:key]
             file.write(publickey)
             file.close
         end
         if User.exists?(:key => publickey) then
-            redirect_to "site/index" and return
+            redirect_to "/site/index" and return
         end
         u = User.where(:username => user_name)
         u.key = publickey
