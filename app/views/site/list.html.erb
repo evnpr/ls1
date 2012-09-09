@@ -23,6 +23,7 @@
 </div>
 <br>
 <br>
+<% if @current_path %>
     <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()">rename</span>
     <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()">newfile</span>
     <form action="/site/renamefile" method="post" accept-charset="utf-8" style="float:right; display:none" id="renameform">
@@ -38,6 +39,7 @@
     <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
     <p><input type="submit" value="create new file" class="btn"></p>
     </form>
+<% end %>
 <br>
 <br>
 <% @listfolder.each do |l| %>
