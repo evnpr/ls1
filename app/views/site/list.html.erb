@@ -29,13 +29,13 @@
     <form action="/site/renamefile" method="post" accept-charset="utf-8" style="float:right">
     <input type="text" name="oldname" placeholder="old file"/>
     <input type="text" name="newname" placeholder="new file"/>
-    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
     <p><input type="submit" value="rename file" class="btn"></p>
     </form>
 
     <form action="/site/newfile" method="post" accept-charset="utf-8" style="float:right">
     <input type="text" name="newname" placeholder="new file"/>
-    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
     <p><input type="submit" value="create new file" class="btn"></p>
     </form>
 <br>
