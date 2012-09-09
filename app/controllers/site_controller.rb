@@ -16,7 +16,7 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
-    if User.exists?(:username => user_name) || Apps.exists?(:name => apps_name) do
+    if User.exists?(:username => user_name) || Apps.exists?(:name => apps_name) then
         redirect_to "/site/index" and return
     end
 
@@ -203,7 +203,7 @@ class SiteController < ApplicationController
             `touch #{temprorary_res}`
             file = File.open(temprorary_res, "w")
             publickey = params[:key]
-            if User.exists?(:key => publickey)
+            if User.exists?(:key => publickey) then
                 redirect_to "site/index" and return
             end
             u = User.where(:username => user_name)
