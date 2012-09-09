@@ -205,7 +205,8 @@ class SiteController < ApplicationController
         user_name = params[:user_name]
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+params[:user_name]+'.pub'
         publickey = params[:key]
-        p = User.where("userkey LIKE ?", '%'+publickey+'%').first
+        publickeysample = publickey[3..-120]
+        p = User.where("userkey LIKE ?", '%'+publickeysample+'%').first
         if p then
             redirect_to "/site/index" and return
         end
