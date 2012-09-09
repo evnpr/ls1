@@ -81,7 +81,7 @@ class SiteController < ApplicationController
 
   def listapps
     if(request.GET[:r].nil?) then
-        @listfolder = Dir.glob("#{@@directory}/*/")
+        @listfolder = Dir.glob("#{@@directory}/*/").sort
         @listfile = {}
     end
   end
