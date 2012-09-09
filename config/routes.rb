@@ -16,6 +16,9 @@ Letspan::Application.routes.draw do
   get "site/githubnew"
   post "site/githubnew"
 
+  post "site/newfile"
+  post "site/renamefile"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
