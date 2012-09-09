@@ -227,7 +227,6 @@ class SiteController < ApplicationController
   def newfile
     r = params[:r]
     newfile = params[:newfile]
-    r.split!("-__-")
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `touch #{@@directory}/#{dirfolder}/#{newfile}`
     redirect_to "/list?r="+params[:r] and return
@@ -237,7 +236,6 @@ class SiteController < ApplicationController
     r = params[:r]
     oldfile = params[:oldfile]
     n = params[:newfile]
-    r.split!("-__-")
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     path = r.gsub(/\-\_\_\-/, "\/")+"/"
     newname = params[:newname]
