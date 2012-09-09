@@ -16,9 +16,14 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
-    unless (User.exists?(:username => user_name) && Apps.exists?(:name => apps_name)) || Apps.exists?(:name => apps_name)
+    unless User.exists?(:username => user_name)
         u = User.new(:username => user_name)
         u.save
+    end
+
+    unless Apps.exists?(:name => apps_name)
+        a = Apps.new(:name => apps_name)
+        a.save
     end
 
     unless database_name.nil? || database_name == ''
