@@ -16,10 +16,30 @@
 </div>
 <br>
 <br>
-<a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
+<div class="row">
+    <div class="span1">
+    <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
+    </div>
+</div>
 <br>
 <br>
+    <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()">rename</span>
+    <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()">newfile</span>
+    <form action="/site/renamefile" method="post" accept-charset="utf-8" style="float:right; display:none" id="renameform">
+    <input type="text" name="oldfile" placeholder="old file"/>
+    <br>
+    <input type="text" name="newfile" placeholder="new file"/>
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
+    <p><input type="submit" value="rename file" class="btn"></p>
+    </form>
 
+    <form action="/site/newfile" method="post" accept-charset="utf-8" style="float:right; display:none" id="newfileform">
+    <input type="text" name="newfile" placeholder="new file"/>
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
+    <p><input type="submit" value="create new file" class="btn"></p>
+    </form>
+<br>
+<br>
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>">+ <%= l %></a></p>
@@ -41,3 +61,17 @@
 
 <%= @directory %>
 
+<script type="text/javascript" charset="utf-8">
+    
+    function rename(){
+        document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
+        document.getElementById("renameform").style.display="block";
+    }
+
+    function newfile(){
+        document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
+        document.getElementById("newfileform").style.display="block";
+    }
+</script>   
