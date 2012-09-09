@@ -60,7 +60,7 @@ class SiteController < ApplicationController
 
   def list
     if(request.GET[:r].nil?) then
-        @listfolder = Dir.glob("#{@@directory}/*/")
+        @listfolder = Dir.glob("#{@@directory}/*/").sort
         @listfile = {}
         return
     end
@@ -229,6 +229,14 @@ class SiteController < ApplicationController
     newfile = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `touch #{@@directory}/#{dirfolder}/#{newfile}`
+    redirect_to "/list?r="+params[:r] and return
+  end
+
+  def newfolder
+    r = params[:r]
+    newfolder = params[:newfolder]
+    dirfolder = r.gsub(/\-\_\_\-/, "\/")
+    `mkdir #{@@directory}/#{dirfolder}/#{newfolder}`
     redirect_to "/list?r="+params[:r] and return
   end
 

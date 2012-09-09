@@ -17,6 +17,7 @@ Letspan::Application.routes.draw do
   post "site/githubnew"
 
   post "site/newfile"
+  post "site/newfolder"
   post "site/renamefile"
 
 
