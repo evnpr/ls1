@@ -6,7 +6,7 @@
 development:
   adapter: mysql
   database: ls
-  username: ls
+  username: root
   password: abc123
   pool: 5
   timeout: 5000
