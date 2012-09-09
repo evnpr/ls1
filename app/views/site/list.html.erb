@@ -16,10 +16,30 @@
 </div>
 <br>
 <br>
+<div class="row">
+<div class="span1">
 <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
+</div>
+<div class="span1 offset9">
+<a href=<%= "'/site/newfile?r=#{@current_path}'"%> style="cursor:pointer">newfile</a>
+</div>
+</div>
 <br>
 <br>
+    <form action="/site/renamefile" method="post" accept-charset="utf-8" style="float:right">
+    <input type="text" name="oldname" placeholder="old file"/>
+    <input type="text" name="newname" placeholder="new file"/>
+    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+    <p><input type="submit" value="rename file" class="btn"></p>
+    </form>
 
+    <form action="/site/newfile" method="post" accept-charset="utf-8" style="float:right">
+    <input type="text" name="newname" placeholder="new file"/>
+    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+    <p><input type="submit" value="create new file" class="btn"></p>
+    </form>
+<br>
+<br>
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>">+ <%= l %></a></p>
