@@ -64,7 +64,7 @@ class SiteController < ApplicationController
         @listfile = {}
         return
     end
-    @pull = 'pull'
+    @root = 'pull'
     r = request.GET[:r]
     back = r.split("-__-")
     @apps_name = back[1]

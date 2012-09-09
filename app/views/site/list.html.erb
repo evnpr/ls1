@@ -17,13 +17,15 @@
 <br>
 <br>
 <div class="row">
+<% if @root %>
     <div class="span1">
     <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
     </div>
+<% end %>
 </div>
 <br>
 <br>
-<% if @current_path %>
+<% if @root %>
     <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()">rename</span>
     <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()">newfile</span>
     <form action="/site/renamefile" method="post" accept-charset="utf-8" style="float:right; display:none" id="renameform">
@@ -53,7 +55,7 @@
 <p><a href="<%= "/content/?r=#{@current_path}-__-#{l.delete"/"}" %>">- <%= l %></a></p>
 <% end %>
 
-<% if @pull %>
+<% if @root %>
     <form action="/site/githubpull" method="post" accept-charset="utf-8">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
