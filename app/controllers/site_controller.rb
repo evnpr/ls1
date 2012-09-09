@@ -72,10 +72,10 @@ class SiteController < ApplicationController
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
     @name = path
-    @listfolder = Dir.glob("#{@@directory}/#{@name}/*/")
+    @listfolder = Dir.glob("#{@@directory}/#{@name}/*/").sort
     listfile = Dir.glob("#{@@directory}/#{@name}/*")
     listfolderfile = Dir.glob("#{@@directory}/#{@name}/*/").collect { |x| ; x.chop }
-    @listfile = listfile - listfolderfile
+    @listfile = (listfile - listfolderfile).sort
     @current_path = r 
   end
 
@@ -130,7 +130,7 @@ class SiteController < ApplicationController
     path = r.gsub(/\-\_\_\-/, "\/")
     if(request.GET[:g].nil?) then
         Dir.chdir(@@directory+"/#{path}"){
-            `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+           # `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
         }
     end
     Dir.chdir(@@directory+"/#{path}"){
@@ -148,7 +148,7 @@ class SiteController < ApplicationController
     from = params[:r]
     username = 'evnpr'
     namerepos = 'lst'
-    `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+    #`git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
     Dir.chdir(@@directory+"/#{path}"){
         `git pull lsorigin master -f`
     }
@@ -224,6 +224,26 @@ class SiteController < ApplicationController
     
   end
 
+  def newfile
+    r = params[:r]
+    newfile = params[:newfile]
+    dirfolder = r.gsub(/\-\_\_\-/, "\/")
+    `touch #{@@directory}/#{dirfolder}/#{newfile}`
+    redirect_to "/list?r="+params[:r] and return
+  end
+
+  def renamefile
+    r = params[:r]
+    oldfile = params[:oldfile]
+    n = params[:newfile]
+    dirfolder = r.gsub(/\-\_\_\-/, "\/")
+    path = r.gsub(/\-\_\_\-/, "\/")+"/"
+    newname = params[:newname]
+    `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
+    redirect_to "/list?r="+params[:r] and return
+  end
+
 
 
 end
+
