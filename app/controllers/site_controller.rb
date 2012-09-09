@@ -226,10 +226,8 @@ class SiteController < ApplicationController
 
   def newfile
     r = params[:r]
-    newfile = 'newfile'
+    newfile = params[:newfile]
     r.split!("-__-")
-    r.pop
-    r.join!("-__-")
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `touch #{@@directory}/#{dirfolder}/#{newfile}`
     redirect_to "/list?r="+params[:r] and return
@@ -237,14 +235,13 @@ class SiteController < ApplicationController
 
   def renamefile
     r = params[:r]
-    n = params[:n]
+    oldfile = params[:oldfile]
+    n = params[:newfile]
     r.split!("-__-")
-    r.pop
-    r.join!("-__-")
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
-    path = r.gsub(/\-\_\_\-/, "\/")+"/"+n
+    path = r.gsub(/\-\_\_\-/, "\/")+"/"
     newname = params[:newname]
-    `mv #{@@directory}/#{path} #{@@directory}/#{dirfolder}/#{newname}`
+    `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
     redirect_to "/list?r="+params[:r] and return
   end
 
