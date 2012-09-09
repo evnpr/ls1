@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20120909044218) do
     t.string   "username"
     t.string   "password"
     t.string   "email"
-    t.string   "key", :limit => 1000
+    t.string   "key"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
