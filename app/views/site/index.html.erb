@@ -1,0 +1,81 @@
+<div id="name" class="row">
+    
+<div id="name" class="span8 offset2">
+<center>
+<h1>Host your apps. in just a second</h1>
+<br><br>
+</center>
+
+<div id="name" class="well span5 offset1">
+<form action="/site/upload" enctype="multipart/form-data" method="post"> 
+<input type="text" name="username" placeholder="your ID [without special character]" style="height:30px;"><br>
+<input type="text" name="name" placeholder="name of your app" style="height:30px;"><br>
+<br>
+<a onclick="showDatabaseForm()" id="cursordb" style="cursor:pointer">use database?</a>
+<br>
+<span id="databaseform" style="display: none">
+<input type="text" name="database_name" placeholder="database name" style="height:30px;"><br>
+<input type="text" name="database_username" placeholder="database username" style="height:30px;"><br>
+<input type="text" name="databasepwd" placeholder="database password" style="height:30px;"><br>
+</span>
+<br>
+<input type="submit" class="btn-primary btn-large"> 
+</form>
+<br>
+<span id="langsupport?" style="cursor:pointer" onClick="langsupport()"><a>language support?</a></span>
+<span id="langsupport" style="display:none">
+<i style="color:#777">* even though we are written on<font color="red"> Ruby on Rails</font>, we only exclusively host and run the most well known language for web (<b>PHP 5</b>) code</i>
+</span>
+
+</div>
+<div style="clear:both"></div>
+<br><br>
+
+
+<h3 style="color: grey">How to access your database:</h3><br>
+<code>access <a href="http://apps.letspan.com/phpmyadmin">apps.letspan.com/phpmyadmin</a></code><br><br>
+<code>use db username, password, and you can create database that you just input</code><br><br>
+<br><br>
+
+<br><br>
+
+
+<h2 id="github"><font color="grey">Integrate with GitHub</font></h2>
+<h3 style="color: grey">How you can integrate your project with GitHub:</h3><br>
+<code>add collaborators of your project in <a href="http://github.com" target="_blank">Github.com</a>, Add <b>letspan</b></code><br><br>
+<code>go to <a href="/site/githubnew"> set GitHub</a> input your apps name, github username, and your github's project</code><br><br>
+<code>it's done!</code>
+<br><br>
+<br><br>
+<br><br>
+
+<h2 id="github"><font color="grey">Deploy with Git</font></h2>
+<h3 style="color: grey">How you can deploy your project from your localhost with Git:</h3><br>
+<code>you have to import your public key to here first by go to <a href="/site/gitnew">import Key</a> menu</code><br><br>
+<code>go to your localhost directory in your computer and type this</code><br><br>
+<b>
+<code>$ touch letspan.txt</code><br><br>
+<code>$ git add .</code><br><br>
+<code>$ git commit -m 'push to letspan'</code><br><br>
+<code>$ git remote add letspan git@letspan.com:<font color="green">your_apps_name</font>.git</code><br><br>
+<code>$ git push letspan master</code>
+</b>
+<br><br>
+
+
+</div>
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    function showDatabaseForm(){
+        document.getElementById("databaseform").style.display="block";
+        document.getElementById("cursordb").style.display="none";
+    }
+
+    function langsupport(){
+        document.getElementById("langsupport").style.display="block";
+        document.getElementById("langsupport?").style.display="none";
+
+    }
+</script>

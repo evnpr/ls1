@@ -1,0 +1,107 @@
+<div id="name" class="row">
+    <div id="name" class="span1">
+        
+    <a href="/site/index">Home</a>
+
+    </div>
+    <!--
+<div id="name" class="span2 offset6">
+   <a href="/site/gitnew"><button class="btn-primary btn-large">import key</button></a>
+</div>
+<div id="name" class="span2">
+   <a href="/site/githubnew"><button class="btn-primary btn-large">set github</button></a>
+</div>
+-->
+
+</div>
+<br>
+<br>
+<div class="row">
+<% if @root %>
+    <div class="span1">
+    <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
+    </div>
+<% end %>
+</div>
+<br>
+<br>
+<% if @root %>
+    <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()">rename</span>
+    <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()">newfile</span>
+    <span id="newfolderbutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfolder()">newfolder</span>
+
+    <span id="otheroption" style="display:none; float:right;"><a href="">other option</a>
+    </span>
+    <br><br>
+    <form action="/site/renamefile" method="post" accept-charset="utf-8" style="float:right; display:none" id="renameform">
+    <input type="text" name="oldfile" placeholder="old folder/file"/>
+    <br>
+    <input type="text" name="newfile" placeholder="new folder/file"/>
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
+    <p><input type="submit" value="rename file" class="btn"></p>
+    <div id="name" class="well">
+       <p>to rename folder, you can just use slash "/" in the end of the name (e.g <b>myfolder/</b> ) </p>
+    </div>
+    </form>
+
+    <form action="/site/newfile" method="post" accept-charset="utf-8" style="float:right; display:none" id="newfileform">
+    <input type="text" name="newfile" placeholder="new file"/>
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
+    <p><input type="submit" value="create new file" class="btn"></p>
+    </form>
+
+    <form action="/site/newfolder" method="post" accept-charset="utf-8" style="float:right; display:none" id="newfolderform">
+    <input type="text" name="newfolder" placeholder="new folder"/>
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
+    <p><input type="submit" value="create new folder" class="btn"></p>
+    </form>
+<% end %>
+<br>
+<br>
+<% @listfolder.each do |l| %>
+<% l.slice! "/var/www/ls/upload/#{@name}" %>
+<p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>">+ <%= l %></a></p>
+<% end %>
+
+
+<% @listfile.each do |l| %>
+<% l.slice! "/var/www/ls/upload/#{@name}" %>
+<p><a href="<%= "/content/?r=#{@current_path}-__-#{l.delete"/"}" %>">- <%= l %></a></p>
+<% end %>
+
+<% if @root %>
+    <form action="/site/githubpull" method="post" accept-charset="utf-8">
+    <input type="hidden" name="l" value="<%= @apps_name %>" />
+    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+    <p><input type="submit" value="pull from github" class="btn"></p>
+    </form>
+<% end %>
+
+<%= @directory %>
+
+<script type="text/javascript" charset="utf-8">
+    
+    function rename(){
+        document.getElementById("newfolderbutton").style.display="none";
+        document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
+        document.getElementById("renameform").style.display="block";
+        document.getElementById("otheroption").style.display="block";
+    }
+
+    function newfile(){
+        document.getElementById("newfolderbutton").style.display="none";
+        document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
+        document.getElementById("newfileform").style.display="block";
+        document.getElementById("otheroption").style.display="block";
+    }
+
+    function newfolder(){
+        document.getElementById("newfolderbutton").style.display="none";
+        document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
+        document.getElementById("newfolderform").style.display="block";
+        document.getElementById("otheroption").style.display="block";
+    }
+</script>   
