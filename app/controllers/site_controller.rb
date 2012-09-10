@@ -21,10 +21,11 @@ class SiteController < ApplicationController
         u.save
     end
 
-#    if Apps.exists?(:name => apps_name) then
-#        redirect_to "/site/index" and return
-#    end
+    if Apps.exists?(:name => apps_name) then
+        redirect_to "/site/index" and return
+    end
 
+    `mkdir #{@@directory}/#{apps_name}`
     a = Apps.new(:name => apps_name)
     a.user_id = User.where(:username => user_name).first.id
     a.save
@@ -51,7 +52,6 @@ class SiteController < ApplicationController
 
 
 
-    IO.popen("mkdir #{@@directory}/#{apps_name}")
     Dir.chdir("#{@@directory}/#{apps_name}"){
         `git init`
         `git add .`
