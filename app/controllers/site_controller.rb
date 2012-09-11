@@ -70,7 +70,7 @@ class SiteController < ApplicationController
   end
 
   def list
-    if(request.GET[:r].nil?) then
+    if(request.GET[:r].nil? || request.GET[:r]=='') then
         @listfolder = Dir.glob("#{@@directory}/*/").sort
         @listfile = {}
         return
