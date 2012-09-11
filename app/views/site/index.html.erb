@@ -31,15 +31,17 @@
 <div style="clear:both"></div>
 <br><br>
 
-
+<span id="database?"><a onClick="showDatabase()" style="cursor:pointer">how to access database?</a></span>
+<div id="databaseHelp" style="display: none; ">
 <h3 style="color: grey">How to access your database:</h3><br>
 <code>access <a href="http://apps.letspan.com/phpmyadmin">apps.letspan.com/phpmyadmin</a></code><br><br>
 <code>use db username, password, and you can create database that you just input</code><br><br>
 <br><br>
-
+</div>
 <br><br>
 
-
+<span id="github?"><a onClick="showGithub()" style="cursor:pointer">how to integrate with GitHub?</a></span>
+<div id="githubHelp" style="display: none">
 <h2 id="github"><font color="grey">Integrate with GitHub</font></h2>
 <h3 style="color: grey">How you can integrate your project with GitHub:</h3><br>
 <code>add collaborators of your project in <a href="http://github.com" target="_blank">Github.com</a>, Add <b>letspan</b></code><br><br>
@@ -47,9 +49,12 @@
 <code>it's done!</code>
 <br><br>
 <br><br>
+</div>
 <br><br>
 
-<h2 id="github"><font color="grey">Deploy with Git</font></h2>
+<span id="git?"><a onClick="showGit()" style="cursor:pointer">how to use Git?</a></span>
+<div id="gitHelp" style="display: none">
+<h2 id="git"><font color="grey">Deploy with Git</font></h2>
 <h3 style="color: grey">How you can deploy your project from your localhost with Git:</h3><br>
 <code>you have to import your public key to here first by go to <a href="/site/gitnew">import Key</a> menu</code><br><br>
 <code>go to your localhost directory in your computer and type this</code><br><br>
@@ -61,6 +66,7 @@
 <code>$ git push letspan master</code>
 </b>
 <br><br>
+</div>
 
 
 </div>
@@ -76,6 +82,21 @@
     function langsupport(){
         document.getElementById("langsupport").style.display="block";
         document.getElementById("langsupport?").style.display="none";
-
     }
+    
+    function showDatabase(){
+        document.getElementById("databaseHelp").style.display="block";
+        document.getElementById("database?").style.display="none";
+    }
+    
+    function showGithub(){
+        document.getElementById("githubHelp").style.display="block";
+        document.getElementById("github?").style.display="none";
+    }
+    
+        function showGit(){
+        document.getElementById("gitHelp").style.display="block";
+        document.getElementById("git?").style.display="none";
+    }
+    
 </script>

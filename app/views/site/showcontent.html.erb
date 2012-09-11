@@ -22,15 +22,15 @@
 <form action="/site/savecontent" method="post" accept-charset="utf-8">
 
 <code class="" style="float:left"><%= @path %></code>
-<input type="submit" value="Save" class="btn btn-primary" style="float:right">
-<br>
+
+
 <br>
 <textarea name="content" rows="30" cols="200" style="width:100%; background-color:#555; color: yellow; font-size:14px;  font-family:lucida grande, tahoma, verdana, arial, sans-serif;">
 <%= @contents %>
 </textarea>
 <input type="hidden" name="r" value="<%= @r %>" />
 
-</form>
+
 
 
 <% end %>
@@ -38,6 +38,11 @@
 <div class="row-fluid">
 
 <div class="span2">
+<input type="submit" value="Save" class="btn btn-inverse btn-large" style="">
+</div>
+</form>
+
+<div class="offset4 span2">
     <form action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
