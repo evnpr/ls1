@@ -1,11 +1,9 @@
 
-<a href="/site/index">Home</a>
 <br>
-<br>
-<div id="name" class="row">
+<div id="name" class="row-fluid">
 <span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a></span>
 <% if request.GET['e'].nil? then %>
-<span class="span1 offset10"><a href=<%="'/content/?r=#{@r}&e=1'" %>>edit</a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content/?r=#{@r}&e=1'" %>><button class="btn">edit</button></a></span>
 <% else %>
 <span class="span1 offset10"><a href=<%="'/content/?r=#{@r}'" %>>show</a></span>
 <% end %>
@@ -37,7 +35,7 @@
 
 <% end %>
 
-<div class="row">
+<div class="row-fluid">
 
 <div class="span2">
     <form action="/site/githubpull" method="post">
@@ -47,14 +45,14 @@
     </form>
 </div>
 
-<div class="span2">
+<div class="span1">
     <form action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
     <p><input type="submit" value="push github" class="btn btn-danger btn-large"></p>
     </form>
 </div>
 
-    <div id="name" class="offset6 span2">
+    <div id="name" class="offset6 span2" style="float: right">
        <a href="http://apps.letspan.com/<%= @apps_name %>"><button class="btn btn-primary btn-large">Go View App</button></a> 
     </div>
 

@@ -9,18 +9,15 @@
 -->
 
 </div>
-<br>
-<br>
 <div class="row">
-<% if @root %>
-    <div class="span1">
-    <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
-    </div>
-<% end %>
 </div>
 <br>
-<br>
 <% if @root %>
+    <div class="alert span1">
+        <b>
+        <%= @apps_name %>
+        </b>
+    </div>
     <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()"><button class="btn">rename</button></span>
     <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()"><button class="btn">newfile</button></span>
     <span id="newfolderbutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfolder()"><button class="btn">newfolder</button></span>
@@ -53,6 +50,13 @@
 <% end %>
 <br>
 <br>
+<% if @root %>
+    <div class="span1">
+    <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
+    </div>
+<% end %>
+<br>
+<br>
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>">+ <%= l %></a></p>
@@ -66,7 +70,7 @@
 
 <% if @root %>
 <br><br>
-<div id="name" class="row">
+<div id="name" class="row-fluid">
     <div id="name" class="span2">
     <form action="/site/githubpull" method="post" accept-charset="utf-8">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
