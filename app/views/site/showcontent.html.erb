@@ -1,11 +1,9 @@
 
-<a href="/site/index">Home</a>
 <br>
-<br>
-<div id="name" class="row">
+<div id="name" class="row-fluid">
 <span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a></span>
 <% if request.GET['e'].nil? then %>
-<span class="span1 offset10"><a href=<%="'/content/?r=#{@r}&e=1'" %>>edit</a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content/?r=#{@r}&e=1'" %>><button class="btn">edit</button></a></span>
 <% else %>
 <span class="span1 offset10"><a href=<%="'/content/?r=#{@r}'" %>>show</a></span>
 <% end %>
@@ -24,58 +22,68 @@
 <form action="/site/savecontent" method="post" accept-charset="utf-8">
 
 <code class="" style="float:left"><%= @path %></code>
-<input type="submit" value="Save" class="btn btn-primary" style="float:right">
-<br>
+
+
 <br>
 <textarea name="content" rows="30" cols="200" style="width:100%; background-color:#555; color: yellow; font-size:14px;  font-family:lucida grande, tahoma, verdana, arial, sans-serif;">
 <%= @contents %>
 </textarea>
 <input type="hidden" name="r" value="<%= @r %>" />
 
-</form>
+
 
 
 <% end %>
-<div id="name" class="row-fluid">
-    <div id="name" class="" style="float:left">
-        
-<form action="/site/github" method="post" accept-charset="utf-8">
-<input type="hidden" name="r" value="<%= @r %>" />
-<p><input type="submit" value="push github" class="btn btn-danger"></p>
+
+<div class="row-fluid">
+
+<div class="span2">
+<input type="submit" value="Save" class="btn btn-inverse btn-large" style="">
+</div>
 </form>
-    </div>
 
-
-<div id="name" style="float:right">
-    
+<div class="offset4 span2">
     <form action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-    <p><input type="submit" value="pull from github" class="btn"></p>
+    <p><input type="submit" value="pull from github" class="btn btn-large btn-info"></p>
     </form>
-
 </div>
+
+<div class="span1">
+    <form action="/site/github" method="post" accept-charset="utf-8">
+    <input type="hidden" name="r" value="<%= @r %>" />
+    <p><input type="submit" value="push github" class="btn btn-danger btn-large"></p>
+    </form>
+</div>
+
+    <div id="name" class="offset6 span2" style="float: right">
+       <a href="http://apps.letspan.com/<%= @apps_name %>"><button class="btn btn-primary btn-large">Go View App</button></a> 
+    </div>
+
+
+
 </div>
 
 
 
 
 <div id="name" class="row-fluid" style="display: none">
-    <div id="name" class="" style="float:left">
-<form action="/site/bitbucket" method="post" accept-charset="utf-8">
-<input type="hidden" name="r" value="<%= @r %>" />
-<p><input type="submit" value="push bitbucket" class="btn btn-danger"></p>
-</form>
-        
-    </div>
 
 
-<div id="name" style="float:right">
+<div id="name" style="float:left">
 <form action="/site/bitbucketpull" method="post">
 <input type="hidden" name="l" value="<%= @apps_name %>" />
 <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-<p><input type="submit" value="pull from bitbucket" class="btn"></p>
+<p><input type="submit" value="pull from bitbucket" class="btn btn-large btn-info"></p>
 </form>
+    <div id="name" class="" style="float:left">
+<form action="/site/bitbucket" method="post" accept-charset="utf-8">
+<input type="hidden" name="r" value="<%= @r %>" />
+<p><input type="submit" value="push bitbucket" class="btn btn-danger btn-large"></p>
+</form>
+        
+    </div>
 </div>
 
 </div>

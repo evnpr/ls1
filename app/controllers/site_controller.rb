@@ -16,13 +16,25 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
+    unless User.exists?(:username => user_name)
+        u = User.new(:username => user_name)
+        u.save
+    end
+
+    if Apps.exists?(:name => apps_name) then
+        redirect_to "/site/index" and return
+    end
+
+    `mkdir #{@@directory}/#{apps_name}`
+    a = Apps.new(:name => apps_name)
+    a.user_id = User.where(:username => user_name).first.id
+    a.save
+
     unless database_name.nil? || database_name == ''
-            
         sql = ActiveRecord::Base.connection();
         sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
         sql.execute("CREATE DATABASE IF NOT EXISTS " + database_name + ";");
         sql.execute("GRANT ALL ON " + database_name + ".* TO " + database_username + "@localhost IDENTIFIED BY '" + database_pwd +"';");
-
     end
 
 
@@ -40,7 +52,6 @@ class SiteController < ApplicationController
 
 
 
-    IO.popen("mkdir #{@@directory}/#{apps_name}")
     Dir.chdir("#{@@directory}/#{apps_name}"){
         `git init`
         `git add .`
@@ -59,12 +70,12 @@ class SiteController < ApplicationController
   end
 
   def list
-    if(request.GET[:r].nil?) then
-        @listfolder = Dir.glob("#{@@directory}/*/")
+    if(request.GET[:r].nil? || request.GET[:r]=='') then
+        @listfolder = Dir.glob("#{@@directory}/*/").sort
         @listfile = {}
         return
     end
-    @pull = 'pull'
+    @root = 'pull'
     r = request.GET[:r]
     back = r.split("-__-")
     @apps_name = back[1]
@@ -81,7 +92,7 @@ class SiteController < ApplicationController
 
   def listapps
     if(request.GET[:r].nil?) then
-        @listfolder = Dir.glob("#{@@directory}/*/")
+        @listfolder = Dir.glob("#{@@directory}/*/").sort
         @listfile = {}
     end
   end
@@ -195,10 +206,18 @@ class SiteController < ApplicationController
     if request.post?
         user_name = params[:user_name]
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+params[:user_name]+'.pub'
+        publickey = params[:key]
+        publickeysample = publickey[3..-120]
+        p = User.where("userkey LIKE ?", '%'+publickeysample+'%').first
+        if p then
+            redirect_to "/site/index" and return
+        end
+        u = User.where(:username => user_name).first
+        u.userkey = publickey
+        u.save
         unless File.exists?("#{temprorary_res}")
             `touch #{temprorary_res}`
             file = File.open(temprorary_res, "w")
-            publickey = params[:key]
             file.write(publickey)
             file.close
         end
@@ -229,6 +248,14 @@ class SiteController < ApplicationController
     newfile = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `touch #{@@directory}/#{dirfolder}/#{newfile}`
+    redirect_to "/list?r="+params[:r] and return
+  end
+
+  def newfolder
+    r = params[:r]
+    newfolder = params[:newfolder]
+    dirfolder = r.gsub(/\-\_\_\-/, "\/")
+    `mkdir #{@@directory}/#{dirfolder}/#{newfolder}`
     redirect_to "/list?r="+params[:r] and return
   end
 
