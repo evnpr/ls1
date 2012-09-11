@@ -67,14 +67,14 @@
 <% if @root %>
 <br><br>
 <div id="name" class="row">
-    <div id="name" class="offset8 span2">
+    <div id="name" class="offset8">
     <form action="/site/githubpull" method="post" accept-charset="utf-8">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
     <p><input type="submit" value="pull from github" class="btn btn-info btn-large"></p>
     </form>
     </div>
-    <div id="name" class="span2">
+    <div id="name" class="">
        <a href="http://apps.letspan.com/<%= @apps_name %>"><button class="btn btn-primary btn-large">Go View App</button></a> 
     </div>
 
