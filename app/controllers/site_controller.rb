@@ -69,6 +69,7 @@ class SiteController < ApplicationController
 
   end
 
+
   def list
     if(request.GET[:r].nil? || request.GET[:r]=='') then
         @listfolder = Dir.glob("#{@@directory}/*/").sort
@@ -275,5 +276,6 @@ class SiteController < ApplicationController
 
 
 end
+
 
 
