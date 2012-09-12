@@ -5,10 +5,11 @@
 <% if request.GET['e'].nil? then %>
 <span class="span1 offset10" style="float:right"><a href=<%="'/content/?r=#{@r}&e=1'" %>><button class="btn">edit</button></a></span>
 <% else %>
-<span class="span1 offset10"><a href=<%="'/content/?r=#{@r}'" %>>show</a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content/?r=#{@r}'" %>><button class="btn">show</button></a></span>
 <% end %>
 </div>
 
+<code class="" style="float:left"><%= @path %></code>
 <br>
 <br>
 <% if request.GET['e'].nil? then %>
@@ -21,7 +22,6 @@
 
 <form action="/site/savecontent" method="post" accept-charset="utf-8">
 
-<code class="" style="float:left"><%= @path %></code>
 
 
 <br>

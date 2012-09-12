@@ -122,6 +122,7 @@ class SiteController < ApplicationController
     c = params[:content]
     file.write(c)
     file.close
+    `sed -i 's/\r//' #{@@directory}/#{path}`
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
@@ -133,9 +134,8 @@ class SiteController < ApplicationController
 
   def github
     r = params[:r]
-    username = 'evnpr'
-    namerepos = 'lst'
     back = r.split("-__-")
+    apps_name = back[1]
     back.pop
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -144,7 +144,7 @@ class SiteController < ApplicationController
            # `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
         }
     end
-    Dir.chdir(@@directory+"/#{path}"){
+    Dir.chdir(@@directory+"/#{apps_name}"){
         `git add .`
         `git commit -m 'push from ls'`
         `git push lsorigin master -f`
