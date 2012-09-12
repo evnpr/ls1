@@ -69,7 +69,6 @@ class SiteController < ApplicationController
 
   end
 
-
   def list
     if(request.GET[:r].nil? || request.GET[:r]=='') then
         @listfolder = Dir.glob("#{@@directory}/*/").sort
@@ -123,11 +122,9 @@ class SiteController < ApplicationController
     c = params[:content]
     file.write(c)
     file.close
-
-    `sed -i 's/\r//' #{@@directory}/#{path}`
-
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
+        `find * -exec sed -i 's/\r//' {} {} ';'`
         `git add .`
         `git commit -m 'save change on #{path}'`
         `git push lsorigin2 master -f`
@@ -155,6 +152,7 @@ class SiteController < ApplicationController
 
     redirect_to "/content/?r="+params[:r] and return
   end
+
 
 
   def githubpull
@@ -276,6 +274,5 @@ class SiteController < ApplicationController
 
 
 end
-
 
 
