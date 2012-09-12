@@ -122,7 +122,7 @@ class SiteController < ApplicationController
     c = params[:content]
     file.write(c)
     file.close
-#    `sed -i 's/\r//' #{@@directory}/#{path}`
+    `sed -i 's/\r//' #{@@directory}/#{path}`
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
