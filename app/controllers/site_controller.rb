@@ -145,7 +145,6 @@ class SiteController < ApplicationController
         }
     end
     Dir.chdir(@@directory+"/#{apps_name}"){
-        `git init`
         `git add .`
         `git commit -m 'push from ls'`
         `git push lsorigin master -f`
