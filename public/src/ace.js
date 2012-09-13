@@ -5176,7 +5176,7 @@ var EditSession = function(text, mode) {
         this._emit("changeAnnotation", {});
     };
     this.$detectNewLine = function(text) {
-        var match = text.match(/^.*?(\r?\n)/m);
+        var match = text.match(/^.*?(?\n)/m);
         if (match) {
             this.$autoNewLine = match[1];
         } else {
@@ -8313,14 +8313,14 @@ var Document = function(text) {
     // check for IE split bug
     if ("aaa".split(/a/).length == 0)
         this.$split = function(text) {
-            return text.replace(/\r\n|\r/g, "\n").split("\n");
+            return text.replace(/\n|/g, "\n").split("\n");
         }
     else
         this.$split = function(text) {
-            return text.split(/\r\n|\r|\n/);
+            return text.split(/\n||\n/);
         };
     this.$detectNewLine = function(text) {
-        var match = text.match(/^.*?(\r\n|\r|\n)/m);
+        var match = text.match(/^.*?(\n||\n)/m);
         if (match) {
             this.$autoNewLine = match[1];
         } else {
@@ -8330,7 +8330,7 @@ var Document = function(text) {
     this.getNewLineCharacter = function() {
       switch (this.$newLineMode) {
           case "windows":
-              return "\r\n";
+              return "\n";
 
           case "unix":
               return "\n";
@@ -8352,7 +8352,7 @@ var Document = function(text) {
         return this.$newLineMode;
     };
     this.isNewLine = function(text) {
-        return (text == "\r\n" || text == "\r" || text == "\n");
+        return (text == "\n" || text == "" || text == "\n");
     };
     this.getLine = function(row) {
         return this.$lines[row] || "";
@@ -10518,7 +10518,7 @@ var Search = function() {
 
         var modifier = options.caseSensitive ? "g" : "gi";
 
-        options.$isMultiLine = /[\n\r]/.test(needle);
+        options.$isMultiLine = /[\n]/.test(needle);
         if (options.$isMultiLine)
             return options.re = this.$assembleMultilineRegExp(needle, modifier);
 
@@ -10531,7 +10531,7 @@ var Search = function() {
     };
 
     this.$assembleMultilineRegExp = function(needle, modifier) {
-        var parts = needle.replace(/\r\n|\r|\n/g, "$\n^").split("\n");
+        var parts = needle.replace(/\n||\n/g, "$\n^").split("\n");
         var re = [];
         for (var i = 0; i < parts.length; i++) try {
             re.push(new RegExp(parts[i], modifier));
@@ -10923,6 +10923,11 @@ exports.commands = [{
         var needle = prompt("Find:", editor.getCopyText());
         editor.find(needle);
     },
+    readOnly: true
+}, {
+    name: "save",
+    bindKey: bindKey("Ctrl-S", "Command-S"),
+    exec: function(editor) { save(); },
     readOnly: true
 }, {
     name: "overwrite",
@@ -14324,7 +14329,7 @@ var Editor = require("./editor").Editor;
         if (!this.inMultiSelectMode)
             return this.insert(text);
 
-        var lines = text.split(/\r\n|\r|\n/);
+        var lines = text.split(/\n||\n/);
         var ranges = this.selection.rangeList.ranges;
 
         if (lines.length > ranges.length || (lines.length <= 2 || !lines[1]))
@@ -15687,3 +15692,4 @@ define("ace/requirejs/text!ace/theme/textmate.css", [], ".ace-tm .ace_editor {\n
                 });
             })();
         
+
