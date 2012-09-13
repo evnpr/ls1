@@ -51,21 +51,21 @@
 <br>
 <br>
 <% if @root %>
-    <div class="span1">
-    <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a>
-    </div>
+    <span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
+    <i class="icon-arrow-up"></i>
+    </a></span>
 <% end %>
 <br>
 <br>
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>">+ <%= l %></a></p>
+<p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a></p>
 <% end %>
 
 
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>">- <%= l %></a></p>
+<p><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a></p>
 <% end %>
 
 <% if @root %>
