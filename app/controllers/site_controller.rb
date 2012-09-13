@@ -135,6 +135,7 @@ class SiteController < ApplicationController
 
   def savecontent
     r = params[:thisfile]
+    commit = params[:commit]
     apps_name = r.split("-__-")[1]
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
@@ -146,7 +147,7 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
-        `git commit -m 'save change on #{path}'`
+        `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
     }
     redirect_to "/content/?r="+r and return
