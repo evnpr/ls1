@@ -111,7 +111,7 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @path = path
-    unless request.GET['e'].nil?
+    unless !request.GET['e'].nil?
         render :layout => 'editor'
     end
   end
