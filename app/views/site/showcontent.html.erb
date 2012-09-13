@@ -107,10 +107,10 @@
     editor.getSession().setMode("ace/mode/<%= @language %>");
 
     function save(){
-        alert("you are saving the change");
+        var commit = prompt("Commit: ", "Edit <%= @path %>");
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
-        $.post('/site/savecontent', { content: content, thisfile: thisfile });
+        $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
     }
 
     exports.commands = [{
@@ -175,7 +175,7 @@
         name: "save",
         bindKey: bindKey("Ctrl-S", "Command-S"),
         exec: function(editor) { 
-            save()
+            save();
         },
         readOnly: true
     }, {
