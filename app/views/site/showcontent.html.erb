@@ -87,9 +87,9 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-    content = document.getElementById("content").value
-    thisfile = document.getElementById("thisfile").value
     function save(){
+        content = document.getElementById("content").value
+        thisfile = 'asfaa'
         $.post('/site/savecontent', { content: content, thisfile: thisfile }, function(data){
              
         }); 
