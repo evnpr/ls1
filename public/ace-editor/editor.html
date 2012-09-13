@@ -27,8 +27,8 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.getSession().setMode("ace/mode/javascript");
-    var code = editor.getSession().getValue();
     function showcontent(){
-	    
+            var code = editor.getValue();
+            alert(code);	    
     }
 </script>

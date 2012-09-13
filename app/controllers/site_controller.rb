@@ -70,7 +70,7 @@ class SiteController < ApplicationController
   end
 
   def list
-    if(request.GET[:r].nil?) then
+    if(request.GET[:r].nil? || request.GET[:r]=='') then
         @listfolder = Dir.glob("#{@@directory}/*/").sort
         @listfile = {}
         return
@@ -111,16 +111,18 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @path = path
+    render :layout => 'editor'
   end
 
   def savecontent
-    r = params[:r]
+    r = params[:thisfile]
     apps_name = r.split("-__-")[1]
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    file.write(c)
+    content = c.gsub('\r','')
+    file.write(content)
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
@@ -133,9 +135,8 @@ class SiteController < ApplicationController
 
   def github
     r = params[:r]
-    username = 'evnpr'
-    namerepos = 'lst'
     back = r.split("-__-")
+    apps_name = back[1]
     back.pop
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -144,7 +145,7 @@ class SiteController < ApplicationController
            # `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
         }
     end
-    Dir.chdir(@@directory+"/#{path}"){
+    Dir.chdir(@@directory+"/#{apps_name}"){
         `git add .`
         `git commit -m 'push from ls'`
         `git push lsorigin master -f`
