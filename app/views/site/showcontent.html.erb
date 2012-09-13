@@ -107,7 +107,7 @@
     editor.getSession().setMode("ace/mode/<%= @language %>");
 
     function save(){
-        var commit = prompt("Commit: ", "Edit <%= @path %>");
+        var commit = prompt("Commit: ", "just edit <%= @path %>");
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
         $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
