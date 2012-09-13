@@ -110,8 +110,14 @@ class SiteController < ApplicationController
     case language
         when "php"
             @language = "php"
+        when "py"
+            @language = "python"
         when "js"
             @language = "javascript"
+        when "coffee"
+            @language = "javascript"
+        when "css"
+            @language = "css"
         when "rb"
             @language = "ruby"
         else
