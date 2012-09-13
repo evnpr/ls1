@@ -115,7 +115,7 @@ class SiteController < ApplicationController
         when "js"
             @language = "javascript"
         when "coffee"
-            @language = "javascript"
+            @language = "ruby"
         when "css"
             @language = "css"
         when "rb"
