@@ -111,7 +111,9 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @path = path
-    render :layout => 'editor'
+    unless request.GET['e'].nil?
+        render :layout => 'editor'
+    end
   end
 
   def savecontent
