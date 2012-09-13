@@ -1,5 +1,3 @@
-
-
 require 'zip/zip'
 
 class SiteController < ApplicationController
@@ -278,6 +276,7 @@ class SiteController < ApplicationController
 
 
 end
+
 
 
 
