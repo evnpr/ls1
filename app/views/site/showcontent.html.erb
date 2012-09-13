@@ -89,8 +89,9 @@
     function save(){
         content = document.getElementById("content").innerHTML
         thisfile = document.getElementById("thisfile").innerHTML
-        alert(thisfile);
-        $.post('/site/savecontent', { content: content, thisfile: thisfile }
+        $.post('/site/savecontent', { content: content, thisfile: thisfile }, function(data){
+            alert('asa';
+        }
         ); 
     }
 </script>
