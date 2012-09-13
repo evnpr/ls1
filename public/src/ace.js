@@ -10925,11 +10925,6 @@ exports.commands = [{
     },
     readOnly: true
 }, {
-    name: "save",
-    bindKey: bindKey("Ctrl-S", "Command-S"),
-    exec: function(editor) { save(); },
-    readOnly: true
-}, {
     name: "overwrite",
     bindKey: "Insert",
     exec: function(editor) { editor.toggleOverwrite(); },
