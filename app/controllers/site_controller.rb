@@ -295,7 +295,3 @@ class SiteController < ApplicationController
 end
 
 
-
-
-
-

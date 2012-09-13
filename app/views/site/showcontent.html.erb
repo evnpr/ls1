@@ -106,6 +106,7 @@
     editor.setTheme("ace/theme/twilight");
     editor.getSession().setMode("ace/mode/<%= @language %>");
     function save(){
+        alert("you are saving the change");
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
         $.post('/site/savecontent', { content: content, thisfile: thisfile });
