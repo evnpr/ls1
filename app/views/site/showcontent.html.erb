@@ -14,9 +14,9 @@
 <div id="name" class="row-fluid">
 <span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a></span>
 <% if request.GET['e'].nil? then %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content/?r=#{@r}&e=1'" %>><button class="btn">edit</button></a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&e=1'" %>><button class="btn">edit</button></a></span>
 <% else %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content/?r=#{@r}'" %>><button class="btn">show</button></a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn">show</button></a></span>
 <% end %>
 </div>
 
@@ -98,11 +98,11 @@
 
 </div>
 
-<script src="/ace-editor/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
-    editor.setTheme("/ace-editor/ace/theme/twilight");
-    editor.getSession().setMode("/ace-editor/ace/mode/javascript");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/javascript");
     function save(){
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
