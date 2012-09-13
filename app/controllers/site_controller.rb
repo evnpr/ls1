@@ -114,7 +114,7 @@ class SiteController < ApplicationController
   end
 
   def savecontent
-    r = params[:r]
+    r = params[:thisfile]
     apps_name = r.split("-__-")[1]
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`

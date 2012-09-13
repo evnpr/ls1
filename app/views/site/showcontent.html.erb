@@ -28,7 +28,7 @@
 <pre style=" font-family:lucida grande, tahoma, verdana, arial, sans-serif; font-size:14px;" id="content" contenteditable="true">
 <%= @contents %>
 </pre>
-<span id="r" style="display: none"><%= @r %></span>
+<span id="thisfile" style="display: none"><%= @r %></span>
 
 
 
@@ -88,9 +88,9 @@
 
 <script type="text/javascript" charset="utf-8">
     content = document.getElementById("content").value
-    r = document.getElementById("r").value
+    thisfile = document.getElementById("thisfile").value
     function save(){
-        $.post('/site/savecontent', { content: content, r: r }, function(data){
+        $.post('/site/savecontent', { content: content, thisfile: thisfile }, function(data){
              
         }); 
     }
