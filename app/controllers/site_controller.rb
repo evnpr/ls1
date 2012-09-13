@@ -1,3 +1,5 @@
+
+
 require 'zip/zip'
 
 class SiteController < ApplicationController
@@ -8,7 +10,6 @@ class SiteController < ApplicationController
   def index
   end
 
-  
   def upload
     user_name = params[:username]
     apps_name = params[:name]
@@ -89,6 +90,7 @@ class SiteController < ApplicationController
     @listfile = (listfile - listfolderfile).sort
     @current_path = r 
   end
+
 
   def listapps
     if(request.GET[:r].nil?) then
@@ -276,4 +278,8 @@ class SiteController < ApplicationController
 
 
 end
+
+
+
+
 
