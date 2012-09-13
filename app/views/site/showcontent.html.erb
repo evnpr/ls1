@@ -87,10 +87,10 @@
 
 <script type="text/javascript" charset="utf-8">
     function save(){
+        alert('asfas');
         content = document.getElementById("content").value
         thisfile = document.getElementById("thisfile").value
         $.post('/site/savecontent', { content: content, thisfile: thisfile }, function(data){
-            alert(thisfile);             
         }); 
     }
 </script>
