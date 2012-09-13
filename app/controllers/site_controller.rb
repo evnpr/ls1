@@ -106,7 +106,7 @@ class SiteController < ApplicationController
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
-    language = r.split(".")[1]
+    language = r.split(".")[r.split(".").length]
     case language
         when "php"
             @language = "php"
