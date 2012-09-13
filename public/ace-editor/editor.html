@@ -1,0 +1,34 @@
+  <style type="text/css" media="screen">
+    body {
+         
+    }
+    
+    #editor { 
+        margin: 0;
+        width: 900px;
+        height: 300px;
+    }
+  </style>
+
+    <link href="/assets/css/bootstrapeditor.css" rel="stylesheet">
+
+<pre id="editor">function foo(items) {
+    var i;
+    for (i = 0; i &lt; items.length; i++) {
+        alert("Ace Rocks " + items[i]);
+    }
+}</pre>
+    
+	
+<button onClick="showcontent()" style="margin-top: 310px;" class="btn btn-large btn-inverse">Save</button>
+	
+<script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/javascript");
+    var code = editor.getSession().getValue();
+    function showcontent(){
+	    
+    }
+</script>
