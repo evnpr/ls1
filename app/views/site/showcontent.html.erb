@@ -13,17 +13,19 @@
 <br>
 <div id="name" class="row-fluid">
 <span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">up</a></span>
-<% if request.GET['e'].nil? then %>
+<% if !request.GET['e'].nil? then %>
 <span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&e=1'" %>><button class="btn">edit</button></a></span>
 <% else %>
+<!--
 <span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn">show</button></a></span>
+-->
 <% end %>
 </div>
 
 <code class="" style="float:left"><%= @path %></code>
 <br>
 <br>
-<% if request.GET['e'].nil? then %>
+<% if !request.GET['e'].nil? then %>
 <pre style=" font-family:lucida grande, tahoma, verdana, arial, sans-serif; font-size:14px;">
 <%= @contents %>
 </pre>
@@ -102,7 +104,7 @@
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
-    editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setMode("ace/mode/ruby");
     function save(){
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
@@ -111,4 +113,3 @@
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
-<div style="height:400px;"></div>

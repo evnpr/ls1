@@ -65,7 +65,7 @@
 
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p><a href="<%= "/content/?r=#{@current_path}-__-#{l.delete"/"}" %>">- <%= l %></a></p>
+<p><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>">- <%= l %></a></p>
 <% end %>
 
 <% if @root %>
