@@ -89,6 +89,7 @@
     function save(){
         content = document.getElementById("content").value
         thisfile = document.getElementById("thisfile").value
+        alert(thisfile);
         $.post('/site/savecontent', { content: content, thisfile: thisfile }
         ); 
     }
