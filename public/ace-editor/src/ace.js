@@ -11795,7 +11795,7 @@ var VirtualRenderer = function(container, theme) {
 
     this.$updateScrollBar = function() {
         this.scrollBar.setInnerHeight(this.layerConfig.maxHeight);
-        this.scrollBar.setScrollTop(this.scrollTop);
+    //    this.scrollBar.setScrollTop(this.scrollTop);
     };
 
     this.$renderChanges = function(changes, force) {
