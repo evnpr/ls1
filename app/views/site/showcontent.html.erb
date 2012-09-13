@@ -20,7 +20,6 @@
 <% else %>
 
 
-<form action="/site/savecontent" method="post" accept-charset="utf-8">
 
 
 
@@ -89,7 +88,7 @@
 <script type="text/javascript" charset="utf-8">
     function save(){
         content = document.getElementById("content").value
-        thisfile = 'asfaa'
+        thisfile = document.getElementById("thisfile").value
         $.post('/site/savecontent', { content: content, thisfile: thisfile }, function(data){
              
         }); 
