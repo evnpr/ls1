@@ -1,7 +1,7 @@
 Letspan::Application.routes.draw do
   get "site/index"
   post "site/upload"
-  match 'content/' => 'site#showcontent'
+  match 'content' => 'site#showcontent'
   match 'list/' => 'site#list'
   match 'listapps/' => 'site#listapps'
   post 'site/savecontent'

@@ -8,7 +8,6 @@ class SiteController < ApplicationController
   def index
   end
 
-  
   def upload
     user_name = params[:username]
     apps_name = params[:name]
@@ -90,6 +89,7 @@ class SiteController < ApplicationController
     @current_path = r 
   end
 
+
   def listapps
     if(request.GET[:r].nil?) then
         @listfolder = Dir.glob("#{@@directory}/*/").sort
@@ -111,20 +111,23 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @path = path
+    unless request.GET['e'].nil?
+        render :layout => 'editor'
+    end
   end
 
   def savecontent
-    r = params[:r]
+    r = params[:thisfile]
     apps_name = r.split("-__-")[1]
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    file.write(c)
+    content = c.gsub('','')
+    file.write(content)
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
-        `find * -exec sed -i 's/\r//' {} {} ';'`
         `git add .`
         `git commit -m 'save change on #{path}'`
         `git push lsorigin2 master -f`
@@ -152,7 +155,6 @@ class SiteController < ApplicationController
 
     redirect_to "/content/?r="+params[:r] and return
   end
-
 
 
   def githubpull
