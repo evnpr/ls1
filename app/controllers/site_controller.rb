@@ -106,6 +106,23 @@ class SiteController < ApplicationController
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
+    language = r.split(".").last
+    case language
+        when "php"
+            @language = "php"
+        when "py"
+            @language = "python"
+        when "js"
+            @language = "javascript"
+        when "coffee"
+            @language = "ruby"
+        when "css"
+            @language = "css"
+        when "rb"
+            @language = "ruby"
+        else
+            @language = "html"
+    end
     if File.exists?("#{@@directory}/#{path}")
         file = File.open("#{@@directory}/#{path}", "rb")
         @contents = file.read
@@ -123,7 +140,7 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    content = c.gsub('','')
+    content = c.gsub('\r','')
     file.write(content)
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
