@@ -114,6 +114,7 @@ class SiteController < ApplicationController
   end
 
   def savecontent
+    redirect_to "/site/index" and return
     r = params[:thisfile]
     apps_name = r.split("-__-")[1]
     path = r.gsub(/\-\_\_\-/, "\/")
