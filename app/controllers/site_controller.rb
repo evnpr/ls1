@@ -106,6 +106,17 @@ class SiteController < ApplicationController
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
+    language = r.split(".")[1]
+    case language
+        when "php"
+            @language = "php"
+        when "js"
+            @language = "javascript"
+        when "rb"
+            @language = "ruby"
+        else
+            @language = "html"
+    end
     if File.exists?("#{@@directory}/#{path}")
         file = File.open("#{@@directory}/#{path}", "rb")
         @contents = file.read
