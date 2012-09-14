@@ -16,10 +16,10 @@
 <i class="icon-arrow-left"></i>
 </a></span>
 <% if !request.GET['vim'].nil? then %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn">normal</button></a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn btn-success">normal</button></a></span>
 <br>
 <% else %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn">Vim</button></a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn btn-inverse">Vim</button></a></span>
 <% end %>
 </div>
 
