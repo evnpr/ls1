@@ -128,9 +128,31 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @path = path
-    unless !request.GET['e'].nil?
-        render :layout => 'editor'
+    render :layout => 'editor'
+  end
+
+
+  def showcontentvim
+    @title = 'Letspan!'
+    r = request.GET[:r]
+    @r = r 
+    back = r.split("-__-")
+    @apps_name = back[1]
+    back.pop
+    @back = back.join("-__-")
+    path = r.gsub(/\-\_\_\-/, "\/")
+    @language = r.split(".").last
+    if File.exists?("#{@@directory}/#{path}")
+        file = File.open("#{@@directory}/#{path}", "rb")
+        @contents = file.read
     end
+    filetxt = Rails.root.join("public/ace-editor/kitchen-sink/docs/file.#{@language}")
+    `touch #{filetxt}`
+    file = File.open((filetxt), "w")
+    file.write(@contents)
+    file.close
+    @path = path
+    render "showcontentvim", :layout => 'editorvim' and return
   end
 
   def savecontent
@@ -141,7 +163,7 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    content = c.gsub('\r','')
+    content = c.gsub('','')
     file.write(content)
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
@@ -294,5 +316,3 @@ class SiteController < ApplicationController
 
 
 end
-
-

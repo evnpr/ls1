@@ -396,8 +396,16 @@ var actions = exports.actions = {
         }
     },
     ":": {
+        param: true,
         fn: function(editor, range, count, param) {
-            // not implemented
+            switch(param) {
+                case "w":
+                    save();
+                    break;
+                case "q":
+                    save();
+                    break;
+            }
         }
     },
     "/": {
