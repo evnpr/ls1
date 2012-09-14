@@ -301,7 +301,7 @@ var lang = require("ace/lib/lang");
 var useragent = require("ace/lib/useragent");
 
 var event = require("ace/lib/event");
-var theme = require("ace/theme/twilight");
+var theme = require("ace/theme/textmate");
 var EditSession = require("ace/edit_session").EditSession;
 var UndoManager = require("ace/undomanager").UndoManager;
 
@@ -639,6 +639,7 @@ var docEl = document.getElementById("doc");
 var modeEl = document.getElementById("mode");
 var wrapModeEl = document.getElementById("soft_wrap");
 var themeEl = document.getElementById("theme");
+var themeEl = "ace/theme/twilight";
 var foldingEl = document.getElementById("folding");
 var selectStyleEl = document.getElementById("select_style");
 var highlightActiveEl = document.getElementById("highlight_active");
