@@ -688,7 +688,7 @@ bindDropdown("doc", function(name) {
         path = "kitchen-sink/" + path;
     else if (parts[0] == "ace")
         path = "lib/" + path;
-    var path = 'kitchen-sink/docs/file.<%= @language %>';
+    var path = 'kitchen-sink/docs/file.rb';
 
     net.get(path, function(x) {
         initDoc(x, path, doc);

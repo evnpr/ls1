@@ -146,6 +146,11 @@ class SiteController < ApplicationController
         file = File.open("#{@@directory}/#{path}", "rb")
         @contents = file.read
     end
+    filetxt = Rails.root.join("public/ace-editor/kitchen-sink/docs/file.#{@language}")
+    `touch #{filetxt}`
+    file = File.open((filetxt), "w")
+    file.write(@contents)
+    file.close
     case @language
         when "php"
             @language = "php"
@@ -162,11 +167,6 @@ class SiteController < ApplicationController
         else
             @language = "html"
     end
-    filetxt = Rails.root.join("public/ace-editor/kitchen-sink/docs/file.#{@language}")
-    `touch #{filetxt}`
-    file = File.open((filetxt), "w")
-    file.write(@contents)
-    file.close
     @path = path
     render "showcontentvim", :layout => 'editorvim' and return
   end
