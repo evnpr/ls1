@@ -1,5 +1,4 @@
 require 'zip/zip'
-
 class SiteController < ApplicationController
 
   @@directory = "/var/www/ls/upload"
