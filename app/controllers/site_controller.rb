@@ -312,6 +312,4 @@ class SiteController < ApplicationController
     redirect_to "/list?r="+params[:r] and return
   end
 
-
-
 end
