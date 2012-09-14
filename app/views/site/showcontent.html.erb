@@ -17,6 +17,7 @@
 </a></span>
 <% if !request.GET['vim'].nil? then %>
 <span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn">normal</button></a></span>
+<code>press <b>:w</b> or <b>:q</b> to save and push your change</code>
 <% else %>
 <span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn">Vim</button></a></span>
 <% end %>
