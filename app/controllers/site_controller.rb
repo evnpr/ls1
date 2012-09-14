@@ -163,7 +163,7 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    content = c.gsub('\r','')
+    content = c.gsub('','')
     file.write(content)
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
@@ -316,5 +316,3 @@ class SiteController < ApplicationController
 
 
 end
-
-
