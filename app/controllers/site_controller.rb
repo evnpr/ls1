@@ -151,22 +151,6 @@ class SiteController < ApplicationController
     file = File.open((filetxt), "w")
     file.write(@contents)
     file.close
-    case @language
-        when "php"
-            @language = "php"
-        when "py"
-            @language = "python"
-        when "js"
-            @language = "javascript"
-        when "coffee"
-            @language = "ruby"
-        when "css"
-            @language = "css"
-        when "rb"
-            @language = "ruby"
-        else
-            @language = "html"
-    end
     @path = path
     render "showcontentvim", :layout => 'editorvim' and return
   end
