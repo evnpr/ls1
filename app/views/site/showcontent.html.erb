@@ -12,9 +12,12 @@
 
 <br>
 <div id="name" class="row-fluid">
-<span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
+<a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
+<span class="span1 btn">
 <i class="icon-arrow-left"></i>
-</a></span>
+</span>
+</a>
+<br>
 <% if !request.GET['vim'].nil? then %>
 <span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn btn-success">normal</button></a></span>
 <br>

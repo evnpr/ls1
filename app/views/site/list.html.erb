@@ -13,11 +13,11 @@
 </div>
 <br>
 <% if @root %>
-    <div class="alert span1">
-        <b>
-        <%= @apps_name %>
-        </b>
-    </div>
+    <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
+    <span class="span1 btn">
+    <i class="icon-arrow-left"></i>
+    </span>
+    </a>
     <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()"><button class="btn">rename</button></span>
     <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()"><button class="btn">newfile</button></span>
     <span id="newfolderbutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfolder()"><button class="btn">newfolder</button></span>
@@ -51,10 +51,14 @@
 <br>
 <br>
 <% if @root %>
-    <span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
-    <i class="icon-arrow-left"></i>
-    </a></span>
+    <div class="alert span1">
+        <b>
+        <%= @apps_name %>
+        </b>
+    </div>
 <% end %>
+<br>
+<br>
 <br>
 <br>
 <% @listfolder.each do |l| %>
