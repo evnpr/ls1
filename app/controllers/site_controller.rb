@@ -179,7 +179,7 @@ class SiteController < ApplicationController
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote add server ubuntu@letspan.com:/home/ubuntu/git-www/lestpan`
+            `git remote add server ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push server master`
         end
     }
