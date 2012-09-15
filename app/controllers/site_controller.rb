@@ -7,6 +7,8 @@ class SiteController < ApplicationController
   def index
     if(request.GET['project'] == 'ls1')
         session[:ls1] = 1
+    else
+        session[:ls1] = nil
     end
   end
 
