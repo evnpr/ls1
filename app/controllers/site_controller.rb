@@ -5,6 +5,9 @@ class SiteController < ApplicationController
 
 
   def index
+    if(request.GET['project'] == 'ls1')
+        session[:ls1] = 1
+    end
   end
 
   def upload
@@ -82,6 +85,9 @@ class SiteController < ApplicationController
     path = r.gsub(/\-\_\_\-/, "\/")
     @name = path
     @listfolder = Dir.glob("#{@@directory}/#{@name}/*/").sort
+    unless session[:ls1] == 1 
+        @listfolder = @listfolder - ['/ls1/']
+    end
     listfile = Dir.glob("#{@@directory}/#{@name}/*")
     listfolderfile = Dir.glob("#{@@directory}/#{@name}/*/").collect { |x| ; x.chop }
     @listfile = (listfile - listfolderfile).sort
