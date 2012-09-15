@@ -170,7 +170,7 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    content = c.gsub('','')
+    content = c.gsub("\r",'')
     file.write(content)
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
@@ -179,7 +179,7 @@ class SiteController < ApplicationController
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote add server ubuntu@letspan.com:/home/ubuntu/git-www/lestpan`
+            `git remote add server ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push server master`
         end
     }
