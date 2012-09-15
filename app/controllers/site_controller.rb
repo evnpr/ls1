@@ -183,7 +183,7 @@ class SiteController < ApplicationController
             `git push lsserver master -f`
         end
     }
-    redirect_to "/content/?r="+r and return
+    redirect_to "/content?r="+r and return
   end
 
   def github
@@ -204,7 +204,7 @@ class SiteController < ApplicationController
         `git push lsorigin master -f`
     }
 
-    redirect_to "/content/?r="+params[:r] and return
+    redirect_to "/content?r="+params[:r] and return
   end
 
 
@@ -240,7 +240,7 @@ class SiteController < ApplicationController
         `git push lsbitbucket master -f`
     }
 
-    redirect_to "/content/?r="+params[:r] and return
+    redirect_to "/content?r="+params[:r] and return
   end
 
   def bitbucketpull
