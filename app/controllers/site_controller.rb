@@ -85,9 +85,7 @@ class SiteController < ApplicationController
     path = r.gsub(/\-\_\_\-/, "\/")
     @name = path
     @listfolder = Dir.glob("#{@@directory}/#{@name}/*/").sort
-    if session[:ls1].nil? 
         @listfolder = @listfolder - ["#{@@directory}/ls1/"]
-    end
     listfile = Dir.glob("#{@@directory}/#{@name}/*")
     listfolderfile = Dir.glob("#{@@directory}/#{@name}/*/").collect { |x| ; x.chop }
     @listfile = (listfile - listfolderfile).sort
