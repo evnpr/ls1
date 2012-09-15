@@ -5,6 +5,11 @@ class SiteController < ApplicationController
 
 
   def index
+    if(request.GET['project'] == 'ls1')
+        session[:ls1] = 1
+    else
+        session[:ls1] = nil
+    end
   end
 
   def upload
@@ -70,6 +75,9 @@ class SiteController < ApplicationController
   def list
     if(request.GET[:r].nil? || request.GET[:r]=='') then
         @listfolder = Dir.glob("#{@@directory}/*/").sort
+        if session[:ls1].nil?
+            @listfolder = @listfolder - ["#{@@directory}/ls1/"]
+        end
         @listfile = {}
         return
     end
@@ -170,6 +178,10 @@ class SiteController < ApplicationController
         `git add .`
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
+        if apps_name == 'ls1'
+            `git remote add server ubuntu@letspan.com:/home/ubuntu/git-www/lestpan`
+            `git push server master`
+        end
     }
     redirect_to "/content/?r="+r and return
   end

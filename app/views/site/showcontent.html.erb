@@ -4,7 +4,7 @@
         position: relative;
         margin: 0 100;
         width: 100%;
-        height: 500px;
+        height: 400px;
     }
   </style>
 
@@ -12,14 +12,17 @@
 
 <br>
 <div id="name" class="row-fluid">
-<span class="span1"><a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
+<a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
+<span class="span1 btn">
 <i class="icon-arrow-left"></i>
-</a></span>
+</span>
+</a>
+<br>
 <% if !request.GET['vim'].nil? then %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn">normal</button></a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn btn-success">normal</button></a></span>
 <br>
 <% else %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn">Vim</button></a></span>
+<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn btn-inverse">Vim</button></a></span>
 <% end %>
 </div>
 
@@ -46,8 +49,8 @@
 <% end %>
 
 
-<% if request.GET['vim'].nil? then %>
 <div class="row-fluid" style="margin-top: 30px;">
+<% if request.GET['vim'].nil? then %>
 
 <div class="span2">
     <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
@@ -68,15 +71,15 @@
     </form>
 </div>
 
+
+
+
+<% end %>
     <div id="name" class="offset6 span2" style="float: right">
-       <a href="http://apps.letspan.com/<%= @apps_name %>"><button class="btn btn-primary btn-large">Go View App</button></a> 
+       <a href="http://<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go View App</button></a> 
     </div>
 
-
-
 </div>
-<% end %>
-
 
 
 
