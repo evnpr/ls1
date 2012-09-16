@@ -56,7 +56,7 @@
     <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
 </div>
 
-<div class="offset4 span2">
+<div class="offset5 span2"style="margin-left:150px;">
     <form action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
@@ -64,7 +64,7 @@
     </form>
 </div>
 
-<div class="span1">
+<div class="span1" style="margin-left:-30px;">
     <form action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
     <p><input type="submit" value="push github" class="btn btn-danger btn-large"></p>
@@ -75,8 +75,14 @@
 
 
 <% end %>
-    <div id="name" class="offset6 span2" style="float: right">
-       <a href="http://<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go View App</button></a> 
+    <div id="name" class="span1" style="float: right">
+       <a href="http://<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
+    </div>
+    <div id="name" class="span1" style="float: right">
+       <a href="http://dev.<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
+    </div>
+    <div id="name" class="span1" style="float: right">
+       <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">rsync</button></a> 
     </div>
 
 </div>

@@ -7,7 +7,7 @@ class SiteController < ApplicationController
   def index
     if(request.GET['project'] == 'ls1')
         session[:ls1] = 1
-    else
+    elsif(request.GET['project'] == '0')
         session[:ls1] = nil
     end
   end
@@ -322,6 +322,19 @@ class SiteController < ApplicationController
     newname = params[:newname]
     `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
     redirect_to "/list?r="+params[:r] and return
+  end
+
+  def rsync 
+    r = params[:r]
+    back = r.split("-__-")
+    apps_name = back[1]
+    from = params[:back]
+    back.pop
+    r = back.join("-__-")
+    path = r.gsub(/\-\_\_\-/, "\/")
+    `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod`
+
+    redirect_to "#{from}" and return
   end
 
 end

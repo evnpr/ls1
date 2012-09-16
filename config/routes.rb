@@ -21,6 +21,8 @@ Letspan::Application.routes.draw do
   post "site/newfolder"
   post "site/renamefile"
 
+  match "rsync" => "site#rsync"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

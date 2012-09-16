@@ -83,8 +83,14 @@
     <p><input type="submit" value="pull from github" class="btn btn-info btn-large"></p>
     </form>
     </div>
-    <div id="name" class="span2">
-       <a href="http://<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go View App</button></a> 
+    <div id="name" class="span1" style="float: right">
+       <a href="http://<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
+    </div>
+    <div id="name" class="span1" style="float: right">
+       <a href="http://dev.<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
+    </div>
+    <div id="name" class="span1" style="float: right">
+       <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">rsync</button></a> 
     </div>
 
 </div>
