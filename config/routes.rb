@@ -23,7 +23,8 @@ Letspan::Application.routes.draw do
 
   match "rsync" => "site#rsync"
 
-
+  get "site/login"
+  post "site/login"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
