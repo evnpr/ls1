@@ -16,7 +16,7 @@ class UserController < ApplicationController
             session[:username] = username
             redirect_to "/user/index" and return
         end
-        flash[:login] = pwd
+        flash[:login] = "error login"
         redirect_to "/user/login" and return
     else
         if session[:username]
