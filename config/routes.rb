@@ -29,8 +29,8 @@ Letspan::Application.routes.draw do
 
   match "rsync" => "site#rsync"
 
-  get "site/login"
-  post "site/login"
+  get "user/login"
+  post "user/login"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -88,3 +88,4 @@ Letspan::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
