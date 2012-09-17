@@ -30,7 +30,7 @@ class UserController < ApplicationController
   
   def index
     if User.exists?(:username => @username)
-        @apps = User.where(:username => @username).first.appss.sort_by(:name)
+        @apps = User.where(:username => @username).first.appss.sort(:name)
     end
   end
 
