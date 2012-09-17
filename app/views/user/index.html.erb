@@ -18,7 +18,8 @@
 </div>
 
 <div class="span4 offset4">
-List of your apps:<br>
+<p>List of your apps:</p>
+<br>
 <% if @apps %>
     <% @apps.each do |a| %>
     <p><a href="/list/?r=-__-<%= a.name %>">* <%= a.name %> </a> </p>
