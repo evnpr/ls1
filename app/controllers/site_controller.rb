@@ -266,7 +266,7 @@ class SiteController < ApplicationController
   def gitnew 
     if request.post?
         user_name = @username
-        temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+params[:user_name]+'.pub'
+        temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'.pub'
         publickey = params[:key]
         publickeysample = publickey[3..-120]
         p = User.where("userkey LIKE ?", '%'+publickeysample+'%').first
@@ -351,6 +351,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
