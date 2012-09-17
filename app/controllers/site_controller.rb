@@ -287,7 +287,7 @@ class SiteController < ApplicationController
 
 
   def githubnew 
-    @apps = User.where(:username => @username).first.appss
+   
     if request.post?
         apps_name = params[:apps_name]
         yourname = params[:githubname]
@@ -297,10 +297,9 @@ class SiteController < ApplicationController
            `git remote add lsorigin git@github.com:#{yourname}/#{yourproject}.git`
         }
         redirect_to "/list" and return
+    else
+        @apps = User.where(:username => @username).first.appss
     end
-    
-    
-    
   end
 
   def newfile
