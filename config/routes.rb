@@ -1,4 +1,10 @@
 Letspan::Application.routes.draw do
+  get "user/index"
+
+  get "user/login"
+
+  get "user/register"
+
   get "site/index"
   post "site/upload"
   match 'content' => 'site#showcontent'

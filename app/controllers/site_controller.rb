@@ -1,26 +1,9 @@
 require 'zip/zip'
 class SiteController < ApplicationController
-  before_filter :get_users
-  @@directory = "/var/www/ls/upload"
 
-  def get_users
-    @username = session[:username] 
-  end
+  @@directory = "/var/www/ls/upload"
   
-  
-  def login
-    if request.post?
-        username = params[:username]
-        pwd = params[:pwd]
-        session[:username] = username
-        redirect_to "/" and return
-    else
-        if session[:username]
-            redirect_to "/" and return
-        end
-    end
-  end
-  
+
   
   def index
     if(request.GET['project'] == 'ls1')
@@ -358,3 +341,4 @@ class SiteController < ApplicationController
   end
 
 end
+
