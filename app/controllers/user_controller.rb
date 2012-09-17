@@ -14,9 +14,9 @@ class UserController < ApplicationController
         pwd = params[:pwd]
         if User.exists?(:username => username, :password => pwd)
             session[:username] = username
-            redirect_to "/user/login" and return
+            redirect_to "/user/index" and return
         end
-        redirect_to "/user/index" and return
+        redirect_to "/user/login" and return
     else
         if session[:username]
             redirect_to "/" and return
