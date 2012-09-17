@@ -17,6 +17,11 @@
 
 </div>
 
+<div class="span4 offset4">
+    <% @apps.each do |app| %>
+    <p><a href="">* <%= app %></a> </p>
+    <% end %>
+</div>
 
 <script type="text/javascript" charset="utf-8">
     function showDatabaseForm(){
