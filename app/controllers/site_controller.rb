@@ -298,7 +298,9 @@ class SiteController < ApplicationController
         }
         redirect_to "/list" and return
     else
-        @apps = User.where(:username => @username).first.appss
+        if User.exists?(:username => @username)
+            @apps = User.where(:username => @username).first.appss
+        end
     end
   end
 
