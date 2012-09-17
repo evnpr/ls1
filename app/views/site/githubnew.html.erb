@@ -5,9 +5,9 @@
 
 <select name="apps_name">
 <% if @apps %>
-<% @apps.each do |a| %>
-    <option value="<%= a.name %>"><%= a.name %></option>
-<% end %>
+    <% @apps.each do |a| %>
+        <option value="<%= a.name %>"><%= a.name %></option>
+    <% end %>
 <% end %>
 </select>
 <br>
