@@ -321,6 +321,10 @@ class SiteController < ApplicationController
         Dir.chdir(@@directory+"/"+apps_name){
            `git init`
            `git remote add lsorigin git@github.com:#{yourname}/#{yourproject}.git`
+           u = Apps.where(:name => apps_name).first
+           u.githubname = yourname
+           u.githubproject = yourproject
+           u.save
         }
         redirect_to "/list" and return
     else
@@ -371,6 +375,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
