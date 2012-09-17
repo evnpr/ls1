@@ -1,5 +1,5 @@
 <form action="/site/upload" enctype="multipart/form-data" method="post"> 
-<input type="text" name="username" placeholder="your ID [without special character]" style="height:30px;"><br>
+<input type="hidden" name="username" value="<%= @username %>" /><br>
 <input type="text" name="name" placeholder="name of your app" style="height:30px;"><br>
 <br>
 <a onclick="showDatabaseForm()" id="cursordb" style="cursor:pointer">use database?</a>
