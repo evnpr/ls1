@@ -13,16 +13,16 @@ class UserController < ApplicationController
         username = params[:username]
         pwd = Digest::MD5.hexdigest(params[:pwd])
         if User.exists?(:username => username, :password => pwd)
-            session[:username] = username
+            cookies[:username] = username
             redirect_to "/user/index" and return
         elsif username == 'guest' and params[:pwd] == 'guest'
-            session[:username] = username
+            cookies[:username] = username
             redirect_to "/user/index" and return
         end
         flash[:login] = "error login"
         redirect_to "/user/login" and return
     else
-        if session[:username]
+        if cookies[:username]
             redirect_to "/" and return
         end
     end
@@ -43,6 +43,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
