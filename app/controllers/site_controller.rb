@@ -301,6 +301,7 @@ class SiteController < ApplicationController
         if User.exists?(:username => @username)
             @apps = User.where(:username => @username).first.appss
         end
+        
     end
   end
 
