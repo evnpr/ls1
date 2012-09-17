@@ -112,6 +112,9 @@ class SiteController < ApplicationController
 
 
   def showcontent
+    unless @username
+        redirect_to "/"
+    end
     r = request.GET[:r]
     @r = r 
     back = r.split("-__-")
@@ -147,6 +150,9 @@ class SiteController < ApplicationController
 
 
   def showcontentvim
+    unless @username
+        redirect_to "/"
+    end
     @title = 'Letspan!'
     r = request.GET[:r]
     @r = r 
@@ -170,6 +176,9 @@ class SiteController < ApplicationController
   end
 
   def savecontent
+    unless @username
+        redirect_to "/"
+    end
     r = params[:thisfile]
     commit = params[:commit]
     apps_name = r.split("-__-")[1]
@@ -194,6 +203,9 @@ class SiteController < ApplicationController
   end
 
   def github
+    unless @username
+        redirect_to "/"
+    end
     r = params[:r]
     back = r.split("-__-")
     apps_name = back[1]
@@ -216,6 +228,9 @@ class SiteController < ApplicationController
 
 
   def githubpull
+    unless @username
+        redirect_to "/"
+    end
     path = params[:l]
     from = params[:r]
     username = 'evnpr'
@@ -354,6 +369,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
