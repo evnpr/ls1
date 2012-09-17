@@ -16,14 +16,13 @@
 <p><input type="submit" value="Save" class="btn btn-large btn-primary"></p>
 </form>
 <br><br>
-<table border="1">
+<span id="cursortable">see list of your apps?</span>
+<table border="1" id="tablegithub">
 <tr>
 <th>Apps Name</th>
 <th>Github Name</th>
 <th>Github Project</th>
 </tr>
-
- 
 
 <% if @apps %>
     <% @apps.each do |a| %>
@@ -36,3 +35,14 @@
 <% end %>
 
 </table>
+
+
+<script type="text/javascript" charset="utf-8">
+    function showTable(){
+        document.getElementById("tablegithub").style.display="block";
+        document.getElementById("cursortable").style.display="none";
+    }
+
+    
+</script>
+
