@@ -117,6 +117,7 @@ class SiteController < ApplicationController
     end
     r = request.GET[:r]
     @r = r 
+    @current_path = r
     back = r.split("-__-")
     @apps_name = back[1]
     back.pop
@@ -383,6 +384,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
