@@ -30,6 +30,7 @@ class UserController < ApplicationController
   def register
         user = User.where(:username => 'evnpr')
         user.pwd = Digest::MD5.hexdigest('ls')
+        user.save
   end
   
   def logout
