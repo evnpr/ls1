@@ -1,3 +1,4 @@
+require 'digest/md5'
 class UserController < ApplicationController
 
   before_filter :get_users
@@ -27,6 +28,8 @@ class UserController < ApplicationController
   end
 
   def register
+        user = User.where(:username => 'evnpr')
+        user.pwd = Digest::MD5.hexdigest('ls')
   end
   
   def logout
