@@ -287,7 +287,7 @@ class SiteController < ApplicationController
             redirect_to "/site/gitnew" and return
         end
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'.pub'
-        publickeysample = publickey[3..-220]
+        publickeysample = publickey[3..-220].to_str
         p = User.where("userkey LIKE ?", '%'+publickeysample+'%').first
         if p then
             redirect_to "/site/index" and return
@@ -384,6 +384,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
