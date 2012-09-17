@@ -287,6 +287,7 @@ class SiteController < ApplicationController
 
 
   def githubnew 
+    @apps = User.where(:username => @username).first.appss
     if request.post?
         apps_name = params[:apps_name]
         yourname = params[:githubname]
@@ -297,6 +298,8 @@ class SiteController < ApplicationController
         }
         redirect_to "/list" and return
     end
+    
+    
     
   end
 
@@ -341,6 +344,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
