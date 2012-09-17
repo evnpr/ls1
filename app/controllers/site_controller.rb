@@ -75,7 +75,7 @@ class SiteController < ApplicationController
 
   def list
     if(request.GET[:r].nil? || request.GET[:r]=='') then
-        redirect_to "/" and return
+        redirect_to "/user/index" and return
         @listfolder = Dir.glob("#{@@directory}/*/").sort
         if session[:ls1].nil?
             @listfolder = @listfolder - ["#{@@directory}/ls1/"]
@@ -346,6 +346,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
