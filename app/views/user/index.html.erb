@@ -19,9 +19,9 @@
 
 <div class="span4 offset4">
 <% if @apps %>
-    
-    <p><a href="">* <%= @apps %> </a> </p>
-     
+    <% @apps.each do |a| %>
+    <p><a href="">* <%= a.name %> </a> </p>
+    <% end %>     
 <% end %>
     
 </div>
