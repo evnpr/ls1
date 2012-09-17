@@ -23,7 +23,6 @@ class SiteController < ApplicationController
   
   
   def index
-    @username = session[:username]
     if(request.GET['project'] == 'ls1')
         session[:ls1] = 1
     elsif(request.GET['project'] == '0')
