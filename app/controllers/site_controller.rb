@@ -4,6 +4,13 @@ class SiteController < ApplicationController
   @@directory = "/var/www/ls/upload"
 
 
+  def login
+    if request.post?
+    
+    else
+    
+    end
+  end
   def index
     if(request.GET['project'] == 'ls1')
         session[:ls1] = 1
@@ -94,6 +101,7 @@ class SiteController < ApplicationController
     listfolderfile = Dir.glob("#{@@directory}/#{@name}/*/").collect { |x| ; x.chop }
     @listfile = (listfile - listfolderfile).sort
     @current_path = r 
+    @done = 'done rsync!'
   end
 
 
@@ -134,6 +142,7 @@ class SiteController < ApplicationController
         file = File.open("#{@@directory}/#{path}", "rb")
         @contents = file.read
     end
+    @done = 'done rsync!'
     @path = path
     render :layout => 'editor'
   end
@@ -332,9 +341,9 @@ class SiteController < ApplicationController
     back.pop
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
-    `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod`
-
-    redirect_to "#{from}" and return
+    `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
+    flash[:note] = '1'
+    redirect_to "#{from}"
   end
 
 end

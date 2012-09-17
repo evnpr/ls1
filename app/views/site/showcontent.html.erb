@@ -56,6 +56,8 @@
     <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
 </div>
 
+<% end %>
+
 <div class="offset5 span2"style="margin-left:150px;">
     <form action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
@@ -71,10 +73,6 @@
     </form>
 </div>
 
-
-
-
-<% end %>
     <div id="name" class="span1" style="float: right">
        <a href="http://<%= @apps_name %>.letspan.com"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
     </div>
@@ -109,6 +107,13 @@
 
 </div>
 
+    <% if flash[:note] %>
+    <br>
+    <br>
+    <pre>
+    <%= @done %>
+    </pre>
+    <% end %>
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
@@ -123,12 +128,12 @@
     }
 document.onkeydown = checkKeycode
     function checkKeycode(e) {
-var keycode;
-if (window.event) keycode = window.event.keyCode;
-else if (e) keycode = e.which;
-if(keycode==27){
-    window.location = "/content?r=<%= @r %>&vim=1";
-}
+    var keycode;
+    if (window.event) keycode = window.event.keyCode;
+    else if (e) keycode = e.which;
+    if(keycode==27){
+        window.location = "/content?r=<%= @r %>&vim=1";
+    }
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
