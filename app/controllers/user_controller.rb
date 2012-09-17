@@ -37,6 +37,7 @@ class UserController < ApplicationController
   def register
     if request.post?
         username = params[:username]
+        email = params[:email]
         pwd = Digest::MD5.hexdigest(params[:pwd])
         if User.exists?(:username => username, :password => pwd)
             redirect_to "/user/login" and return
@@ -46,6 +47,7 @@ class UserController < ApplicationController
         else
             u = User.new(:username => username)
             u.password = pwd
+            u.email = email
             u.save
             cookies[:username] = username
             redirect_to "/user/index" and return
@@ -65,6 +67,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
