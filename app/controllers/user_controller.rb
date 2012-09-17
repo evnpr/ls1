@@ -21,6 +21,7 @@ class UserController < ApplicationController
   end
   
   def index
+    @apps = Profile.where(:username => @username).first.apps
   end
 
   def register
@@ -32,5 +33,6 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
