@@ -195,7 +195,6 @@ class SiteController < ApplicationController
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote rm lsdev`
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
             `git push lsdev master -f`
         end
@@ -374,7 +373,6 @@ class SiteController < ApplicationController
     `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
     if apps_name == 'ls1'
         Dir.chdir(@@directory+"/"+apps_name){
-            `git remote rm lsprod`
             `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push lsprod master -f`
         }
@@ -384,6 +382,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
