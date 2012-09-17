@@ -374,6 +374,7 @@ class SiteController < ApplicationController
     `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
     if apps_name == 'ls1'
         Dir.chdir(@@directory+"/"+apps_name){
+            `git remote rm lsprod`
             `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push lsprod master -f`
         }
@@ -383,6 +384,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
