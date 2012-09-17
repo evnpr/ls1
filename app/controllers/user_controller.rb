@@ -43,7 +43,7 @@ class UserController < ApplicationController
         if pwd != confpwd
             flash[:register] = "password not match"
             redirect_to "/user/register" and return
-        if User.exists?(:username => username, :password => pwd)
+        elsif User.exists?(:username => username, :password => pwd)
             redirect_to "/user/login" and return
         elsif username == '' || params[:pwd] == ''
             flash[:register] = "can not be blank"
@@ -71,6 +71,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
