@@ -326,7 +326,7 @@ class SiteController < ApplicationController
            u.githubproject = yourproject
            u.save
         }
-        redirect_to "/list" and return
+        redirect_to "/site/githubnew" and return
     else
         if User.exists?(:username => @username)
             @apps = User.where(:username => @username).first.appss
@@ -375,6 +375,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
