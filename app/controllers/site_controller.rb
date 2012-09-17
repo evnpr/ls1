@@ -3,7 +3,7 @@ class SiteController < ApplicationController
   before_filter :get_users
   
   def get_users
-    @username = session[:username] 
+    @username = cookies[:username] 
   end
   
   @@directory = "/var/www/ls/upload"
@@ -345,6 +345,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
