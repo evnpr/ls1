@@ -1,3 +1,8 @@
+<div class="alert">
+    <% if flash[:login] %>
+        <%= flash[:login] %>
+    <% end %>
+</div>
 <div class="well span3 offset4">
 
 <form action="/user/login" method="post">
@@ -20,4 +25,5 @@
 to try out our feature
 </font>
 </div>
+
 
