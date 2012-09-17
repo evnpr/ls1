@@ -286,6 +286,8 @@ class SiteController < ApplicationController
             `ruby push.rb`
         }
         redirect_to "/list" and return
+    else
+        @key = User.where(:username => @username).first.userkey
     end
   end
 
@@ -349,6 +351,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
