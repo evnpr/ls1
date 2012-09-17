@@ -8,7 +8,11 @@ class SiteController < ApplicationController
     if request.post?
         username = params[:username]
         pwd = params[:pwd]
-        session[:username] = username
+        if username == 'guest' and pwd == 'guest' then
+            redirect_to "/" and return    
+        else
+            session[:username] = username
+        end
     else
         if session[:username]
             redirect_to "/" and return
