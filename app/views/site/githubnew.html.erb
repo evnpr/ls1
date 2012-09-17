@@ -4,7 +4,7 @@
     
 
 <input type="text" name="apps_name" style="height: 35px; width: 250px;" placeholder="your apps name">
-<select>
+<select name="apps_name">
 <% if @apps %>
 <% @apps.each do |a| %>
     <option value="<%= a.name %>"><%= a.name %></option>
