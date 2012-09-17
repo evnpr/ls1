@@ -1,6 +1,11 @@
 require 'zip/zip'
 class SiteController < ApplicationController
-
+  before_filter :get_users
+  
+  def get_users
+    @username = session[:username] 
+  end
+  
   @@directory = "/var/www/ls/upload"
   
 
@@ -341,4 +346,5 @@ class SiteController < ApplicationController
   end
 
 end
+
 
