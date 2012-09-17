@@ -42,6 +42,7 @@ class UserController < ApplicationController
             redirect_to "/user/login" and return
         elsif username == '' || params[:pwd] == ''
             flash[:register] = "can not be blank"
+            redirect_to "/user/register" and return
         else
             u = User.new(:username => username)
             u.password = pwd
