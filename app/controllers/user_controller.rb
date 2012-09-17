@@ -35,6 +35,25 @@ class UserController < ApplicationController
   end
 
   def register
+    if request.post?
+        username = params[:username]
+        pwd = Digest::MD5.hexdigest(params[:pwd])
+        if User.exists?(:username => username, :password => pwd)
+            redirect_to "/user/login" and return
+        else
+            u = User.new(:username => username)
+            u.password = pwd
+            u.save
+            cookies[:username] = username
+            redirect_to "/user/index" and return
+        end
+        flash[:register] = "error registration"
+        redirect_to "/user/register" and return
+    else
+        if cookies[:username]
+            redirect_to "/user/index" and return
+        end
+    end
   end
   
   def logout
@@ -43,6 +62,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
