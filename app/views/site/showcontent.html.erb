@@ -50,6 +50,14 @@
 
 
 <div class="row-fluid" style="margin-top: 30px;">
+    <% if flash[:note] %>
+    <br>
+    <br>
+    <pre>
+    <%= @done %>
+    </pre>
+    <% end %>
+    
 <% if request.GET['vim'].nil? then %>
 
 <div class="span2">
@@ -107,13 +115,7 @@
 
 </div>
 
-    <% if flash[:note] %>
-    <br>
-    <br>
-    <pre>
-    <%= @done %>
-    </pre>
-    <% end %>
+
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
@@ -137,4 +139,5 @@ document.onkeydown = checkKeycode
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
 
