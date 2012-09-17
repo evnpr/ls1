@@ -66,6 +66,10 @@
               <li><a href="/site/githubnew">Set Github</a></li>
             </ul>
           </div><!--/.nav-collapse -->
+          <% if @username %>
+              <span style="float: right; margin-top: 10px; margin-left: 13px;"><a href="/user/logout">Logout</a></span>
+              <span style="float: right; margin-top: 10px;">welcome, <%= @username %></span>
+          <% end %>
         </div>
       </div>
     </div>
@@ -81,6 +85,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>
+
 
 
 
