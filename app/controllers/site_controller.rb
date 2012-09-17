@@ -74,6 +74,9 @@ class SiteController < ApplicationController
   end
 
   def list
+    unless @username
+        redirect_to "/"
+    end
     if(request.GET[:r].nil? || request.GET[:r]=='') then
         redirect_to "/user/index" and return
         @listfolder = Dir.glob("#{@@directory}/*/").sort
@@ -346,6 +349,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
