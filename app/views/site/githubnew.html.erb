@@ -29,9 +29,9 @@
 <% if @apps %>
     <% @apps.each do |a| %>
     <tr>
-        <td><%= a.name %></td>
-        <td><%= a.githubname %></td>
-        <td><%= a.githubproject %></td>
+        <td><font color="red"><%= a.name %></font></td>
+        <td><font color="blue"><%= a.githubname %></font></td>
+        <td><font color="brown"><%= a.githubproject %></font></td>
     </tr>
     <% end %>
 <% end %>
