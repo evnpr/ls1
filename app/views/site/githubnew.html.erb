@@ -15,4 +15,11 @@
 <input type="text" name="githubrepo" style="height: 35px; width: 250px;" placeholder="your github project name"><br>
 <p><input type="submit" value="Save" class="btn btn-large btn-primary"></p>
 </form>
+<br><br>
+
+<% if @apps %>
+    <% @apps.each do |a| %>
+       <p><%= a.name %> - <%= a.githubname %> - <%= a.githubproject %></p>
+    <% end %>
+<% end %>
 
