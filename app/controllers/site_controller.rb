@@ -78,13 +78,13 @@ class SiteController < ApplicationController
         redirect_to "/"
     end
     if(request.GET[:r].nil? || request.GET[:r]=='') then
-        redirect_to "/user/index"
-        @listfolder = Dir.glob("#{@@directory}/*/").sort
-        if session[:ls1].nil?
-            @listfolder = @listfolder - ["#{@@directory}/ls1/"]
-        end
-        @listfile = {}
-        return
+        redirect_to "/user/index" and return
+      #  @listfolder = Dir.glob("#{@@directory}/*/").sort
+      #  if session[:ls1].nil?
+      #      @listfolder = @listfolder - ["#{@@directory}/ls1/"]
+      #  end
+      #  @listfile = {}
+      #  return
     end
     @root = 'pull'
     r = request.GET[:r]
