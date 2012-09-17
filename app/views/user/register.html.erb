@@ -1,3 +1,9 @@
+    <% if flash[:register] %>
+    <div class="alert">
+        <%= flash[:register] %>
+    </div>
+    <% end %>
+
 <div class="well span4 offset4">
 
 <form action="/user/register" method="post">
@@ -5,7 +11,7 @@
     <input type="password" name="pwd" placeholder="password" style="height: 35px"/><br>
     <input type="password" name="pwdconf" placeholder="confirm password" style="height: 35px"/><br>
     <input type="text" name="email" placeholder="username" style="height: 35px" /><br>
-    <input type="submit" class="btn btn-primary btn-large" value="login" />
+    <input type="submit" class="btn btn-primary btn-large" value="Submit" />
 </form>
 
 </div>
