@@ -40,6 +40,8 @@ class UserController < ApplicationController
         pwd = Digest::MD5.hexdigest(params[:pwd])
         if User.exists?(:username => username, :password => pwd)
             redirect_to "/user/login" and return
+        elsif username == '' || params[:pwd] == ''
+            flash[:register] = "can not be blank"
         else
             u = User.new(:username => username)
             u.password = pwd
@@ -62,6 +64,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
