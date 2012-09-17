@@ -21,10 +21,7 @@ class UserController < ApplicationController
   end
   
   def index
-    apps = User.where(:username => @username).first.apps
-    if apps
-        @apps = apps
-    end
+    @apps = User.where(:username => @username).first.apps
   end
 
   def register
