@@ -25,5 +25,12 @@ class UserController < ApplicationController
 
   def register
   end
+  
+  def logout
+    session[:username] = nil
+    redirect_to "/"
+  end
+  
 end
+
 
