@@ -4,7 +4,7 @@ class UserController < ApplicationController
   before_filter :get_users
   
   def get_users
-    @username = session[:username] 
+    @username = cookies[:username] 
   end
   
   
@@ -38,11 +38,12 @@ class UserController < ApplicationController
   end
   
   def logout
-    session[:username] = nil
+    cookies[:username] = nil
     redirect_to "/"
   end
   
 end
+
 
 
 
