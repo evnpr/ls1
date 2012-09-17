@@ -305,7 +305,9 @@ class SiteController < ApplicationController
         }
         redirect_to "/list" and return
     else
-        @key = User.where(:username => @username).first.userkey
+        if User.exists?(:username => @username)
+            @key = User.where(:username => @username).first.userkey
+        end
     end
   end
 
