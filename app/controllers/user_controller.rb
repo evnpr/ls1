@@ -39,6 +39,10 @@ class UserController < ApplicationController
         username = params[:username]
         email = params[:email]
         pwd = Digest::MD5.hexdigest(params[:pwd])
+        confpwd = Digest::MD5.hexdigest(params[:confirmpwd])
+        if pwd != confpwd
+            flash[:register] = "password not match"
+            redirect_to "/user/register" and return
         if User.exists?(:username => username, :password => pwd)
             redirect_to "/user/login" and return
         elsif username == '' || params[:pwd] == ''
