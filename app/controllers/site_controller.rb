@@ -11,6 +11,8 @@ class SiteController < ApplicationController
     
     end
   end
+  
+  
   def index
     if(request.GET['project'] == 'ls1')
         session[:ls1] = 1
