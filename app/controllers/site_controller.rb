@@ -282,7 +282,7 @@ class SiteController < ApplicationController
     if request.post?
         user_name = @username
         publickey = params[:key]
-        if user_name.nil? || publickey.nil?
+        if user_name.nil? or publickey.nil?
             redirect_to "/" and return
         end
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'.pub'
@@ -376,6 +376,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
