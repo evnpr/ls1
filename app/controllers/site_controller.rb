@@ -195,7 +195,8 @@ class SiteController < ApplicationController
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
+            `git remote rm lsdev`
+            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
             `git push lsdev master -f`
         end
     }
