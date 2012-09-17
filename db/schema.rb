@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20120917094840) do
     t.string   "username"
     t.string   "password"
     t.string   "email"
-    t.text     "userkey"
+    t.string   "userkey"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

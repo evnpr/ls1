@@ -195,8 +195,8 @@ class SiteController < ApplicationController
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote add lsserver ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
-            `git push lsserver master -f`
+            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
+            `git push lsdev master -f`
         end
     }
     redirect_to "/content?r="+r and return
@@ -371,26 +371,16 @@ class SiteController < ApplicationController
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
     `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
+    if apps_name == 'ls1'
+        Dir.chdir(@@directory+"/"+apps_name){
+            `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git push lsprod master -f`
+        }
+    end
     flash[:note] = '1'
     redirect_to "#{from}"
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

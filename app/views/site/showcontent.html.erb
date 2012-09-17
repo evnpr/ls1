@@ -113,7 +113,13 @@
 
 </div>
 
-
+    <% if flash[:note] %>
+    <br>
+    <br>
+    <pre>
+    <%= @done %>
+    </pre>
+    <% end %>
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
