@@ -12,7 +12,9 @@ class UserController < ApplicationController
     if request.post?
         username = params[:username]
         pwd = params[:pwd]
-        session[:username] = username
+        if User.exists?(:username => username, :password => pwd)
+            session[:username] = username
+        end
         redirect_to "/user/index" and return
     else
         if session[:username]
