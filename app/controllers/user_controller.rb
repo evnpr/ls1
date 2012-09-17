@@ -11,12 +11,12 @@ class UserController < ApplicationController
   def login
     if request.post?
         username = params[:username]
-        pwd = params[:pwd]
+        pwd = Digest::MD5.hexdigest(params[:pwd])
         if User.exists?(:username => username, :password => pwd)
             session[:username] = username
             redirect_to "/user/index" and return
         end
-        flash[:login] = "error login"
+        flash[:login] = pwd
         redirect_to "/user/login" and return
     else
         if session[:username]
