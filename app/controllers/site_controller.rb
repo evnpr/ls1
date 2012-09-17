@@ -320,6 +320,7 @@ class SiteController < ApplicationController
         yourproject = params[:githubrepo]
         Dir.chdir(@@directory+"/"+apps_name){
            `git init`
+           `git remote rm lsorigin`
            `git remote add lsorigin git@github.com:#{yourname}/#{yourproject}.git`
            u = Apps.where(:name => apps_name).first
            u.githubname = yourname
@@ -375,6 +376,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
