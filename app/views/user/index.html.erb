@@ -18,9 +18,12 @@
 </div>
 
 <div class="span4 offset4">
+<% if @apps %>
     <% @apps.each do |app| %>
     <p><a href="">* <%= app %></a> </p>
     <% end %>
+<% end %>
+    
 </div>
 
 <script type="text/javascript" charset="utf-8">
