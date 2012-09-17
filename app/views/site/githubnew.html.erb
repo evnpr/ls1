@@ -16,10 +16,23 @@
 <p><input type="submit" value="Save" class="btn btn-large btn-primary"></p>
 </form>
 <br><br>
+<table border="1">
+<tr>
+<th>Apps Name</th>
+<th>Github Name</th>
+<th>Github Project</th>
+</tr>
+
+ 
 
 <% if @apps %>
     <% @apps.each do |a| %>
-       <p><%= a.name %> - <%= a.githubname %> - <%= a.githubproject %></p>
+    <tr>
+        <td><%= a.name %></td>
+        <td><%= a.githubname %></td>
+        <td><%= a.githubproject %></td>
+    </tr>
     <% end %>
 <% end %>
 
+</table>
