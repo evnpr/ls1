@@ -283,7 +283,7 @@ class SiteController < ApplicationController
         user_name = @username
         publickey = params[:key]
         if user_name.nil? or publickey == ''
-            redirect_to "/" and return
+            redirect_to "/site/gitnew" and return
         end
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'.pub'
         publickeysample = publickey[3..-220]
