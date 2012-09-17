@@ -261,7 +261,7 @@ class SiteController < ApplicationController
 
   def gitnew 
     if request.post?
-        user_name = params[:user_name]
+        user_name = @username
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+params[:user_name]+'.pub'
         publickey = params[:key]
         publickeysample = publickey[3..-120]
@@ -282,11 +282,6 @@ class SiteController < ApplicationController
             `ruby push.rb`
         }
         redirect_to "/list" and return
-    
-    else
-        if User.exists?(:username => @username)
-            @apps = User.where(:username => @username).first.appss
-        end
     end
   end
 
