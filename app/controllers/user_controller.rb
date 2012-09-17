@@ -22,7 +22,8 @@ class UserController < ApplicationController
   
   def index
     if User.exists?(:username => 'yudho')
-        @apps = User.where(:username => 'yudho').first
+        user = User.where(:username => 'yudho').first
+        @apps = user.apps.first
     end
   end
 
