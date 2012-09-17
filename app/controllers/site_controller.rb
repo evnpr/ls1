@@ -11,11 +11,6 @@ class SiteController < ApplicationController
 
   
   def index
-    if(request.GET['project'] == 'ls1')
-        session[:ls1] = 1
-    elsif(request.GET['project'] == '0')
-        session[:ls1] = nil
-    end
   end
 
   def upload
@@ -346,5 +341,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
