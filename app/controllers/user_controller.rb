@@ -23,7 +23,7 @@ class UserController < ApplicationController
         redirect_to "/user/login" and return
     else
         if cookies[:username]
-            redirect_to "/" and return
+            redirect_to "/user/index" and return
         end
     end
   end
