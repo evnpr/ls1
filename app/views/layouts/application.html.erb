@@ -67,8 +67,9 @@
               <li><a href="/site/gitnew">Import Key</a></li>
               <li><a href="/site/githubnew">Set Github</a></li>
             </ul>
+          <% if @username %>
           <span style="float: right; margin-top: 10px;">welcome, <%= @username %></span>
-
+          <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -98,6 +99,7 @@
     <script src="/assets/js/bootstrap-typeahead.js"></script>
   </body>
 </html>
+
 
 
 
