@@ -38,7 +38,7 @@ class UserController < ApplicationController
   end
   
   def logout
-    cookies[:username] = nil
+    cookies.delete :username
     redirect_to "/"
   end
   
