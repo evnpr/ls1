@@ -282,6 +282,11 @@ class SiteController < ApplicationController
             `ruby push.rb`
         }
         redirect_to "/list" and return
+    
+    else
+        if User.exists?(:username => @username)
+            @apps = User.where(:username => @username).first.appss
+        end
     end
   end
 
