@@ -14,7 +14,7 @@ class SiteController < ApplicationController
   end
 
   def upload
-    user_name = params[:username]
+    user_name = @username
     apps_name = params[:name]
     database_name = params[:database_name]
     database_username = params[:database_username]
@@ -345,6 +345,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
