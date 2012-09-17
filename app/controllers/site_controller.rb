@@ -6,9 +6,13 @@ class SiteController < ApplicationController
 
   def login
     if request.post?
-    
+        username = params[:username]
+        pwd = params[:pwd]
+        session[:username] = username
     else
-    
+        if session[:username]
+            redirect_to "/" and return
+        end
     end
   end
   
