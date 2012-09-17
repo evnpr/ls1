@@ -12,7 +12,7 @@ class UserController < ApplicationController
         username = params[:username]
         pwd = params[:pwd]
         session[:username] = username
-        redirect_to "/" and return
+        redirect_to "/user/index" and return
     else
         if session[:username]
             redirect_to "/" and return
