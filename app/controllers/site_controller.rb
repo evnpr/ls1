@@ -30,6 +30,7 @@ class SiteController < ApplicationController
     end
 
     if Apps.exists?(:name => apps_name) then
+        flash[:create_apps] = "the name is already used, choose another name"
         redirect_to "/user/index" and return
     end
 
@@ -403,6 +404,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
