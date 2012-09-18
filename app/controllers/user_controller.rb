@@ -36,7 +36,7 @@ class UserController < ApplicationController
 
   def register
     if request.post?
-        username = params[:username]
+        username = params[:username].delete(" ")
         email = params[:email]
         pwd = Digest::MD5.hexdigest(params[:pwd])
         confpwd = Digest::MD5.hexdigest(params[:confirmpwd])
@@ -71,6 +71,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
