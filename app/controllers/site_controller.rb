@@ -11,6 +11,9 @@ class SiteController < ApplicationController
 
   
   def index
+    if @username
+        redirect_to "/user/index"
+    end
   end
 
   def upload
@@ -390,6 +393,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
