@@ -326,7 +326,9 @@ class SiteController < ApplicationController
 
 
   def githubnew 
-   
+    unless @username
+        redirect_to "/"
+    end   
     if request.post?
         apps_name = params[:apps_name]
         yourname = params[:githubname]
