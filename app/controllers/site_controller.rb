@@ -333,6 +333,10 @@ class SiteController < ApplicationController
         apps_name = params[:apps_name]
         yourname = params[:githubname]
         yourproject = params[:githubrepo]
+        if Apps.exists?(:githubname => yourname, :githubproject => yourproject)
+            flash[:githubnew] = "name and project already exists"
+            redirect_to "/site/githubnew" and return
+        end
         Dir.chdir(@@directory+"/"+apps_name){
            `git init`
            `git remote rm lsorigin`
@@ -399,6 +403,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
