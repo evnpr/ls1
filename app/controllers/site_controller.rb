@@ -122,7 +122,7 @@ class SiteController < ApplicationController
 
   def showcontent
     unless @username
-        redirect_to "/"
+        redirect_to "/" and return
     end
     r = request.GET[:r]
     @r = r 
