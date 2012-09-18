@@ -27,7 +27,7 @@ class SiteController < ApplicationController
     end
 
     if Apps.exists?(:name => apps_name) then
-        redirect_to "/site/index" and return
+        redirect_to "/user/index" and return
     end
 
     `mkdir #{@@directory}/#{apps_name}`
@@ -296,7 +296,7 @@ class SiteController < ApplicationController
         publickeysample = publickey[3..-220].to_s()
         p = User.where("userkey LIKE ?", '%'+publickeysample+'%').first
         if p then
-            redirect_to "/site/index" and return
+            redirect_to "/user/index" and return
         end
         u = User.where(:username => user_name).first
         u.userkey = publickey
@@ -390,6 +390,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
