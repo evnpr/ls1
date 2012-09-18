@@ -290,7 +290,7 @@ class SiteController < ApplicationController
 
   def gitnew 
     unless @username
-        redirect_to "/"
+        redirect_to "/" and return
     end
     if request.post?
         user_name = @username
@@ -327,7 +327,7 @@ class SiteController < ApplicationController
 
   def githubnew 
     unless @username
-        redirect_to "/"
+        redirect_to "/" and return
     end   
     if request.post?
         apps_name = params[:apps_name]
