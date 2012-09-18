@@ -29,6 +29,9 @@ class UserController < ApplicationController
   end
   
   def index
+    unless @username
+        redirect_to "/" and return
+    end
     if User.exists?(:username => @username)
         @apps = User.where(:username => @username).first.appss.all(:order => 'name')
     end
@@ -59,7 +62,7 @@ class UserController < ApplicationController
         flash[:register] = "error registration"
         redirect_to "/user/register" and return
     else
-        if cookies[:username]
+        if @username
             redirect_to "/user/index" and return
         end
     end
@@ -71,6 +74,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
