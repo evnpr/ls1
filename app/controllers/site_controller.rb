@@ -386,6 +386,7 @@ class SiteController < ApplicationController
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
     `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
+    `sudo chmod -R 777 /var/www/ls/prod/#{apps_name}`
     if apps_name == 'ls1'
         Dir.chdir(@@directory+"/"+apps_name){
             `git remote rm lsprod`
@@ -398,6 +399,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
