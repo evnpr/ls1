@@ -92,6 +92,10 @@ class SiteController < ApplicationController
     r = request.GET[:r]
     back = r.split("-__-")
     @apps_name = back[1]
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
