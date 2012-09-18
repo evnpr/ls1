@@ -1,14 +1,13 @@
+<% if @apps %>
 <div class="span4 offset4">
 <p>List of your apps:</p>
 <br>
-<% if @apps %>
     <% @apps.each do |a| %>
     <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> </p>
     <% end %>     
-<% end %>
 <br><br>
 </div>
-
+<% end %>
 
 <% if flash[:create_apps] %>
 <div class="alert">
