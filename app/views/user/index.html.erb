@@ -22,7 +22,7 @@
 <br>
 <% if @apps %>
     <% @apps.each do |a| %>
-    <p><a href="/list/?r=-__-<%= a.name %>">* <%= a.name %> </a> </p>
+    <p><a href="/list/?r=-__-<%= a.name %>">* <%= a.virtual_name %> </a> </p>
     <% end %>     
 <% end %>
     
@@ -46,3 +46,4 @@
     
     
 </script>
+
