@@ -16,6 +16,7 @@ class SiteController < ApplicationController
   def upload
     user_name = @username
     apps_name = params[:name].downcase.delete(" ")
+    virtual_name = params[:name]
     database_name = params[:database_name]
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
@@ -31,6 +32,7 @@ class SiteController < ApplicationController
 
     `mkdir #{@@directory}/#{apps_name}`
     a = Apps.new(:name => apps_name)
+    a.virtual_name = virtual_name
     a.user_id = User.where(:username => user_name).first.id
     a.save
 
@@ -384,6 +386,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
