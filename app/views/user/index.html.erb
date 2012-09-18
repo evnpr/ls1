@@ -1,3 +1,8 @@
+<% if flash[:create_apps] %>
+<div class="alert">
+    <%= flash[:create_apps] %>
+</div>
+<% end %>
 <div class="well span4 offset4">
 <font color="#777">create new app</font><br>
 <form action="/site/upload" enctype="multipart/form-data" method="post"> 
@@ -46,4 +51,5 @@
     
     
 </script>
+
 
