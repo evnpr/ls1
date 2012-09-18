@@ -15,7 +15,7 @@ class SiteController < ApplicationController
 
   def upload
     user_name = @username
-    apps_name = params[:name]
+    apps_name = params[:name].downcase.delete(" ")
     database_name = params[:database_name]
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
@@ -384,6 +384,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
