@@ -34,9 +34,6 @@ class UserController < ApplicationController
     end
     if User.exists?(:username => @username)
         apps = User.where(:username => @username).first.appss.all(:order => 'name')
-        unless apps.nil?
-            @apps = apps
-        end
     end
   end
 
@@ -77,6 +74,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
