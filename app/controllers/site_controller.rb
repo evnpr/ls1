@@ -289,6 +289,9 @@ class SiteController < ApplicationController
 
 
   def gitnew 
+    unless @username
+        redirect_to "/"
+    end
     if request.post?
         user_name = @username
         publickey = params[:key]
@@ -393,6 +396,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
