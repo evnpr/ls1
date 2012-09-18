@@ -1,3 +1,9 @@
+<% if flash[:githubnew] %>
+<div class="alert">
+    <%= flash[:githubnew] %>
+</div>
+<% end %>
+
 <br><br><br>
 
 <form action="/site/githubnew" method="post" accept-charset="utf-8">
@@ -49,4 +55,5 @@
 
     
 </script>
+
 
