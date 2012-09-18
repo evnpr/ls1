@@ -24,10 +24,6 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
-    unless User.exists?(:username => user_name)
-        u = User.new(:username => user_name)
-        u.save
-    end
 
     if Apps.exists?(:name => apps_name) then
         flash[:create_apps] = "the name is already used, choose another name"
@@ -404,6 +400,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
