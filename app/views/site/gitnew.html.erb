@@ -1,12 +1,26 @@
+<% if flash[:gitnew] %>
+<div id="name" class="alert">
+   <%= flash[:gitnew] %> 
+</div>
+<% end %>
+
 <br><br><br>
 
 <form action="/site/gitnew" method="post" accept-charset="utf-8">
     
 <p><%= @username %></p>
 <br>
-<textarea name="key" rows="8" cols="70" class="span6"><% if @key %><%= @key %><% end %></textarea>
+<textarea name="key" rows="8" cols="70" class="span6"></textarea>
 <br>
 <p><input type="submit" value="Save Public Key" class="btn btn-large btn-primary"></p>
 </form>
-
+<% if @key %>
+<% @key.each do |k| %>
+<br>
+    <pre><a href="/gitdelete/<%= k.id %>"> x </a>
+<%= k.userkey %>
+    </pre>
+<br>
+<% end %>
+<% end %>
 

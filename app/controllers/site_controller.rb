@@ -51,7 +51,7 @@ class SiteController < ApplicationController
             f.puts "\n"
             f.puts "[group g#{apps_name}]\n"
             f.puts "writable = #{apps_name} \n"
-            f.puts "members = evan@evan-Lenovo ls #{user_name} \n"
+            f.puts "members = evan@evan-Lenovo ls #{user_name}@pc \n"
         end
         `ruby push.rb`
     }
@@ -295,30 +295,92 @@ class SiteController < ApplicationController
         if user_name.nil? or publickey == ''
             redirect_to "/site/gitnew" and return
         end
-        temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'.pub'
+        temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'@pc.pub'
         publickeysample = publickey[3..-220].to_s()
-        p = User.where("userkey LIKE ?", '%'+publickeysample+'%').first
+        p = Userkey.where("userkey LIKE ?", '%'+publickeysample+'%').first
         if p then
-            redirect_to "/user/index" and return
+            flash[:gitnew] = "the key already used"
+            redirect_to "/site/gitnew" and return
         end
         u = User.where(:username => user_name).first
-        u.userkey = publickey
-        u.save
-        unless File.exists?("#{temprorary_res}")
-            `touch #{temprorary_res}`
-            file = File.open(temprorary_res, "w")
-            file.write(publickey)
-            file.close
+        uk = Userkey.new(:user_id => u.id, :userkey => publickey)
+        uk.save
+        if File.exists?("#{temprorary_res}")
+            open(temprorary_res, "a") do |f|
+                f.puts "\n"
+                f.puts "#{publickey}"
+            end
+        else
+         #   if Userkey.exists?(:user_id => u.id)
+         #       mykeys = User.where(:username => @username).first.userkeys
+         #       mykeys.each do |k|
+         #           if File.exists?("#{temprorary_res}")
+         #               open(temprorary_res, "a") do |f|
+         #                   f.puts "\n"
+         #                   f.puts "#{k.userkey}"
+         #               end
+         #           else
+         #               `touch #{temprorary_res}`
+         #               file = File.open(temprorary_res, "w")
+         #               file.write(k.userkey)
+         #               file.close
+         #           end
+         #       end 
+         #   else 
+
+                `touch #{temprorary_res}`
+                file = File.open(temprorary_res, "w")
+                file.write(publickey)
+                file.close
+
+         #   end
         end
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
             `ruby push.rb`
         }
-        redirect_to "/list" and return
+        redirect_to "/site/gitnew" and return
     else
         if User.exists?(:username => @username)
-            @key = User.where(:username => @username).first.userkey
+            @key = User.where(:username => @username).first.userkeys
         end
     end
+  end
+
+  def gitdelete
+    unless @username
+        redirect_to "/site/index" and return
+    end
+    
+    keyid = params[:id]
+    if Userkey.exists?(:id => keyid)
+        owner = Userkey.find(keyid).user.username
+    end
+    if @username != owner
+        redirect_to "/site/gitnew" and return
+    end
+
+    temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+@username+'@pc.pub'
+    `sudo rm #{temprorary_res}`
+    Userkey.find(keyid).destroy
+    mykeys = User.where(:username => @username).first.userkeys
+    mykeys.each do |k|
+        if File.exists?("#{temprorary_res}")
+            open(temprorary_res, "a") do |f|
+                f.puts "\n"
+                f.puts "#{k.userkey}"
+            end
+        else
+            `touch #{temprorary_res}`
+            file = File.open(temprorary_res, "w")
+            file.write(k.userkey)
+            file.close
+        end
+    end 
+
+    Dir.chdir("/var/www/ls/res/gitosis-admin"){
+        `ruby push.rb`
+    }
+
   end
 
 
@@ -391,6 +453,8 @@ class SiteController < ApplicationController
     if apps_name == 'ls1'
         Dir.chdir(@@directory+"/"+apps_name){
             `git remote rm lsprod`
+            `git add .`
+            `git commit -m 'a'`
             `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push lsprod master -f`
         }
@@ -400,21 +464,5 @@ class SiteController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

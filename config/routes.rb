@@ -29,7 +29,7 @@ Letspan::Application.routes.draw do
   post "site/renamefile"
 
   match "rsync" => "site#rsync"
-
+  match 'gitdelete/:id' => 'site#gitdelete'
 
   
   # The priority is based upon order of creation:
