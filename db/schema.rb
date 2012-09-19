@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919003048) do
+ActiveRecord::Schema.define(:version => 20120919025222) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20120919003048) do
     t.string   "username"
     t.string   "password"
     t.string   "email"
-    t.string   "userkey"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
