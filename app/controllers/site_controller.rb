@@ -143,6 +143,9 @@ class SiteController < ApplicationController
             @language = "css"
         when "rb"
             @language = "ruby"
+        when "jpg"
+            `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
+            @image = "http://img.letspan.com/#{r}"
         else
             @language = "html"
     end
@@ -518,6 +521,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
