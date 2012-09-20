@@ -488,7 +488,7 @@ class SiteController < ApplicationController
       apps_name = r.split("-__-")[1]
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_files = params[:thefile]
-      if uploaded_io.nil?
+      if uploaded_files.nil?
         redirect_to "/list?r="+params[:r] and return
       end
       uploaded_files.each do |u|
