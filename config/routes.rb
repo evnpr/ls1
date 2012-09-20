@@ -27,6 +27,7 @@ Letspan::Application.routes.draw do
   post "site/newfile"
   post "site/newfolder"
   post "site/renamefile"
+  post "site/uploadfile"
 
   match "rsync" => "site#rsync"
   match 'gitdelete/:id' => 'site#gitdelete'
@@ -89,6 +90,7 @@ Letspan::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
 
 
 
