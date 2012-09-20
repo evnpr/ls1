@@ -444,7 +444,7 @@ class SiteController < ApplicationController
       r = params[:r]
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
-      File.open("#{@@directory}/#{dirfolder}/"uploaded_io.original_filename), 'w') do |file|
+      File.open("#{@@directory}/#{dirfolder}/"uploaded_io.original_filename, 'w') do |file|
         file.write(uploaded_io.read)
       end
       redirect_to "/list?r="+params[:r] and return
