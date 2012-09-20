@@ -447,6 +447,7 @@ class SiteController < ApplicationController
     path = r.gsub(/\-\_\_\-/, "\/")+"/"
     newname = params[:newname]
     `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
+    `rm #{@@directory}/#{dirfolder}/#{oldfile}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
         `git commit -m 'rename #{oldfile} to #{n}'`
