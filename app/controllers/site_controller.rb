@@ -146,6 +146,12 @@ class SiteController < ApplicationController
         when "jpg"
             `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
             @image = "http://dev.img.letspan.com/#{r}"
+        when "png"
+            `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
+            @image = "http://dev.img.letspan.com/#{r}"
+        when "gif"
+            `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
+            @image = "http://dev.img.letspan.com/#{r}"
         else
             @language = "html"
     end
