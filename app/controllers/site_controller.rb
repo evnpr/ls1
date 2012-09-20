@@ -1,4 +1,4 @@
-            require 'zip/zip'
+                require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -132,6 +132,16 @@ class SiteController < ApplicationController
     @current_path = r
     back = r.split("-__-")
     @apps_name = back[1]
+    unless Apps.exists?(:name => @apps_name)
+        redirect_to "/" and return
+    end
+    unless back
+        redirect_to "/" and return
+    end     
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -557,6 +567,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
