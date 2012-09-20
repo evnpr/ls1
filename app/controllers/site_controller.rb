@@ -449,8 +449,11 @@ class SiteController < ApplicationController
     lengthdirectory = r.split("-__-").length
     accessbackfrom = oldfile.scan("../").length
     accessbackto = oldfile.scan("../").length
-
-    if
+    if lengthdirectory-accessbackfrom < 2
+        redirect_to "/list?r="+params[:r] and return
+    elsif lengthdirectory-accessbackto < 2 
+        redirect_to "/list?r="+params[:r] and return    
+    end
     `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
     `rm -r #{@@directory}/#{dirfolder}/#{oldfile}`
     Dir.chdir(@@directory+"/"+apps_name){
