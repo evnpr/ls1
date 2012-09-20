@@ -445,10 +445,9 @@ class SiteController < ApplicationController
     n = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     path = r.gsub(/\-\_\_\-/, "\/")+"/"
-    newname = params[:newname]
     lengthdirectory = r.split("-__-").length
     accessbackfrom = oldfile.scan("../").length
-    accessbackto = newname.scan("../").length
+    accessbackto = n.scan("../").length
     if lengthdirectory-accessbackfrom < 2
         redirect_to "/list?r="+params[:r] and return
     elsif lengthdirectory-accessbackto < 2 
