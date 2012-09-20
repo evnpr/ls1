@@ -513,7 +513,7 @@ class SiteController < ApplicationController
       uploaded_io = params[:thefile]
       checkzip = uploaded_io.original_filename.scan(".zip").length
       if checkzip < 1
-        flash[:list]
+        flash[:list] = "you are not uploading .zip file"
         redirect_to "/list?r="+params[:r] and return
       end
       `sudo chmod -R 777 #{@@directory}/#{dirfolder}`
