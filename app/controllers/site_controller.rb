@@ -496,9 +496,8 @@ class SiteController < ApplicationController
       zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename
       unzipfile = "#{@@directory}/#{dirfolder}/"
       unzip_file(zipfile, unzipfile)
-
+      `rm #{zipfile}`
       Dir.chdir(@@directory+"/"+apps_name){
-        `rm zipfile`
         `git add .`
         `git commit -m 'upload folder #{uploaded_io.original_filename}'`
         `git push lsorigin2 master -f`
