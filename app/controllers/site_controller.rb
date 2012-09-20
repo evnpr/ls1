@@ -1,4 +1,4 @@
-                        require 'zip/zip'
+                            require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -471,7 +471,7 @@ class SiteController < ApplicationController
         flash[:list] = "permission denied"
         redirect_to "/list?r="+params[:r] and return    
     end
-    if !n.nil?
+    if n == ""
         `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
     end
     `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
@@ -584,6 +584,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
