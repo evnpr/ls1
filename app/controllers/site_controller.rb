@@ -469,6 +469,30 @@ class SiteController < ApplicationController
       }
       redirect_to "/list?r="+params[:r] and return
   end
+  
+  def uploadfolder
+      r = params[:r]
+      apps_name = r.split("-__-")[1]
+      dirfolder = r.gsub(/\-\_\_\-/, "\/")
+      uploaded_io = params[:thefile]
+      File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename
+      unzipfile = "#{@@directory}/#{dirfolder}/"
+      unzip_file(zipfile, unzipfile)
+      `rm zipfile`
+      Dir.chdir(@@directory+"/"+apps_name){
+        `git add .`
+        `git commit -m 'upload file #{uploaded_io.original_filename}'`
+        `git push lsorigin2 master -f`
+        if apps_name == 'ls1'
+            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git push lsdev master -f`
+        end
+      }
+      redirect_to "/list?r="+params[:r] and return
+  end
 
   def rsync 
     r = params[:r]
