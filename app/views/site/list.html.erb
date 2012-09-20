@@ -22,7 +22,9 @@
     <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()"><button class="btn">rename</button></span>
     <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()"><button class="btn">newfile</button></span>
     <span id="newfolderbutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfolder()"><button class="btn">newfolder</button></span>
-    <span id="uploadfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="uploadfile()"><button class="btn">uploadfile</button></span>
+    <span id="uploadfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="uploadfile()"><button class="btn">upload file</button></span>
+    <span id="uploadfolrderbutton" style="float:right; margin-right:20px; cursor: pointer" onClick="uploadfolder()"><button class="btn">upload folder</button></span>
+
 
     <span id="otheroption" style="display:none; float:right;"><a href="">other option</a>
     </span>
@@ -56,7 +58,7 @@
             <input type="submit" class="btn btn-danger" value="upload"/>
     </form><br>
     
-    <form accept-charset="UTF-8" action="/site/uploadfolder" enctype="multipart/form-data" method="post" style="float:right; display:non" id="uploadfile"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="rX5gkY64mIYajqBC0N7JJNoD5K7PiUVA/rsBtZ3oARI=" /></div>
+    <form accept-charset="UTF-8" action="/site/uploadfolder" enctype="multipart/form-data" method="post" style="float:right; display:none" id="uploadfolder"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="rX5gkY64mIYajqBC0N7JJNoD5K7PiUVA/rsBtZ3oARI=" /></div>
             <input id="picture" name="thefile" type="file" />
             <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
             <input type="submit" class="btn btn-danger" value="upload"/>
@@ -137,6 +139,7 @@
         document.getElementById("newfilebutton").style.display="none";
         document.getElementById("renamebutton").style.display="none";
         document.getElementById("uploadfilebutton").style.display="none";
+        document.getElementById("uploadfolderbutton").style.display="none";
         document.getElementById("renameform").style.display="block";
         document.getElementById("otheroption").style.display="block";
     }
@@ -146,6 +149,7 @@
         document.getElementById("newfilebutton").style.display="none";
         document.getElementById("renamebutton").style.display="none";
         document.getElementById("uploadfilebutton").style.display="none";
+        document.getElementById("uploadfolderbutton").style.display="none";
         document.getElementById("newfileform").style.display="block";
         document.getElementById("otheroption").style.display="block";
     }
@@ -155,6 +159,7 @@
         document.getElementById("newfilebutton").style.display="none";
         document.getElementById("renamebutton").style.display="none";
         document.getElementById("uploadfilebutton").style.display="none";
+        document.getElementById("uploadfolderbutton").style.display="none";
         document.getElementById("newfolderform").style.display="block";
         document.getElementById("otheroption").style.display="block";
     }
@@ -164,10 +169,24 @@
         document.getElementById("newfilebutton").style.display="none";
         document.getElementById("renamebutton").style.display="none";
         document.getElementById("uploadfilebutton").style.display="none";
+        document.getElementById("uploadfolderbutton").style.display="none";
         document.getElementById("uploadfile").style.display="block";
         document.getElementById("otheroption").style.display="block";
     }
+    
+    function uploadfolder(){
+        document.getElementById("newfolderbutton").style.display="none";
+        document.getElementById("newfilebutton").style.display="none";
+        document.getElementById("renamebutton").style.display="none";
+        document.getElementById("uploadfilebutton").style.display="none";
+        document.getElementById("uploadfolderbutton").style.display="none";
+        document.getElementById("uploadfolder").style.display="block";
+        document.getElementById("otheroption").style.display="block";
+    }
+    
+    
 </script>   
+
 
 
 
