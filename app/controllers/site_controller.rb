@@ -468,6 +468,7 @@ class SiteController < ApplicationController
       uploaded_files.each do |u|
           File.open("#{@@directory}/#{dirfolder}/"+u.original_filename, 'wb') do |file|
             file.write(u.read)
+            file.close
           end
       end
       Dir.chdir(@@directory+"/"+apps_name){
