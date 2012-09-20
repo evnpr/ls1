@@ -1,4 +1,4 @@
-require 'zip/zip'
+    require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -515,6 +515,16 @@ class SiteController < ApplicationController
       }
       redirect_to "/list?r="+params[:r] and return
   end
+  
+  def download
+    r = params[:r]
+    apps_name = r.split("-__-")[1]
+    dirfolder = r.gsub(/\-\_\_\-/, "\/")
+    Dir.chdir(@@directory+"/"+apps_name){
+        IO.popen("zip /var/www/ls/upload/img/#{apps_name} #{@@directory}/#{dirfolder}/* ")
+    }
+    redirect_to "http://dev.img.letspan.com/#{apps_name}.zip" and return
+  end
 
   def rsync 
     r = params[:r]
@@ -540,6 +550,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
