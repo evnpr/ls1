@@ -1,4 +1,4 @@
-    require 'zip/zip'
+        require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -462,8 +462,8 @@ class SiteController < ApplicationController
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     path = r.gsub(/\-\_\_\-/, "\/")+"/"
     lengthdirectory = r.split("-__-").length
-    accessbackfrom = oldfile.scan("../").length
-    accessbackto = n.scan("../").length
+    accessbackfrom = oldfile.scan("..").length
+    accessbackto = n.scan("..").length
     if lengthdirectory-accessbackfrom < 2
         flash[:list] = "permission denied"
         redirect_to "/list?r="+params[:r] and return
@@ -472,7 +472,7 @@ class SiteController < ApplicationController
         redirect_to "/list?r="+params[:r] and return    
     end
     `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
-    `rm -r #{@@directory}/#{dirfolder}/#{oldfile}`
+    `rm -R #{@@directory}/#{dirfolder}/#{oldfile}`
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
         `git commit -m 'rename #{oldfile} to #{n}'`
@@ -582,6 +582,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 

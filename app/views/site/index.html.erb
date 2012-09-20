@@ -82,31 +82,47 @@
 <br><br>
 <br><br>
 <script type="text/javascript" charset="utf-8">
-    function showDatabaseForm(){
-        document.getElementById("databaseform").style.display="block";
-        document.getElementById("cursordb").style.display="none";
-    }
 
+    a=0;
+    b=0;
+    c=0;
+    d=0;
     function langsupport(){
-        document.getElementById("langsupport").style.display="block";
-        document.getElementById("langsupport?").style.display="none";
-    }
-    
-    function showDatabase(){
-        document.getElementById("databaseHelp").style.display="block";
-        document.getElementById("database?").style.display="none";
+        if(a==1){
+            document.getElementById("langsupport").style.display="none";
+        }
+        else{
+            document.getElementById("langsupport").style.display="block";
+            a=1;
+        }
     }
     
     function showGithub(){
-        document.getElementById("githubHelp").style.display="block";
-        document.getElementById("github?").style.display="none";
+        if(b==1){
+            document.getElementById("githubHelp").style.display="none";
+        }else{
+            document.getElementById("githubHelp").style.display="block";
+            b=1;
+        }
     }
     
-        function showGit(){
-        document.getElementById("gitHelp").style.display="block";
-        document.getElementById("git?").style.display="none";
+    function showGit(){
+        if(c==1){
+            document.getElementById("gitHelp").style.display="none";
+        }else{
+            document.getElementById("gitHelp").style.display="block";
+            c=1;
+        }
     }
     
+    function showDatabase(){
+        if(d==1){
+            document.getElementById("databaseHelp").style.display="none";
+        }else{
+            document.getElementById("databaseHelp").style.display="block";
+            d=1;
+        }
+    }
 </script>
 
 
