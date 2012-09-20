@@ -489,6 +489,7 @@ class SiteController < ApplicationController
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_files = params[:thefile]
       if uploaded_files.nil?
+        flash[:list] = "you are not uploading any folder/files"
         redirect_to "/list?r="+params[:r] and return
       end
       uploaded_files.each do |u|
@@ -515,6 +516,7 @@ class SiteController < ApplicationController
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
       if uploaded_io.nil?
+        flash[:list] = "you are not uploading any folder/files"
         redirect_to "/list?r="+params[:r] and return
       end
       checkzip = uploaded_io.original_filename.scan(".zip").length
