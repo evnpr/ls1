@@ -521,6 +521,7 @@ class SiteController < ApplicationController
     apps_name = r.split("-__-")[1]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     Dir.chdir(@@directory+"/"+dirfolder){
+        `rm /var/www/ls/upload/img/#{apps_name}.zip`
         IO.popen("zip /var/www/ls/upload/img/#{apps_name} * ")
     }
     redirect_to "http://dev.img.letspan.com/#{apps_name}.zip" and return
