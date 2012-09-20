@@ -39,9 +39,11 @@
 <% else %>
 <br>
 <pre id="editor">
-<%= @contents %>
+
 <% if @image %>
     <img src="<%= @image %>" />
+<% else %>
+    <%= @contents %>
 <% end %>
 </pre>
 
