@@ -1,4 +1,4 @@
-        require 'zip/zip'
+            require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -92,7 +92,7 @@ class SiteController < ApplicationController
     r = request.GET[:r]
     back = r.split("-__-")
     @apps_name = back[1]
-    if Apps.exists?(:name => @apps_name)
+    unless Apps.exists?(:name => @apps_name)
         redirect_to "/" and return
     end
     unless back
@@ -557,6 +557,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
