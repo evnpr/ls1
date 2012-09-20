@@ -38,13 +38,15 @@
 <iframe src="/ace-editor/vim?r=<%= @r %>" frameborder="0" width="100%" height="400px"></iframe>
 <% else %>
 <br>
-<pre id="editor">
+
 <% if @image %>
     <img src="<%= @image %>" />
 <% else %>
+<pre id="editor">
     <%= @contents %>
-<% end %>
 </pre>
+<% end %>
+
 
 <span id="thisfile" style="display: none" value="<%= @r %>"><%= @r %></span>
 
@@ -141,6 +143,7 @@ document.onkeydown = checkKeycode
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
 
 
 
