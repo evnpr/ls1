@@ -465,11 +465,11 @@ class SiteController < ApplicationController
       apps_name = r.split("-__-")[1]
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile[2]]
-#
+      uploaded_files.each do |uploaded_io|
           File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
             file.write(uploaded_io.read)
           end
-#
+      end
       Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
         `git commit -m 'upload file #{uploaded_io.original_filename}'`
