@@ -488,7 +488,7 @@ class SiteController < ApplicationController
       apps_name = r.split("-__-")[1]
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
-      `sudo chmod -r 777 #{@@directory}/#{dirfolder}`
+      `sudo chmod -R 777 #{@@directory}/#{dirfolder}`
       File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
         file.write(uploaded_io.read)
         file.close
