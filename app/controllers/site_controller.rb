@@ -1,4 +1,4 @@
-                            require 'zip/zip'
+                                require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -471,10 +471,12 @@ class SiteController < ApplicationController
         flash[:list] = "permission denied"
         redirect_to "/list?r="+params[:r] and return    
     end
-    if n != ""
-        `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
-    end
-    `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
+    Dir.chdir(@@directory+"/"+apps_name){
+        if n != ""
+            `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
+        end
+        `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
+    }
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
         `git commit -m 'rename #{oldfile} to #{n}'`
@@ -584,6 +586,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
