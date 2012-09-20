@@ -466,8 +466,8 @@ class SiteController < ApplicationController
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_files = params[:thefile]
       uploaded_files.each do |uploaded_io|
-          File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
-            file.write(uploaded_io.read)
+          File.open("#{@@directory}/#{dirfolder}/"+uploaded_files.original_filename, 'wb') do |file|
+            file.write(uploaded_files.read)
           end
       end
       Dir.chdir(@@directory+"/"+apps_name){
