@@ -471,7 +471,7 @@ class SiteController < ApplicationController
         flash[:list] = "permission denied"
         redirect_to "/list?r="+params[:r] and return    
     end
-    Dir.chdir(@@directory+"/"+apps_name){
+    Dir.chdir(@@directory+dirfolder){
         if n != ""
             `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
         end
