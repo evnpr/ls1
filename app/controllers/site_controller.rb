@@ -490,6 +490,7 @@ class SiteController < ApplicationController
       `sudo chmod -r 777 #{@@directory}/#{dirfolder}`
       File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
         file.write(uploaded_io.read)
+        file.close
       end
       zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename
       unzipfile = "#{@@directory}/#{dirfolder}/"
