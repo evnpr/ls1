@@ -448,7 +448,7 @@ class SiteController < ApplicationController
     newname = params[:newname]
     lengthdirectory = r.split("-__-").length
     accessbackfrom = oldfile.scan("../").length
-    accessbackto = oldfile.scan("../").length
+    accessbackto = newname.scan("../").length
     if lengthdirectory-accessbackfrom < 2
         redirect_to "/list?r="+params[:r] and return
     elsif lengthdirectory-accessbackto < 2 
