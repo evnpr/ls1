@@ -1,4 +1,4 @@
-Letspan::Application.routes.draw do
+    Letspan::Application.routes.draw do
   get "user/index"
   get "user/login"
   post "user/login"
@@ -29,6 +29,8 @@ Letspan::Application.routes.draw do
   post "site/renamefile"
   post "site/uploadfile"
   post "site/uploadfolder"
+  match 'site/download/:r' => 'site#download'
+
 
   match "rsync" => "site#rsync"
   match 'gitdelete/:id' => 'site#gitdelete'
@@ -91,6 +93,7 @@ Letspan::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
 
 
 
