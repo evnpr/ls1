@@ -431,22 +431,42 @@ class SiteController < ApplicationController
 
   def renamefile
     r = params[:r]
+    apps_name = r.split("-__-")[1]
     oldfile = params[:oldfile]
     n = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     path = r.gsub(/\-\_\_\-/, "\/")+"/"
     newname = params[:newname]
     `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
+    Dir.chdir(@@directory+"/"+apps_name){
+        `git add .`
+        `git commit -m '#{commit}'`
+        `git push lsorigin2 master -f`
+        if apps_name == 'ls1'
+            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git push lsdev master -f`
+        end
+    }
     redirect_to "/list?r="+params[:r] and return
   end
 
   def uploadfile
       r = params[:r]
+      apps_name = r.split("-__-")[1]
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
       File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
         file.write(uploaded_io.read)
       end
+      Dir.chdir(@@directory+"/"+apps_name){
+        `git add .`
+        `git commit -m '#{commit}'`
+        `git push lsorigin2 master -f`
+        if apps_name == 'ls1'
+            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git push lsdev master -f`
+        end
+      }
       redirect_to "/list?r="+params[:r] and return
   end
 
