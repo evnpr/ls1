@@ -465,8 +465,10 @@ class SiteController < ApplicationController
     accessbackfrom = oldfile.scan("../").length
     accessbackto = n.scan("../").length
     if lengthdirectory-accessbackfrom < 2
+        flash[:list] = "permission denied"
         redirect_to "/list?r="+params[:r] and return
     elsif lengthdirectory-accessbackto < 2 
+        flash[:list] = "permission denied"
         redirect_to "/list?r="+params[:r] and return    
     end
     `mv #{@@directory}/#{dirfolder}/#{oldfile} #{@@directory}/#{dirfolder}/#{n}`
