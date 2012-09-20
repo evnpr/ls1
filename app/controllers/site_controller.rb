@@ -51,7 +51,7 @@ class SiteController < ApplicationController
             f.puts "\n"
             f.puts "[group g#{apps_name}]\n"
             f.puts "writable = #{apps_name} \n"
-            f.puts "members = evan@evan-Lenovo ls #{user_name}@pc \n"
+            f.puts "members = evan@evan-Lenovo ls #{user_name}@#{user_name} \n"
         end
         `ruby push.rb`
     }
@@ -295,7 +295,7 @@ class SiteController < ApplicationController
         if user_name.nil? or publickey == ''
             redirect_to "/site/gitnew" and return
         end
-        temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'@pc.pub'
+        temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'@'+user_name+'.pub'
         publickeysample = publickey[3..-220].to_s()
         p = Userkey.where("userkey LIKE ?", '%'+publickeysample+'%').first
         if p then
@@ -359,7 +359,7 @@ class SiteController < ApplicationController
         redirect_to "/site/gitnew" and return
     end
 
-    temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+@username+'@pc.pub'
+    temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+@username+'@'+@username+'.pub'
     `sudo rm #{temprorary_res}`
     Userkey.find(keyid).destroy
     mykeys = User.where(:username => @username).first.userkeys

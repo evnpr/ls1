@@ -48,6 +48,10 @@
     <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
     <p><input type="submit" value="create new folder" class="btn"></p>
     </form>
+    
+    <%= form_tag({:action => :upload}, :multipart => true) do %>
+  <     %= file_field_tag 'picture' %>
+    <% end %>
 <% end %>
 <br>
 <br>
@@ -142,6 +146,7 @@
         document.getElementById("otheroption").style.display="block";
     }
 </script>   
+
 
 
 
