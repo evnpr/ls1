@@ -1,4 +1,4 @@
-<% if flash[:list] %>
+    <% if flash[:list] %>
 <div class="alert">
     <%= flash[:list] %>
 </div>
@@ -17,7 +17,7 @@
     <a href="/site/download/<%= @current_path %>" rel="tooltip" title="Download this directory as zip">
     <span id="downloadbutton" style="float:right; margin-left:20px; cursor: pointer"><i class="icon-download-alt"></i></span>
     </a>
-    <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()"><button class="btn">rename</button></span>
+    <span id="renamebutton" style="float:right; cursor: pointer" onClick="rename()"><button class="btn btn-danger">rename</button></span>
     <span id="newfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfile()"><button class="btn">newfile</button></span>
     <span id="newfolderbutton" style="float:right; margin-right:20px; cursor: pointer" onClick="newfolder()"><button class="btn">newfolder</button></span>
     <span id="uploadfilebutton" style="float:right; margin-right:20px; cursor: pointer" onClick="uploadfile()"><button class="btn">upload file</button></span>
@@ -182,6 +182,7 @@
     
     
 </script>   
+
 
 
 
