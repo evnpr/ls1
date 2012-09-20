@@ -85,8 +85,7 @@
 <% end %>
 <br>
 <br>
-<br>
-<br>
+
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a></p>
