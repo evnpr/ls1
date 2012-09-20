@@ -49,10 +49,10 @@
     <p><input type="submit" value="create new folder" class="btn"></p>
     </form>
     
-    <%= form_tag({:action => :upload}, :multipart => true) do %>
-        <%= file_field_tag 'picture' %>
-        <input type="submit" class="btn btn-danger" value="upload"/>
-    <% end %>
+    <form accept-charset="UTF-8" action="/site/uploadfile" enctype="multipart/form-data" method="post" style="float:right"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="rX5gkY64mIYajqBC0N7JJNoD5K7PiUVA/rsBtZ3oARI=" /></div>
+            <input id="picture" name="thefile" type="file" />
+            <input type="submit" class="btn btn-danger" value="upload"/>
+    </form><br>
 <% end %>
 <br>
 <br>
