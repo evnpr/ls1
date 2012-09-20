@@ -440,6 +440,16 @@ class SiteController < ApplicationController
     redirect_to "/list?r="+params[:r] and return
   end
 
+  def uploadfile
+      r = params[:r]
+      dirfolder = r.gsub(/\-\_\_\-/, "\/")
+      uploaded_io = params[:thefile]
+      File.open("#{@@directory}/#{dirfolder}/"uploaded_io.original_filename), 'w') do |file|
+        file.write(uploaded_io.read)
+      end
+      redirect_to "/list?r="+params[:r] and return
+  end
+
   def rsync 
     r = params[:r]
     back = r.split("-__-")
@@ -464,5 +474,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
