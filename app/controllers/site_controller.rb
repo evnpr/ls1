@@ -1,4 +1,4 @@
-                require 'zip/zip'
+                    require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -511,6 +511,11 @@ class SiteController < ApplicationController
       apps_name = r.split("-__-")[1]
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
+      checkzip = uploaded_io.original_filename.scan(".zip").length
+      if checkzip < 1
+        flash[:list]
+        redirect_to "/list?r="+params[:r] and return
+      end
       `sudo chmod -R 777 #{@@directory}/#{dirfolder}`
       File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
         file.write(uploaded_io.read)
@@ -567,6 +572,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
