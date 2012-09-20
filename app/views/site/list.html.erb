@@ -76,14 +76,12 @@
 <% end %>
 
 <% if @root %>
-    <span class="label" style="font-size:17px;">
         
-        <%= @apps_name %>
-        
-    </span>
+        <code class="" style="float:left"><%= @name %></code>
+
 <% end %>
 <br><br>
-<code class="" style="float:left"><%= @name %></code>
+
 <br><br>
 
 <% @listfolder.each do |l| %>
