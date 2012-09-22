@@ -192,6 +192,7 @@
     }
     
     function deletefile(directory){
+        filename = directory.split("&")[1]
         var r=confirm("Going to delete "+filename);
         if (r==true)
           {
