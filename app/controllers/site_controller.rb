@@ -225,7 +225,7 @@ class SiteController < ApplicationController
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
-        `sudo chmod -R 775 .` 
+        `sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
