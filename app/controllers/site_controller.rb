@@ -553,12 +553,23 @@ class SiteController < ApplicationController
   end
   
   def deletefile
-      r = params[:r]
-      apps_name = r.split("-__-")[1]
-      dirfolder = r.gsub(/\-\_\_\-/, "\/")
-      f = params[:filename]
-      `sudo rm -R #{@@directory}#{dirfolder}/#{f}`
-      redirect_to "/list?r="+params[:r] and return
+    r = params[:r]
+    lengthdirectory = r.split("-__-").length
+    accessbackfrom = oldfile.scan("..").length
+    accessbackto = n.scan("..").length
+    if lengthdirectory-accessbackfrom < 2
+        flash[:list] = "permission denied"
+        redirect_to "/list?r="+params[:r] and return
+    elsif lengthdirectory-accessbackto < 2 
+        flash[:list] = "permission denied"
+        redirect_to "/list?r="+params[:r] and return    
+    end
+    apps_name = r.split("-__-")[1]
+    dirfolder = r.gsub(/\-\_\_\-/, "\/")
+    f = params[:f]
+    #`sudo rm -R #{@@directory}#{dirfolder}/#{f}`
+    flash[:list] = "{@@directory}#{dirfolder}/#{f}"
+    redirect_to "/list?r="+params[:r] and return
   end
   
   def download
