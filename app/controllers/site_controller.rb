@@ -761,15 +761,16 @@ class SiteController < ApplicationController
     if request.post?
         r = params[:r]
         @apps_name = params[:apps_name]
+        user_name = params[:user
         colname = params[:colname]
         if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                                :user_id => User.where(:username => @username).first.id
+                                :user_id => User.where(:username => colname).first.id
                                 )
             flash[:list] = "Collaborator already exists"
             redirect_to "/list?r="+params[:r] and return
         end
         c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
-        c.user_id = User.where(:username => @username).first.id
+        c.user_id = User.where(:username => colname).first.id
         c.save
         redirect_to "/list?r="+params[:r] and return
     end
