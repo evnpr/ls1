@@ -804,8 +804,7 @@ class SiteController < ApplicationController
     end
     if !Collaborator.exists?(:apps_id => Apps.where(:name => apps_name).first.id,
                             :user_id => User.where(:username => name).first.id
-                            )
-        
+                            )        
         redirect_to "/list?r="+params[:r] and return
     end
     c = Collaborator.where(:apps_id => Apps.where(:name => apps_name).first.id,
@@ -814,12 +813,11 @@ class SiteController < ApplicationController
     c.destroy
     c.save
     flash[:list] = "You just delete #{name} from collaborator"    
-    `sudo chmod 777 -R /var/www/ls/res/gitosis-admin`
+\
     Dir.chdir("/var/www/ls/res/gitosis-admin"){
             `sudo sed -i 's/#{@apps_name}\ ls\ #{colname}@#{colname} /#{@apps_name}\ ls /g' /var/www/ls/res/gitosis-admin/gitosis.conf`
             `ruby push.rb`
     }
-
     redirect_to "/list?r="+params[:r] and return
   end
 
