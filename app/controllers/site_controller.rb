@@ -68,6 +68,8 @@ class SiteController < ApplicationController
         `sudo chmod -R 777 #{gitdirectory}/#{apps_name}.git/`
         `sudo cp #{gitdirectory}/post-receive #{gitdirectory}/#{apps_name}.git/hooks/` 
         `sudo sed -i 's/appsname /#{apps_name} /g' #{gitdirectory}/#{apps_name}.git/hooks/post-receive`
+        `sudo chmod -R 755 #{@@directory}/#{apps_name}`
+        `sudo chmod -R 755 #{gitdirectory}/#{apps_name}.git/`
     }
 
 
