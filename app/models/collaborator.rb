@@ -1,5 +1,6 @@
-class Collaborator < ActiveRecord::Base
+    class Collaborator < ActiveRecord::Base
     belongs_to :user
-    belongst_to :apps
+    belongs_to :apps
 end
+
 
