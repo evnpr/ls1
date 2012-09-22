@@ -62,7 +62,7 @@ class SiteController < ApplicationController
     Dir.chdir("#{@@directory}/#{apps_name}"){
         `git init`
         `git add .`
-        `git commit -m 'welcome to letspan'`
+        `git commit -m 'welcome to letspan #{@username}'`
         `git remote add lsorigin2 git@letspan.com:#{apps_name}.git`
         `git push lsorigin2 master`
         `sudo chmod -R 777 #{@@directory}/#{apps_name}`
@@ -228,7 +228,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/"+apps_name){
         `sudo chmod -R 755 .` 
         `git add . -A`
-        `git commit -m '#{commit}'`
+        `git commit -m '#{@username} #{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
@@ -256,7 +256,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/#{apps_name}"){
         `sudo chmod -R 755 .` 
         `git add . -A`
-        `git commit -m 'push from ls'`
+        `git commit -m '#{@username} push from ls'`
         `git push lsorigin master -f`
     }
 
@@ -295,7 +295,7 @@ class SiteController < ApplicationController
     end
     Dir.chdir(@@directory+"/#{path}"){
         `git add .`
-        `git commit -m 'push from ls'`
+        `git commit -m '#{@username} push from ls'`
         `git push lsbitbucket master -f`
     }
 
@@ -509,7 +509,7 @@ class SiteController < ApplicationController
     }
     Dir.chdir(@@directory+"/"+apps_name){
         `git add . -A`
-        `git commit -m 'rename #{oldfile} to #{n}'`
+        `git commit -m '#{@username} rename #{oldfile} to #{n}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
@@ -545,7 +545,7 @@ class SiteController < ApplicationController
       Dir.chdir(@@directory+"/"+apps_name){
         `sudo chmod -R 755 .` 
         `git add . -A`
-        `git commit -m 'upload file #{uploaded_files}'`
+        `git commit -m '#{@username} upload file #{uploaded_files}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
@@ -588,7 +588,7 @@ class SiteController < ApplicationController
       Dir.chdir(@@directory+"/"+apps_name){
         `sudo chmod -R 755 .`           
         `git add . -A`
-        `git commit -m 'upload folder #{uploaded_io.original_filename}'`
+        `git commit -m '#{@username} upload folder #{uploaded_io.original_filename}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
@@ -616,7 +616,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/"+apps_name){
         `sudo chmod -R 755 .` 
         `git add . -A`
-        `git commit -m 'upload folder delete #{dirfolder}/#{f}'`
+        `git commit -m '#{@username} upload folder delete #{dirfolder}/#{f}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
@@ -667,7 +667,7 @@ class SiteController < ApplicationController
             `git remote rm lsprod`
             `sudo chmod -R 755 /var/www/ls/prod/#{apps_name}` 
             `git add . -A`
-            `git commit -m 'a'`
+            `git commit -m '#{@username}'`
             `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push lsprod master -f`
         }
