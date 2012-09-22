@@ -557,7 +557,7 @@ class SiteController < ApplicationController
     apps_name = r.split("-__-")[1]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
-    #`sudo rm -R #{@@directory}#{dirfolder}/#{f}`
+    `sudo rm #{@@directory}#{dirfolder}/#{f}`
     flash[:list] = "#{@@directory}#{dirfolder}/#{f}"
     redirect_to "/list?r="+params[:r] and return
   end
