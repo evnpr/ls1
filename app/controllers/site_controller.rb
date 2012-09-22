@@ -476,7 +476,6 @@ class SiteController < ApplicationController
             `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
             `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
         end
-   
     }
     Dir.chdir(@@directory+"/"+apps_name){
         `git add . -A`
