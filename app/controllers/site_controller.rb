@@ -552,6 +552,15 @@ class SiteController < ApplicationController
       redirect_to "/list?r="+params[:r] and return
   end
   
+  def deletefile
+      r = params[:r]
+      apps_name = r.split("-__-")[1]
+      dirfolder = r.gsub(/\-\_\_\-/, "\/")
+      f = params[:filename]
+      `sudo rm -R #{@@directory}#{dirfolder}/#{f}`
+      redirect_to "/list?r="+params[:r] and return
+  end
+  
   def download
     r = params[:r]
     apps_name = r.split("-__-")[1]
