@@ -766,6 +766,10 @@ class SiteController < ApplicationController
         @apps_name = params[:apps_name]
         user_name = params[:user]
         colname = params[:colname]
+        if !User.exists?(:username => colname)
+            flash[:list] = "The username that you input is invalid"
+            redirect_to "/list?r="+params[:r] and return
+        end
         if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
                                 :user_id => User.where(:username => colname).first.id
                                 )
@@ -775,6 +779,7 @@ class SiteController < ApplicationController
         c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         c.user_id = User.where(:username => colname).first.id
         c.save
+        flash[:list] = "you added #{colname} as collaborator of #{@apps_name}"
         redirect_to "/list?r="+params[:r] and return
     end
   end
