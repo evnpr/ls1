@@ -778,7 +778,7 @@ class SiteController < ApplicationController
         end
         `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
-            `sudo sed -i 's/#{apps_name}\ ls /#{apps_name}\ ls\ #{colname} /g' /var/www/ls/res/gitosis-admin/gitosis.conf`
+            `sudo sed -i 's/#{@apps_name}\ ls /#{@apps_name}\ ls\ #{colname} /g' /var/www/ls/res/gitosis-admin/gitosis.conf`
             `ruby push.rb`
         }
         c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
