@@ -1,4 +1,4 @@
-    require 'zip/zip'
+        require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -102,8 +102,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end        
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -150,8 +152,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end     
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -466,8 +470,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -488,8 +494,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -510,8 +518,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -560,12 +570,14 @@ class SiteController < ApplicationController
       unless @username
         redirect_to "/" and return
       end
-      apps_owner = Apps.where(:name => @apps_name).first.user.username
-      if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                              :user_id => User.where(:username => @username).first.id
-                              )
-          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-      end
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
 
       if @username != apps_owner or apps_collaborator
           redirect_to "/user/index" and return
@@ -602,12 +614,14 @@ class SiteController < ApplicationController
       unless @username
          redirect_to "/" and return
       end
-      apps_owner = Apps.where(:name => @apps_name).first.user.username
-      if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                              :user_id => User.where(:username => @username).first.id
-                              )
-          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-      end
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
 
       if @username != apps_owner or apps_collaborator
           redirect_to "/user/index" and return
@@ -652,8 +666,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -686,8 +702,10 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
-                            :user_id => User.where(:username => @username).first.id
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
                             )
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
@@ -758,6 +776,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
