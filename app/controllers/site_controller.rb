@@ -566,7 +566,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/"+apps_name){
         `sudo chmod -R 775 .` 
         `git add . -A`
-        `git commit -m 'upload folder #{uploaded_io.original_filename}'`
+        `git commit -m 'upload folder delete #{dirfolder}/#{f}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
