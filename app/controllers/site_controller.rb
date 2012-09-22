@@ -816,7 +816,7 @@ class SiteController < ApplicationController
     c.save
     `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
     Dir.chdir("/var/www/ls/res/gitosis-admin"){
-            `sudo sed -i 's/#{@apps_name}\ ls\ #{colname}@#{colname} /#{@apps_name}\ ls/g' /var/www/ls/res/gitosis-admin/gitosis.conf`
+            `sudo sed -i 's/#{@apps_name}\ ls\ #{colname}@#{colname} /#{@apps_name}\ ls /g' /var/www/ls/res/gitosis-admin/gitosis.conf`
             `ruby push.rb`
     }
     `sudo chmod -R 755 /var/www/ls/res/gitosis-admin`
