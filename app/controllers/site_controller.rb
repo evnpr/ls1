@@ -678,25 +678,3 @@ class SiteController < ApplicationController
 
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
