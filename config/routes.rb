@@ -1,4 +1,4 @@
-    Letspan::Application.routes.draw do
+        Letspan::Application.routes.draw do
   get "user/index"
   get "user/login"
   post "user/login"
@@ -30,10 +30,13 @@
   post "site/uploadfile"
   post "site/uploadfolder"
   match 'site/download/:r' => 'site#download'
+  get "site/delete"
 
 
   match "rsync" => "site#rsync"
   match 'gitdelete/:id' => 'site#gitdelete'
+  
+  
 
   
   # The priority is based upon order of creation:
@@ -93,6 +96,7 @@
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
 
 
 
