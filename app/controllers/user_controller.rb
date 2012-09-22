@@ -1,4 +1,4 @@
-    require 'digest/md5'
+        require 'digest/md5'
 class UserController < ApplicationController
 
   before_filter :get_users
@@ -37,7 +37,7 @@ class UserController < ApplicationController
         if apps.length > 0
             @apps = apps
         end
-        apps_col = User.where(:username => @username).first.collaborators.all(:order => 'name')
+        apps_col = User.where(:username => @username).first.collaborators
         if apps_col.length > 0
             @apps_col = apps_col
         end
@@ -82,6 +82,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
