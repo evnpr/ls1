@@ -1,4 +1,4 @@
-        require 'zip/zip'
+            require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -110,7 +110,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
 
@@ -160,7 +160,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     back.pop
@@ -478,7 +478,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     newfile = params[:newfile]
@@ -502,7 +502,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     newfolder = params[:newfolder]
@@ -526,7 +526,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     oldfile = params[:oldfile]
@@ -579,7 +579,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
           redirect_to "/user/index" and return
       end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -623,7 +623,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
           redirect_to "/user/index" and return
       end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -674,7 +674,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -710,7 +710,7 @@ class SiteController < ApplicationController
         apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
     end
 
-    unless @username != apps_owner or !apps_collaborator.nil?
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -777,7 +777,3 @@ class SiteController < ApplicationController
   end
 
 end
-
-
-
-
