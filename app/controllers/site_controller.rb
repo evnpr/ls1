@@ -815,7 +815,7 @@ class SiteController < ApplicationController
     flash[:list] = "You just delete #{name} from collaborator"    
     `sudo chmod 777 -R /var/www/ls/res/gitosis-admin`
     Dir.chdir("/var/www/ls/res/gitosis-admin"){
-            `sudo sed -i 's/#{@apps_name}\ ls\ #{colname}\@#{colname}/#{@apps_name}\ ls /g' gitosis.conf`
+            `sudo sed -i 's/#{@apps_name}\ ls\ #{name}\@#{name}/#{@apps_name}\ ls /g' gitosis.conf`
             `ruby push.rb`
     }
     redirect_to "/list?r="+params[:r] and return
