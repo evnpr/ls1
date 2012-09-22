@@ -137,7 +137,7 @@
     $ git commit -m 'first commit'
     $ git push letspan master
 </pre>
-<% @owner %>
+<% if @owner %>
     <form action="/site/collaborator" method="post" accept-charset="utf-8">    
     <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
     <input type="hidden" name="apps_name" value="<%= @apps_name %>">
