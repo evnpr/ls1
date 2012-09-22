@@ -1,10 +1,25 @@
-<% if @apps %>
+    <% if @apps %>
 <div class="span4 offset4">
 <p>List of your apps:</p>
 <br>
     <% @apps.each do |a| %>
     <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> </p>
-    <% end %>     
+    <% end %>   
+    
+    
+<br><br>
+</div>
+<% end %>
+
+<% if @apps %>
+<div class="span4 offset4">
+<p>List of your apps collaborate in:</p>
+<br>
+    <% @apps_col.each do |a| %>
+    <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.apps.virtual_name %> </a> </p>
+    <% end %>   
+    
+    
 <br><br>
 </div>
 <% end %>
@@ -52,6 +67,7 @@
     
     
 </script>
+
 
 
 
