@@ -91,7 +91,7 @@
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <div class="theitem"><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a>
-    <span style="float:right"><a onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>', '<%= #{l[1..-1]} %>')">x</a>
+    <span style="float:right"><a onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>')">x</a>
     </span>
 </div>
 <% end %>
