@@ -603,7 +603,7 @@ class SiteController < ApplicationController
     if apps_name == 'ls1'
         Dir.chdir(@@directory+"/"+apps_name){
             `git remote rm lsprod`
-            `sudo chmod -R 775 .` 
+            `sudo chmod -R 755 /var/www/ls/prod/#{apps_name}` 
             `git add . -A`
             `git commit -m 'a'`
             `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
