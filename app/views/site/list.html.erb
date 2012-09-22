@@ -81,7 +81,7 @@
 
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<div class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a>
+<div class="theitem row"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a>
     <span style="float:right"><a href="<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
     </span>
 </div>
