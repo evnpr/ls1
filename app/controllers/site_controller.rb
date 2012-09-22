@@ -499,6 +499,7 @@ class SiteController < ApplicationController
         flash[:list] = "you are not uploading any folder/files"
         redirect_to "/list?r="+params[:r] and return
       end
+      `sudo chmod -R 777 #{@@directory}/#{dirfolder}`      
       uploaded_files.each do |u|
           File.open("#{@@directory}/#{dirfolder}/"+u.original_filename, 'wb') do |file|
             file.write(u.read)
@@ -506,6 +507,7 @@ class SiteController < ApplicationController
           end
       end
       Dir.chdir(@@directory+"/"+apps_name){
+        `sudo chmod -R 775 .` 
         `git add . -A`
         `git commit -m 'upload file #{uploaded_files}'`
         `git push lsorigin2 master -f`
@@ -541,6 +543,7 @@ class SiteController < ApplicationController
       unzip_file(zipfile, unzipfile)
       `rm #{zipfile}`
       Dir.chdir(@@directory+"/"+apps_name){
+        `sudo chmod -R 775 .`           
         `git add . -A`
         `git commit -m 'upload folder #{uploaded_io.original_filename}'`
         `git push lsorigin2 master -f`
@@ -557,8 +560,19 @@ class SiteController < ApplicationController
     apps_name = r.split("-__-")[1]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
-    `sudo rm -R #{@@directory}#{dirfolder}/#{f}`
+    `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
+    `rm -R #{@@directory}#{dirfolder}/#{f}`
     flash[:list] = "just delete #{dirfolder}/#{f}"
+    Dir.chdir(@@directory+"/"+apps_name){
+        `sudo chmod -R 775 .` 
+        `git add . -A`
+        `git commit -m 'upload folder #{uploaded_io.original_filename}'`
+        `git push lsorigin2 master -f`
+        if apps_name == 'ls1'
+            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git push lsdev master -f`
+        end
+    }
     redirect_to "/list?r="+params[:r] and return
   end
   
