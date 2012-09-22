@@ -795,8 +795,14 @@ class SiteController < ApplicationController
     apps_owner = Apps.where(:name => apps_name).first.user.username
     if @username != apps_owner
         redirect_to "/user/index" and return
+        redirect_to "/list?r="+params[:r] and return
     end
-
+    if Collaborator.exists?(:apps_id => Apps.where(:name => apps_name).first.id,
+                            :user_id => User.where(:username => name).first.id
+                            )
+        flash[:list] = "something error, make sure your input is correct"
+        
+    end
     c = Collaborator.where(:apps_id => Apps.where(:name => apps_name).first.id,
                             :user_id => User.where(:username => name).first.id
                             ).first
