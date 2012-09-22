@@ -1,4 +1,4 @@
-            <style>
+                <style>
     .theitem :hover{
         background-color: #bebebe;
         }
@@ -137,18 +137,20 @@
     $ git commit -m 'first commit'
     $ git push letspan master
 </pre>
-
-<form action="/site/collaborator" method="post" accept-charset="utf-8">    
-<input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
-<input type="hidden" name="apps_name" value="<%= @apps_name %>">
-<input type="text" name="colname" placeholder="Add collaborator name">
-<p><input type="submit" value="Save" class="btn"></p>
-</form>
-<% @collaborator.each do |c| %>
-    <p><i class="icon-pencil"></i> 
-        <%= c.user.username %>
-    </p>
+<% @owner %>
+    <form action="/site/collaborator" method="post" accept-charset="utf-8">    
+    <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
+    <input type="hidden" name="apps_name" value="<%= @apps_name %>">
+    <input type="text" name="colname" placeholder="Add collaborator name">
+    <p><input type="submit" value="Save" class="btn"></p>
+    </form>
+    <% @collaborator.each do |c| %>
+        <p><i class="icon-pencil"></i> 
+            <%= c.user.username %>
+        </p>
+    <% end %>
 <% end %>
+
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
@@ -218,6 +220,7 @@
     
     
 </script>   
+
 
 
 
