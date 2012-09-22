@@ -554,7 +554,6 @@ class SiteController < ApplicationController
   
   def deletefile
     r = params[:r]
-
     apps_name = r.split("-__-")[1]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
