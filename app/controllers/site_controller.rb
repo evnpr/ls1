@@ -786,6 +786,7 @@ class SiteController < ApplicationController
   
   def deletecol
     r = params[:r]
+    name = params[:namecol]
     back = r.split("-__-")
     apps_name = back[1]
     unless @username
@@ -795,7 +796,7 @@ class SiteController < ApplicationController
     if @username != apps_owner
         redirect_to "/user/index" and return
     end
-    name = params[:namecol]
+
     c = Collaborator.where(:apps_id => Apps.where(:name => apps_name).first.id,
                             :user_id => User.where(:username => @username).first.id
                             ).first
