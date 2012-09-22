@@ -68,7 +68,7 @@ class SiteController < ApplicationController
         `sudo chmod -R 777 #{@@directory}/#{apps_name}`
         `sudo chmod -R 777 #{gitdirectory}/#{apps_name}.git/`
         `sudo cp #{gitdirectory}/post-receive #{gitdirectory}/#{apps_name}.git/hooks/` 
-        `sudo sed -i 's/appsname /#{apps_name} /g' #{gitdirectory}/#{apps_name}.git/hooks/post-receive`
+        `sudo sed -i 's/appsname/#{apps_name} /g' #{gitdirectory}/#{apps_name}.git/hooks/post-receive`
         `sudo chmod -R 755 #{@@directory}/#{apps_name}`
         `sudo chmod -R 755 #{gitdirectory}/#{apps_name}.git/`
     }
@@ -815,7 +815,7 @@ class SiteController < ApplicationController
     flash[:list] = "You just delete #{name} from collaborator"    
     `sudo chmod 777 -R /var/www/ls/res/gitosis-admin`
     Dir.chdir("/var/www/ls/res/gitosis-admin"){
-            `sudo sed -i 's/#{@apps_name}\ ls\ #{colname}\@#{colname} /#{@apps_name}\ ls /g' gitosis.conf`
+            `sudo sed -i 's/#{@apps_name}\ ls\ #{colname}\@#{colname}/#{@apps_name}\ ls /g' gitosis.conf`
             `ruby push.rb`
     }
     redirect_to "/list?r="+params[:r] and return
