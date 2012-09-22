@@ -1,7 +1,6 @@
 <style>
     .theitem :hover{
         background-color: #bebebe;
-        text_decoration: underline;
         }
 </style>
     <% if flash[:list] %>
@@ -92,7 +91,7 @@
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <div class="theitem"><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a>
-    <span style="float:right"><a href="<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
+    <span style="float:right"><a onClick="deletefile(<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>)">x</a>
     </span>
 </div>
 <% end %>
@@ -190,6 +189,18 @@
         document.getElementById("uploadfolderbutton").style.display="none";
         document.getElementById("uploadfolder").style.display="block";
         document.getElementById("otheroption").style.display="block";
+    }
+    
+    function deletefile(){
+        var r=confirm("Press a button");
+        if (r==true)
+          {
+          x="You pressed OK!";
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
     }
     
     
