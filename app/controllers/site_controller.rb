@@ -253,7 +253,7 @@ class SiteController < ApplicationController
         }
     end
     Dir.chdir(@@directory+"/#{apps_name}"){
-        `sudo chmod -R 775 .` 
+        `sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m 'push from ls'`
         `git push lsorigin master -f`
