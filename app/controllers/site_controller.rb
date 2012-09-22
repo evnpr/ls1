@@ -46,6 +46,7 @@ class SiteController < ApplicationController
 
     gitdirectory = "/home/git/repositories"
 
+    `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
     Dir.chdir("/var/www/ls/res/gitosis-admin"){
         open("/var/www/ls/res/gitosis-admin/gitosis.conf", "a") do |f|
             f.puts "\n"
@@ -72,7 +73,7 @@ class SiteController < ApplicationController
         `sudo chmod -R 755 #{gitdirectory}/#{apps_name}.git/`
     }
 
-
+    `sudo chmod -R 755 /var/www/ls/res/gitosis-admin`
     redirect_to '/list/?r=-__-'+apps_name and return
 
   end
@@ -324,6 +325,7 @@ class SiteController < ApplicationController
         if user_name.nil? or publickey == ''
             redirect_to "/site/gitnew" and return
         end
+        `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
         temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+user_name+'@'+user_name+'.pub'
         publickeysample = publickey[3..-220].to_s()
         p = Userkey.where("userkey LIKE ?", '%'+publickeysample+'%').first
@@ -367,6 +369,7 @@ class SiteController < ApplicationController
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
             `ruby push.rb`
         }
+        `sudo chmod -R 755 /var/www/ls/res/gitosis-admin`
         redirect_to "/site/gitnew" and return
     else
         if User.exists?(:username => @username)
@@ -387,7 +390,7 @@ class SiteController < ApplicationController
     if @username != owner
         redirect_to "/site/gitnew" and return
     end
-
+    `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
     temprorary_res = '/var/www/ls/res/gitosis-admin/keydir/'+@username+'@'+@username+'.pub'
     `sudo rm #{temprorary_res}`
     Userkey.find(keyid).destroy
@@ -409,7 +412,7 @@ class SiteController < ApplicationController
     Dir.chdir("/var/www/ls/res/gitosis-admin"){
         `ruby push.rb`
     }
-
+    `sudo chmod -R 755 /var/www/ls/res/gitosis-admin`
   end
 
 
