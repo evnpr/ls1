@@ -147,6 +147,8 @@
     <% @collaborator.each do |c| %>
         <p><i class="icon-pencil"></i> 
             <%= c.user.username %>
+            <span style="float:right"><a style="cursor: pointer" onClick="<%= "/site/deletefile/?r=#{@current_path}&namecol=#{c.user.username}" %>">x</a>
+            </span>
         </p>
     <% end %>
 <% end %>
@@ -220,6 +222,7 @@
     
     
 </script>   
+
 
 
 
