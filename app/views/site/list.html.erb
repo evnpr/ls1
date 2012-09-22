@@ -77,7 +77,7 @@
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a>
-    <span style="float:right"><a href="<%= "/site/delete/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
+    <span style="float:right"><a href="<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
     </span>
 </p>
 <% end %>
@@ -86,7 +86,7 @@
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a>
-    <span style="float:right"><a href="<%= "/site/delete/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
+    <span style="float:right"><a href="<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
     </span>
 </p>
 <% end %>
