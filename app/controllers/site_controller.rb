@@ -1,4 +1,4 @@
-require 'zip/zip'
+    require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -223,7 +223,8 @@ class SiteController < ApplicationController
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
-        `git add .`
+        `sudo chmod -R 775 .` 
+        `git add . -A`
         `git commit -m '#{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
@@ -250,7 +251,8 @@ class SiteController < ApplicationController
         }
     end
     Dir.chdir(@@directory+"/#{apps_name}"){
-        `git add .`
+        `sudo chmod -R 775 .` 
+        `git add . -A`
         `git commit -m 'push from ls'`
         `git push lsorigin master -f`
     }
@@ -599,7 +601,8 @@ class SiteController < ApplicationController
     if apps_name == 'ls1'
         Dir.chdir(@@directory+"/"+apps_name){
             `git remote rm lsprod`
-            `git add .`
+            `sudo chmod -R 775 .` 
+            `git add . -A`
             `git commit -m 'a'`
             `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
             `git push lsprod master -f`
@@ -610,6 +613,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
