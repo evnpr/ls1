@@ -1,4 +1,4 @@
-    require 'zip/zip'
+        require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -447,6 +447,14 @@ class SiteController < ApplicationController
 
   def newfile
     r = params[:r]
+    apps_name = r.split("-__-")[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     newfile = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `touch #{@@directory}/#{dirfolder}/#{newfile}`
@@ -455,6 +463,14 @@ class SiteController < ApplicationController
 
   def newfolder
     r = params[:r]
+    apps_name = r.split("-__-")[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     newfolder = params[:newfolder]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `mkdir #{@@directory}/#{dirfolder}/#{newfolder}`
@@ -464,6 +480,13 @@ class SiteController < ApplicationController
   def renamefile
     r = params[:r]
     apps_name = r.split("-__-")[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     oldfile = params[:oldfile]
     n = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -499,6 +522,13 @@ class SiteController < ApplicationController
   def uploadfile
       r = params[:r]
       apps_name = r.split("-__-")[1]
+      unless @username
+        redirect_to "/" and return
+      end
+      apps_owner = Apps.where(:name => apps_name).first.user.username
+      if @username != apps_owner
+        redirect_to "/user/index" and return
+      end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_files = params[:thefile]
       if uploaded_files.nil?
@@ -528,6 +558,13 @@ class SiteController < ApplicationController
   def uploadfolder
       r = params[:r]
       apps_name = r.split("-__-")[1]
+      unless @username
+         redirect_to "/" and return
+      end
+      apps_owner = Apps.where(:name => apps_name).first.user.username
+      if @username != apps_owner
+         redirect_to "/user/index" and return
+      end      
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
       if uploaded_io.nil?
@@ -564,6 +601,13 @@ class SiteController < ApplicationController
   def deletefile
     r = params[:r]
     apps_name = r.split("-__-")[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
     `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
@@ -585,6 +629,13 @@ class SiteController < ApplicationController
   def download
     r = params[:r]
     apps_name = r.split("-__-")[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     Dir.chdir(@@directory+"/"+dirfolder){
         `rm /var/www/ls/upload/img/#{apps_name}.zip`
@@ -597,6 +648,14 @@ class SiteController < ApplicationController
     r = params[:r]
     back = r.split("-__-")
     apps_name = back[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
+
     from = params[:back]
     back.pop
     r = back.join("-__-")
@@ -618,6 +677,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
