@@ -554,13 +554,7 @@ class SiteController < ApplicationController
   
   def deletefile
     r = params[:r]
-    if lengthdirectory-accessbackfrom < 2
-        flash[:list] = "permission denied"
-        redirect_to "/list?r="+params[:r] and return
-    elsif lengthdirectory-accessbackto < 2 
-        flash[:list] = "permission denied"
-        redirect_to "/list?r="+params[:r] and return    
-    end
+
     apps_name = r.split("-__-")[1]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
