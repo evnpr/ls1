@@ -761,7 +761,7 @@ class SiteController < ApplicationController
     if request.post?
         r = params[:r]
         @apps_name = params[:apps_name]
-        user_name = params[:user
+        user_name = params[:user]
         colname = params[:colname]
         if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
                                 :user_id => User.where(:username => colname).first.id
