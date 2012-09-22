@@ -102,9 +102,16 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end        
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if @username != apps_owner
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
+
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -115,6 +122,7 @@ class SiteController < ApplicationController
     @listfile = (listfile - listfolderfile).sort
     @current_path = r 
     @done = 'done rsync!'
+    @collaborator = Collaborator.where(:apps_id => Apps.where(:name => @apps_name).first.id)
   end
 
 
@@ -142,7 +150,13 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end     
     apps_owner = Apps.where(:name => @apps_name).first.user.username
-    if @username != apps_owner
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
     back.pop
@@ -451,8 +465,14 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
     newfile = params[:newfile]
@@ -467,8 +487,14 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
     newfolder = params[:newfolder]
@@ -483,8 +509,14 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
     oldfile = params[:oldfile]
@@ -528,9 +560,15 @@ class SiteController < ApplicationController
       unless @username
         redirect_to "/" and return
       end
-      apps_owner = Apps.where(:name => apps_name).first.user.username
-      if @username != apps_owner
-        redirect_to "/user/index" and return
+      apps_owner = Apps.where(:name => @apps_name).first.user.username
+      if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                              :user_id => User.where(:username => @username).first.id
+                              )
+          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+      end
+
+      if @username != apps_owner or apps_collaborator
+          redirect_to "/user/index" and return
       end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_files = params[:thefile]
@@ -564,10 +602,16 @@ class SiteController < ApplicationController
       unless @username
          redirect_to "/" and return
       end
-      apps_owner = Apps.where(:name => apps_name).first.user.username
-      if @username != apps_owner
-         redirect_to "/user/index" and return
-      end      
+      apps_owner = Apps.where(:name => @apps_name).first.user.username
+      if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                              :user_id => User.where(:username => @username).first.id
+                              )
+          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+      end
+
+      if @username != apps_owner or apps_collaborator
+          redirect_to "/user/index" and return
+      end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_io = params[:thefile]
       if uploaded_io.nil?
@@ -607,8 +651,14 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -635,8 +685,14 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
+    if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                            :user_id => User.where(:username => @username).first.id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    if @username != apps_owner or apps_collaborator
         redirect_to "/user/index" and return
     end
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -677,6 +733,28 @@ class SiteController < ApplicationController
     end
     flash[:note] = '1'
     redirect_to "#{from}"
+  end
+
+
+  def collaborator 
+    unless @username
+        redirect_to "/" and return
+    end   
+    if request.post?
+        r = params[:r]
+        @apps_name = params[:apps_name]
+        colname = params[:colname]
+        if Collaborator.exists?(:apps_id => Apps.where(:name => @apps_name).first.id, 
+                                :user_id => User.where(:username => @username).first.id
+                                )
+            flash[:list] = "Collaborator already exists"
+            redirect_to "/list?r="+params[:r] and return
+        end
+        c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
+        c.user_id = User.where(:username => @username).first.id
+        c.save
+        redirect_to "/list?r="+params[:r] and return
+    end
   end
 
 end
