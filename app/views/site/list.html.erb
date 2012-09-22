@@ -1,3 +1,8 @@
+<style>
+    .theitem :hover{
+        background-color: #bebebe;
+        }
+</style>
     <% if flash[:list] %>
 <div class="alert">
     <%= flash[:list] %>
@@ -76,7 +81,7 @@
 
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a>
+<p class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-open"></i> <%= l %></a>
     <span style="float:right"><a href="<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
     </span>
 </p>
@@ -85,7 +90,7 @@
 
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a>
+<p class="theitem"><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a>
     <span style="float:right"><a href="<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>">x</a>
     </span>
 </p>
@@ -188,6 +193,7 @@
     
     
 </script>   
+
 
 
 
