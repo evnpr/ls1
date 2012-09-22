@@ -1,4 +1,4 @@
-    <style>
+        <style>
     .theitem :hover{
         background-color: #bebebe;
         }
@@ -145,7 +145,7 @@
 <input type="text" name="colname" value="">
 <p><input type="submit" value="Save" class="btn"></p>
 </form>
-<% collaborator.each do |c| %>
+<% @collaborator.each do |c| %>
     <p>
         <%= c.user.username %>
     </p>
@@ -219,6 +219,7 @@
     
     
 </script>   
+
 
 
 
