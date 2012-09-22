@@ -1,4 +1,4 @@
-require 'zip/zip'
+    require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -506,6 +506,8 @@ class SiteController < ApplicationController
             `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
             `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
             flash[:list] = "the new file/folder input bar can not be blank"
+        else
+            flash[:list] = "you just change #{oldfile} to #{n}"
         end
     }
     Dir.chdir(@@directory+"/"+apps_name){
@@ -678,5 +680,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
