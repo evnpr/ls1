@@ -779,7 +779,7 @@ class SiteController < ApplicationController
         flash[:list] = "you added #{colname} as collaborator of #{@apps_name}"
         `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
-            `sudo sed -i 's/#{@apps_name}\ ls /#{@apps_name}\ ls\ #{colname}@#{colname} /g' gitosis.conf`
+            `sudo sed -i 's/#{@apps_name}[[:space:]]ls /#{@apps_name}[[:space:]]ls[[:space:]]#{colname}@#{colname} /g' gitosis.conf`
             `ruby push.rb`
         }
         c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
