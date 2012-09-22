@@ -1,4 +1,4 @@
-            require 'zip/zip'
+                require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -125,6 +125,9 @@ class SiteController < ApplicationController
     @current_path = r 
     @done = 'done rsync!'
     @collaborator = Collaborator.where(:apps_id => Apps.where(:name => @apps_name).first.id)
+    if @username == apps_owner
+        @owner = 1
+    end
   end
 
 
@@ -777,3 +780,4 @@ class SiteController < ApplicationController
   end
 
 end
+
