@@ -798,7 +798,7 @@ class SiteController < ApplicationController
     end
 
     c = Collaborator.where(:apps_id => Apps.where(:name => apps_name).first.id,
-                            :user_id => User.where(:username => @username).first.id
+                            :user_id => User.where(:username => name).first.id
                             ).first
     c.destroy
     c.save
