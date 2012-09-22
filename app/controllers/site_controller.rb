@@ -505,9 +505,9 @@ class SiteController < ApplicationController
         if n != ""
             `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
             `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
-            flash[:list] = "the new file/folder input bar can not be blank"
-        else
             flash[:list] = "you just change #{oldfile} to #{n}"
+        else
+            flash[:list] = "the new file/folder input bar can not be blank"
         end
     }
     Dir.chdir(@@directory+"/"+apps_name){
