@@ -1,4 +1,4 @@
-require 'zip/zip'
+    require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -616,7 +616,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/"+apps_name){
         `sudo chmod -R 755 .` 
         `git add . -A`
-        `git commit -m '#{@username} upload folder delete #{dirfolder}/#{f}'`
+        `git commit -m '#{@username} delete #{dirfolder}/#{f}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
@@ -677,6 +677,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
