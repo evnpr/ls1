@@ -558,7 +558,7 @@ class SiteController < ApplicationController
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
     `sudo rm -R #{@@directory}#{dirfolder}/#{f}`
-    flash[:list] = "#{@@directory}#{dirfolder}/#{f}"
+    flash[:list] = "just delete #{dirfolder}/#{f}"
     redirect_to "/list?r="+params[:r] and return
   end
   
