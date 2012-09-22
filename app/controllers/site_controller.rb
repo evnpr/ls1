@@ -479,7 +479,7 @@ class SiteController < ApplicationController
    
     }
     Dir.chdir(@@directory+"/"+apps_name){
-        `git add .`
+        `git add . -A`
         `git commit -m 'rename #{oldfile} to #{n}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
@@ -506,7 +506,7 @@ class SiteController < ApplicationController
           end
       end
       Dir.chdir(@@directory+"/"+apps_name){
-        `git add .`
+        `git add . -A`
         `git commit -m 'upload file #{uploaded_files}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
@@ -541,7 +541,7 @@ class SiteController < ApplicationController
       unzip_file(zipfile, unzipfile)
       `rm #{zipfile}`
       Dir.chdir(@@directory+"/"+apps_name){
-        `git add .`
+        `git add . -A`
         `git commit -m 'upload folder #{uploaded_io.original_filename}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
