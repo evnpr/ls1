@@ -1,4 +1,4 @@
-
+    
   <style type="text/css" media="screen">
     #editor { 
         position: relative;
@@ -42,8 +42,7 @@
 <% if @image %>
     <img src="<%= @image %>" />
 <% else %>
-<pre id="editor">
-    <%= @contents %>
+<pre id="editor"><%= @contents %>
 </pre>
 <% end %>
 
@@ -143,6 +142,7 @@ document.onkeydown = checkKeycode
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
 
 
 
