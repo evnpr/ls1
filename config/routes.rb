@@ -30,7 +30,7 @@
   post "site/uploadfile"
   post "site/uploadfolder"
   match 'site/download/:r' => 'site#download'
-  get "site/delete"
+  get "site/deletefile"
 
 
   match "rsync" => "site#rsync"
