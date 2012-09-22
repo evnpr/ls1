@@ -567,7 +567,7 @@ class SiteController < ApplicationController
     `rm -R #{@@directory}#{dirfolder}/#{f}`
     flash[:list] = "just delete #{dirfolder}/#{f}"
     Dir.chdir(@@directory+"/"+apps_name){
-        `sudo chmod -R 775 .` 
+        `sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m 'upload folder delete #{dirfolder}/#{f}'`
         `git push lsorigin2 master -f`
