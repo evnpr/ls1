@@ -776,6 +776,7 @@ class SiteController < ApplicationController
             flash[:list] = "Collaborator already exists"
             redirect_to "/list?r="+params[:r] and return
         end
+        flash[:list] = "you added #{colname} as collaborator of #{@apps_name}"
         `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
             `sudo sed -i 's/#{@apps_name}\ ls /#{@apps_name}\ ls\ #{colname}@#{colname} /g' /var/www/ls/res/gitosis-admin/gitosis.conf`
@@ -784,7 +785,6 @@ class SiteController < ApplicationController
         c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         c.user_id = User.where(:username => colname).first.id
         c.save
-        flash[:list] = "you added #{colname} as collaborator of #{@apps_name}"
         redirect_to "/list?r="+params[:r] and return
     end
   end
