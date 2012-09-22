@@ -805,7 +805,7 @@ class SiteController < ApplicationController
     if !Collaborator.exists?(:apps_id => Apps.where(:name => apps_name).first.id,
                             :user_id => User.where(:username => name).first.id
                             )
-        flash[:list] = "something error, make sure your input is correct"
+        
         redirect_to "/list?r="+params[:r] and return
     end
     c = Collaborator.where(:apps_id => Apps.where(:name => apps_name).first.id,
