@@ -52,7 +52,7 @@ class SiteController < ApplicationController
             f.puts "\n"
             f.puts "[group g#{apps_name}]\n"
             f.puts "writable = #{apps_name} \n"
-            f.puts "members = evan@evan-Lenovo ls #{user_name}@#{user_name} \n"
+            f.puts "members = evan@evan-Lenovo #{apps_name} ls #{user_name}@#{user_name} \n"
         end
         `ruby push.rb`
     }
@@ -776,6 +776,11 @@ class SiteController < ApplicationController
             flash[:list] = "Collaborator already exists"
             redirect_to "/list?r="+params[:r] and return
         end
+        `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
+        Dir.chdir("/var/www/ls/res/gitosis-admin"){
+            `sudo sed -i 's/#{apps_name}\ ls /#{apps_name}\ ls\ #{colname} /g' /var/www/ls/res/gitosis-admin/gitosis.conf`
+            `ruby push.rb`
+        }
         c = Collaborator.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         c.user_id = User.where(:username => colname).first.id
         c.save
@@ -813,5 +818,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
