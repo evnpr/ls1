@@ -1,4 +1,4 @@
-                                require 'zip/zip'
+require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -474,8 +474,9 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+dirfolder){
         if n != ""
             `sudo mv #{@@directory}#{dirfolder}/#{oldfile} #{@@directory}#{dirfolder}/#{n}`
+            `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
         end
-        `sudo rm -R #{@@directory}#{dirfolder}/#{oldfile}`
+   
     }
     Dir.chdir(@@directory+"/"+apps_name){
         `git add .`
@@ -586,6 +587,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
