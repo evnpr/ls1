@@ -783,6 +783,28 @@ class SiteController < ApplicationController
         redirect_to "/list?r="+params[:r] and return
     end
   end
+  
+  def deletecol
+    r = params[:r]
+    back = r.split("-__-")
+    apps_name = back[1]
+    unless @username
+        redirect_to "/" and return
+    end
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
+    name = params[:namecol]
+    c = Collaborator.where(:apps_id => Apps.where(:name => apps_name).first.id,
+                            :user_id => User.where(:username => @username).first.id
+                            ).first
+    c.destroy
+    c.save
+    flash[:list] = "You just delete #{name} from collaborator"
+    redirect_to "/list?r="+params[:r] and return
+  end
 
 end
+
 
