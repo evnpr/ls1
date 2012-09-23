@@ -1,4 +1,4 @@
-                require 'zip/zip'
+require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
   
@@ -831,3 +831,4 @@ class SiteController < ApplicationController
   end
 
 end
+
