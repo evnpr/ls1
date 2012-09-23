@@ -469,6 +469,7 @@ class SiteController < ApplicationController
   def newfile
     r = params[:r]
     apps_name = r.split("-__-")[1]
+    @apps_name = apps_name
     unless @username
         redirect_to "/" and return
     end
@@ -823,6 +824,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
