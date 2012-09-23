@@ -777,7 +777,7 @@ class SiteController < ApplicationController
             redirect_to "/list?r="+params[:r] and return
         end
         flash[:list] = "you added #{colname} as collaborator of #{@apps_name}"
-        `sudo chmod -R 777 /var/www/ls/res/gitosis-admin`
+        `sudo chmod -R 755 /var/www/ls/res/gitosis-admin`
         Dir.chdir("/var/www/ls/res/gitosis-admin"){
             `sudo sed -i 's/#{@apps_name}\ ls/#{@apps_name}\ ls\ #{colname}\@#{colname}/g' gitosis.conf`
             `ruby push.rb`
@@ -822,6 +822,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
