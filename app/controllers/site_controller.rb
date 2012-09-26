@@ -69,7 +69,7 @@ class SiteController < ApplicationController
         `sudo chmod -R 777 #{gitdirectory}/#{apps_name}.git/`
         `sudo cp #{gitdirectory}/post-receive #{gitdirectory}/#{apps_name}.git/hooks/` 
         `sudo sed -i 's/appsname/#{apps_name}/g' #{gitdirectory}/#{apps_name}.git/hooks/post-receive`
-        `sudo chmod -R 755 #{@@directory}/#{apps_name}`
+        #`sudo chmod -R 755 #{@@directory}/#{apps_name}`
         `sudo chmod -R 755 #{gitdirectory}/#{apps_name}.git/`
     }
 
@@ -247,7 +247,7 @@ class SiteController < ApplicationController
     file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
-        `sudo chmod -R 755 .` 
+        #`sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m '#{@username} #{commit}'`
         `git push lsorigin2 master -f`
@@ -275,7 +275,7 @@ class SiteController < ApplicationController
         }
     end
     Dir.chdir(@@directory+"/#{apps_name}"){
-        `sudo chmod -R 755 .` 
+        #`sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m '#{@username} push from ls'`
         `git push lsorigin master -f`
@@ -603,7 +603,7 @@ class SiteController < ApplicationController
           end
       end
       Dir.chdir(@@directory+"/"+apps_name){
-        `sudo chmod -R 755 .` 
+        #`sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m '#{@username} upload file #{uploaded_files}'`
         `git push lsorigin2 master -f`
@@ -655,7 +655,7 @@ class SiteController < ApplicationController
       unzip_file(zipfile, unzipfile)
       `rm #{zipfile}`
       Dir.chdir(@@directory+"/"+apps_name){
-        `sudo chmod -R 755 .`           
+        #`sudo chmod -R 755 .`           
         `git add . -A`
         `git commit -m '#{@username} upload folder #{uploaded_io.original_filename}'`
         `git push lsorigin2 master -f`
@@ -692,7 +692,7 @@ class SiteController < ApplicationController
     `rm -R #{@@directory}#{dirfolder}/#{f}`
     flash[:list] = "just delete #{dirfolder}/#{f}"
     Dir.chdir(@@directory+"/"+apps_name){
-        `sudo chmod -R 755 .` 
+        #`sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m '#{@username} delete #{dirfolder}/#{f}'`
         `git push lsorigin2 master -f`
@@ -831,5 +831,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
