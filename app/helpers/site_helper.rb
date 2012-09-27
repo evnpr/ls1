@@ -10,7 +10,7 @@ module SiteHelper
         finalpath = []
         for i in rsplit
             if i == ''
-                continue
+                next
             end
             temppath << i
             path = temppath.join("-__-")
