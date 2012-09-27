@@ -1,5 +1,4 @@
-module 
-
+module SiteHelper
 
     def generatepath(r)
 
