@@ -8,7 +8,6 @@ module
     def splitpath(r)
         rsplit = r.split("-__-")
         temppath = []
-        path = []
         finalpath = []
         for i in rsplit
             temppath << i
