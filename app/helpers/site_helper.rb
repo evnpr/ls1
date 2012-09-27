@@ -9,6 +9,9 @@ module SiteHelper
         temppath = []
         finalpath = []
         for i in rsplit
+            if i == ''
+                continue
+            end
             temppath << i
             path = temppath.join("-__-")
             finalpath << "<a href='/list/?r=#{path}'>#{i}</a>"
