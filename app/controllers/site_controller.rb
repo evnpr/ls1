@@ -93,6 +93,7 @@ class SiteController < ApplicationController
     end
     @root = 'pull'
     r = request.GET[:r]
+    @splitpath = splitpath(r)
     back = r.split("-__-")
     @apps_name = back[1]
     unless Apps.exists?(:name => @apps_name)
@@ -117,7 +118,7 @@ class SiteController < ApplicationController
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
-    @name = 'safa'
+    @name = path
     @listfolder = Dir.glob("#{@@directory}/#{@name}/*/").sort
     listfile = Dir.glob("#{@@directory}/#{@name}/*")
     listfolderfile = Dir.glob("#{@@directory}/#{@name}/*/").collect { |x| ; x.chop }
@@ -200,7 +201,7 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @done = 'done rsync!'
-    @path = splitpath(r)
+    @path = path
     render :layout => 'editor'
   end
 
