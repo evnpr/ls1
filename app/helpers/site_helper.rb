@@ -14,12 +14,13 @@ module SiteHelper
             if i == ''
                 next
             end
-            finalpath << "<a href='/list/?r=#{path}'>#{i}</a>"
+            finalpath << "<a href='/list/?r=#{path}' style='font-size: 14px;'>#{i}</a>"
         end
         ret = finalpath.join("/")
         ret.html_safe
     end
     
 end
+
 
 
