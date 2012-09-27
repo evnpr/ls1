@@ -74,9 +74,7 @@
         
         <code class="" style="float:left">
             
-            <% @splitpath.each do |p| %>
-                /<%= p.html_safe %>
-            <% end %>
+            <% @splitpath.each do |p| %>/<%= p.html_safe %><% end %>
         </code>
 
 <% end %>
