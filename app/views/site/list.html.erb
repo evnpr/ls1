@@ -90,7 +90,7 @@
 
 <% @listfile.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p class="theitem"><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-file"></i> <%= l %></a>
+<p class="theitem"><a href="<%= "/content?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-list-all"></i> <%= l %></a>
     <span style="float:right"><a style="cursor: pointer" onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>')">x</a>
     </span>
 </p>
@@ -222,6 +222,7 @@
     
     
 </script>   
+
 
 
 
