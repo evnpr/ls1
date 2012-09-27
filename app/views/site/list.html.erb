@@ -72,12 +72,12 @@
 
 <% if @root %>
         
-      
+        <code class="" style="float:left">
             
             <% @splitpath.each do |p| %>
-                /<%= p %>
+                /<%= p.html_safe %>
             <% end %>
-        
+        </code>
 
 <% end %>
 <br><br>
