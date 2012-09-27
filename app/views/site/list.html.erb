@@ -72,7 +72,12 @@
 
 <% if @root %>
         
-        <code class="" style="float:left"><%= @name %></code>
+        <code class="" style="float:left">
+            
+            <% @splitpath.each do |p| %>
+                /<%= p %>
+            <% end %>
+        </code>
 
 <% end %>
 <br><br>
@@ -222,6 +227,7 @@
     
     
 </script>   
+
 
 
 
