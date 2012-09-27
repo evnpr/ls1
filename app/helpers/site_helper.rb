@@ -14,6 +14,7 @@ module SiteHelper
             path << temppath.join("-__-")
             finalpath << "<a href='/list/?r=#{path}'>#{i}</a>"
         end
+        finalpath
     end
     
 end
