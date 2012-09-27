@@ -201,7 +201,7 @@ class SiteController < ApplicationController
         @contents = file.read
     end
     @done = 'done rsync!'
-    @path = path
+    @path = splitpath(r)
     render :layout => 'editor'
   end
 
@@ -832,6 +832,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
