@@ -1,7 +1,7 @@
 require 'zip/zip'
 class SiteController < ApplicationController
   before_filter :get_users
-  
+  include SiteHelper
   def get_users
     @username = cookies[:username] 
   end
