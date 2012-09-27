@@ -93,6 +93,7 @@ class SiteController < ApplicationController
     end
     @root = 'pull'
     r = request.GET[:r]
+    @splitpath = splitpath(r)
     back = r.split("-__-")
     @apps_name = back[1]
     unless Apps.exists?(:name => @apps_name)
@@ -831,6 +832,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
