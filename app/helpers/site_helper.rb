@@ -1,4 +1,5 @@
-module SiteHelper
+module 
+
 
     def generatepath(r)
 
@@ -11,7 +12,7 @@ module SiteHelper
         finalpath = []
         for i in rsplit
             temppath << i
-            path << temppath.join("-__-")
+            path = temppath.join("-__-")
             finalpath << "<a href='/list/?r=#{path}'>#{i}</a>"
         end
         finalpath
