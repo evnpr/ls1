@@ -117,7 +117,7 @@ class SiteController < ApplicationController
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
-    @name = splitpath(r)
+    @name = 'safa'
     @listfolder = Dir.glob("#{@@directory}/#{@name}/*/").sort
     listfile = Dir.glob("#{@@directory}/#{@name}/*")
     listfolderfile = Dir.glob("#{@@directory}/#{@name}/*/").collect { |x| ; x.chop }
