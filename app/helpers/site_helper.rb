@@ -16,8 +16,10 @@ module SiteHelper
             end
             finalpath << "<a href='/list/?r=#{path}'>#{i}</a>"
         end
-        finalpath
+        ret = finalpath.join("/")
+        ret
     end
     
 end
+
 
