@@ -239,6 +239,10 @@ class SiteController < ApplicationController
     r = params[:thisfile]
     commit = params[:commit]
     apps_name = r.split("-__-")[1]
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    if @username != apps_owner
+        redirect_to "/user/index" and return
+    end
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
@@ -832,6 +836,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
