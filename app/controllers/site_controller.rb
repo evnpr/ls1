@@ -24,7 +24,16 @@ class SiteController < ApplicationController
     database_username = params[:database_username]
     database_pwd = params[:databasepwd]
 
-
+    if Thedatabase.exists?(:database_username => database_username)
+        flash[:create_apps] = "The database username is already used"
+        redirect_to "/user/index" and return        
+    end
+    
+    if Thedatabase.exists?(:database_name => database_name)
+        flash[:create_apps] = "The database name is already used"
+        redirect_to "/user/index" and return        
+    end
+    
     if Apps.exists?(:name => apps_name) then
         flash[:create_apps] = "the name is already used, choose another name"
         redirect_to "/user/index" and return
@@ -35,6 +44,11 @@ class SiteController < ApplicationController
     a.virtual_name = virtual_name
     a.user_id = User.where(:username => user_name).first.id
     a.save
+
+    td = Thedatabase.new(:database_name => database_name)
+    td.database_username = database_username
+    td.save
+
 
     unless database_name.nil? || database_name == ''
         sql = ActiveRecord::Base.connection();
@@ -862,6 +876,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
