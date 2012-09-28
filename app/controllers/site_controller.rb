@@ -661,7 +661,7 @@ class SiteController < ApplicationController
         `git commit -m '#{@username} upload folder #{uploaded_io.original_filename}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            #`git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
             `git push lsdev master -f`
         end
       }
@@ -832,6 +832,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
