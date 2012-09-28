@@ -252,6 +252,7 @@ class SiteController < ApplicationController
     r = params[:thisfile]
     commit = params[:commit]
     apps_name = r.split("-__-")[1]
+    @apps_name = apps_name
     apps_owner = Apps.where(:name => apps_name).first.user.username
     apps_id = Apps.where(:name => @apps_name).first.id
     user_id = User.where(:username => @username).first.id

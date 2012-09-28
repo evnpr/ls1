@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919025222) do
+ActiveRecord::Schema.define(:version => 20120928233729) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(:version => 20120919025222) do
     t.string   "githubname"
     t.string   "githubproject"
     t.string   "virtual_name"
+  end
+
+  create_table "collaborators", :force => true do |t|
+    t.integer  "apps_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "thedatabases", :force => true do |t|
+    t.string   "database_username"
+    t.string   "database_name"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "userkeys", :force => true do |t|
