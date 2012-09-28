@@ -254,6 +254,10 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/"+apps_name){
         #`sudo chmod -R 755 .` 
         `git add . -A`
+        if commit.scan("'").length > 0
+            flash[:list] = 'your commit is invalid'
+            redirect_to 'user/index' and return
+        end
         `git commit -m '#{@username} #{commit}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
