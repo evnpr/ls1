@@ -215,6 +215,19 @@ class SiteController < ApplicationController
     @r = r 
     back = r.split("-__-")
     @apps_name = back[1]
+    apps_name = r.split("-__-")[1]
+    apps_owner = Apps.where(:name => apps_name).first.user.username
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    unless @username == apps_owner or !apps_collaborator.nil?
+        redirect_to "/user/index" and return
+    end
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -240,7 +253,15 @@ class SiteController < ApplicationController
     commit = params[:commit]
     apps_name = r.split("-__-")[1]
     apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
+    apps_id = Apps.where(:name => @apps_name).first.id
+    user_id = User.where(:username => @username).first.id
+    if Collaborator.exists?(:apps_id => apps_id,
+                            :user_id => user_id
+                            )
+        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+    end
+
+    unless @username == apps_owner or !apps_collaborator.nil?
         redirect_to "/user/index" and return
     end
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -840,6 +861,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
