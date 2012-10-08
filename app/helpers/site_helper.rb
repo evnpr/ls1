@@ -20,7 +20,20 @@ module SiteHelper
         ret.html_safe
     end
     
+    def authenticate(apps_owner, apps_id, user_id, @username)
+        if Collaborator.exists?(:apps_id => apps_id,
+                                :user_id => user_id
+                                )
+            apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+        end
+        
+        unless @username == apps_owner or !apps_collaborator.nil?
+            redirect_to "/user/index" and return
+        end
+    end
+    
 end
+
 
 
 
