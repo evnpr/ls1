@@ -133,7 +133,7 @@ class SiteController < ApplicationController
     @current_path = r 
     @done = 'done rsync!'
     @collaborator = Collaborator.where(:apps_id => Apps.where(:name => @apps_name).first.id)
-    if @username == apps_owner
+    if @username == Apps.where(:name => @apps_name).first.user.username
         @owner = 1
     end
   end
