@@ -116,19 +116,12 @@ class SiteController < ApplicationController
     unless back
         redirect_to "/" and return
     end        
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
 
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
-
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
+    
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -169,18 +162,10 @@ class SiteController < ApplicationController
     unless back
         redirect_to "/" and return
     end     
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -230,18 +215,10 @@ class SiteController < ApplicationController
     back = r.split("-__-")
     @apps_name = back[1]
     apps_name = r.split("-__-")[1]
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -267,18 +244,10 @@ class SiteController < ApplicationController
     commit = params[:commit]
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
     file = File.open("#{@@directory}/#{path}", "w")
@@ -518,18 +487,10 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     newfile = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     `touch #{@@directory}/#{dirfolder}/#{newfile}`
@@ -568,18 +529,10 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     oldfile = params[:oldfile]
     n = params[:newfile]
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -719,18 +672,10 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
     `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
@@ -756,18 +701,10 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
-
-    unless @username == apps_owner or !apps_collaborator.nil?
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     Dir.chdir(@@directory+"/"+dirfolder){
         `rm /var/www/ls/upload/img/#{apps_name}.zip`
@@ -784,10 +721,10 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
-    apps_owner = Apps.where(:name => apps_name).first.user.username
-    if @username != apps_owner
-        redirect_to "/user/index" and return
-    end
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
 
     from = params[:back]
     back.pop
@@ -876,13 +813,5 @@ class SiteController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-
 
 
