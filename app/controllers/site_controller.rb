@@ -116,7 +116,7 @@ class SiteController < ApplicationController
     unless back
         redirect_to "/" and return
     end        
-
+    apps_owner = Apps.where(:name => @apps_name).first.user.username
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 
