@@ -27,7 +27,7 @@ module SiteHelper
             apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
         end
         
-        unless @username == apps_owner or !apps_collaborator.nil?
+        unless username == apps_owner or !apps_collaborator.nil?
             redirect_to "/user/index" and return
         end
     end
