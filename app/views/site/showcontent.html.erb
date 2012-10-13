@@ -1,4 +1,6 @@
-    
+<% 
+@title = request.GET['r'].split("-__-").join("/")
+%> 
   <style type="text/css" media="screen">
     #editor { 
         position: relative;
@@ -152,6 +154,7 @@ document.onkeydown = checkKeycode
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
 
 
 
