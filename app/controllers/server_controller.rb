@@ -23,7 +23,7 @@ class ServerController < ApplicationController
         end
         app.server.devserver = 'asdad'
         app.server.prodserver = prodserver
-        app.save
+        app.server.save
         redirect_to "/server/index" and return
   end
 
