@@ -9,8 +9,6 @@ class ServerController < ApplicationController
 
   def index
         @apps = User.where(:username => @username).first.appss
-                    s = Server.new(:apps_id => 1)
-            s.save
   end
   
   def submit
