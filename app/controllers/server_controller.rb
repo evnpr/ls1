@@ -11,7 +11,7 @@ class ServerController < ApplicationController
   end
   
   def submit
-        #post 
+        #post
   end
 
 
