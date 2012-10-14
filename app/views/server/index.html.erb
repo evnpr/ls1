@@ -4,7 +4,7 @@
     <% @apps.each do |a| %>
     <tr>
         <td><font color="red"><%= a.virtual_name %></font></td>
-        <% unless app.server.nil? %>
+        <% unless a.server.nil? %>
             <td><font color="blue"><%= a.server.devserver %></font></td>
             <td><font color="brown"><%= a.server.prodserver %></font></td>
         <% end %>
