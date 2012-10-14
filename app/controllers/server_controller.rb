@@ -34,10 +34,7 @@ class ServerController < ApplicationController
             `git remote add lsorigin2 #{devserver}`
             `git remote add prodlsorigin2 #{prodserver}`
         }
-        #Dir change dir to @@directory/apps_name
-        #git remote rm lsorigin2
-        #git remote add lsorigin2 devserver
-        #git remote add prodlsorigin2 prodserver
+        #need to add security and auth for the not owner address, because they share same ls git user for push
         redirect_to "/server/index" and return
   end
 
