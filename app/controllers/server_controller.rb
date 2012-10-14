@@ -9,6 +9,11 @@ class ServerController < ApplicationController
   def index
         @apps = User.where(:username => @username).first.appss
   end
+  
+  def submit
+        #post 
+  end
 
 
 end
+
