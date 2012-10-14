@@ -736,6 +736,7 @@ class SiteController < ApplicationController
             `git commit -m '#{@username}'`
             `git push prodlsorigin2 master -f`
         }
+        flash[:note] = '1'
         redirect_to "#{from}" and return
     end
     `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
