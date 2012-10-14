@@ -730,6 +730,13 @@ class SiteController < ApplicationController
     back.pop
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
+    unless Apps.where(:name => apps_name).first.server.nil?
+        Dir.chdir(@@directory+"/"+apps_name){
+            `git add . -A`
+            `git commit -m '#{@username}'`
+            `git push prodlsorigin2 master -f`
+        }
+    end
     `rsync -zvr --delete #{@@directory}/#{apps_name} /var/www/ls/prod > /var/www/ls/note/rsync.txt`
     `sudo chmod -R 777 /var/www/ls/prod/#{apps_name}`
     if apps_name == 'ls1'
@@ -813,6 +820,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
