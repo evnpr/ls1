@@ -1,3 +1,29 @@
+<% if flash[:server] %>
+<div class="alert">
+    <%= flash[:server] %>
+</div>
+<% end %>
+
+<br><br><br>
+
+<form action="/server/submit" method="post" accept-charset="utf-8">
+    
+
+<select name="apps_name">
+<% if @apps %>
+    <% @apps.each do |a| %>
+        <option value="<%= a.name %>"><%= a.virtual_name %></option>
+    <% end %>
+<% end %>
+</select>
+<br>
+<input type="text" name="devserver" style="height: 35px; width: 250px;" placeholder="your dev server (e.g ubuntu@myweb.com:www/mybare.git)"><br>
+<input type="text" name="prodserver" style="height: 35px; width: 250px;" placeholder="your dev server (e.g ubuntu@myweb.com:www/mybare.git)"><br>
+<p><input type="submit" value="Save" class="btn btn-large btn-primary"></p>
+</form>
+<br><br>
+
+
 <span id="cursortable" style="cursor:pointer"><a onClick="showTable()">see list of your apps?</a></span>
 
 <div  id="tableserver" style="display:none">
