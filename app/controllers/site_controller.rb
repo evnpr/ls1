@@ -447,6 +447,7 @@ class SiteController < ApplicationController
         `ruby push.rb`
     }
     `sudo chmod -R 755 /var/www/ls/res/gitosis-admin`
+    redirect_to "/site/gitnew" and return
   end
 
 
@@ -812,5 +813,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
