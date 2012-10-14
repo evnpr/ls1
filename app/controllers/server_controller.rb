@@ -21,10 +21,10 @@ class ServerController < ApplicationController
             s = Server.new(:apps_id => app.id)
             s.save
         end
-        unless devserver.nil?
+        unless devserver == ''
             app.server.devserver = devserver
         end
-        unless prodserver.nil?
+        unless prodserver == ''
             app.server.prodserver = prodserver
         end
         app.server.save
