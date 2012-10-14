@@ -40,6 +40,10 @@
   
   post "site/collaborator"
   get "site/deletecol"
+  
+  ## SERVER ##
+  
+  post "server/submit"
 
   
   # The priority is based upon order of creation:
@@ -99,6 +103,7 @@
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
 
 
 
