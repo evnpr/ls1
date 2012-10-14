@@ -29,6 +29,11 @@ class ServerController < ApplicationController
         end
         app.server.save
         
+        Dir.chdir(@@directory+"/"+apps_name){
+            `git remote rm lsorigin2`
+            `git remote add lsorigin2 #{devserver}`
+            `git remote add prodlsorigin2 #{prodserver}`
+        }
         #Dir change dir to @@directory/apps_name
         #git remote rm lsorigin2
         #git remote add lsorigin2 devserver
