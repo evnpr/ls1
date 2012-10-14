@@ -21,8 +21,12 @@ class ServerController < ApplicationController
             s = Server.new(:apps_id => app.id)
             s.save
         end
-        app.server.devserver = devserver
-        app.server.prodserver = prodserver
+        unless devserver.nil?
+            app.server.devserver = devserver
+        end
+        unless prodserver.nil?
+            app.server.prodserver = prodserver
+        end
         app.server.save
         redirect_to "/server/index" and return
   end
