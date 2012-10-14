@@ -21,7 +21,7 @@ class ServerController < ApplicationController
             s = Server.new(:apps_id => app.id)
             s.save
         end
-        app.server.devserver = 'asdad'
+        app.server.devserver = devserver
         app.server.prodserver = prodserver
         app.server.save
         redirect_to "/server/index" and return
