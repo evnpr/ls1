@@ -9,6 +9,8 @@ class ServerController < ApplicationController
 
   def index
         @apps = User.where(:username => @username).first.appss
+                    s = Server.new(:apps_id => 'asd')
+            s.save
   end
   
   def submit
@@ -17,7 +19,7 @@ class ServerController < ApplicationController
         appsname = params[:apps_name]
         
         app = Apps.where(:name => appsname).first
-            s = Server.new(:apps_id => 'asd')
+            s = Server.new(:apps_id => app.id)
             s.save
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
