@@ -1,2 +1,11 @@
-<h1>Server#index</h1>
-<p>Find me in app/views/server/index.html.erb</p>
+<% @apps.each do |app| %>
+    * 
+    <p><%= app.virtual_name %> - <%= app.id %>
+    <% unless app.server.nil? %>
+        <%= app.server.devserver %>
+        <%= app.server.prodserver %>
+    <% end %>
+    </p>
+
+<% end %>
+
