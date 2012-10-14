@@ -35,7 +35,7 @@
 <% if @apps %>
     <% @apps.each do |a| %>
     <tr>
-        <td><font color="red"><%= a.name %></font></td>
+        <td><font color="red"><%= a.virtual_name %></font></td>
         <td><font color="blue"><%= a.githubname %></font></td>
         <td><font color="brown"><%= a.githubproject %></font></td>
     </tr>
@@ -55,5 +55,6 @@
 
     
 </script>
+
 
 
