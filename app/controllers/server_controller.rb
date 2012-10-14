@@ -31,6 +31,7 @@ class ServerController < ApplicationController
             end
             unless prodserver == ''
                 app.server.prodserver = prodserver
+                `git remote rm prodlsorigin2`                
                 `git remote add prodlsorigin2 #{prodserver}`                
             end
             app.server.save
