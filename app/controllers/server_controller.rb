@@ -28,6 +28,11 @@ class ServerController < ApplicationController
             app.server.prodserver = prodserver
         end
         app.server.save
+        
+        #Dir change dir to @@directory/apps_name
+        #git remote rm lsorigin2
+        #git remote add lsorigin2 devserver
+        #git remote add prodlsorigin2 prodserver
         redirect_to "/server/index" and return
   end
 
