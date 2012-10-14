@@ -10,9 +10,13 @@
     <% @apps.each do |a| %>
     <tr>
         <td><font color="red"><%= a.virtual_name %></font></td>
+        <% if a.server.nil? %>
+            <td></td>
+            <td></td>
+        <% else %>
             <td><font color="blue"><%= a.server.devserver %></font></td>
-            <td><font color="brown"><%= a.server.prodserver %></font></td>
-
+            <td><font color="brown"><%= a.server.prodserver %></font></td>        
+        <% end %>
     </tr>
     <% end %>
 <% end %>
