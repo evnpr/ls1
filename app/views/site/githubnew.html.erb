@@ -12,7 +12,7 @@
 <select name="apps_name">
 <% if @apps %>
     <% @apps.each do |a| %>
-        <option value="<%= a.name %>"><%= a.name %></option>
+        <option value="<%= a.name %>"><%= a.virtual_name %></option>
     <% end %>
 <% end %>
 </select>
