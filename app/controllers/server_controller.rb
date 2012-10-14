@@ -17,7 +17,12 @@ class ServerController < ApplicationController
         appsname = params[:apps_name]
         
         app = Apps.where(:name => appsname).first
-
+            s = Server.new(:apps_id => app.id)
+            s.save
+        if app.server.nil?
+            s = Server.new(:apps_id => app.id)
+            s.save
+        end
         app.server.devserver = devserver
         app.server.prodserver = prodserver
         app.save
