@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20120928233729) do
     t.datetime "updated_at",    :null => false
     t.string   "githubname"
     t.string   "githubproject"
-    t.string   "virtual_name"
   end
 
   create_table "collaborators", :force => true do |t|

@@ -1,4 +1,6 @@
             Letspan::Application.routes.draw do
+  get "server/index"
+
   get "user/index"
   get "user/login"
   post "user/login"

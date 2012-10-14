@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  devserver: MyString
+  prodserver: MyString
+  app_id: 1
+
+two:
+  devserver: MyString
+  prodserver: MyString
+  app_id: 1
