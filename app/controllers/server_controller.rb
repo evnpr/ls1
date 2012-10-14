@@ -24,6 +24,7 @@ class ServerController < ApplicationController
         app.server.devserver = devserver
         app.server.prodserver = prodserver
         app.save
+        redirect_to "/server/submit" and return
   end
 
 
