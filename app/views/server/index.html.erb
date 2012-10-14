@@ -1,6 +1,6 @@
 <% @apps.each do |app| %>
-    * 
-    <p><%= app.virtual_name %> - <%= app.id %>
+     
+    <p>* <%= app.virtual_name %> - <%= app.id %>
     <% unless app.server.nil? %>
         <%= app.server.devserver %>
         <%= app.server.prodserver %>
