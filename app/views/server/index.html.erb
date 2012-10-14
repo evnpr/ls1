@@ -1,20 +1,13 @@
-<% @apps.each do |app| %>
-     
-    <p>* <%= app.virtual_name %> - <%= app.id %>
-    <% unless app.server.nil? %>
-        <%= app.server.devserver %>
-        <%= app.server.prodserver %>
-    <% end %>
-    </p>
 
-<% end %>
 
 <% if @apps %>
     <% @apps.each do |a| %>
     <tr>
         <td><font color="red"><%= a.virtual_name %></font></td>
-        <td><font color="blue"><%= a.githubname %></font></td>
-        <td><font color="brown"><%= a.githubproject %></font></td>
+        <% unless app.server.nil? %>
+            <td><font color="blue"><%= a.server.devserver %></font></td>
+            <td><font color="brown"><%= a.server.prodserver %></font></td>
+        <% end %>
     </tr>
     <% end %>
 <% end %>
