@@ -102,7 +102,9 @@
 <tr>
 <th>Apps Name</th>
 <th>Development Server</th>
+<th>Development URL</th>
 <th>Production  Server</th>
+<th>Production  URL</th>
 </tr>
 
 <% if @apps %>
@@ -112,9 +114,13 @@
         <% if a.server.nil? %>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
         <% else %>
             <td><font color="blue"><%= a.server.devserver %></font></td>
-            <td><font color="brown"><%= a.server.prodserver %></font></td>        
+            <td><font color="brown"><%= a.server.devurl %></font></td>        
+            <td><font color="blue"><%= a.server.prodserver %></font></td>
+            <td><font color="brown"><%= a.server.produrl %></font></td>        
         <% end %>
     </tr>
     <% end %>
@@ -132,6 +138,7 @@
 
     
 </script>
+
 
 
 
