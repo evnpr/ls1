@@ -66,7 +66,7 @@ class ServerController < ApplicationController
         end
         app.thedatabase.database_name = database_name
         app.thedatabase.database_username = database_username
-         app.thedatabase.database_pwd = database_pwd
+        app.thedatabase.database_pwd = database_pwd
         app.thedatabase.save
         
         sql = ActiveRecord::Base.connection();
