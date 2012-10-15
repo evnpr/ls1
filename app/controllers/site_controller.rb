@@ -183,13 +183,22 @@ class SiteController < ApplicationController
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 
                 @username)
-    @devurl = Apps.where(:name => @apps_name).first.server.devurl
-    @produrl = Apps.where(:name => @apps_name).first.server.produrl
-    if @devurl == '' or @devurl.nil?
-        @devurl = "http://dev.#{@apps_name}.letspan.com"
-    end
-    if @produrl == '' or @produrl.nil?
-        @produrl = "http://#{@apps_name}.letspan.com"
+    if Apps.where(:name => @apps_name).first.server
+        @devurl = Apps.where(:name => @apps_name).first.server.devurl
+        @produrl = Apps.where(:name => @apps_name).first.server.produrl
+        if @devurl == '' or @devurl.nil?
+            @devurl = "http://dev.#{@apps_name}.letspan.com"
+        end
+        if @produrl == '' or @produrl.nil?
+            @produrl = "http://#{@apps_name}.letspan.com"
+        end
+    else
+        if @devurl == '' or @devurl.nil?
+            @devurl = "http://dev.#{@apps_name}.letspan.com"
+        end
+        if @produrl == '' or @produrl.nil?
+            @produrl = "http://#{@apps_name}.letspan.com"
+        end
     end
     back.pop
     @back = back.join("-__-")
