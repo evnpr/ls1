@@ -17,7 +17,9 @@ class ServerController < ApplicationController
   def submit
         #need to add security and auth for the not owner address, because they share same ls git user for push
         devserver = params[:devserver]
+        devurl = params[:devurl]
         prodserver = params[:prodserver]
+        produrl = params[:produrl]
         appsname = params[:apps_name]
         
         app = Apps.where(:name => appsname).first
@@ -33,8 +35,18 @@ class ServerController < ApplicationController
                 `git remote add lsorigin2 #{devserver}`
                 app.server.devserver = devserver
             end
+            unless devurl == ''
+                `git remote rm lsorigin2`
+                `git remote add lsorigin2 #{devserver}`
+                app.server.devurl = devurl
+            end
             unless prodserver == ''
                 app.server.prodserver = prodserver
+                `git remote rm prodlsorigin2`                
+                `git remote add prodlsorigin2 #{prodserver}`                
+            end
+            unless produrl == ''
+                app.server.produrl = produrl
                 `git remote rm prodlsorigin2`                
                 `git remote add prodlsorigin2 #{prodserver}`                
             end
