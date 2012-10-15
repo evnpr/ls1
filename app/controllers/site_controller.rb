@@ -168,6 +168,8 @@ class SiteController < ApplicationController
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 
                 @username)
+    @devurl = Apps.where(:name => @apps_name).first.server.devurl
+    @produrl = Apps.where(:name => @apps_name).first.server.produrl
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
