@@ -39,7 +39,11 @@ class ServerController < ApplicationController
                 `git remote add lsorigin2 #{devserver}`
                 unless app.server.nil?
                     app.server.devserver = devserver
-                    app.server.devurl = devurl
+                end
+            end
+            unless devurl == ''
+                unless app.server.nil?
+                    app.server.produrl = produrl
                 end
             end
             unless prodserver == ''
@@ -47,6 +51,10 @@ class ServerController < ApplicationController
                 `git remote add prodlsorigin2 #{prodserver}`
                 unless app.server.nil?
                     app.server.prodserver = prodserver
+                end
+            end
+            unless produrl == ''
+                unless app.server.nil?
                     app.server.produrl = produrl
                 end
             end
@@ -102,6 +110,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
