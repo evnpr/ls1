@@ -52,7 +52,7 @@ class ServerController < ApplicationController
             end
             app.server.save
         }
-        
+        lash[:server] = "success"
         redirect_to "/server/index" and return
   end
   
@@ -100,6 +100,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
