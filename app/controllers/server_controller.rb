@@ -37,22 +37,18 @@ class ServerController < ApplicationController
             unless devserver == ''
                 `git remote rm lsorigin2`
                 `git remote add lsorigin2 #{devserver}`
-                app.server.devserver = devserver
-            end
-            unless devurl == ''
-                `git remote rm lsorigin2`
-                `git remote add lsorigin2 #{devserver}`
-                app.server.devurl = devurl
+                unless app.server.nil?
+                    app.server.devserver = devserver
+                    app.server.devurl = devurl
+                end
             end
             unless prodserver == ''
                 `git remote rm prodlsorigin2`                
-                `git remote add prodlsorigin2 #{prodserver}` 
-                app.server.prodserver = prodserver
-            end
-            unless produrl == ''
-                `git remote rm prodlsorigin2`                
-                `git remote add prodlsorigin2 #{prodserver}`    
-                app.server.produrl = produrl
+                `git remote add prodlsorigin2 #{prodserver}`
+                unless app.server.nil?
+                    app.server.prodserver = prodserver
+                    app.server.produrl = produrl
+                end
             end
             app.server.save
         }
@@ -104,6 +100,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
