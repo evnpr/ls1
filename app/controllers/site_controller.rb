@@ -124,6 +124,12 @@ class SiteController < ApplicationController
                 @username)
     @devurl = Apps.where(:name => @apps_name).first.server.devurl
     @produrl = Apps.where(:name => @apps_name).first.server.produrl
+    if @devurl == '' or @devurl.nil?
+        @devurl = "http://dev.#{@apps_name}.letspan.com"
+    end
+    if @produrl == '' or @produrl.nil?
+        @produrl = "http://#{@apps_name}.letspan.com"
+    end
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
@@ -170,6 +176,12 @@ class SiteController < ApplicationController
                 @username)
     @devurl = Apps.where(:name => @apps_name).first.server.devurl
     @produrl = Apps.where(:name => @apps_name).first.server.produrl
+    if @devurl == '' or @devurl.nil?
+        @devurl = "http://dev.#{@apps_name}.letspan.com"
+    end
+    if @produrl == '' or @produrl.nil?
+        @produrl = "http://#{@apps_name}.letspan.com"
+    end
     back.pop
     @back = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
