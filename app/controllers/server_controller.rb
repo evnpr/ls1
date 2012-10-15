@@ -42,7 +42,7 @@ class ServerController < ApplicationController
   end
   
   def submitdb
-        #need to add security and auth for the not owner address, because they share same ls git user for push
+        #need to add security and auth for the not owner address, because they can access every database if have the password
         database_name = params[:dbname]
         database_username = params[:dbuser]
         database_pwd = params[:dbpwd]
