@@ -26,7 +26,7 @@
 <span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}'" %>><button class="btn btn-success">normal</button></a></span>
 <br>
 <% else %>
-<span class="span1 offset10" style="float:right"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn btn-inverse">Vim</button></a></span>
+<span class="span1 offset10" style="float:right; display:none"><a href=<%="'/content?r=#{@r}&vim=1'" %>><button class="btn btn-inverse">Vim</button></a></span>
 <% end %>
 </div>
 
@@ -154,6 +154,7 @@ document.onkeydown = checkKeycode
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
 
 
 
