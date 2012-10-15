@@ -131,6 +131,13 @@ class SiteController < ApplicationController
         if @produrl == '' or @produrl.nil?
             @produrl = "http://#{@apps_name}.letspan.com"
         end
+    else
+        if @devurl == '' or @devurl.nil?
+            @devurl = "http://dev.#{@apps_name}.letspan.com"
+        end
+        if @produrl == '' or @produrl.nil?
+            @produrl = "http://#{@apps_name}.letspan.com"
+        end
     end
     back.pop
     @back = back.join("-__-")
