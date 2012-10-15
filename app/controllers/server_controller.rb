@@ -8,6 +8,9 @@ class ServerController < ApplicationController
   @@directory = "/var/www/ls/upload"
 
   def index
+        unless @username
+            redirect_to "/" and return
+        end
         @apps = User.where(:username => @username).first.appss
   end
   
@@ -85,6 +88,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
