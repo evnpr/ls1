@@ -6,6 +6,61 @@
 
 <br><br><br>
 
+<form action="/server/submitdb" method="post" accept-charset="utf-8">
+    
+
+<select name="apps_name">
+<% if @apps %>
+    <% @apps.each do |a| %>
+        <option value="<%= a.name %>"><%= a.virtual_name %></option>
+    <% end %>
+<% end %>
+</select>
+<br>
+<input type="text" name="dbname" style="height: 35px; width: 450px;" placeholder="your dev server (e.g ubuntu@myweb.com:www/mybare.git)"><br>
+<input type="text" name="dbusername" style="height: 35px; width: 450px;" placeholder="your dev server (e.g ubuntu@myweb.com:www/mybare.git)"><br>
+<input type="text" name="dbpwd" style="height: 35px; width: 450px;" placeholder="your prod server (e.g ubuntu@myweb.com:www/mybare.git)"><br>
+<p><input type="submit" value="Save" class="btn btn-large btn-primary"></p>
+</form>
+<br><br>
+
+
+<span id="cursortable" style="cursor:pointer; display:none"><a onClick="showTable()">see list of your apps?</a></span>
+
+<div  id="tableserver" style="display:">
+<table border="2" cellpadding="15">
+<tr>
+<th>Apps Name</th>
+<th>Database Name</th>
+<th>DB Username</th>
+<th>DB Password</th>
+</tr>
+
+<% if @apps %>
+    <% @apps.each do |a| %>
+    <tr>
+        <td><font color="red"><%= a.virtual_name %></font></td>
+        <% if a.server.nil? %>
+            <td></td>
+            <td></td>
+            <td></td>
+        <% else %>
+            <td><font color="blue"><%= a.thedatabase.database_name %></font></td>
+            <td><font color="blue"><%= a.thedatabase.database_username %></font></td>
+            <td></td>
+        <% end %>
+    </tr>
+    <% end %>
+<% end %>
+
+</table>
+</div>
+
+
+
+
+<br><br><br>
+
 <form action="/server/submit" method="post" accept-charset="utf-8">
     
 
@@ -61,3 +116,4 @@
 
     
 </script>
+
