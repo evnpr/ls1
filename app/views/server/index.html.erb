@@ -40,7 +40,7 @@
     <% @apps.each do |a| %>
     <tr>
         <td><font color="red"><%= a.virtual_name %></font></td>
-        <% if a.server.nil? %>
+        <% if a.thedatabase.nil? %>
             <td></td>
             <td></td>
             <td></td>
