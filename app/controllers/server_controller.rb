@@ -48,9 +48,10 @@ class ServerController < ApplicationController
                 unless app.server.nil?
                     app.server.prodserver = prodserver
                     app.server.produrl = produrl
+                    app.server.save
                 end
             end
-            app.server.save
+
         }
         flash[:server] = "success"
         redirect_to "/server/index" and return
