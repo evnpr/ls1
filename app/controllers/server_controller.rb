@@ -41,10 +41,36 @@ class ServerController < ApplicationController
   end
   
   def submitdb
-        dbname = params[:dbname]
-        dbuser = params[:dbuser]
-        dbpwd = params[:dbpwd]
+        database_name = params[:dbname]
+        database_username = params[:dbuser]
+        database_pwd = params[:dbpwd]
         appsname = params[:apps_name]
+        
+        app = Apps.where(:name => appsname).first
+        if app.thedatabase.nil?
+            d = Thedatabase.new(:apps_id => app.id)
+            d.save
+        end
+        
+        if Thedatabase.exists?(:database_username => database_username)
+            flash[:create_apps] = "The database username is already used"
+            redirect_to "/user/index" and return        
+        end
+        
+        if Thedatabase.exists?(:database_name => database_name)
+            flash[:create_apps] = "The database name is already used"
+            redirect_to "/user/index" and return        
+        end
+        
+        td = Thedatabase.new(:database_name => database_name)
+        td.database_username = database_username
+        td.save
+        
+        sql = ActiveRecord::Base.connection();
+        sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
+        sql.execute("CREATE DATABASE IF NOT EXISTS " + database_name + ";");
+        sql.execute("GRANT ALL ON " + database_name + ".* TO " + database_username + "@localhost IDENTIFIED BY '" + database_pwd +"';");
+        
   end
 
 
