@@ -48,8 +48,10 @@ class ServerController < ApplicationController
         
         app = Apps.where(:name => appsname).first
         if app.thedatabase.nil?
-            d = Thedatabase.new(:apps_id => app.id)
-            d.save
+            td = Thedatabase.new(:apps_id => app.id)
+            td.database_name = database_name
+            td.database_username = database_username
+            td.save
         end
         
         if Thedatabase.exists?(:database_username => database_username)
@@ -62,9 +64,6 @@ class ServerController < ApplicationController
             redirect_to "/server/index" and return        
         end
         
-        td = Thedatabase.new(:database_name => database_name)
-        td.database_username = database_username
-        td.save
         
         sql = ActiveRecord::Base.connection();
         sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
