@@ -12,6 +12,7 @@ class ServerController < ApplicationController
   end
   
   def submit
+        #need to add security and auth for the not owner address, because they share same ls git user for push
         devserver = params[:devserver]
         prodserver = params[:prodserver]
         appsname = params[:apps_name]
@@ -36,18 +37,18 @@ class ServerController < ApplicationController
             end
             app.server.save
         }
-        #need to add security and auth for the not owner address, because they share same ls git user for push
+        
         redirect_to "/server/index" and return
   end
   
   def submitdb
+        #need to add security and auth for the not owner address, because they share same ls git user for push
         database_name = params[:dbname]
         database_username = params[:dbuser]
         database_pwd = params[:dbpwd]
         appsname = params[:apps_name]
         
 
-        
         if Thedatabase.exists?(:database_username => database_username)
             flash[:server] = "The database username is already used"
             redirect_to "/server/index" and return        
