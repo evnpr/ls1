@@ -46,13 +46,7 @@ class ServerController < ApplicationController
         database_pwd = params[:dbpwd]
         appsname = params[:apps_name]
         
-        app = Apps.where(:name => appsname).first
-        if app.thedatabase.nil?
-            td = Thedatabase.new(:apps_id => app.id)
-            td.database_name = database_name
-            td.database_username = database_username
-            td.save
-        end
+
         
         if Thedatabase.exists?(:database_username => database_username)
             flash[:server] = "The database username is already used"
@@ -64,6 +58,13 @@ class ServerController < ApplicationController
             redirect_to "/server/index" and return        
         end
         
+        app = Apps.where(:name => appsname).first
+        if app.thedatabase.nil?
+            td = Thedatabase.new(:apps_id => app.id)
+            td.database_name = database_name
+            td.database_username = database_username
+            td.save
+        end
         
         sql = ActiveRecord::Base.connection();
         sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
