@@ -25,6 +25,10 @@ class ServerController < ApplicationController
         app = Apps.where(:name => appsname).first
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
+            s.devserver = devserver
+            s.devurl = devurl
+            s.prodserver = prodserver  
+            s.produrl = produrl
             s.save
         end
         
@@ -41,14 +45,14 @@ class ServerController < ApplicationController
                 app.server.devurl = devurl
             end
             unless prodserver == ''
-                app.server.prodserver = prodserver
                 `git remote rm prodlsorigin2`                
-                `git remote add prodlsorigin2 #{prodserver}`                
+                `git remote add prodlsorigin2 #{prodserver}` 
+                app.server.prodserver = prodserver
             end
             unless produrl == ''
-                app.server.produrl = produrl
                 `git remote rm prodlsorigin2`                
-                `git remote add prodlsorigin2 #{prodserver}`                
+                `git remote add prodlsorigin2 #{prodserver}`    
+                app.server.produrl = produrl
             end
             app.server.save
         }
@@ -100,6 +104,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
