@@ -43,7 +43,7 @@ class ServerController < ApplicationController
             end
             unless devurl == ''
                 unless app.server.nil?
-                    app.server.produrl = produrl
+                    app.server.devurl = devurl
                 end
             end
             unless prodserver == ''
@@ -110,6 +110,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
