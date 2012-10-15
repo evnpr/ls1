@@ -47,6 +47,7 @@ class SiteController < ApplicationController
 
     td = Thedatabase.new(:database_name => database_name)
     td.database_username = database_username
+    td.apps_id = a.id
     td.save
 
 
@@ -822,6 +823,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
