@@ -48,13 +48,14 @@
             <td><font color="blue"><%= a.thedatabase.database_name %></font></td>
             <td><font color="blue"><%= a.thedatabase.database_username %></font></td>
            <td><font color="blue">
-            <%  unless pwd.nil?
+            <%  
                     pwd = a.thedatabase.database_pwd 
+                unless pwd.nil?
                     pwd[1..3] = '***'
                 
             %>
             <%= pwd %>
-            <% end %>
+            <% end %.
             </font></td>
         <% end %>
     </tr>
