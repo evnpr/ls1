@@ -45,12 +45,13 @@ class SiteController < ApplicationController
     a.user_id = User.where(:username => user_name).first.id
     a.save
 
-    td = Thedatabase.new(:database_name => database_name)
-    td.database_username = database_username
-    td.database_pwd = database_pwd
-    td.apps_id = a.id
-    td.save
-
+    unless database_name == '' or database_name.nil?
+        td = Thedatabase.new(:database_name => database_name)
+        td.database_username = database_username
+        td.database_pwd = database_pwd
+        td.apps_id = a.id
+        td.save
+    end
 
     unless database_name.nil? || database_name == ''
         sql = ActiveRecord::Base.connection();
@@ -857,6 +858,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
