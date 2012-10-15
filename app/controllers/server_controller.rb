@@ -39,7 +39,15 @@ class ServerController < ApplicationController
         #need to add security and auth for the not owner address, because they share same ls git user for push
         redirect_to "/server/index" and return
   end
+  
+  def submitdb
+        dbname = params[:dbname]
+        dbuser = params[:dbuser]
+        dbpwd = params[:dbpwd]
+        appsname = params[:apps_name]
+  end
 
 
 end
+
 
