@@ -52,6 +52,7 @@ class SiteController < ApplicationController
 
     unless database_name.nil? || database_name == ''
         sql = ActiveRecord::Base.connection();
+        #sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
         sql.execute("CREATE DATABASE IF NOT EXISTS " + database_name + ";");
         sql.execute("GRANT ALL ON " + database_name + ".* TO " + database_username + "@localhost IDENTIFIED BY '" + database_pwd +"';");
     end
