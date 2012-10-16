@@ -1,4 +1,4 @@
-        require 'digest/md5'
+require 'digest/md5'
 class UserController < ApplicationController
 
   before_filter :get_users
@@ -82,6 +82,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
