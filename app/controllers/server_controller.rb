@@ -73,7 +73,10 @@ class ServerController < ApplicationController
         database_pwd = params[:dbpwd]
         appsname = params[:apps_name]
         
-
+        if database_username == '' or database_name == '' or database_pwd == ''
+            flash[:server] = 'cannot be blank'
+            redirect_to "/server/index" and return
+        end
         if Thedatabase.exists?(:database_username => database_username)
             flash[:server] = "The database username is already used"
             dbuserowner = Thedatabase.where(:database_username => database_username).first.apps.user.username
@@ -130,6 +133,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
