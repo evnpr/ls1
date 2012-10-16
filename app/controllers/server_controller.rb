@@ -76,12 +76,28 @@ class ServerController < ApplicationController
 
         if Thedatabase.exists?(:database_username => database_username)
             flash[:server] = "The database username is already used"
-            redirect_to "/server/index" and return        
+            dbuserowner = Thedatabase.where(:database_username => database_username).first.apps.user.username
+            if dbuserowner == @username
+                sql = ActiveRecord::Base.connection();
+                #sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
+                sql.execute("DROP USER '"+ database_username +"'@'localhost';");
+                flash[:server] = "The database username is already used then you change it"
+            else
+                redirect_to "/server/index" and return        
+            end
         end
         
         if Thedatabase.exists?(:database_name => database_name)
             flash[:server] = "The database name is already used"
-            redirect_to "/server/index" and return        
+            dbuserowner = Thedatabase.where(:database_name => database_name).first.apps.user.username
+            if dbuserowner == @username
+                sql = ActiveRecord::Base.connection();
+                #sql.execute("DROP DATABASE IF EXISTS " + database_name + ";");
+                sql.execute("DROP Database "+ database_username +";");
+                flash[:server] = "The database username is already used then you change it"
+            else
+                redirect_to "/server/index" and return        
+            end
         end
         
         app = Apps.where(:name => appsname).first
@@ -107,9 +123,14 @@ class ServerController < ApplicationController
         redirect_to "/server/index" and return      
         
   end
+  
+  def test
+    
+  end
 
 
 end
+
 
 
 
