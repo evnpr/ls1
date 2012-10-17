@@ -50,34 +50,7 @@
 
   <body>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/"><b><i>{ls}</i></b></a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/">Home</a></li>
-              <li><a href="http://apps.letspan.com/phpmyadmin" target="_blank">Database</a></li>
-<!--              <li><a href="/list">List of Apps</a></li> -->
-              <li><a href="/site/gitnew">Import Key</a></li>
-              <li><a href="/site/githubnew">Set Github</a></li>
-              <li><a href="/server/index">Settings</a></li>              
-            </ul>
-          <% if @username %>
-              <span style="float: right; margin-top: 10px; margin-left: 13px;"> | <a href="/user/logout">Logout</a></span>
-              <span style="float: right; margin-top: 10px;">welcome, <%= @username %></span>
-          <% else %>
-              <span style="float: right; margin-top: 10px; margin-left: 13px;">  <a href="/user/login">Login</a></span>
-          <% end %>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+    <%= render :partial => "shared/menuheader" %>
 
     <div class="container">
 
@@ -103,6 +76,7 @@
     <script src="/assets/js/bootstrap-typeahead.js"></script>
   </body>
 </html>
+
 
 
 
