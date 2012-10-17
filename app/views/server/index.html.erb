@@ -126,9 +126,9 @@
             <td></td>
         <% else %>
             <td><font color="blue"><%= a.server.devserver %></font></td>
-            <td><font color="brown"><%= a.server.devurl %></font></td>        
+            <td><font color="brown"><a href="<%= a.server.devurl %>"><%= a.server.devurl %></a></font></td>        
             <td><font color="blue"><%= a.server.prodserver %></font></td>
-            <td><font color="brown"><%= a.server.produrl %></font></td>        
+            <td><font color="brown"><a href="<%= a.server.produrl %>"><%= a.server.produrl %></a></font></td>        
         <% end %>
     </tr>
     <% end %>
