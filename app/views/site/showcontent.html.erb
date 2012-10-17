@@ -11,7 +11,11 @@
   </style>
   
 
-
+<% if flash[:list] %>
+<div class="alert">
+    <%= flash[:list] %>
+</div>
+<% end %>
 
 
 <br>
@@ -154,6 +158,7 @@ document.onkeydown = checkKeycode
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
 
 
 
