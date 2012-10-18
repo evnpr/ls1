@@ -12,6 +12,9 @@ class ServerController < ApplicationController
             redirect_to "/" and return
         end
         @apps = User.where(:username => @username).first.appss
+        if @apps.nil?
+            redirect_to "/" and return
+        end
   end
   
   def submit
@@ -133,6 +136,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
