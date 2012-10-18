@@ -12,7 +12,7 @@ class ServerController < ApplicationController
             redirect_to "/" and return
         end
         
-        if User.where(:username => @username).first.appss.nil?
+        if User.where(:username => @username).first.appss.first.nil?
             redirect_to "/" and return
         end
         
