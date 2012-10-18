@@ -11,12 +11,10 @@ class ServerController < ApplicationController
         unless @username
             redirect_to "/" and return
         end
-        
-        if User.where(:username => @username).first.appss.first.nil?
+        @apps = User.where(:username => @username).first.appss
+        if @apps.first.nil?
             redirect_to "/" and return
         end
-        
-        @apps = User.where(:username => @username).first.appss
   end
   
   def submit
