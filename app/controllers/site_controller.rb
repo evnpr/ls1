@@ -300,13 +300,14 @@ class SiteController < ApplicationController
         end
         `git commit -m '#{@username} #{commit}'`
         `git push lsorigin2 master -f`
-        `git remote add ls1 git@letspan.com:#{@apps_name}.git`
-        `git push ls1 master -f`
+
 
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
             `git push lsdev master -f`
         end
+        `git remote add ls1 git@letspan.com:#{@apps_name}.git`
+        `git push ls1 master -f`
     }
     redirect_to "/content?r="+r and return
   end
