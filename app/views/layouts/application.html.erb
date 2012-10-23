@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-    <% if !@title.nil? %>    
+    <% unless @title.nil? %>    
         <%= @title %>
     <% else %>
         <% @title = 'Letspan | Cloud Platform Service' %>
