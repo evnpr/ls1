@@ -163,9 +163,13 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "json",
         success: function(result){          
-          alert(result.committer+" edited on "+result.app);          
+          //lert(result.committer+" edited on "+result.app); 
+          notify_me();
         }
     }); 
+}
+function notify_me(){
+    document.getElementById("notifyalert").style.visibility="visible";
 }
 </script>
 
