@@ -1,4 +1,4 @@
-            Letspan::Application.routes.draw do
+Letspan::Application.routes.draw do
   get "lsgit/index"
 
   get "server/index"
@@ -110,6 +110,7 @@
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+
 
 
 
