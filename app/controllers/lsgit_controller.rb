@@ -23,7 +23,7 @@ class LsgitController < ApplicationController
   #  n.destroy
   #
     @r = r
-
+    render :layout => false
   end
 end
 
