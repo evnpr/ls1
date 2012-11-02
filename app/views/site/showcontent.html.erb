@@ -157,6 +157,9 @@ document.onkeydown = checkKeycode
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script type="text/javascript">
 notiftimer=setInterval("retrieveNotif();",5000);
+ var alertelement=$('div[name="notifyalert"]').first();
+    var parent=alertelement.parentNode;
+    alert()alertelement.childNodes[3].nodeValue);
 function retrieveNotif(){
     $.ajax({
         type: "POST",
@@ -164,7 +167,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "json",
         success: function(result){     
-          notifyMe(result);
+          //notifyMe(result);
         }
     });    
 }
