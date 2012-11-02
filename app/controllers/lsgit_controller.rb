@@ -19,7 +19,7 @@ class LsgitController < ApplicationController
     user_id = User.where(:username=>@username).first.id
     @listNotif = User.find(user_id).notifs
     
-    render :json => @listNotif.first and return
+    render :json => @listNotif.length and return
     
     @r = r
     
