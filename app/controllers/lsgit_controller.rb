@@ -8,7 +8,7 @@ class LsgitController < ApplicationController
   def index
     
 
-     r = params[:path]
+    r = params[:path]
   #  apps_name = r.split("-__-")[1]
   #  @apps_name = apps_name
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
@@ -16,12 +16,10 @@ class LsgitController < ApplicationController
   #              User.where(:username => @username).first.id, 
   #              @username)
 
-   user_id = User.where(:username=>@username).first.id
-
-
+    user_id = User.where(:username=>@username).first.id
     @listNotif = User.find(user_id).notifs
-
-  
+    
+    render :json => @listNotif
   #  @r = r
   #  render :nothing => true
     render :layout => false
