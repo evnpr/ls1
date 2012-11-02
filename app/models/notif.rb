@@ -1,5 +1,5 @@
 class Notif < ActiveRecord::Base
-    has_many :appss
-    belongs_to :apps
+    has_and_belongs_to_many :appss
 end
+
 
