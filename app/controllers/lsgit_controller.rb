@@ -21,14 +21,9 @@ class LsgitController < ApplicationController
 
 
 
-try
-{
-    listNotif = Notif.where(:notif_id => n.notif_id)
-}
-catch(Exception)
-{
-   return Exception
-}    
+
+    listNotif = Notif.first
+
   
   #  @r = r
   #  render :nothing => true
