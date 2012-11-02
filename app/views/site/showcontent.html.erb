@@ -163,10 +163,10 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "text",
         success: function(result){          
-          notify_me("lalalallalalalalalaa");
+          notify_me(result);
         }
     });
-    notify_me();
+    notify_me("lalalalalalalala");
 }
 function notify_me(notifstring){
     var alertelement=document.getElementById("notifyalert");
