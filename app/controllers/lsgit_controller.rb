@@ -28,7 +28,7 @@ class LsgitController < ApplicationController
       :app => 'asfafs',
     }
     
-    render :json=> @ruby_hash.to_json
+    render :json => @ruby_hash.to_json
 
     
   end
