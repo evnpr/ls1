@@ -161,7 +161,7 @@ function retrieveNotif(){
         type: "POST",
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
-        dataType: "json",
+        dataType: "text",
         success: function(result){          
           //lert(result.committer+" edited on "+result.app); 
          // notify_me();
@@ -171,8 +171,7 @@ function retrieveNotif(){
 }
 function notify_me(){
     var alertelement=document.getElementById("notifyalert");
-    alertelement.childNodes[4].nodeValue="fefe";
-    //alert(alertelement.childNodes[3].childNodes.nodeValue);
+    alertelement.childNodes[4].nodeValue="fefe";   
     alertelement.style.display="block";
 }
 </script>
