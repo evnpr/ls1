@@ -158,10 +158,10 @@ function retrieveNotif(){
         type: "POST",
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
-        dataType: "text",
+        dataType: "json",
         success: function(result){    	
           //alert(result.commiter+" edited on "+result.app);
-          alert(result);
+          alert(result.commiter);
           
         }
     }); 
