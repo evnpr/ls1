@@ -17,12 +17,9 @@ class LsgitController < ApplicationController
   #              @username)
 
    user_id = User.where(:username=>@username).first.id
-   n = NotifsUsers.where(:user_id => user_id)
 
 
-
-
-    listNotif = Notif.find(n.notif_id)
+    @listNotif = User.find(user_id).notifs
 
   
   #  @r = r
