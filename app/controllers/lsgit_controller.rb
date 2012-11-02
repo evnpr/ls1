@@ -20,9 +20,7 @@ class LsgitController < ApplicationController
 #    @listNotif = User.find(user_id).notifs
 #    @listNotif = { :committer => 'saauaaa' }    
     @ruby_hash = {
-      :bytes_expected => session[:size],
-      :bytes_recieved => session[:size],
-      :last_seq => 0
+      :committer => 'safasf'
     }
     
     render :json=> @ruby_hash.to_json
