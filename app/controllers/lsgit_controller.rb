@@ -20,7 +20,7 @@ class LsgitController < ApplicationController
    n = NotifsUsers.where(:user_id => user_id)
 
 
-     @listNotif = Notif.where(:notif_id => n.notif_id)
+  #   @listNotif = Notif.where(:notif_id => n.notif_id)
     
   
   #  @r = r
