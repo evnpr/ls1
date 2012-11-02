@@ -308,7 +308,7 @@ class SiteController < ApplicationController
         nu = NotifsUsers.new(:user_id => owner)
         nu.notif_id = n.id
         nu.save
-        collaborators = Apps.where(:name => @apps_name).collaborators
+        collaborators = Apps.where(:name => @apps_name).first.collaborators
         collaborators.each do |c|
             nu = NotifsUsers.new(:user_id => c.id)
             nu.notif_id = n.id
