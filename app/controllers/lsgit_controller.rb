@@ -23,8 +23,7 @@ class LsgitController < ApplicationController
   #  n.destroy
   #
     @r = r
-    puts 'hello world'
-    return
+
   end
 end
 
