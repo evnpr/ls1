@@ -17,11 +17,9 @@ class LsgitController < ApplicationController
   #              @username)
 
     user_id = User.where(:username=>@username).first.id
-
-
     @listNotif = User.find(user_id).notifs
-
-  
+    
+    render :json => @listNotif.to_json
   #  @r = r
   #  render :nothing => true
     render :layout => false
