@@ -25,7 +25,7 @@ class LsgitController < ApplicationController
   
     @r = r
 
-    render :layotu => false
+    render :layout => false
 
     
   end

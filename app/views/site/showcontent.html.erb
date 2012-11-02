@@ -49,7 +49,7 @@
 <br>
 
 <div id="notifyalert" style="display:none" class="alert alert-info">
-    <button type="button" name="closenotifyalert">×</button>
+    <button type="button" class="close" name="closenotifyalert">×</button>
     <p></p>
 </div>
 
@@ -175,7 +175,7 @@ function notify_me(notifstring){
     alertelement.childNodes[4].nodeValue=notifstring;   
     alertelement.style.display="block";
 }
-$('button[name="closenotifyalert"]').click(function(){document.getElementById("notifyalert").style.display=""});
+$('button[name="closenotifyalert"]').click(function(){document.getElementById("notifyalert").style.display="none";});
 </script>
 
 
