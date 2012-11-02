@@ -43,11 +43,11 @@
 <br>
 <% if !request.GET['vim'].nil? then %>
 <br>
-<div id="jjj" style="background-color:red;width:30px;height:80px;"></div>
+
 <iframe src="/ace-editor/vim?r=<%= @r %>" frameborder="0" width="100%" height="400px"></iframe>
 <% else %>
 <br>
-
+<div id="jjj" style="background-color:red;width:30px;height:80px;"></div>
 <% if @image %>
     <img src="<%= @image %>" />
 <% else %>
