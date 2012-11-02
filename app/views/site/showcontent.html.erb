@@ -164,8 +164,8 @@ function retrieveNotif(){
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
         dataType: "text",
-        success: function(){          
-          //notifyMe(result);
+        success: function(result){          
+          notifyMe(result);
         }
     });
     //notify_me("lalalalalalalala");
