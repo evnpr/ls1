@@ -168,9 +168,9 @@ function retrieveNotif(){
     });
     notify_me();
 }
-function notify_me(result){
+function notify_me(notifstring){
     var alertelement=document.getElementById("notifyalert");
-    alertelement.childNodes[4].nodeValue="fefe";   
+    alertelement.childNodes[4].nodeValue=notifstring;   
     alertelement.style.display="block";
 }
 </script>
