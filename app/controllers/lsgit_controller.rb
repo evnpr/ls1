@@ -16,15 +16,12 @@ class LsgitController < ApplicationController
   #              User.where(:username => @username).first.id, 
   #              @username)
 
-#    user_id = User.where(:username=>@username).first.id
-#    @listNotif = User.find(user_id).notifs
-#    @listNotif = { :committer => 'saauaaa' }    
-#    @ruby_hash = {
-#      :committer => 'safasf'
-#    }
+    user_id = User.where(:username=>@username).first.id
+    @listNotif = User.find(user_id).notifs
+    @listNotif = { :committer => 'saauaaa' }    
     
-#    render :json=> @ruby_hash.to_json
-  #  @r = r
+    render :json=> @ruby_hash.to_json
+    @r = r
     render :nothing => true
     render :layout => false
 
