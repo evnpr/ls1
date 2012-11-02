@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     has_many :userkeys
     has_many :collaborators
     
-    belongs_to :notifread
+    has_and_belongs_to_many :notifs
 end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121102100827) do
+ActiveRecord::Schema.define(:version => 20121102120813) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -23,16 +23,16 @@ ActiveRecord::Schema.define(:version => 20121102100827) do
     t.string   "virtual_name"
   end
 
-  create_table "collaborators", :force => true do |t|
+  create_table "apps_notifs", :force => true do |t|
     t.integer  "apps_id"
-    t.integer  "user_id"
+    t.integer  "notif_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "notifreads", :force => true do |t|
+  create_table "collaborators", :force => true do |t|
+    t.integer  "apps_id"
     t.integer  "user_id"
-    t.integer  "notif_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(:version => 20121102100827) do
     t.string   "name"
     t.string   "commiter"
     t.integer  "apps_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notifs_users", :force => true do |t|
+    t.integer  "notif_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
