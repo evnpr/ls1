@@ -165,7 +165,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "json",
         success: function(result){     
-            alert(result)
+            alert(result[0].name)
           notifyMe(result);
         }
     });    
