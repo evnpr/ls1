@@ -22,7 +22,7 @@ class LsgitController < ApplicationController
 
 
 
-    listNotif = Notif.where(:id => n.notif_id)
+    listNotif = Notif.find(n.notif_id)
 
   
   #  @r = r
