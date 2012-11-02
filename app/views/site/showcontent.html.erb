@@ -159,8 +159,7 @@ function retrieveNotif(){
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
         dataType: "json",
-        success: function(result){    	
-          //alert(result.commiter+" edited on "+result.app);
+        success: function(result){          
           alert(result.committer+" edited on "+result.app);
           
         }
