@@ -172,7 +172,8 @@ function retrieveNotif(){
 function notifyMe(notif){
     var alertelement=$('div[name="notifyalert"]')[0];
     var parent=alertelement.parentNode;
-    alertelement.childNodes[4].nodeValue=notif[0].name; 
+    alertelement.childNodes[4].nodeValue=notif[0].name;
+    alertelement.style.display="block";
     for(var i=1;i<notif.length;i++){        
         var temp=alertelement.cloneNode(true);
         temp.childNodes[4].nodeValue=notif[i].name; 
