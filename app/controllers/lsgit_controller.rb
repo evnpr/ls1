@@ -17,10 +17,10 @@ class LsgitController < ApplicationController
   #              @username)
 
    user_id = User.where(:username=>@username).first.id
-  # n = NotifsUsers.where(:user_id => user_id)
+   n = NotifsUsers.where(:user_id => user_id)
 
 
-  #   @listNotif = Notif.where(:notif_id => n.notif_id)
+     @listNotif = Notif.where(:notif_id => n.notif_id)
     
   
   #  @r = r
