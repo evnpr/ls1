@@ -20,6 +20,9 @@ class LsgitController < ApplicationController
     apps_id = Apps.where(:name => @apps_name).first.id
     @listNotif = Apps.find(apps_id).notifs
     
+    an = AppsNotifs.where(:user_id => user_id)
+    an.destroy
+    
     render :json => @listNotif.to_json and return
     
     @r = r
