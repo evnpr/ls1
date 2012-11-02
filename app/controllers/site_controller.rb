@@ -304,7 +304,7 @@ class SiteController < ApplicationController
         n.committer = @username
         n.save
         
-        owner = Apps.where(:name => @apps_name).user.id
+        owner = Apps.where(:name => @apps_name).first.user.id
         nu = NotifsUsers.new(:user_id => owner)
         nu.notif_id = n.id
         nu.save
