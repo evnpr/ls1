@@ -3,6 +3,9 @@ class Apps < ActiveRecord::Base
     has_many :collaborators
     has_one :server
     has_one :thedatabase
+    has_many :notifs
+    belongs_to :notif
 end
+
 
 
