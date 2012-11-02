@@ -173,7 +173,7 @@ function retrieveNotif(){
 function notifyMe(notif){
     var alertelement=$('div[name="notifyalert"]')[0];
     var parent=alertelement.parentNode;
-    alertelement.childNodes[1].nodeValue=notif[0].name;
+    alertelement.childNodes[1].innerHTML=notif[0].name;
     alertelement.style.display="block";
     $alertelement=$(alertelement);
     $alertelement.mouseout(function(){this.style.display="none";});
