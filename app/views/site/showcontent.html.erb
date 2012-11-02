@@ -179,13 +179,14 @@ function notifyMe(notif){
         temp.childNodes[4].nodeValue=notif[i].name+"</br>"+notif[i].created_at; 
         temp.attribute("id","notifalert_"+i);
         temp.style.display="block";
-        parent.appendChild(temp);
+        parent.appendChild(temp);        
     }
    
       
     
 }
-$('button[name="closenotifyalert"]')[0].mouseout(function(){document.getElementById("notifyalert").style.display="none";});
+
+$('button[name="closenotifyalert"]')[0].click(function(){document.getElementById("notifyalert").style.display="none";});
 </script>
 
 
