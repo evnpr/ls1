@@ -25,10 +25,11 @@ class LsgitController < ApplicationController
   
     @r = r
 
-        
+    render :layotu => false
 
     
   end
 end
+
 
 
