@@ -299,6 +299,10 @@ class SiteController < ApplicationController
             redirect_to 'user/index' and return
         end
         `git commit -m '#{@username} #{commit}'`
+        n = Notif.new(:commiter => @username)
+        n.name = "#{@username} edited #{path}"
+        n.apps_id = Apps.where(:name => @apps_name).first.id
+        n.save
         `git push lsorigin2 master -f`
 
 
@@ -862,6 +866,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
