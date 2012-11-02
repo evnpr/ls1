@@ -24,7 +24,7 @@ class LsgitController < ApplicationController
   #
     @r = r
     @ruby_hash = {
-      :commiter => 'evadaf',
+      :committer => 'evadaf',
       :app => 'asfafs'
     }
     
