@@ -299,7 +299,7 @@ class SiteController < ApplicationController
             redirect_to 'user/index' and return
         end
         `git commit -m '#{@username} #{commit}'`
-        n = Notif.new(:commiter => @username)
+        n = Notif.new(:committer => @username)
         n.name = "#{@username} edited #{path}"
         n.committer = @username
         n.save
@@ -872,6 +872,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
