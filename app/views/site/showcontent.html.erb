@@ -8,9 +8,6 @@
         width: 100%;
         height: 500px;
     }
-    .floatright{
-        float:right;
-    }
   </style>
   
 
@@ -51,13 +48,19 @@
 <% else %>
 <br>
 
-<div id="notifyalert" style="display:none" class="alert alert-info floatright">
+<div id="notifyalert" style="display:none" class="alert alert-info">
     <button type="button" class="close" name="closenotifyalert">×</button>
     <p></p>
 </div>
 
 <% if @image %>
     <img src="<%= @image %>" />
+<% else %>
+<pre id="editor"><%= @contents %>
+</pre>
+<% end %>
+
+
 <span id="thisfile" style="display: none" value="<%= @r %>"><%= @r %></span>
 
 
@@ -162,7 +165,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "json",
         success: function(result){          
-          notifyMe(result);
+          notifyMe(result.committer);
         }
     });    
 }
@@ -180,7 +183,6 @@ $('button[name="closenotifyalert"]').click(function(){document.getElementById("n
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
-
 
 
 
