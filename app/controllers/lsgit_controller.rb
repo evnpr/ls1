@@ -25,12 +25,13 @@ class LsgitController < ApplicationController
     
 #    render :json=> @ruby_hash.to_json
   #  @r = r
-  #  render :nothing => true
+    render :nothing => true
     render :layout => false
 
     
   end
 end
+
 
 
 
