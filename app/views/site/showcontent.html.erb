@@ -47,7 +47,7 @@
 <iframe src="/ace-editor/vim?r=<%= @r %>" frameborder="0" width="100%" height="400px"></iframe>
 <% else %>
 <br>
-<div id="jjj" style="background-color:red;width:30px;height:80px;"></div>
+<div id="alert" style="background-color:red;width:30px;height:80px;"></div>
 <% if @image %>
     <img src="<%= @image %>" />
 <% else %>
@@ -157,8 +157,8 @@ function retrieveNotif(){
     $.ajax({
         type: "POST",
         url: "/retrievernotif.rb",
-        data: "notiflistener="+<%=@username%>,
-        dataType: "xml",
+        data: "notiflistener="+<%=@r%>,
+        dataType: "text",
         success: function(result){    	
           alert(result.name+"edited on"+result.app);
           
@@ -173,6 +173,7 @@ function retrieveNotif(){
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
 
 
 
