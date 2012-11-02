@@ -309,11 +309,11 @@ class SiteController < ApplicationController
         nu.notif_id = n.id
     #    nu.save
         collaborators = Apps.where(:name => @apps_name).first.collaborators
-    #    collaborators.each do |c|
-    #        nu = NotifsUsers.new(:user_id => c.id)
-    #        nu.notif_id = n.id
-    #        nu.save
-    #    end
+        collaborators.each do |c|
+            nu = NotifsUsers.new(:user_id => c.id)
+            nu.notif_id = n.id
+            nu.save
+        end
         an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         an.notif_id = n.id
         an.save
