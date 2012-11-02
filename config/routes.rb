@@ -1,4 +1,6 @@
             Letspan::Application.routes.draw do
+  get "lsgit/index"
+
   get "server/index"
 
   get "user/index"
