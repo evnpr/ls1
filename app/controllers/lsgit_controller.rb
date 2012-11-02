@@ -29,12 +29,6 @@ class LsgitController < ApplicationController
         return 
     end
     
-
-    
-    @r = r
-    
-    render :layout => false
-
     
   end
 end
