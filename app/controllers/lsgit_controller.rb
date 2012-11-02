@@ -9,7 +9,7 @@ class LsgitController < ApplicationController
     
 
     r = params[:path]
-  #  apps_name = r.split("-__-")[1]
+    apps_name = r.split("-__-")[1]
   #  @apps_name = apps_name
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
   #              Apps.where(:name => @apps_name).first.id, 
