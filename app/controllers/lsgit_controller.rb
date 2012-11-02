@@ -9,15 +9,16 @@ class LsgitController < ApplicationController
     
 
     r = params[:path]
-  #  apps_name = r.split("-__-")[1]
-  #  @apps_name = apps_name
+    apps_name = r.split("-__-")[1]
+    @apps_name = apps_name
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
   #              Apps.where(:name => @apps_name).first.id, 
   #              User.where(:username => @username).first.id, 
   #              @username)
 
     user_id = User.where(:username=>@username).first.id
-    @listNotif = User.find(user_id).notifs
+    apps_id = Apps.where(:apps_name => @apps_name).first.id
+    @listNotif = Apps.find(apps_id).notifs
     
     render :json => @listNotif.to_json and return
     
