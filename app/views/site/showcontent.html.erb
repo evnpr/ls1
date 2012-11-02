@@ -160,7 +160,7 @@ function retrieveNotif(){
         type: "POST",
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
-        dataType: "text",
+        dataType: "json",
         success: function(result){          
           notifyMe(result);
         }
