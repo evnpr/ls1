@@ -24,7 +24,7 @@ class LsgitController < ApplicationController
     
   
   #  @r = r
-    render :nothing => true
+  #  render :nothing => true
     render :layout => false
 
     
