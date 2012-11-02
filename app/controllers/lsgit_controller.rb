@@ -6,9 +6,7 @@ class LsgitController < ApplicationController
   end
   
   def index
-    unless @username
-        redirect_to "/"
-    end
+    
 
     r = params[:path]
   #  apps_name = r.split("-__-")[1]
