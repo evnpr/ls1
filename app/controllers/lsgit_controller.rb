@@ -18,7 +18,7 @@ class LsgitController < ApplicationController
 
     user_id = User.where(:username=>@username).first.id
 #    @listNotif = User.find(user_id).notifs
-    @listNotif = { :committer => 'saauaaa' }    
+#    @listNotif = { :committer => 'saauaaa' }    
     render :json => "{ 'committer' : 'asfaf' }"
   #  @r = r
   #  render :nothing => true
