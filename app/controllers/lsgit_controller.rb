@@ -19,18 +19,13 @@ class LsgitController < ApplicationController
     user_id = User.where(:username=>@username).first.id
     n = NotifsUsers.where(:user_id => user_id)
 
-    @listNotif = n
+
+    @listNotif = Notif.where(:notif_id => n.notif_id)
     
-    n.destroy
   
     @r = r
 
-    @ruby_hash = {
-      :committer => 'evadaf',
-      :app => 'asfafs'
-    }
-    
-    render :json => @ruby_hash.to_json
+        
 
     
   end
