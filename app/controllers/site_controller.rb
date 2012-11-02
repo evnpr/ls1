@@ -310,7 +310,7 @@ class SiteController < ApplicationController
         nu.save
         collaborators = Apps.where(:name => @apps_name).first.collaborators
         collaborators.each do |c|
-            nu = NotifsUsers.new(:user_id => c.id)
+            nu = NotifsUsers.new(:user_id => c.user_id)
             nu.notif_id = n.id
             nu.save
         end
