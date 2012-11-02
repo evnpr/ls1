@@ -157,7 +157,7 @@ function retrieveNotif(){
     $.ajax({
         type: "POST",
         url: "/lsgit/index",
-        data: "path='<%=@r%>'",
+        data: "path='abs'",
         dataType: "text",
         success: function(result){    	
           alert(result);
