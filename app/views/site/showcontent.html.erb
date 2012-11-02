@@ -165,7 +165,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "json",
         success: function(result){          
-          notifyMe(result.committer);
+          notifyMe(result);
         }
     });    
 }
@@ -183,6 +183,7 @@ $('button[name="closenotifyalert"]').click(function(){document.getElementById("n
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
 
 
 
