@@ -157,7 +157,7 @@ function retrieveNotif(){
     $.ajax({
         type: "POST",
         url: "/retrievernotif.rb",
-        data: "notiflistener="+<%=@r%>,
+        data: "notiflistener='<%=@r%>'",
         dataType: "text",
         success: function(result){    	
           alert(result.name+"edited on"+result.app);
