@@ -23,7 +23,14 @@ class LsgitController < ApplicationController
   #  n.destroy
   #
     @r = r
+    @ruby_hash = {
+      :commiter => 'evadaf',
+      :app => 'asfafs',
+    }
+    
+    render :json=> @ruby_hash.to_json
     render :layout => false
+    
   end
 end
 
