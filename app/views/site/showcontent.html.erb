@@ -180,7 +180,7 @@ function notifyMe(notif){
     for(var i=1;i<notif.length;i++){        
         var temp=alertelement.cloneNode(true);
         $temp=$(temp);
-        temp.childNodes[1].nodeValue[i]=notif[i].name+"</br>"+notif[i].created_at;
+        temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
         //$temp.attribute("id","notifalert_"+i);
         temp.style.display="block";       
         $temp.mouseout(function(){this.style.display="none";});
