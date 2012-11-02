@@ -9,7 +9,7 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
-config/database.yml
+# config/database.yml
 app/controllers/application_controller.rbbakk
 
 # Ignore all logfiles and tempfiles.
