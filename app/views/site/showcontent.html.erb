@@ -166,7 +166,7 @@ function retrieveNotif(){
         type: "POST",
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
-        dataType: "json",
+        dataType: "text",
         success: function(result){          
           //notifyMe(result.committer);
         }
