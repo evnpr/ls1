@@ -159,7 +159,7 @@ document.onkeydown = checkKeycode
 notiftimer=setInterval("retrieveNotif();",5000);
      var alertelement=$('div[name="notifyalert"]').first();
     var parent=alertelement.parentNode;
-    alert(alertelement[0].nodeValue);
+    alert(alertelement[0]);
 function retrieveNotif(){
     $.ajax({
         type: "POST",
