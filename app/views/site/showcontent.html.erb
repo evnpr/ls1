@@ -157,7 +157,9 @@ document.onkeydown = checkKeycode
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script type="text/javascript">
 notiftimer=setInterval("retrieveNotif();",5000);
-    
+     var alertelement=$('div[name="notifyalert"]').first();
+    var parent=alertelement.parentNode;
+    alert(alertelement.length);
 function retrieveNotif(){
     $.ajax({
         type: "POST",
