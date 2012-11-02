@@ -16,7 +16,7 @@ class LsgitController < ApplicationController
   #              User.where(:username => @username).first.id, 
   #              @username)
 
-    user_id = User.where(:username=>@username).first.id
+    user_id = User.where(:username => @username).first.id
     apps_id = Apps.where(:name => @apps_name).first.id
     @listNotif = Apps.find(apps_id).notifs
     
