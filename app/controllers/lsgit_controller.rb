@@ -22,7 +22,7 @@ class LsgitController < ApplicationController
     
     
     nu = NotifsUsers.where(:user_id => user_id)
-    nu.destroy
+    nu.destroy_all
     
     render :json => @listNotif.to_json and return
     
