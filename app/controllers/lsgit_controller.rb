@@ -21,9 +21,6 @@ class LsgitController < ApplicationController
     if NotifsUsers.exists?(:user_id => user_id)
         listNotifAll = Apps.find(apps_id).notifs
         listNotif = User.where(:username => @username).first.notifs
-        @listNotif = listNotif & listNotifAll
-        nu = NotifsUsers.where(:user_id => user_id)
-        nu.destroy_all
         render :json => @listNotif.to_json and return
     else
         return 
