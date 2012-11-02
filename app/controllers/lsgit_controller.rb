@@ -25,7 +25,7 @@ class LsgitController < ApplicationController
     @r = r
     @ruby_hash = {
       :commiter => 'evadaf',
-      :app => 'asfafs',
+      :app => 'asfafs'
     }
     
     render :json => @ruby_hash.to_json
