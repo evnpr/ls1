@@ -20,8 +20,15 @@ class LsgitController < ApplicationController
    n = NotifsUsers.where(:user_id => user_id)
 
 
+
+try
+{
     listNotif = Notif.where(:notif_id => n.notif_id)
-    
+}
+catch(Exception)
+{
+   return Exception
+}    
   
   #  @r = r
   #  render :nothing => true
