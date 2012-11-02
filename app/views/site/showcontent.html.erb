@@ -165,7 +165,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "json",
         success: function(result){     
-            alert(result[0].name)
+            //alert(result[0].name)
           notifyMe(result);
         }
     });    
@@ -173,7 +173,8 @@ function retrieveNotif(){
 function notifyMe(notif){
     var alertelement=$('div[name="notifyalert"]')[0];
     var parent=alertelement.parentNode;
-    alertelement.childNodes[1].nodeValue=notif[0].name;
+    alertelement.childNodes[1].innerHTML=notif[0].name;
+    //alertelement.childNodes[1].nodeValue=notif[0].name;
     alertelement.style.display="block";
     $alertelement=$(alertelement);
     $alertelement.mouseout(function(){this.style.display="none";});
@@ -181,6 +182,7 @@ function notifyMe(notif){
         var temp=alertelement.cloneNode(true);
         $temp=$(temp);
         temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
+        //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
         //$temp.attribute("id","notifalert_"+i);
         temp.style.display="block";       
         $temp.mouseout(function(){this.style.display="none";});
