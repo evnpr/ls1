@@ -168,7 +168,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "text",
         success: function(result){          
-          notifyMe(result.committer);
+          notifyMe(result);
         }
     });    
 }
