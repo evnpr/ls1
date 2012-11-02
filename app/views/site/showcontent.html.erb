@@ -164,15 +164,23 @@ function retrieveNotif(){
         url: "/lsgit/index",
         data: "path='<%=@r%>'",
         dataType: "json",
-        success: function(result){          
-          notifyMe(result[0].name);
+        success: function(result){     
+          notifyMe(result);
         }
     });    
 }
-function notifyMe(notifstring){
+function notifyMe(notif){
     var alertelement=$('div[name="notifyalert"]')[0];
-    alertelement.childNodes[4].nodeValue=notifstring;   
-    alertelement.style.display="block";
+    var parent=alertelement.parentNode;
+    for(var i=0;i<notif.length;i++){
+        var temp=alertelement.cloneNode(true);
+        temp.childNodes[4].nodeValue=notif[i].name; 
+        temp.style.display="block";
+        parentNode.appendChild(temp);
+    }
+   
+      
+    
 }
 $('button[name="closenotifyalert"]')[0].click(function(){document.getElementById("notifyalert").style.display="none";});
 </script>
