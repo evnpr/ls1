@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20121102100827) do
-=======
-ActiveRecord::Schema.define(:version => 20121102094558) do
->>>>>>> 4933e9eaef06f262609583cdccbc386467c32ef9
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -34,7 +30,6 @@ ActiveRecord::Schema.define(:version => 20121102094558) do
     t.datetime "updated_at", :null => false
   end
 
-<<<<<<< HEAD
   create_table "notifreads", :force => true do |t|
     t.integer  "user_id"
     t.integer  "notif_id"
@@ -42,8 +37,6 @@ ActiveRecord::Schema.define(:version => 20121102094558) do
     t.datetime "updated_at", :null => false
   end
 
-=======
->>>>>>> 4933e9eaef06f262609583cdccbc386467c32ef9
   create_table "notifs", :force => true do |t|
     t.string   "name"
     t.string   "commiter"
