@@ -301,8 +301,14 @@ class SiteController < ApplicationController
         `git commit -m '#{@username} #{commit}'`
         n = Notif.new(:commiter => @username)
         n.name = "#{@username} edited #{path}"
-        n.apps_id = Apps.where(:name => @apps_name).first.id
+        n.committer = @username
         n.save
+        nu = NotifsUsers.new(:user_id => User.where(:username=>@username).first.id)
+        nu.notif_id = n.id
+        nu.save
+        an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
+        an.notif_id = n.id
+        an.save
         `git push lsorigin2 master -f`
 
 
