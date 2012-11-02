@@ -177,10 +177,7 @@ function notifyMe(notif){
     //alertelement.childNodes[1].nodeValue=notif[0].name;
     alertelement.style.display="block";
     $alertelement=$(alertelement);
-    function hideThis(){
-        this.style.display='none';
-    }
-    $alertelement.mouseout(function(){setTimeout("hideThis()", 1000)});
+    $alertelement.mouseout(function(){this.style.display="none";});
     for(var i=1;i<notif.length;i++){        
         var temp=alertelement.cloneNode(true);
         $temp=$(temp);
@@ -188,7 +185,7 @@ function notifyMe(notif){
         //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
         //$temp.attribute("id","notifalert_"+i);
         temp.style.display="block";       
-        $temp.mouseout(function(){setTimeout("hideThis()", 1000)});
+        $temp.mouseout(function(){this.style.display="none";});
         parent.appendChild(temp);        
     }
    
