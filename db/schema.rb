@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015052131) do
+ActiveRecord::Schema.define(:version => 20121102094558) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(:version => 20121015052131) do
   create_table "collaborators", :force => true do |t|
     t.integer  "apps_id"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notifs", :force => true do |t|
+    t.string   "name"
+    t.string   "commiter"
+    t.integer  "apps_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

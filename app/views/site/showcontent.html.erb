@@ -150,7 +150,19 @@ document.onkeydown = checkKeycode
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+function retrieveNotif(){}
+    $.ajax({
+        type: "POST",
+        url: "/retrievernotif.rb",
+        data: "notiflistener="+<%=@username%>,
+        dataType: "text",
+        success: function(result){    		
+          var i=0;
+        }
+    }); 
+}
+</script>
 
 
   <script>
