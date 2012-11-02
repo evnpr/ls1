@@ -29,7 +29,7 @@ class LsgitController < ApplicationController
     }
     
     render :json=> @ruby_hash.to_json
-    render :layout => false
+
     
   end
 end
