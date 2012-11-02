@@ -8,7 +8,7 @@ class LsgitController < ApplicationController
   def index
     
 
-    r = params[:path]
+    r = 'ls1'
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
