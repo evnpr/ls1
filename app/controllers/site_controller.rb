@@ -303,9 +303,17 @@ class SiteController < ApplicationController
         n.name = "#{@username} edited #{path}"
         n.committer = @username
         n.save
-        nu = NotifsUsers.new(:user_id => User.where(:username=>@username).first.id)
+        
+        owner = Apps.where(:name => @apps_name).user.id
+        nu = NotifsUsers.new(:user_id => owner)
         nu.notif_id = n.id
         nu.save
+        collaborators = Apps.where(:name => @apps_name).collaborators
+        collaborators.each do |c|
+            nu = NotifsUsers.new(:user_id => c.id)
+            nu.notif_id = n.id
+            nu.save
+        end
         an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         an.notif_id = n.id
         an.save
@@ -872,6 +880,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
