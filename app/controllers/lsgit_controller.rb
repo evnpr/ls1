@@ -16,7 +16,7 @@ class LsgitController < ApplicationController
   #              User.where(:username => @username).first.id, 
   #              @username)
 
-    user_id = User.where(:username=>@username).first.id
+#    user_id = User.where(:username=>@username).first.id
 #    @listNotif = User.find(user_id).notifs
 #    @listNotif = { :committer => 'saauaaa' }    
     @ruby_hash = {
