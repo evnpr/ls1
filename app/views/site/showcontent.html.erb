@@ -170,7 +170,8 @@ function retrieveNotif(){
 }
 function notify_me(){
     var alertelement=document.getElementById("notifyalert");
-    alert(alertelement.childNodes[3].childNodes.length);
+    alertelement.childNodes[3].childNodes.nodeValue="fefe"
+    alert(alertelement.childNodes[3].childNodes.nodeValue);
     alertelement.style.display="block";
 }
 </script>
