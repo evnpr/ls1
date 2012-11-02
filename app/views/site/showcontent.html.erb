@@ -170,11 +170,11 @@ function retrieveNotif(){
     });    
 }
 function notifyMe(notifstring){
-    var alertelement=document.getElementById("notifyalert");
+    var alertelement=$('div[name="notifyalert"]')[0];
     alertelement.childNodes[4].nodeValue=notifstring;   
     alertelement.style.display="block";
 }
-$('button[name="closenotifyalert"]').click(function(){document.getElementById("notifyalert").style.display="none";});
+$('button[name="closenotifyalert"]')[0].click(function(){document.getElementById("notifyalert").style.display="none";});
 </script>
 
 
