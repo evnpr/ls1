@@ -163,8 +163,7 @@ function retrieveNotif(){
         data: "path='<%=@r%>'",
         dataType: "text",
         success: function(result){          
-          //lert(result.committer+" edited on "+result.app); 
-         // notify_me();
+          notify_me(result)
         }
     });
     notify_me();
