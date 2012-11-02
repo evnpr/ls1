@@ -20,6 +20,7 @@ class LsgitController < ApplicationController
     @listNotif = User.find(user_id).notifs
     
     render :json => @listNotif
+    
     @r = r
     
     render :layout => false
