@@ -157,9 +157,9 @@ function retrieveNotif(){
         type: "POST",
         url: "/retrievernotif.rb",
         data: "notiflistener="+<%=@username%>,
-        dataType: "text",
+        dataType: "xml",
         success: function(result){    	
-          
+          alert(result.name+"edited on"+result.app);
           
         }
     }); 
