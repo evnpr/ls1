@@ -156,7 +156,7 @@ notiftimer=setInterval("retrieveNotif();",5000);
 function retrieveNotif(){
     $.ajax({
         type: "POST",
-        url: "/retrievernotif.rb",
+        url: "/lsgit/index",
         data: "notiflistener='<%=@r%>'",
         dataType: "text",
         success: function(result){    	
