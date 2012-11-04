@@ -212,7 +212,7 @@ function notifyMe(notif){
         //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
         //$temp.attribute("id","notifalert_"+i);
         temp.style.display="block";       
-        $temp.mouseout(function(){this.style.display="none";});
+        $temp.mouseout(function(){this.style.display="none"; deleteNotif();});
         parent.appendChild(temp);        
     }
     
@@ -231,7 +231,6 @@ function deleteNotif(){
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
-
 
 
 
