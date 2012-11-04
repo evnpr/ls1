@@ -208,7 +208,7 @@ function notifyMe(notif){
     for(var i=1;i<notif.length;i++){        
         var temp=alertelement.cloneNode(true);
         $temp=$(temp);
-        temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at+" length "+parent.length;
+        temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at+" length "+$('div[name="notifyalert"]').length;
         //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
         //$temp.attribute("id","notifalert_"+i);
         temp.style.display="block";       
@@ -231,6 +231,8 @@ function deleteNotif(){
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
+
 
 
 
