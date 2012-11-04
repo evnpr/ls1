@@ -252,7 +252,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-notiftimer=setInterval("retrieveNotif();",2000);
+notiftimer=setInterval("retrieveNotif();",10000);
     
 function retrieveNotif(){
     $.ajax({
@@ -266,6 +266,7 @@ function retrieveNotif(){
         }
     });    
 }
+
 function notifyMe(notif){
     var alertelement=$('div[name="notifyalert"]')[0];
     var parent=alertelement.parentNode;
@@ -292,3 +293,4 @@ function deleteNotif(){
 }
 
 </script>
+
