@@ -206,7 +206,7 @@ function notifyMe(notif){
     $alertelement=$(alertelement);
     $alertelement.mouseout(function(){this.style.display="none"; deleteNotif();});
     for(var i=1;i<notif.length;i++){     
-        if($('div[name="notifyalert"]').length <= notif.length){
+        if($('div[name="notifyalert"]').length < notif.length){
             var temp=alertelement.cloneNode(true);
             $temp=$(temp);
             temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
