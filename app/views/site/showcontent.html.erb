@@ -48,9 +48,9 @@
 <% else %>
 <br>
 <div name="notifyalertcontainer">
-<div name="notifyalert" style="display:none" class="alert alert-info">    
-    <p></p>
-</div>
+    <div name="notifyalert" style="display:none" class="alert alert-info">    
+        <p></p>
+    </div>
 </div>
 <% if @image %>
     <img src="<%= @image %>" />
@@ -135,6 +135,18 @@
 
 </div>
 
+<h2>Notifications</h2>
+<div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
+    
+   <% @notifs.each do |n| %> 
+    <div id="name" class="alert alert-info">
+        <br>
+        <%= n.name %> - <%= n.created_at %>
+    </div>
+   <% end %>
+
+</div>
+
 
 <script src="src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
@@ -169,6 +181,7 @@ document.onkeydown = checkKeycode
 }
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 notiftimer=setInterval("retrieveNotif();",2000);
     
@@ -216,18 +229,6 @@ function notifyMe(notif){
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

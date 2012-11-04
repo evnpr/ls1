@@ -15,9 +15,15 @@
 </div>
 <% end %>
 
+
 <br>
 
 <div class="row-fluid">
+<div name="notifyalertcontainer">
+    <div name="notifyalert" style="display:none" class="alert alert-info">    
+        <p></p>
+    </div>
+</div>
 <% if @root %>
 
     <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
@@ -135,6 +141,18 @@
 </div>
 <% end %>
 <br><br>
+<h2>Notifications</h2>
+<div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
+    
+   <% @notifs.each do |n| %> 
+    <div id="name" class="alert alert-info">
+        <br>
+        <%= n.name %> - <%= n.created_at %>
+    </div>
+   <% end %>
+
+</div>
+<br><br>
 
 <% unless @username == 'guest' %>
 <pre>
@@ -145,7 +163,7 @@
     $ git commit -m 'first commit'
     $ git push letspan master
 </pre>
-<% if @owner %>
+    <% if @owner %>
     <form action="/site/collaborator" method="post" accept-charset="utf-8">    
     <input type="hidden" name="r" value="<%= "#{@current_path}" %>" />
     <input type="hidden" name="apps_name" value="<%= @apps_name %>">
@@ -159,7 +177,7 @@
             </span>
         </p>
     <% end %>
-<% end %>
+    <% end %>
 
 <% end %>
 
@@ -231,18 +249,45 @@
     
 </script>   
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+notiftimer=setInterval("retrieveNotif();",2000);
+    
+function retrieveNotif(){
+    $.ajax({
+        type: "POST",
+        url: "/lsgit/index",
+        data: "path='<%= @current_path %>-__-'",
+        dataType: "json",
+        success: function(result){     
+            //alert(result[0].name)
+          notifyMe(result);
+        }
+    });    
+}
+function notifyMe(notif){
+    var alertelement=$('div[name="notifyalert"]')[0];
+    var parent=alertelement.parentNode;
+    alertelement.childNodes[1].innerHTML=notif[0].name;
+    //alertelement.childNodes[1].nodeValue=notif[0].name;
+    alertelement.style.display="block";
+    $alertelement=$(alertelement);
+    $alertelement.mouseout(function(){this.style.display="none";});
+    for(var i=1;i<notif.length;i++){        
+        var temp=alertelement.cloneNode(true);
+        $temp=$(temp);
+        temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
+        //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
+        //$temp.attribute("id","notifalert_"+i);
+        temp.style.display="block";       
+        $temp.mouseout(function(){this.style.display="none";});
+        parent.appendChild(temp);        
+    }
+   
+      
+    
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+</script>

@@ -154,6 +154,7 @@ class SiteController < ApplicationController
     if @username == Apps.where(:name => @apps_name).first.user.username
         @owner = 1
     end
+        @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
   end
 
 
@@ -236,6 +237,7 @@ class SiteController < ApplicationController
     end
     @done = 'done rsync!'
     @path = splitpath(r)
+    @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
     render :layout => 'editor'
   end
 
