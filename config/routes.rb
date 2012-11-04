@@ -51,6 +51,7 @@ Letspan::Application.routes.draw do
 
 
   post "lsgit/index"
+  post "lsgit/deleteNotif"
   get "lsgit/index"
   
 
