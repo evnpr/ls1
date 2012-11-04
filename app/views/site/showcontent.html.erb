@@ -80,6 +80,10 @@
     <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
 </div>
 
+<div class="span2">
+    <button class="btn btn-large btn-inverse" onClick="savegit()">Commit</button>
+</div>
+
 <% end %>
 
 <div class="offset5 span2"style="margin-left:150px;">
@@ -139,11 +143,21 @@
     editor.getSession().setMode("ace/mode/<%= @language %>");
 
     function save(){
-        var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
+        var commit = "just edit <%= @current_path.split("-__-").join("/") %>";
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
         $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
     }
+
+
+    function savegit(){
+        var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
+        var content = editor.getSession().getValue();
+        thisfile = document.getElementById("thisfile").innerHTML
+        $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit });
+    }
+
+
 document.onkeydown = checkKeycode
     function checkKeycode(e) {
     var keycode;

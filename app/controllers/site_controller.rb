@@ -290,6 +290,67 @@ class SiteController < ApplicationController
     content = c.gsub("\r",'')
     file.write(content)
     file.close
+    #`sudo chmod -R 777 #{@@directory}/#{apps_name}`
+    Dir.chdir(@@directory+"/"+apps_name){
+        #`sudo chmod -R 755 .` 
+        #`git add . -A`
+        if commit.scan("'").length > 0
+            flash[:list] = 'your commit is invalid'
+            redirect_to 'user/index' and return
+        end
+        #`git commit -m '#{@username} #{commit}'`
+        n = Notif.new(:committer => @username)
+        n.name = "#{@username} edited #{path}"
+        n.committer = @username
+        n.save
+        
+        owner = Apps.where(:name => @apps_name).first.user.id
+        nu = NotifsUsers.new(:user_id => owner)
+        nu.notif_id = n.id
+        nu.save
+        collaborators = Apps.where(:name => @apps_name).first.collaborators
+        collaborators.each do |c|
+            nu = NotifsUsers.new(:user_id => c.user_id)
+            nu.notif_id = n.id
+            nu.save
+        end
+        an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
+        an.notif_id = n.id
+        an.save
+        #`git push lsorigin2 master -f`
+
+
+        if apps_name == 'ls1'
+            #`git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            #`git push lsdev master -f`
+        end
+        #`git remote add ls1 git@letspan.com:#{@apps_name}.git`
+        #`git push ls1 master -f`
+    }
+    redirect_to "/content?r="+r and return
+  end
+
+
+
+  def savecontentgit
+    unless @username
+        redirect_to "/"
+    end
+    r = params[:thisfile]
+    commit = params[:commit]
+    apps_name = r.split("-__-")[1]
+    @apps_name = apps_name
+    authenticate(Apps.where(:name => @apps_name).first.user.username, 
+                Apps.where(:name => @apps_name).first.id, 
+                User.where(:username => @username).first.id, 
+                @username)
+    path = r.gsub(/\-\_\_\-/, "\/")
+    `sudo chmod -R 777 #{@@directory}/#{path}`
+    file = File.open("#{@@directory}/#{path}", "w")
+    c = params[:content]
+    content = c.gsub("\r",'')
+    file.write(content)
+    file.close
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         #`sudo chmod -R 755 .` 
@@ -300,7 +361,7 @@ class SiteController < ApplicationController
         end
         `git commit -m '#{@username} #{commit}'`
         n = Notif.new(:committer => @username)
-        n.name = "#{@username} edited #{path}"
+        n.name = "[commited] #{@username} edited #{path}"
         n.committer = @username
         n.save
         

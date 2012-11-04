@@ -17,6 +17,7 @@ Letspan::Application.routes.draw do
   match 'list/' => 'site#list'
   match 'listapps/' => 'site#listapps'
   post 'site/savecontent'
+  post 'site/savecontentgit'
   post "site/github"
   post "site/githubpull"
   post "site/bitbucket"
