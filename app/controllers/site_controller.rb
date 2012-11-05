@@ -244,8 +244,8 @@ class SiteController < ApplicationController
     @path = splitpath(r)
     @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
     if request.GET[:notif] == 'notme'
-            notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
-            notifme = Notif.where(:committer => @username).limit(50).order("id DESC")
+            notifs = Apps.where(:name => @apps_name).first.notifs.order("id DESC")
+            notifme = Notif.where(:committer => @username).order("id DESC")
             @notifs = notifs - notifme
     end
     render :layout => 'editor'
