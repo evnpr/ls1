@@ -1,7 +1,7 @@
 <h2>Notifications</h2>
-<p><a href=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>>All</a> 
-| <a href=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}&notif=me" %>>Me</a> 
-| <a href=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}&notif=notme" %>>Other People</a></p>
+<p><a href=<%= "#{request.fullpath}" %>>All</a> 
+| <a href=<%= "#{request.fullpath}&notif=me" %>>Me</a> 
+| <a href=<%= "#{request.fullpath}&notif=notme" %>>Other People</a></p>
 <div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
     
    <% @notifs.each do |n| %> 
