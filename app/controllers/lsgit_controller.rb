@@ -19,9 +19,9 @@ class LsgitController < ApplicationController
     user_id = User.where(:username => @username).first.id
     apps_id = Apps.where(:name => @apps_name).first.id
     if NotifsUsers.exists?(:user_id => user_id)
-        listNotifAll = Apps.find(apps_id).notifs
-        listNotif = User.where(:username => @username).first.notifs
-        @listNotif = listNotif & listNotifAll
+        listNotifAll = Apps.find(apps_id).notifs.order("id DESC")
+        listNotif = User.where(:username => @username).first.notifs.order("id DESC")
+        @listNotif = listNotifAll & listNotif
     end
     
     render :json => @listNotif.to_json and return
@@ -58,6 +58,7 @@ class LsgitController < ApplicationController
   end
 
 end
+
 
 
 
