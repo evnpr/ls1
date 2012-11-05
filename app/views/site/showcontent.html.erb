@@ -209,7 +209,7 @@ function notifyMe(notif){
         if($('div[name="notifyalert"]').length < notif.length){
             var temp=alertelement.cloneNode(true);
             $temp=$(temp);
-            temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
+            temp.childNodes[1].innerHTML=notif[i].name;
             //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
             //$temp.attribute("id","notifalert_"+i);
             temp.style.display="block";       
@@ -233,6 +233,7 @@ function deleteNotif(){
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+
 
 
 
