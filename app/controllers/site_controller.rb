@@ -154,12 +154,7 @@ class SiteController < ApplicationController
     if @username == Apps.where(:name => @apps_name).first.user.username
         @owner = 1
     end
-    @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
-    if request.GET[:notif] == 'notme'
-            notifs = Apps.where(:name => @apps_name).first.notifs.order("id DESC")
-            notifme = Apps.where(:name => @apps_name).first.notifs.where(:committer => @username).order("id DESC")
-            @notifs = notifs - notifme
-    end
+    @notifs = showNotif(@apps_name,@username)
   end
 
 
@@ -242,12 +237,7 @@ class SiteController < ApplicationController
     end
     @done = 'done rsync!'
     @path = splitpath(r)
-    @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
-    if request.GET[:notif] == 'notme'
-            notifs = Apps.where(:name => @apps_name).first.notifs.order("id DESC")
-            notifme = Apps.where(:name => @apps_name).first.notifs.where(:committer => @username).order("id DESC")
-            @notifs = notifs - notifme
-    end
+    @notifs = showNotif(@apps_name,@username)
     render :layout => 'editor'
   end
 
@@ -953,6 +943,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
