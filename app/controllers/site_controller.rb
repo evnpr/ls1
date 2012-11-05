@@ -245,7 +245,7 @@ class SiteController < ApplicationController
     
             notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
             notifme = User.where(:username => @username).first.notifs.limit(50).order("id DESC")
-            notifs = notifs - notifme
+            @notifs = notifme
     render :layout => 'editor'
   end
 
