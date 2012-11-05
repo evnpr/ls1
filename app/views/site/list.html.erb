@@ -275,15 +275,17 @@ function notifyMe(notif){
     alertelement.style.display="block";
     $alertelement=$(alertelement);
     $alertelement.mouseout(function(){this.style.display="none"; deleteNotif();});
-    for(var i=1;i<notif.length;i++){        
-        var temp=alertelement.cloneNode(true);
-        $temp=$(temp);
-        temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
-        //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
-        //$temp.attribute("id","notifalert_"+i);
-        temp.style.display="block";       
-        $temp.mouseout(function(){this.style.display="none"; deleteNotif();});
-        parent.appendChild(temp);        
+    for(var i=1;i<notif.length;i++){  
+        if($('div[name="notifyalert"]').length < notif.length){
+            var temp=alertelement.cloneNode(true);
+            $temp=$(temp);
+            temp.childNodes[1].innerHTML=notif[i].name+"</br>"+notif[i].created_at;
+            //temp.childNodes[1].nodeValue=notif[i].name+"</br>"+notif[i].created_at;
+            //$temp.attribute("id","notifalert_"+i);
+            temp.style.display="block";       
+            $temp.mouseout(function(){this.style.display="none"; deleteNotif();});
+            parent.appendChild(temp);
+        }
     }
    
 }
@@ -293,4 +295,5 @@ function deleteNotif(){
 }
 
 </script>
+
 
