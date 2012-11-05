@@ -243,6 +243,11 @@ class SiteController < ApplicationController
     @done = 'done rsync!'
     @path = splitpath(r)
     @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
+    if request.GET[:notif] == 'notme'
+            notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
+            notifme = User.where(:username => @username).first.notifs.limit(50).order("id DESC")
+            @notifs = notifs - notifme
+    end
     render :layout => 'editor'
   end
 
@@ -948,6 +953,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
