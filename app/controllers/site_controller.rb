@@ -245,8 +245,8 @@ class SiteController < ApplicationController
     @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
     if request.GET[:notif] == 'notme'
             notifs = Apps.where(:name => @apps_name).first.notifs.order("id DESC")
-            notifme = Notif.where(:committer => @username).order("id DESC")
-            @notifs = notifme
+            notifme = Apps.where(:name => @apps_name).first.notifs.where(:committer => @username).order("id DESC")
+            @notifs = notifs - notifme
     end
     render :layout => 'editor'
   end
