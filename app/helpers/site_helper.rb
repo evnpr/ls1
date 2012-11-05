@@ -32,7 +32,22 @@ module SiteHelper
         end
     end
     
+    def showNotif(@apps_name, @username)
+        if request.GET[:notif] == 'notme'
+                notifs = Apps.where(:name => @apps_name).first.notifs.order("id DESC")
+                notifme = Apps.where(:name => @apps_name).first.notifs.where(:committer => @username).order("id DESC")
+                @notifs = notifs - notifme
+        elsif request.GET[:notif] == 'me'
+                notifme = Apps.where(:name => @apps_name).first.notifs.where(:committer => @username).order("id DESC")
+                @notifs = notifme
+        else
+                @notifs = Apps.where(:name => @apps_name).first.notifs.limit(50).order("id DESC")
+        end
+        @notifs
+    end
+    
 end
+
 
 
 
