@@ -183,6 +183,10 @@ notiftimer=setInterval("retrieveNotif();",2000);
       $(document).ready(function(){
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
+      
+      function deleteNotif(){        
+        $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
+      }
   </script>
   
 
@@ -203,10 +207,7 @@ function retrieveNotif(){
               }).show();
         }
     });    
-    setTimeout(function(){deleteNotif()},2000);
 }
 
-function deleteNotif(){        
-        $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
-}
+
 </script>  
