@@ -199,7 +199,7 @@ function retrieveNotif(){
         success: function(result){     
             //alert(result[0].name)
               $('.top-right').notify({
-                message: { text: result[0].name }
+                message: { text: result[0].name.html() }
               }).show();
         }
     });    
