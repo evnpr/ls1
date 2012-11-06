@@ -88,7 +88,7 @@
     },
     message: null,
     onClose: function () {},
-    onClosed: function () {alert('asf')}
+    onClosed: function () {deleteNotif();}
   }
 }(window.jQuery);
 
