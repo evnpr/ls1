@@ -49,8 +49,8 @@ class LsgitController < ApplicationController
     user_id = User.where(:username => @username).first.id
     apps_id = Apps.where(:name => @apps_name).first.id
 
-    nu = NotifsUsers.where(:user_id => user_id, :notif_id => notif_id).first
-    nu.destroy
+    nu = NotifsUsers.where(:user_id => user_id, :apps_id => apps_id)
+    nu.destroy_all
     
     
     render :layout => false
@@ -59,6 +59,7 @@ class LsgitController < ApplicationController
   end
 
 end
+
 
 
 
