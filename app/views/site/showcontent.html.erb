@@ -188,51 +188,7 @@ document.onkeydown = checkKeycode
 
 
 <script src="/bootstrap-notify-master/js/bootstrap-notify.js"></script>
-<script>
-      // Random Messages
-      var messages = [
-        [ 'bottom-right', 'info',     'Gah this is awesome.'],
-        [ 'top-right',    'success',  'I love Nijiko, he is my creator.' ],
-        [ 'bottom-left',  'warning',  'Soda is bad.' ],
-        [ 'top-right',  'danger',   "I'm sorry dave, I'm afraid I can't let you do that." ],
-        [ 'bottom-right', 'info',     "There are only three rules." ],
-        [ 'top-right',    'inverse',  'Do you hear me now?' ],
-        [ 'bottom-left',  'blackgloss',     'You should fork this!' ]
-      ];
 
-      // Pretty print
-      window.prettyPrint && prettyPrint()
-
-      // Basic Features, style isn't even required.
-      $('.show-notification').click(function (e) {
-        var message = messages[Math.floor(Math.random() * messages.length)];
-        
-        $('.' + message[0]).notify({
-          message: { text: message[2] },
-          type: message[1],
-          fadeOut: {
-            delay: Math.floor(Math.random() * 500) + 2500
-          }
-        }).show();
-      });
-      
-      /* Custom Styles */
-      var custom = [
-        'bangTidy',
-        'blackgloss'
-      ];
-      
-      for(var i = 0; i < custom.length; i++) {
-        var type = custom[i];
-        
-        (function(type) {
-          $('.show-' + type).click(function (e) {
-            var message = messages[Math.floor(Math.random() * messages.length)];
-            $('.' + message[0]).notify({ message: { text: message[2] }, type: type }).show();
-          });
-        })(type);
-      }
-    </script>
 <script>
     $('.bottom-left').notify({
     message: { text: 'Aw yeah, It works!' }
