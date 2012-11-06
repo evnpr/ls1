@@ -201,9 +201,9 @@ function retrieveNotif(){
               $('.top-right').notify({
                 message: { text: result[0].name.split("'>")[1].split("</a>")[0] }
               }).show();
-              $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
         }
     });    
+    $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
 }
 
 function deleteNotif(){        
