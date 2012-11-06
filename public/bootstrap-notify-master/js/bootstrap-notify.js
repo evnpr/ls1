@@ -87,8 +87,8 @@
       delay: 3000
     },
     message: null,
-    onClose: function () {},
-    onClosed: function () {deleteNotif();}
+    onClose: function () {deleteNotif();},
+    onClosed: function () {}
   }
 }(window.jQuery);
 
