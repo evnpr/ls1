@@ -305,7 +305,7 @@ class SiteController < ApplicationController
         end
         #`git commit -m '#{@username} #{commit}'`
         n = Notif.new(:committer => @username)
-        n.name = "#{@username} edited #{path}"
+        n.name = "<a href='/content?r=#{r}'>#{@username} edited #{path}</a>"
         n.committer = @username
         n.save
         
@@ -370,7 +370,7 @@ class SiteController < ApplicationController
         end
         `git commit -m '#{@username} #{commit}'`
         n = Notif.new(:committer => @username)
-        n.name = "[commited] #{@username} edited #{path}"
+        n.name = "[commited] <a href='/content?r=#{r}'>#{@username} edited #{path}</a>"
         n.committer = @username
         n.save
         
@@ -954,6 +954,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
