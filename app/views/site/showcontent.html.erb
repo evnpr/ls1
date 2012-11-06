@@ -114,7 +114,7 @@
 </div>
 
 
-
+<div class='notifications top-left'></div>
 <div id="name" class="row-fluid" style="display: none">
 
 
@@ -183,5 +183,12 @@ document.onkeydown = checkKeycode
             document.getElementById("editor").setAttribute('style','height:'+ 0.5*window.outerHeight+'px')
       });
   </script>
+  
+<script>
+    $('.top-left').notify({
+    message: { text: 'Aw yeah, It works!' }
+  }).show();
+</script>  
 
+<script src="/public.bootsrap-notify-master/js/bootstrap-notify.js"></script>
 
