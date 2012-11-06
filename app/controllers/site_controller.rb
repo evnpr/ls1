@@ -228,6 +228,9 @@ class SiteController < ApplicationController
         when "gif"
             `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
             @image = "http://dev.img.letspan.com/#{r}"
+        when "pdf"
+            `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
+            redirect_to "http://dev.img.letspan.com/#{r}" and return
         else
             @language = "html"
     end
@@ -951,6 +954,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
