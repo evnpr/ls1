@@ -8,8 +8,9 @@
    <% @notifs.each do |n| %> 
     <div id="name" class="alert alert-info">
         <br>
-        <%= n.name %> - <%= n.created_at %>
+        <%= n.name.html_safe %> - <%= n.created_at %>
     </div>
    <% end %>
 
 </div>
+
