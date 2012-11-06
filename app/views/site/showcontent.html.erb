@@ -11,7 +11,7 @@
   </style>
   
 <link rel="stylesheet" href="/bootstrap-notify-master/css/bootstrap-notify.css" type="text/css" media="screen" charset="utf-8">
-<link rel="stylesheet" href="/bootstrap-notify-master/css/styles/alert-bangtidy.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/bootstrap-notify-master/css/styles/alert-blackgloss.css" type="text/css" media="screen" charset="utf-8">
 <% if flash[:list] %>
 <div class="alert">
     <%= flash[:list] %>
@@ -204,7 +204,7 @@ function retrieveNotif(){
             //alert(result[0].name)
               $('.top-right').notify({
                 message: { text: result[0].name.split("'>")[1].split("</a>")[0] },
-                type: 'bangTidy',
+                type: 'blackgloss',
               }).show();
 
         }
