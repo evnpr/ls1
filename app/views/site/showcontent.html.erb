@@ -190,7 +190,19 @@ document.onkeydown = checkKeycode
 <script src="/bootstrap-notify-master/js/bootstrap-notify.js"></script>
 
 <script>
-    $('.top-right').notify({
-    message: { text: 'Aw yeah, It works!' }
-  }).show();
+function retrieveNotif(){
+    $.ajax({
+        type: "POST",
+        url: "/lsgit/index",
+        data: "path='<%= @current_path %>-__-'",
+        dataType: "json",
+        success: function(result){     
+            //alert(result[0].name)
+              $('.top-right').notify({
+                message: { text: result.name }
+              }).show();
+        }
+    });    
+}
+
 </script>  
