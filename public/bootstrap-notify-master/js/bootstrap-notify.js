@@ -83,8 +83,8 @@
     closable: true,
     transition: 'fade',
     fadeOut: {
-      enabled: false,
-      delay: 3000
+      enabled: true,
+      delay: 4000
     },
     message: null,
     onClose: function () {deleteNotif();},
