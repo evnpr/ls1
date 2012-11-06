@@ -185,7 +185,7 @@ notiftimer=setInterval("retrieveNotif();",5000);
       });
       
       function deleteNotif(){        
-        $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
+        
       }
   </script>
   
@@ -206,9 +206,11 @@ function retrieveNotif(){
                 message: { text: result[0].name.split("'>")[1].split("</a>")[0] },
                 type: 'blackgloss',
               }).show();
-
+              
+              var notif_id = result[0].id
         }
-    });    
+    });
+    $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-', notif_id: notif_id });
 }
 
 

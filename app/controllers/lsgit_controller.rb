@@ -38,6 +38,7 @@ class LsgitController < ApplicationController
     
 
     r = params[:path]
+    notif_id = params[:notif_id]
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
@@ -58,6 +59,7 @@ class LsgitController < ApplicationController
   end
 
 end
+
 
 
 
