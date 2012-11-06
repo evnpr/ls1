@@ -88,7 +88,8 @@
     },
     message: null,
     onClose: function () {},
-    onClosed: function () {}
+    onClosed: function () {alert('asf')}
   }
 }(window.jQuery);
+
 
