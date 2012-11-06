@@ -83,7 +83,7 @@
     closable: true,
     transition: 'fade',
     fadeOut: {
-      enabled: true,
+      enabled: false,
       delay: 3000
     },
     message: null,
