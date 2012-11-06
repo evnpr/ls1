@@ -18,7 +18,7 @@
 </div>
 <% end %>
 
-<div class='notifications bottom-left'></div>
+<div class='notifications top-right'></div>
 <br>
 <div id="name" class="row-fluid">
 <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
@@ -190,7 +190,7 @@ document.onkeydown = checkKeycode
 <script src="/bootstrap-notify-master/js/bootstrap-notify.js"></script>
 
 <script>
-    $('.bottom-left').notify({
+    $('.top-right').notify({
     message: { text: 'Aw yeah, It works!' }
   }).show();
 </script>  
