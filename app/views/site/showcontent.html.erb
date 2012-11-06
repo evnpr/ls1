@@ -201,6 +201,7 @@ function retrieveNotif(){
               $('.top-right').notify({
                 message: { text: result[0].name.split("'>")[1].split("</a>")[0] }
               }).show();
+              deleteNotif();
         }
     });    
 }
