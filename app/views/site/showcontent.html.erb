@@ -206,4 +206,8 @@ function retrieveNotif(){
     });    
 }
 
+function deleteNotif(){
+         
+        $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
+}
 </script>  
