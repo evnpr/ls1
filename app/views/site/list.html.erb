@@ -110,9 +110,11 @@
 </p>
 <% end %>
 
-<%= render :partial => "shared/button_bottom" %>
 
-</div>
+    
+<% if @root %>
+<br><br>
+
 <% end %>
 <br><br>
 <%= render :partial => "shared/showNotif" %>
@@ -218,4 +220,4 @@
 <script>
     //notiftimer=setInterval("retrieveNotif();",10000);
 </script>
-
+<% # render :partial => "shared/notifyjs" %>
