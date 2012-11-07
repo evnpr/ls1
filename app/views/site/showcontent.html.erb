@@ -85,10 +85,11 @@
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
         $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
+        setTimeout(function(){
         $('.top-right').notify({
                 message: { text: 'successfully saved' },
                 type: 'blackgloss',
-        }).show();
+        }).show();}, 200);
     }
 
 
