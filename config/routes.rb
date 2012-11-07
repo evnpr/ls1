@@ -39,6 +39,11 @@ Letspan::Application.routes.draw do
 
 
   match "rsync" => "site#rsync"
+  match "syncdev" => "site#syncdev"
+
+
+
+
   match 'gitdelete/:id' => 'site#gitdelete'
   
   post "site/collaborator"
@@ -53,6 +58,9 @@ Letspan::Application.routes.draw do
   post "lsgit/index"
   post "lsgit/deleteNotif"
   get "lsgit/index"
+
+
+  get "lsgit/notifFromGit"
   
 
   # The priority is based upon order of creation:
@@ -112,17 +120,5 @@ Letspan::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
-
-
-
-
-
-
-
-
-
-
-
-
 
 
