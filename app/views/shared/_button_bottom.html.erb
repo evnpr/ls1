@@ -7,6 +7,7 @@
     
 <% if request.GET['vim'].nil? then %>
 
+<% if showcontent %>
 <div class="span2">
     <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
 </div>
@@ -14,6 +15,7 @@
 <div class="span2">
     <button class="btn btn-large btn-inverse" onClick="savegit()">Commit</button>
 </div>
+<% end %>
 
 <% end %>
 
@@ -25,12 +27,14 @@
     </form>
 </div>
 
+<% if showcontent %>
 <div class="span1" style="margin-left:-30px;">
     <form action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
     <p><input type="submit" value="push to github" class="btn btn-danger btn-large"></p>
     </form>
 </div>
+<% end %>
 
     <div id="name" class="span1" style="float: right">
        <a href="<%= @produrl %>"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
