@@ -7,7 +7,7 @@
     
 <% if request.GET['vim'].nil? then %>
 
-<% if defined? showcontent %>
+<% if @showcontent %>
 <div class="span2">
     <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
 </div>
@@ -27,7 +27,7 @@
     </form>
 </div>
 
-<% if defined? showcontent %>
+<% if @showcontent %>
 <div class="span1" style="margin-left:-30px;">
     <form action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
