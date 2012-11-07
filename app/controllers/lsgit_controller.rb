@@ -70,7 +70,7 @@ class LsgitController < ApplicationController
   def syncdev
         
         back = params[:back]
-        render :js => 'hasfkas' and return
+        render :js => "alert(#{back})" and return
   end
 
 end
