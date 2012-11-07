@@ -65,8 +65,16 @@ class LsgitController < ApplicationController
         back = params[:r]
         redirect_to back and return
   end
+  
+  
+  def syncdev
+        
+        back = params[:back]
+        redirect_to back and return
+  end
 
 end
+
 
 
 
