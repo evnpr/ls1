@@ -20,18 +20,18 @@
 <% end %>
 
 <div class="offset5 span2"style="margin-left:150px;">
-    <form action="/site/githubpull" method="post">
+    <form id="githubpull" action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-    <p><input type="submit" value="pull from github" class="btn btn-large btn-info"></p>
+    <p><button class="btn btn-large btn-info" onClick="githubPull()">pull from github</button></p>
     </form>
 </div>
 
 <% if @showcontent %>
 <div class="span1" style="margin-left:-30px;">
-    <form action="/site/github" method="post" accept-charset="utf-8">
+    <form id="githubpush" action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
-    <p><input type="submit" value="push to github" class="btn btn-danger btn-large"></p>
+    <p><button class="btn btn-danger btn-large" onClick="githubPull()">push to github</button></p>
     </form>
 </div>
 <% end %>
@@ -42,10 +42,10 @@
     <div id="name" class="span1" style="float: right">
        <a href="<%= @devurl %>"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
     </div>
-    <div id="name" class="span1" style="float: right">
+    <div id="name" class="span1" style="float: right" onClick="clickSync()">
        <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">sync</button></a> 
     </div>    
-    <div id="name" class="span1" style="float: right">
+    <div id="name" class="span1" style="float: right" onClick="clickSyncdev()">
        <a href="/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">pull from dev</button></a> 
     </div>
 
@@ -72,3 +72,21 @@
 </div>
 
 </div>
+
+<script>
+    
+    function githubPull(){
+        var r=confirm("Press a button");
+        if (r==true)
+          {
+          x="You pressed OK!";
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+    }
+    
+    
+</script>
+
