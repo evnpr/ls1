@@ -2,9 +2,7 @@
 <% thisUrl = request.fullpath.split("&notif")[0] %>
 <p><a href=<%= "#{thisUrl}" %>>All</a> 
 | <a href=<%= "#{thisUrl}&notif=me" %>>Me</a> 
-| <a href=<%= "#{thisUrl}&notif=notme" %>>Other People</a>
-<a href="" style="float:right">Sync Notif with Git</a>    
-</p>
+| <a href=<%= "#{thisUrl}&notif=notme" %>>Other People</a></p>
 <div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
     
    <% @notifs.each do |n| %> 
@@ -15,6 +13,5 @@
    <% end %>
 
 </div>
-
 
 
