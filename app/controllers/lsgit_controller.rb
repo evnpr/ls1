@@ -63,7 +63,7 @@ class LsgitController < ApplicationController
   def notifFromGit
         
         back = params[:r]
-        redirect_to "#{back}" and return
+        redirect_to back and return
   end
 
 end
