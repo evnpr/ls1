@@ -76,7 +76,7 @@
 <script>
     
     function githubPull(){
-        var r=confirm("Press a button");
+        var r=confirm("really want to Pull (it is force pull)");
         if (r==true)
           {
           document.getElementById("githubpull").submit();
@@ -88,7 +88,7 @@
     }
     
     function githubPush(){
-        var r=confirm("Press a button");
+        var r=confirm("really want to Push (it is force pull)");
         if (r==true)
           {
           document.getElementById("githubpush").submit();
@@ -100,7 +100,7 @@
     }
     
     function clickSync(){
-        var r=confirm("Press a button");
+        var r=confirm("really want to Sync to Production server?");
         if (r==true)
           {
           window.location = "/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"
@@ -113,7 +113,7 @@
     }
     
     function clickSyncdev(){
-        var r=confirm("Press a button");
+        var r=confirm("really want to pull from development server");
         if (r==true)
           {
           window.location = "/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"
