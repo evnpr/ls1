@@ -31,7 +31,7 @@
 <div class="span1" style="margin-left:-30px;">
     <form id="githubpush" action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
-    <p><button class="btn btn-danger btn-large" onClick="githubPull()">push to github</button></p>
+    <p><button class="btn btn-danger btn-large" onClick="githubPush()">push to github</button></p>
     </form>
 </div>
 <% end %>
@@ -43,10 +43,10 @@
        <a href="<%= @devurl %>"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
     </div>
     <div id="name" class="span1" style="float: right" onClick="clickSync()">
-       <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">sync</button></a> 
+       <a ><button class="btn btn-info btn-large">sync</button></a> 
     </div>    
     <div id="name" class="span1" style="float: right" onClick="clickSyncdev()">
-       <a href="/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">pull from dev</button></a> 
+       <a><button class="btn btn-info btn-large">pull from dev</button></a> 
     </div>
 
 </div>
@@ -79,13 +79,53 @@
         var r=confirm("Press a button");
         if (r==true)
           {
-          x="You pressed OK!";
+          document.getElementById("githubpull").submit();
           }
         else
           {
           x="You pressed Cancel!";
           }
     }
+    
+    function githubPush(){
+        var r=confirm("Press a button");
+        if (r==true)
+          {
+          document.getElementById("githubpush").submit();
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+    }
+    
+    function clickSync(){
+        var r=confirm("Press a button");
+        if (r==true)
+          {
+          window.location = "/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+        
+    }
+    
+    function clickSyncdev(){
+        var r=confirm("Press a button");
+        if (r==true)
+          {
+          window.location = "/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+        
+    }
+    
+    
     
     
 </script>
