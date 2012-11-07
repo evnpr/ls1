@@ -46,7 +46,7 @@
        <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">sync</button></a> 
     </div>    
     <div id="name" class="span1" style="float: right">
-       <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">pull from dev</button></a> 
+       <a href="/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">pull from dev</button></a> 
     </div>
 
 </div>
