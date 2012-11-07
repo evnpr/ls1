@@ -70,8 +70,7 @@ class LsgitController < ApplicationController
   def syncdev
         
         back = params[:back]
-        puts 'asfasf'
-        render :nothing => true
+        render :html => 'hasfkas'
   end
 
 end
