@@ -110,33 +110,7 @@
 </p>
 <% end %>
 
-    <% if flash[:note] %>
-    <br>
-    <br>
-    <pre>
-    <%= @done %>
-    </pre>
-    <% end %>
-    
-<% if @root %>
-<br><br>
-<div id="name" class="row-fluid">
-    <div id="name" class="span2">
-    <form action="/site/githubpull" method="post" accept-charset="utf-8">
-    <input type="hidden" name="l" value="<%= @apps_name %>" />
-    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-    <p><input type="submit" value="pull from github" class="btn btn-info btn-large"></p>
-    </form>
-    </div>
-    <div id="name" class="span1" style="float: right">
-       <a href="<%= @produrl %>"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
-    </div>
-    <div id="name" class="span1" style="float: right">
-       <a href="<%= @devurl %>"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
-    </div>
-    <div id="name" class="span2" style="float: right">
-       <a href="/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"><button class="btn btn-info btn-large">rsync</button></a> 
-    </div>
+<%= render :partial => "shared/button_bottom" %>
 
 </div>
 <% end %>
