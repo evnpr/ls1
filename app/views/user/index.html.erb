@@ -21,7 +21,7 @@
 <br>
     <% @apps.each do |a| %>
     <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> 
-        <a><span style="float:right" onClick="deleteapps('<%= a.name %>')">x</span></a>
+        <a><span style="float:right" onClick="deleteapps()">x</span></a>
     </p>
     <% end %>   
     
