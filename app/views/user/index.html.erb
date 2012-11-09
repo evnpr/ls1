@@ -1,4 +1,20 @@
-                <% if @apps %>
+<script>
+        
+    function deleteapps(apps_name){
+         var r=confirm("really want to delete "+apps_name+"?");
+        if (r==true)
+          {
+          window.location = "/site/deleteapps/"+apps_name %>"
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+
+    }
+</script>
+
+<% if @apps %>
 <div class="span4 offset4">
 <p>List of your apps:</p>
 <br>
@@ -66,19 +82,7 @@
         document.getElementById("databaseHelp").style.display="block";
         document.getElementById("database?").style.display="none";
     }
-    
-    function deleteapps(apps_name){
-         var r=confirm("really want to delete "+apps_name+"?");
-        if (r==true)
-          {
-          window.location = "/site/deleteapps/"+apps_name %>"
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
 
-    }
 </script>
 
 
