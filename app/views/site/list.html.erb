@@ -3,7 +3,7 @@
 %> 
 
 <style>
-    .theitem :hover{
+    .theitem:hover{
         background-color: #bebebe;
         }
 </style>
@@ -97,7 +97,6 @@
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
 <p class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-close"></i> <%= l %></a>
     <a style="cursor: pointer; float:right" onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>')">x</a>
-    
 </p>
 <% end %>
 
