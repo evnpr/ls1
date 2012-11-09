@@ -3,7 +3,9 @@
 <p>List of your apps:</p>
 <br>
     <% @apps.each do |a| %>
-    <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> </p>
+    <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> 
+        <a href="/site/deleteapps/<%= a.apps.name %>" ><span style="float:right">x</span></a>
+    </p>
     <% end %>   
     
     
@@ -16,9 +18,7 @@
 <p>List of apps that you collaborate in:</p>
 <br>
     <% @apps_col.each do |a| %>
-    <p><a href="/list/?r=-__-<%= a.apps.name %>"><i class="icon-fire"></i> <%= a.apps.virtual_name %> </a> 
-        <a href="/site/deleteapps/<%= a.apps.name %>" ><span style="float:right">x</span></a>
-    </p>
+    <p><a href="/list/?r=-__-<%= a.apps.name %>"><i class="icon-fire"></i> <%= a.apps.virtual_name %> </a></p>
     <% end %>   
     
     
