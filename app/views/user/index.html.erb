@@ -1,9 +1,15 @@
-                <% if @apps %>
+<style>
+    .theitem:hover{
+        background-color: #bebebe;
+    }
+</style>
+
+<% if @apps %>
 <div class="span4 offset4">
 <p>List of your apps:</p>
 <br>
     <% @apps.each do |a| %>
-    <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> 
+    <p class="theitem"><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> 
         <a><span style="float:right; cursor: pointer;" onClick="deleteapps('<%= a.name %>')">x</span></a>
     </p>
     <% end %>   
@@ -80,6 +86,7 @@
 
     }
 </script>
+
 
 
 
