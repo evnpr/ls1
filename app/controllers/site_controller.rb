@@ -970,7 +970,7 @@ class SiteController < ApplicationController
     a = Apps.where(:name => @apps_name).first
     a.destroy
     `rm #{@@directory}/#{@apps_name}`
-    redirect_to "/" and return
+    render :js => 'hello '+@apps_name
   end
 
 end
