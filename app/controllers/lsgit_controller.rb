@@ -4,6 +4,10 @@ class LsgitController < ApplicationController
   def get_users
     @username = cookies[:username] 
   end
+
+
+  @@directory = "/var/www/ls/upload"
+
   
   def index
     
@@ -73,15 +77,18 @@ class LsgitController < ApplicationController
         redirect_to back and return
   end
 
+  def gitToDB 
+
+        r = params[:path]
+        apps_name = r.split("-__-")[1]
+        @apps_name = apps_name
+        Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git log > .loggit` 
+        }
+
+  end
+
 end
-
-
-
-
-
-
-
-
 
 
 
