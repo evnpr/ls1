@@ -958,19 +958,7 @@ class SiteController < ApplicationController
   end
   
   def deleteapps
-    @apps_name = params[:apps_name]
-    unless @username
-        render :js => 'hello '+@apps_name and return
-    end
-    authenticate(Apps.where(:name => @apps_name).first.user.username, 
-                Apps.where(:name => @apps_name).first.id, 
-                User.where(:username => @username).first.id, 
-                @username)
-        
-    a = Apps.where(:name => @apps_name).first
-    a.destroy
-    `rm #{@@directory}/#{@apps_name}`
-    render :js => 'hello '+@apps_name and return
+   
   end
 
 end
