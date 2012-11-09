@@ -95,10 +95,10 @@
 
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<div class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-close"></i> <%= l %></a>
-    <span style="float:right"><a style="cursor: pointer" onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>')">x</a>
-    </span>
-</div>
+<p class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-close"></i> <%= l %></a>
+    <a style="cursor: pointer; float:right" onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>')">x</a>
+    
+</p>
 <% end %>
 
 
