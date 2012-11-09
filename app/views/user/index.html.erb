@@ -4,7 +4,7 @@
 <br>
     <% @apps.each do |a| %>
     <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> 
-        <a><span style="float:right" onClick="deleteapp('<%= a.name %>')">x</span></a>
+        <a><span style="float:right" >x</span></a>
     </p>
     <% end %>   
     
@@ -68,7 +68,7 @@
     }
     
     function deleteapp(apps_name){
-         var r=confirm("really want to delete "+apps_name+"?");
+        var r=confirm("really want to delete "+apps_name+"?");
         if (r==true)
           {
           window.location = "/site/deleteapps/"+apps_name"
