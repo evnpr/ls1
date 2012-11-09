@@ -95,9 +95,11 @@
 
 <% @listfolder.each do |l| %>
 <% l.slice! "/var/www/ls/upload/#{@name}" %>
-<p class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-close"></i> <%= l %></a>
+<p>
+<span class="theitem"><a href="<%= "/list/?r=#{@current_path}-__-#{l.delete"/"}" %>"><i class="icon-folder-close"></i> <%= l %></a>
     <span style="float:right"><a style="cursor: pointer" onClick="deletefile('<%= "/site/deletefile/?r=#{@current_path}&f=#{l[1..-1]}" %>')">x</a>
     </span>
+</span>
 </p>
 <% end %>
 
@@ -221,3 +223,4 @@
     //notiftimer=setInterval("retrieveNotif();",10000);
 </script>
 <% # render :partial => "shared/notifyjs" %>
+
