@@ -960,7 +960,7 @@ class SiteController < ApplicationController
   def deleteapps
     @apps_name = params[:apps_name]
     unless @username
-        
+        redirect_to "/" and return
     end
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
                 Apps.where(:name => @apps_name).first.id, 
