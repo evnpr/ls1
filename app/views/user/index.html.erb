@@ -1,27 +1,10 @@
-<script>
-        
-    function deleteapps(){
-        var apps_name = 'asf'
-        var r=confirm("really want to delete "+apps_name+"?");
-        if (r==true)
-          {
-          window.location = "/site/deleteapps/"+apps_name %>"
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
-
-    }
-</script>
-
-<% if @apps %>
+                <% if @apps %>
 <div class="span4 offset4">
 <p>List of your apps:</p>
 <br>
     <% @apps.each do |a| %>
     <p><a href="/list/?r=-__-<%= a.name %>"><i class="icon-fire"></i> <%= a.virtual_name %> </a> 
-        <a><span style="float:right" onClick="deleteapps()">x</span></a>
+        <a><span style="float:right" onClick="deleteapps('<%= a.name %>')">x</span></a>
     </p>
     <% end %>   
     
@@ -83,7 +66,19 @@
         document.getElementById("databaseHelp").style.display="block";
         document.getElementById("database?").style.display="none";
     }
+    
+    function deleteapps(apps_name){
+         var r=confirm("really want to delete "+apps_name+"?");
+        if (r==true)
+          {
+          window.location = "/site/deleteapps/"+apps_name %>"
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
 
+    }
 </script>
 
 
