@@ -9,7 +9,7 @@
 <div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
    
    <% @notifs.each do |n| %> 
-    <% unless n.nil? %>
+    <% if n %>
     <div id="name" class="alert alert-info">
         <br>
         <%= n.name.html_safe %> - <%= n.created_at %>
