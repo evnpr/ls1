@@ -107,7 +107,7 @@ class LsgitController < ApplicationController
                    # end
                     if @commitMessage
                         newNotif = Notif.new(:name => @commitMessage)
-                        newNotif.committer = date
+                        newNotif.committer = @date
                         newNotif.save
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
@@ -125,7 +125,7 @@ class LsgitController < ApplicationController
                     elsif c.include? "Author"
                         author = c.split(" ")[1]
                     elsif c.include? "Date"
-                        date = c
+                        @date = c
                     end
                 end
             end
