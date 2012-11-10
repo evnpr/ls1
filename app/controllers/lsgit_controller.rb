@@ -89,7 +89,7 @@ class LsgitController < ApplicationController
         bCD = false #beforeCommitDescription
         content.each_line do |c|
             if bCD == true 
-                if c == ''
+                if c =~ /^\s*$/ 
                     bCD = false 
                     notifs = Apps.where(:name => @apps_name).first.notifs
                     notifs.each do |n|
@@ -104,7 +104,7 @@ class LsgitController < ApplicationController
                     commitMessage = c          #this is the real commit 
                 end
             else
-                if c == ''
+                if c =~ /^\s*$/
                     bCD = true 
                 else                        #to get the other parameters
                     if c.include? "commit"
