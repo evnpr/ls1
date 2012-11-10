@@ -1,5 +1,5 @@
 `git add . -A`
-`git commit -m 'push auto'`
+`git commit -m '#{ARGV[0]}'`
 `git pull lsdev master`
 `git push lsdev master`
 #`git pull ls master `
