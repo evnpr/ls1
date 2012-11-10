@@ -107,6 +107,7 @@ class LsgitController < ApplicationController
                    # end
                     if @commitMessage
                         newNotif = Notif.new(:name => @commitMessage)
+                        newNotif.committer = 'a'
                         newNotif.save
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
