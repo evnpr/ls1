@@ -84,8 +84,8 @@ class LsgitController < ApplicationController
         @apps_name = apps_name
         Dir.chdir("#{@@directory}/#{@apps_name}"){
            `git log > loggit` 
+            content = File.read('loggit')
         }
-        content = File.read('loggit')
         bCD = false #beforeCommitDescription
         content.each_line do |c|
             if bCD == true 
