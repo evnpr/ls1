@@ -128,8 +128,7 @@ class LsgitController < ApplicationController
             end
         end
 
-        #redirect_to "/list?r=-__-"+@apps_name and return
-        render :js => @commitMessage
+        redirect_to "/list?r=-__-"+@apps_name and return
   end
 
 end
