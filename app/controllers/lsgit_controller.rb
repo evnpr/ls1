@@ -92,9 +92,9 @@ class LsgitController < ApplicationController
                 if c == ''
                     bCD = false 
                     notifs = Apps.where(:name => @apps_name).first.notifs
-                    #notifs.each do |n|
-                        #Notif.find(n.id).destroy
-                    #end
+                    notifs.each do |n|
+                       Notif.find(n.id).destroy
+                    end
                     newNotif = Notif.new(:name => commitMessage)
                     newNotif.save
                     an = AppsNotifs.new(:notif_id => newNotif.id)
