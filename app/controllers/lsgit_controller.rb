@@ -4,6 +4,10 @@ class LsgitController < ApplicationController
   def get_users
     @username = cookies[:username] 
   end
+
+
+  @@directory = "/var/www/ls/upload"
+
   
   def index
     
@@ -73,15 +77,64 @@ class LsgitController < ApplicationController
         redirect_to back and return
   end
 
+  def gitToDB 
+    
+        r = params[:r]
+        apps_name = r.split("-__-")[1]
+        @apps_name = apps_name
+        `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
+        Dir.chdir("/home/git/repositories/#{@apps_name}.git"){
+           `git log > loggit` 
+        }
+        content = File.read("/home/git/repositories/#{@apps_name}.git/loggit")
+        `sudo chmod -R 755 /home/git/repositories/#{@apps_name}.git`
+        contentReverse = []
+        content.each_line do |c|
+           contentReverse << c 
+        end
+        contentReverse.reverse!
+
+        notifs = Apps.where(:name => @apps_name).first.notifs
+        notifs.destroy_all
+
+        bCD = true #beforeCommitDescription
+        contentReverse.last(100).each do |c|
+            if bCD == true 
+                if c =~ /^\s*$/ 
+                    bCD = false 
+                   # notifs.each do |n|
+                   #    Notif.find(n.id).destroy
+                   # end
+                    if @commitMessage
+                        newNotif = Notif.new(:name => @commitMessage)
+                        newNotif.committer = @date
+                        newNotif.save
+                        an = AppsNotifs.new(:notif_id => newNotif.id)
+                        an.apps_id = Apps.where(:name => @apps_name).first.id
+                        an.save
+                    end
+                else
+                    @commitMessage = c          #this is the real commit 
+                end
+            else
+                if c =~ /^\s*$/
+                    bCD = true 
+                else                        #to get the other parameters
+                    if c.include? "commit"
+                        codeCommit = c.split(" ")[1]
+                    elsif c.include? "Author"
+                        author = c.split(" ")[1]
+                    elsif c.include? "Date"
+                        @date = c
+                    end
+                end
+            end
+        end
+
+        redirect_to "/list?r=-__-"+@apps_name and return
+  end
+
 end
-
-
-
-
-
-
-
-
 
 
 

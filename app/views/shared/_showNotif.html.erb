@@ -4,16 +4,18 @@
 | <a href=<%= "#{thisUrl}&notif=me" %>>Me</a> 
 | <a href=<%= "#{thisUrl}&notif=notme" %>>Other People</a>
 | <a href=<%= "#{thisUrl}&notif=notme" %>>Delete Notifications</a>
-<a href="/lsgit/notifFromGit?r=<%= thisUrl %>" style="float:right">Sync Notif with Git</a>    
+<a href="/lsgit/gitToDB?r=<%= thisUrl %>" style="float:right">Sync Notif with Git</a>    
 </p>
 <div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
-    
+   
+<% if !@notifs.nil? %>
    <% @notifs.each do |n| %> 
     <div id="name" class="alert alert-info">
         <br>
-        <%= n.name.html_safe %> - <%= n.created_at %>
+        <%= n.name.html_safe %> - <%= n.committer %>
     </div>
    <% end %>
+<% end %>
 
 </div>
 
