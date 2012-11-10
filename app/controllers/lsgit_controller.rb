@@ -86,12 +86,19 @@ class LsgitController < ApplicationController
            `git log > loggit` 
         }
         content = File.read("#{@@directory}/#{@apps_name}/loggit")
-        bCD = false #beforeCommitDescription
+        contentReverse = []
         content.each_line do |c|
+           contentReverse << c 
+        end
+        contentReverse.reverse!
+
+        bCD = false #beforeCommitDescription
+        contentReverse.each do |c|
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
-                   # notifs = Apps.where(:name => @apps_name).first.notifs
+                    notifs = Apps.where(:name => @apps_name).first.notifs
+                    notifs.destroy_all
                    # notifs.each do |n|
                    #    Notif.find(n.id).destroy
                    # end
