@@ -371,6 +371,7 @@ class SiteController < ApplicationController
             redirect_to 'user/index' and return
         end
         `git commit -m '#{@username} #{commit}'`
+       `git pull ls1 master -f` 
         n = Notif.new(:committer => @username)
         n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
         n.committer = @username

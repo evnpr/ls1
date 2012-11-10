@@ -105,11 +105,7 @@ class LsgitController < ApplicationController
         notifs.destroy_all
 
         bCD = true #beforeCommitDescription
-        i = 0
         contentReverse.each do |c|
-            if i == 100
-                break
-            end
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
@@ -123,7 +119,6 @@ class LsgitController < ApplicationController
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
                         an.save
-                        i = i + 1
                     end
                 else
                     @commitMessage = c          #this is the real commit 
