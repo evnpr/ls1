@@ -154,6 +154,7 @@ class SiteController < ApplicationController
     if @username == Apps.where(:name => @apps_name).first.user.username
         @owner = 1
     end
+    @notifs = showNotif(@apps_name,@username)
   end
 
 
