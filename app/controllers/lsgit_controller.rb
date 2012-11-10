@@ -99,7 +99,7 @@ class LsgitController < ApplicationController
         contentReverse = []
         i = 0
         bCD = true #beforeCommitDescription
-        content.each do |c|
+        content.each_line do |c|
             if i == 100
                 break
             end
