@@ -105,7 +105,7 @@ class LsgitController < ApplicationController
         notifs.destroy_all
 
         bCD = true #beforeCommitDescription
-        contentReverse.each do |c|
+        contentReverse.last(100).each do |c|
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
