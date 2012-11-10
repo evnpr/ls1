@@ -95,11 +95,13 @@ class LsgitController < ApplicationController
                     notifs.each do |n|
                        Notif.find(n.id).destroy
                     end
-                    newNotif = Notif.new(:name => commitMessage)
-                    newNotif.save
-                    an = AppsNotifs.new(:notif_id => newNotif.id)
-                    an.apps_id = Apps.where(:name => @apps_name).first.id
-                    an.save
+                    defined? commitMessage
+                        newNotif = Notif.new(:name => commitMessage)
+                        newNotif.save
+                        an = AppsNotifs.new(:notif_id => newNotif.id)
+                        an.apps_id = Apps.where(:name => @apps_name).first.id
+                        an.save
+                    end
                 else
                     commitMessage = c          #this is the real commit 
                 end
@@ -119,7 +121,7 @@ class LsgitController < ApplicationController
         end
 
         #redirect_to "/list?r=-__-"+@apps_name and return
-        render :js => c
+        render :js => commitMessage
   end
 
 end
