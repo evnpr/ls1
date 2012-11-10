@@ -92,13 +92,14 @@ class LsgitController < ApplicationController
         end
         contentReverse.reverse!
 
-        bCD = false #beforeCommitDescription
+        notifs = Apps.where(:name => @apps_name).first.notifs
+        notifs.destroy_all
+
+        bCD = true #beforeCommitDescription
         contentReverse.each do |c|
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
-                    notifs = Apps.where(:name => @apps_name).first.notifs
-                    notifs.destroy_all
                    # notifs.each do |n|
                    #    Notif.find(n.id).destroy
                    # end
