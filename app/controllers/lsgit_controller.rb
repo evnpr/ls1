@@ -91,10 +91,10 @@ class LsgitController < ApplicationController
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
-                    notifs = Apps.where(:name => @apps_name).first.notifs
-                    notifs.each do |n|
-                       Notif.find(n.id).destroy
-                    end
+                   # notifs = Apps.where(:name => @apps_name).first.notifs
+                   # notifs.each do |n|
+                   #    Notif.find(n.id).destroy
+                   # end
                     if @commitMessage
                         newNotif = Notif.new(:name => @commitMessage)
                         newNotif.save
