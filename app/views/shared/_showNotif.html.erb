@@ -8,14 +8,14 @@
 </p>
 <div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
    
+<% if !@notifs.nil? %>
    <% @notifs.each do |n| %> 
-    <% if n %>
     <div id="name" class="alert alert-info">
         <br>
         <%= n.name.html_safe %> - <%= n.created_at %>
     </div>
-    <% end %>
    <% end %>
+<% end %>
 
 </div>
 
