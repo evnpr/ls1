@@ -2,6 +2,7 @@ content = File.read('loggit')
 bCD = false #beforeCommitDescription
 u = 0
 i = 0
+
 content.each_line do |c|
     i = i + 1
     if bCD == true 
