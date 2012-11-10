@@ -20,6 +20,7 @@
 <% end %>
 
 <div class='notifications top-right'></div>
+<img id="loading" src="http://www.laneaviation.com/wp-content/themes/laneaviation/images/loading.gif" style="display:none"/>
 <br>
 <div id="name" class="row-fluid">
 <a href=<%= "'/list/?r=#{@back}'"%> style="cursor:pointer">
@@ -97,8 +98,10 @@
         var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
+        document.getElementById("loading").style.display = 'block';
         $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
             alert('success');
+            document.getElementById("loading").style.display = 'none';
         });
     }
 
