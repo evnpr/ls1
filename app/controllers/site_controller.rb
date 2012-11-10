@@ -405,6 +405,8 @@ class SiteController < ApplicationController
         `git remote add ls1 git@letspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
     }
+
+    render :nothing => true
   end
 
   def github
