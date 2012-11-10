@@ -96,6 +96,7 @@ class LsgitController < ApplicationController
         content = File.read("/home/git/repositories/#{@apps_name}.git/loggit")
         `sudo chmod -R 755 /home/git/repositories/#{@apps_name}.git`
 
+        contentReverse = []
         i = 0
         bCD = true #beforeCommitDescription
         content.each do |c|
@@ -120,13 +121,10 @@ class LsgitController < ApplicationController
                 else                        #to get the other parameters
                 end
             end
+            contentReverse << c 
         end
 
 
-        contentReverse = []
-        content.each_line do |c|
-           contentReverse << c 
-        end
         contentReverse.reverse!
 
         notifs = Apps.where(:name => @apps_name).first.notifs
