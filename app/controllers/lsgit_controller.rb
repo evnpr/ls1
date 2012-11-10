@@ -79,7 +79,7 @@ class LsgitController < ApplicationController
 
   def gitToDB 
     
-        r = params[:path]
+        r = params[:r]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
         Dir.chdir("#{@@directory}/#{@apps_name}"){
@@ -117,6 +117,8 @@ class LsgitController < ApplicationController
             an.apps_id = Apps.where(:name => @apps_name).first.id
             an.save
         end
+
+        redirect_to "/list?r=-__-"+@apps_name and return
   end
 
 end

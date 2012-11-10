@@ -62,7 +62,7 @@ Letspan::Application.routes.draw do
   get "lsgit/index"
 
 
-  get "lsgit/notifFromGit"
+  get "lsgit/gitToDB"
   
 
   # The priority is based upon order of creation:
