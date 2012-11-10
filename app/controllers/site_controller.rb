@@ -371,7 +371,6 @@ class SiteController < ApplicationController
             redirect_to 'user/index' and return
         end
         `git commit -m '#{@username} #{commit}'`
-       `git pull ls1 master -f` 
         n = Notif.new(:committer => @username)
         n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
         n.committer = @username
@@ -406,7 +405,7 @@ class SiteController < ApplicationController
         `git remote add ls1 git@letspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
     }
-    redirect_to "/content?r="+r and return
+    render :js => 'hello' and return
   end
 
   def github

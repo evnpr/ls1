@@ -97,7 +97,9 @@
         var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
-        $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit });
+        $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
+            alert('success');
+        });
     }
 
 
