@@ -84,9 +84,6 @@ class LsgitController < ApplicationController
         @apps_name = apps_name
         `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
 
-        Dir.chdir("#{@@directory}/#{@apps_name}"){
-           `git pull ls1 master -f` 
-        }
 
         Dir.chdir("/home/git/repositories/#{@apps_name}.git"){
            `git log > loggit` 
@@ -105,11 +102,7 @@ class LsgitController < ApplicationController
         notifs.destroy_all
 
         bCD = true #beforeCommitDescription
-        i = 0
         contentReverse.each do |c|
-            if i == 100
-                break
-            end
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
@@ -123,7 +116,6 @@ class LsgitController < ApplicationController
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
                         an.save
-                        i = i + 1
                     end
                 else
                     @commitMessage = c          #this is the real commit 
