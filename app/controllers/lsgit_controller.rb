@@ -78,14 +78,45 @@ class LsgitController < ApplicationController
   end
 
   def gitToDB 
-
+    
         r = params[:path]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
         Dir.chdir("#{@@directory}/#{@apps_name}"){
-           `git log > .loggit` 
+           `git log > loggit` 
         }
-
+        content = File.read('loggit')
+        bCD = false #beforeCommitDescription
+        content.each_line do |c|
+            if bCD == true 
+                if c == ''
+                    bCD = false 
+                else
+                    commitMessage = c          #this is the real commit 
+                end
+            else
+                if c == ''
+                    bCD = true 
+                else                        #to get the other parameters
+                    if c.include? "commit"
+                        codeCommit = c.split(" ")[1]
+                    elsif c.include? "Author"
+                        author = c.split(" ")[1]
+                    elsif c.include? "Date"
+                        date = c.split(" ")[1]
+                    end
+                end
+            end
+            notifs = Apps.where(:name => @apps_name).first.notifs
+            notifs.each do |n|
+                Notif.find(n.id).destroy
+            end
+            newNotif = Notif.new(:name => commitMessage)
+            newNotif.save
+            an = AppsNotifs.new(:notif_id => newNotif.id)
+            an.apps_id = Apps.where(:name => @apps_name).first.id
+            an.save
+        end
   end
 
 end
