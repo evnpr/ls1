@@ -95,15 +95,15 @@ class LsgitController < ApplicationController
                     notifs.each do |n|
                        Notif.find(n.id).destroy
                     end
-                    defined? commitMessage
-                        newNotif = Notif.new(:name => commitMessage)
+                    if @commitMessage
+                        newNotif = Notif.new(:name => @commitMessage)
                         newNotif.save
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
                         an.save
                     end
                 else
-                    commitMessage = c          #this is the real commit 
+                    @commitMessage = c          #this is the real commit 
                 end
             else
                 if c =~ /^\s*$/
