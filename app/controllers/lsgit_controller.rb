@@ -82,10 +82,12 @@ class LsgitController < ApplicationController
         r = params[:r]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
+        `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
         Dir.chdir("/home/git/repositories/#{@apps_name}.git"){
            `git log > loggit` 
         }
         content = File.read("/home/git/repositories/#{@apps_name}.git/loggit")
+        `sudo chmod -R 755 /home/git/repositories/#{@apps_name}.git`
         contentReverse = []
         content.each_line do |c|
            contentReverse << c 
