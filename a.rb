@@ -33,7 +33,9 @@ content.each_line do |c|
     end
 end
 
+
 puts u
 puts i
+
 
 
