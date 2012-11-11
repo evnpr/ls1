@@ -815,7 +815,7 @@ class SiteController < ApplicationController
                 User.where(:username => @username).first.id, 
                 @username)
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
-    f = params[:f].gsub(/\ /, "\ ")
+    f = params[:f].gsub(/\ /, "\\\ ")
     `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
     `rm -R #{@@directory}#{dirfolder}/#{f.gsub(/\ /, "\ ")}`
     flash[:list] = "just delete #{dirfolder}/#{f}"
