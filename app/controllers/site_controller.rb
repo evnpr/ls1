@@ -9,7 +9,6 @@ class SiteController < ApplicationController
   @@directory = "/var/www/ls/upload"
   
 
-  
   def index
     if @username
         redirect_to "/user/index"
@@ -977,6 +976,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
