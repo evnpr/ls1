@@ -818,7 +818,7 @@ class SiteController < ApplicationController
     f = params[:f]
     `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
     `rm -R #{@@directory}#{dirfolder}/#{f.gsub(/\ /, "\ ")}`
-    flash[:list] = "just delete #{dirfolder}/#{f}"
+    flash[:list] = "just delete #{dirfolder}/#{f.gsub(/\ /, "\ ")}"
     Dir.chdir(@@directory+"/"+apps_name){
         #`sudo chmod -R 755 .` 
         `git add . -A`
