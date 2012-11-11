@@ -63,17 +63,13 @@ class LsgitController < ApplicationController
   end
   
   
-  
-  def notifFromGit
-        
-        back = params[:r]
-        redirect_to back and return
-  end
-  
-  
   def syncdev
-        
         back = params[:back]
+        apps_name = r.split("-__-")[1]
+        @apps_name = apps_name
+        Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git pull lsorigin2 master -f` 
+        }
         redirect_to back and return
   end
 
