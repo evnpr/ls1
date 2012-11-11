@@ -63,23 +63,20 @@ class LsgitController < ApplicationController
   end
   
   
-  
-  def notifFromGit
-        
-        back = params[:r]
-        redirect_to back and return
-  end
-  
-  
   def syncdev
-        
         back = params[:back]
+        apps_name = back.split("-__-")[1]
+        @apps_name = apps_name
+        Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git add .`
+           `git commit -m 'sync with Development Server from Letspan'`
+           `git pull lsorigin2 master -f` 
+        }
         redirect_to back and return
   end
 
   def gitToDB 
-    
-        r = params[:r]
+    r = params[:r]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
         `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
