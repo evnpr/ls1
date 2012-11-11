@@ -817,7 +817,7 @@ class SiteController < ApplicationController
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
     f = params[:f]
     `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
-    `rm -R #{@@directory}#{dirfolder}/#{f}`
+    `rm -R #{@@directory}#{dirfolder}/#{f.gsub(/\ /, "\ ")}`
     flash[:list] = "just delete #{dirfolder}/#{f}"
     Dir.chdir(@@directory+"/"+apps_name){
         #`sudo chmod -R 755 .` 
