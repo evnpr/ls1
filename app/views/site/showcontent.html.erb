@@ -85,42 +85,10 @@
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.getSession().setMode("ace/mode/<%= @language %>");
-
-    function save(){
-        var commit = "just edit <%= @current_path.split("-__-").join("/") %>";
-        var content = editor.getSession().getValue();
-        thisfile = document.getElementById("thisfile").innerHTML
-        $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
-        setTimeout(function(){
-        $('.top-right').notify({
-                message: { text: 'successfully saved' },
-                type: 'info',
-        }).show();}, 200);
-    }
-
-
-    function savegit(){
-        var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
-        var content = editor.getSession().getValue();
-        thisfile = document.getElementById("thisfile").innerHTML
-        document.getElementById("loading").style.display = 'block';
-        $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
-            alert('success');
-            document.getElementById("loading").style.display = 'none';
-        });
-    }
-
-
-document.onkeydown = checkKeycode
-    function checkKeycode(e) {
-    var keycode;
-    if (window.event) keycode = window.event.keyCode;
-    else if (e) keycode = e.which;
-    if(keycode==27){
-        window.location = "/content?r=<%= @r %>&vim=1";
-    }
-}
 </script>
+
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
 <script type="text/javascript">

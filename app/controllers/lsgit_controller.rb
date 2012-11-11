@@ -85,6 +85,7 @@ class LsgitController < ApplicationController
         `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
 
         Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git stash` 
            `git pull ls1 master -f` 
         }
 

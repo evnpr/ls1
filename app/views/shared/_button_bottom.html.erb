@@ -7,17 +7,25 @@
     
 <% if request.GET['vim'].nil? then %>
 
-<% if @showcontent %>
-<div class="span2">
-    <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
-</div>
+    <% if @showcontent %>
+    <div class="span2">
+        <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
+    </div>
 
-<div class="span2">
-    <button class="btn btn-large btn-inverse" onClick="savegit()">Commit</button>
-</div>
+
+    <div class="span2">
+        <button class="btn btn-large btn-inverse" onClick="savegit()">Commit</button>
+    </div>
+
+    <% end %>
+
+
+
+
+
 <% end %>
 
-<% end %>
+
 
 <div class="offset5 span2"style="margin-left:150px;">
     <form id="githubpull" action="/site/githubpull" method="post">
@@ -26,6 +34,8 @@
     <p><button class="btn btn-large btn-info" onClick="githubPull()">pull from github</button></p>
     </form>
 </div>
+
+
 
 <% if @showcontent %>
 <div class="span1" style="margin-left:-30px;">
@@ -126,6 +136,41 @@
     }
     
     
+
+    function save(){
+        var commit = "just edit <%= @current_path.split("-__-").join("/") %>";
+        var content = editor.getSession().getValue();
+        thisfile = document.getElementById("thisfile").innerHTML
+        $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
+        setTimeout(function(){
+        $('.top-right').notify({
+                message: { text: 'successfully saved' },
+                type: 'info',
+        }).show();}, 200);
+    }
+
+
+    function savegit(){
+        var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
+        var content = editor.getSession().getValue();
+        thisfile = document.getElementById("thisfile").innerHTML
+        document.getElementById("loading").style.display = 'block';
+        $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
+            alert('success');
+            document.getElementById("loading").style.display = 'none';
+        });
+    }
+
+
+document.onkeydown = checkKeycode
+    function checkKeycode(e) {
+    var keycode;
+    if (window.event) keycode = window.event.keyCode;
+    else if (e) keycode = e.which;
+    if(keycode==27){
+        window.location = "/content?r=<%= @r %>&vim=1";
+    }
+}
     
     
 </script>
