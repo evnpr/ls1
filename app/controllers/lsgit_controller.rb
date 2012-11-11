@@ -68,6 +68,7 @@ class LsgitController < ApplicationController
         apps_name = back.split("-__-")[1]
         @apps_name = apps_name
         Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git stash`
            `git pull lsorigin2 master -f` 
         }
         redirect_to back and return
