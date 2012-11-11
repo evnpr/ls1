@@ -782,7 +782,7 @@ class SiteController < ApplicationController
       end
 
       `sudo chmod -R 777 #{@@directory}/#{dirfolder}`
-      File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
+      File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename.delete(" "), 'wb') do |file|
         file.write(uploaded_io.read)
         file.close
       end
