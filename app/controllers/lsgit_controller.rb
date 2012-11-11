@@ -65,7 +65,7 @@ class LsgitController < ApplicationController
   
   def syncdev
         back = params[:back]
-        apps_name = r.split("-__-")[1]
+        apps_name = back.split("-__-")[1]
         @apps_name = apps_name
         Dir.chdir("#{@@directory}/#{@apps_name}"){
            `git pull lsorigin2 master -f` 
@@ -74,8 +74,7 @@ class LsgitController < ApplicationController
   end
 
   def gitToDB 
-    
-        r = params[:r]
+    r = params[:r]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
         `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
