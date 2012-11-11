@@ -711,17 +711,17 @@ class SiteController < ApplicationController
       unless @username
         redirect_to "/" and return
       end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
+      apps_owner = Apps.where(:name => @apps_name).first.user.username
+      apps_id = Apps.where(:name => @apps_name).first.id
+      user_id = User.where(:username => @username).first.id
+      if Collaborator.exists?(:apps_id => apps_id,
+                              :user_id => user_id
+                              )
+          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+      end
 
-    unless @username == apps_owner or !apps_collaborator.nil?
-          redirect_to "/user/index" and return
+      unless @username == apps_owner or !apps_collaborator.nil?
+            redirect_to "/user/index" and return
       end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
       uploaded_files = params[:thefile]
@@ -731,7 +731,7 @@ class SiteController < ApplicationController
       end
       `sudo chmod -R 777 #{@@directory}/#{dirfolder}`      
       uploaded_files.each do |u|
-          File.open("#{@@directory}/#{dirfolder}/"+u.original_filename, 'wb') do |file|
+          File.open("#{@@directory}/#{dirfolder}/"+u.original_filename.delete(" "), 'wb') do |file|
             file.write(u.read)
             file.close
           end
@@ -746,7 +746,7 @@ class SiteController < ApplicationController
             `git push lsdev master -f`
         end
       }
-      redirect_to "/list?r="+params[:r] and return
+        redirect_to "/list?r="+params[:r] and return
   end
   
   def uploadfolder
@@ -756,16 +756,16 @@ class SiteController < ApplicationController
       unless @username
          redirect_to "/" and return
       end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
+      apps_owner = Apps.where(:name => @apps_name).first.user.username
+      apps_id = Apps.where(:name => @apps_name).first.id
+      user_id = User.where(:username => @username).first.id
+      if Collaborator.exists?(:apps_id => apps_id,
+                              :user_id => user_id
+                              )
+          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+      end
 
-    unless @username == apps_owner or !apps_collaborator.nil?
+      unless @username == apps_owner or !apps_collaborator.nil?
           redirect_to "/user/index" and return
       end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -774,17 +774,19 @@ class SiteController < ApplicationController
         flash[:list] = "you are not uploading any folder/files"
         redirect_to "/list?r="+params[:r] and return
       end
+
       checkzip = uploaded_io.original_filename.scan(".zip").length
       if checkzip < 1
         flash[:list] = "you are not uploading .zip file"
         redirect_to "/list?r="+params[:r] and return
       end
+
       `sudo chmod -R 777 #{@@directory}/#{dirfolder}`
-      File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
+      File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename.delete(" "), 'wb') do |file|
         file.write(uploaded_io.read)
         file.close
       end
-      zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename
+      zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename.delete(" ")
       unzipfile = "#{@@directory}/#{dirfolder}/"
       unzip_file(zipfile, unzipfile)
       `rm #{zipfile}`
@@ -813,7 +815,7 @@ class SiteController < ApplicationController
                 User.where(:username => @username).first.id, 
                 @username)
     dirfolder = r.gsub(/\-\_\_\-/, "\/")
-    f = params[:f]
+    f = params[:f].gsub(/\ /, "\\\ ")
     `sudo chmod -R 777 #{@@directory}#{dirfolder}` 
     `rm -R #{@@directory}#{dirfolder}/#{f}`
     flash[:list] = "just delete #{dirfolder}/#{f}"
