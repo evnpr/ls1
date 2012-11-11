@@ -756,16 +756,16 @@ class SiteController < ApplicationController
       unless @username
          redirect_to "/" and return
       end
-    apps_owner = Apps.where(:name => @apps_name).first.user.username
-    apps_id = Apps.where(:name => @apps_name).first.id
-    user_id = User.where(:username => @username).first.id
-    if Collaborator.exists?(:apps_id => apps_id,
-                            :user_id => user_id
-                            )
-        apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
-    end
+      apps_owner = Apps.where(:name => @apps_name).first.user.username
+      apps_id = Apps.where(:name => @apps_name).first.id
+      user_id = User.where(:username => @username).first.id
+      if Collaborator.exists?(:apps_id => apps_id,
+                              :user_id => user_id
+                              )
+          apps_collaborator = Collaborator.where(:apps_id => apps_id, :user_id => user_id).first
+      end
 
-    unless @username == apps_owner or !apps_collaborator.nil?
+      unless @username == apps_owner or !apps_collaborator.nil?
           redirect_to "/user/index" and return
       end
       dirfolder = r.gsub(/\-\_\_\-/, "\/")
@@ -774,17 +774,19 @@ class SiteController < ApplicationController
         flash[:list] = "you are not uploading any folder/files"
         redirect_to "/list?r="+params[:r] and return
       end
+
       checkzip = uploaded_io.original_filename.scan(".zip").length
       if checkzip < 1
         flash[:list] = "you are not uploading .zip file"
         redirect_to "/list?r="+params[:r] and return
       end
+
       `sudo chmod -R 777 #{@@directory}/#{dirfolder}`
       File.open("#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename, 'wb') do |file|
         file.write(uploaded_io.read)
         file.close
       end
-      zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename
+      zipfile = "#{@@directory}/#{dirfolder}/"+uploaded_io.original_filename.delete(" ")
       unzipfile = "#{@@directory}/#{dirfolder}/"
       unzip_file(zipfile, unzipfile)
       `rm #{zipfile}`
