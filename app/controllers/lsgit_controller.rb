@@ -71,6 +71,7 @@ class LsgitController < ApplicationController
            `git add .`
            `git commit -m 'sync with Development Server from Letspan'`
            `git pull lsorigin2 master -f` 
+           `git push ls1 master -f`
         }
         redirect_to back and return
   end
@@ -166,6 +167,7 @@ class LsgitController < ApplicationController
   end
 
 end
+
 
 
 
