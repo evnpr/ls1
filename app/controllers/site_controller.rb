@@ -376,6 +376,7 @@ class SiteController < ApplicationController
         #n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
         n.name = "[commited] #{@username} edited #{path}"
         n.committer = @username
+        n.commit_message = `git log --pretty=format:'%h' -n 1`
         n.save
         
         owner = Apps.where(:name => @apps_name).first.user.id
