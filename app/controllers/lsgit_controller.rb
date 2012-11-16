@@ -75,6 +75,9 @@ class LsgitController < ApplicationController
         redirect_to back and return
   end
 
+
+
+
   def gitToDB 
     r = params[:r]
         apps_name = r.split("-__-")[1]
@@ -138,7 +141,9 @@ class LsgitController < ApplicationController
                    # end
                     if @commitMessage
                         newNotif = Notif.new(:name => @commitMessage)
-                        newNotif.committer = @date
+                        newNotif.date = @date
+                        newNotif.code_commit = @codeCommit
+                        newNotif.committer = @author
                         newNotif.save
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
@@ -152,9 +157,9 @@ class LsgitController < ApplicationController
                     bCD = true 
                 else                        #to get the other parameters
                     if c.include? "commit"
-                        codeCommit = c.split(" ")[1]
+                        @codeCommit = c.split(" ")[1]
                     elsif c.include? "Author"
-                        author = c.split(" ")[1]
+                        @author = c.split(" ")[1]
                     elsif c.include? "Date"
                         @date = c
                     end
