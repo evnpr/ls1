@@ -155,6 +155,7 @@
         var content = editor.getSession().getValue();
         thisfile = document.getElementById("thisfile").innerHTML
         document.getElementById("loading").style.display = 'block';
+        setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
         $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
             alert('success');
             document.getElementById("loading").style.display = 'none';
@@ -174,4 +175,5 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
