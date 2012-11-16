@@ -143,7 +143,7 @@ class LsgitController < ApplicationController
                     if @commitMessage
                         newNotif = Notif.new(:name => @commitMessage)
                         newNotif.date = @date
-                        newNotif.code_commit = @codeCommit
+                        newNotif.commit_message = @codeCommit
                         newNotif.committer = @author
                         newNotif.save
                         an = AppsNotifs.new(:notif_id => newNotif.id)

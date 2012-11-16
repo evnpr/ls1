@@ -12,7 +12,7 @@
    <% @notifs.each do |n| %> 
     <div id="name" class="alert alert-info">
         <br>
-        <%= n.committer %> - <%= n.name.html_safe %> - <%= n.date %>
+        <%= n.committer %> - <%= n.name.html_safe %> - <%= n.date %> - <%= n.commit_message %>
     </div>
    <% end %>
 <% end %>
