@@ -4,15 +4,22 @@
 | <a href=<%= "#{thisUrl}&notif=me" %>>Me</a> 
 | <a href=<%= "#{thisUrl}&notif=notme" %>>Other People</a>
 | <a href=<%= "#{thisUrl}" %>>Delete Notifications</a>
-<a href="/lsgit/gitToDB?r=<%= thisUrl %>" style="float:right">Sync Notif with Git</a>    
+<a  style="float:right">Sync Notif with Git</a>    
 </p>
 <div class="Notif" style="overflow: scroll; height: 300px; width: 100%;">
    
 <% if !@notifs.nil? %>
    <% @notifs.each do |n| %> 
-    <div id="name" class="alert alert-info">
+    <div id="name" class="alert alert-info row span11">
         <br>
-        <%= n.committer %> - <%= n.name.html_safe %> - <%= n.date %> - <%= n.commit_message %>
+        <span style="float: left">
+        <%= n.committer %> - <%= n.name %> - <%= n.date %> 
+        </span>
+        <span style="float: right">
+        <a href="/lsgit/goToVersion?r=<%= thisUrl %>&c=<%= n.commit_message %>">
+            go to this version
+        </a>
+        </span>
     </div>
    <% end %>
 <% end %>
@@ -21,5 +28,20 @@
 
 
 
+<script type="text/javascript" charset="utf-8">
+    
+    function clickSyncdev(){
+        var r=confirm("really want to sync Git To Notifs? means you lose the record if you ever revert back");
+        if (r==true)
+          {
+          window.location = "/lsgit/gitToDB?r=<%= thisUrl %>"
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+        
+    }
 
+</script>
 

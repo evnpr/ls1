@@ -80,7 +80,7 @@ class LsgitController < ApplicationController
 
 
   def gitToDB 
-    r = params[:r]
+        r = params[:r]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
         `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
@@ -161,6 +161,9 @@ class LsgitController < ApplicationController
                         @codeCommit = c.split(" ")[1]
                     elsif c.include? "Author"
                         @author = c.split(" ")[1]
+                        if @author == 'Ubuntu'
+                            @author = 'Letspan'
+                        end
                     elsif c.include? "Date"
                         @date = c
                     end
@@ -170,6 +173,26 @@ class LsgitController < ApplicationController
 
         redirect_to "/list?r=-__-"+@apps_name and return
   end
+
+
+
+  def goToVersion
+
+        r = params[:r]
+        apps_name = r.split("-__-")[1]
+        @apps_name = apps_name
+        commit_code = params[:c]
+        `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
+
+        Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git reset --hard #{commit_code}` 
+        }
+
+        redirect_to "/list?r=-__-"+@apps_name and return
+
+  end
+
+
 
 end
 
