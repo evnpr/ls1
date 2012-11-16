@@ -16,9 +16,11 @@
         <%= n.committer %> - <%= n.name %> - <%= n.date %> 
         </span>
         <span style="float: right">
+        <% unless n.commit_message == '' or n.commit_message == null %>
         <a href="/lsgit/goToVersion?r=<%= thisUrl %>&c=<%= n.commit_message %>">
             go to this version
         </a>
+        <% end %>
         </span>
     </div>
    <% end %>
