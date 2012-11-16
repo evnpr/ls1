@@ -186,6 +186,7 @@ class LsgitController < ApplicationController
 
         Dir.chdir("#{@@directory}/#{@apps_name}"){
            `git reset --hard #{commit_code}` 
+           `git push ls1 master -f`
         }
 
         redirect_to "/list?r=-__-"+@apps_name and return
