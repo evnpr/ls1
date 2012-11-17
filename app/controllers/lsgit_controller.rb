@@ -140,16 +140,7 @@ class LsgitController < ApplicationController
                    # notifs.each do |n|
                    #    Notif.find(n.id).destroy
                    # end
-                    if @commitMessage and @author and @date
-                        newNotif = Notif.new(:name => @commitMessage)
-                        newNotif.date = @date
-                        newNotif.commit_message = @codeCommit
-                        newNotif.committer = @author
-                        newNotif.save
-                        an = AppsNotifs.new(:notif_id => newNotif.id)
-                        an.apps_id = Apps.where(:name => @apps_name).first.id
-                        an.save
-                    end
+                    
                 else
                     @commitMessage = c          #this is the real commit 
                 end
@@ -166,6 +157,17 @@ class LsgitController < ApplicationController
                         end
                     elsif c.include? "Date"
                         @date = c
+                    end
+                    if @commitMessage and @author and @date and @codeCommit != ''
+                        newNotif = Notif.new(:name => @commitMessage)
+                        newNotif.date = @date
+                        newNotif.commit_message = @codeCommit
+                        newNotif.committer = @author
+                        newNotif.save
+                        an = AppsNotifs.new(:notif_id => newNotif.id)
+                        an.apps_id = Apps.where(:name => @apps_name).first.id
+                        an.save
+                        @codeCommit = ''
                     end
                 end
             end
