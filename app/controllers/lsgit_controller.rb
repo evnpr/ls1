@@ -140,7 +140,7 @@ class LsgitController < ApplicationController
                    # notifs.each do |n|
                    #    Notif.find(n.id).destroy
                    # end
-                    if @commitMessage
+                    if @commitMessage and @author and @date
                         newNotif = Notif.new(:name => @commitMessage)
                         newNotif.date = @date
                         newNotif.commit_message = @codeCommit
@@ -196,6 +196,7 @@ class LsgitController < ApplicationController
 
 
 end
+
 
 
 
