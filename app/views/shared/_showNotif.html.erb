@@ -17,7 +17,7 @@
         </span>
         <span style="float: right">
         <% unless n.commit_message == '' or n.commit_message.nil? %>
-        <a href="/lsgit/goToVersion?r=<%= thisUrl %>&c=<%= n.commit_message %>">
+        <a onClick="if(window.confirm('really want to reset --hard <%= n.commit_message %> ?')){window.location='/lsgit/goToVersion?r=<%= thisUrl %>&c=<%= n.commit_message %>'}" style="cursor : pointer"/>
             go to this version
         </a>
         <% end %>
@@ -48,4 +48,5 @@
 
 
 </script>
+
 
