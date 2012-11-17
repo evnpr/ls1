@@ -137,9 +137,6 @@ class LsgitController < ApplicationController
             if bCD == true 
                 if c =~ /^\s*$/ 
                     bCD = false 
-                   # notifs.each do |n|
-                   #    Notif.find(n.id).destroy
-                   # end
                     
                 else
                     @commitMessage = c          #this is the real commit 
