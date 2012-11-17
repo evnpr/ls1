@@ -63,6 +63,7 @@ Letspan::Application.routes.draw do
 
 
   get "lsgit/gitToDB"
+  get "lsgit/goToVersion"
   
 
   # The priority is based upon order of creation:

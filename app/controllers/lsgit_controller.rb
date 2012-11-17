@@ -76,8 +76,11 @@ class LsgitController < ApplicationController
         redirect_to back and return
   end
 
+
+
+
   def gitToDB 
-    r = params[:r]
+        r = params[:r]
         apps_name = r.split("-__-")[1]
         @apps_name = apps_name
         `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
@@ -139,7 +142,9 @@ class LsgitController < ApplicationController
                    # end
                     if @commitMessage
                         newNotif = Notif.new(:name => @commitMessage)
-                        newNotif.committer = @date
+                        newNotif.date = @date
+                        newNotif.commit_message = @codeCommit
+                        newNotif.committer = @author
                         newNotif.save
                         an = AppsNotifs.new(:notif_id => newNotif.id)
                         an.apps_id = Apps.where(:name => @apps_name).first.id
@@ -153,9 +158,12 @@ class LsgitController < ApplicationController
                     bCD = true 
                 else                        #to get the other parameters
                     if c.include? "commit"
-                        codeCommit = c.split(" ")[1]
+                        @codeCommit = c.split(" ")[1]
                     elsif c.include? "Author"
-                        author = c.split(" ")[1]
+                        @author = c.split(" ")[1]
+                        if @author == 'Ubuntu'
+                            @author = 'Letspan'
+                        end
                     elsif c.include? "Date"
                         @date = c
                     end
@@ -165,6 +173,27 @@ class LsgitController < ApplicationController
 
         redirect_to "/list?r=-__-"+@apps_name and return
   end
+
+
+
+  def goToVersion
+
+        r = params[:r]
+        apps_name = r.split("-__-")[1]
+        @apps_name = apps_name
+        commit_code = params[:c]
+        `sudo chmod -R 777 /home/git/repositories/#{@apps_name}.git`
+
+        Dir.chdir("#{@@directory}/#{@apps_name}"){
+           `git reset --hard #{commit_code}` 
+           `git push ls1 master -f`
+        }
+
+        redirect_to "/list?r=-__-"+@apps_name and return
+
+  end
+
+
 
 end
 
