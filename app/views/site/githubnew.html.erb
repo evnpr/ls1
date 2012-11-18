@@ -34,6 +34,7 @@
 <th>Apps Name</th>
 <th>Github Name</th>
 <th>Github Project</th>
+<th>Repo</th>
 </tr>
 
 <% if @apps %>
@@ -42,6 +43,7 @@
         <td><font color="red"><%= a.virtual_name %></font></td>
         <td><font color="blue"><%= a.githubname %></font></td>
         <td><font color="brown"><%= a.githubproject %></font></td>
+        <td><font color="brown"><% if a.githubrepo == 0 { puts 'bitbucket' } else { puts 'github' } %></font></td>
     </tr>
     <% end %>
 <% end %>
