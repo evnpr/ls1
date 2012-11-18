@@ -605,12 +605,14 @@ class SiteController < ApplicationController
         Dir.chdir(@@directory+"/"+apps_name){
            `git init`
            `git remote rm lsorigin`
+           u = Apps.where(:name => apps_name).first
            if params[:which_repo] == 'bitbucket'
                 `git remote add lsorigin git@bitbucket.org:#{yourname}/#{yourproject}.git`
+                u.githubrepo = 0
            else
                 `git remote add lsorigin git@github.com:#{yourname}/#{yourproject}.git`
            end
-           u = Apps.where(:name => apps_name).first
+           
            u.githubname = yourname
            u.githubproject = yourproject
            u.save
