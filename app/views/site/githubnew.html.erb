@@ -43,7 +43,7 @@
         <td><font color="red"><%= a.virtual_name %></font></td>
         <td><font color="blue"><%= a.githubname %></font></td>
         <td><font color="brown"><%= a.githubproject %></font></td>
-        <td><font color="brown"><% if a.githubrepo == 0 { puts 'bitbucket' } else { puts 'github' } end %></font></td>
+        <td><font color="brown"><% if a.githubrepo == 0 %> bitbucket <% else %> github <% end %></font></td>
     </tr>
     <% end %>
 <% end %>
