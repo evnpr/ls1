@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116124646) do
+ActiveRecord::Schema.define(:version => 20121118155819) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "githubname"
     t.string   "githubproject"
     t.string   "virtual_name"
+    t.integer  "githubrepo",    :default => 1, :null => false
   end
 
   create_table "apps_notifs", :force => true do |t|
