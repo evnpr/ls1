@@ -93,7 +93,7 @@
     <p><input type="submit" value="Save" class="btn"></p>
     </form>
     <% @collaborator.each do |c| %>
-        <p><i class="icon-pencil"></i> 
+        <p class="theitem"><i class="icon-pencil"></i> 
             <%= c.user.username %>
             <span style="float:right"><a style="cursor: pointer" href="<%= "/site/deletecol?r=#{@current_path}&namecol=#{c.user.username}" %>">x</a>
             </span>
@@ -177,5 +177,6 @@
     //notiftimer=setInterval("retrieveNotif();",10000);
 </script>
 <% # render :partial => "shared/notifyjs" %>
+
 
 
