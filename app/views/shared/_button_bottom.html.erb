@@ -123,15 +123,13 @@
     }
     
     function clickSyncdev(){
-        var r=confirm("really want to pull from development server");
-        if (r==true)
-          {
-          window.location = "/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
+          
+        var commit = prompt("ENTER THIS APP NAME: ", "");
+        if (commit != '<%= @apps_name %>') {
+           window.location = "/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"            
+        }else{
+            alert("you enter wrong apps name")
+        }
         
     }
     
@@ -179,6 +177,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
