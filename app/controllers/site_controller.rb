@@ -749,10 +749,10 @@ class SiteController < ApplicationController
         #`sudo chmod -R 755 .` 
         `git add . -A`
         `git commit -m '#{@username} upload file #{uploaded_files}'`
-        `git push lsorigin2 master -f`
+        `git push ls1 master`
         if apps_name == 'ls1'
             `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
-            `git push lsdev master -f`
+            `git push ls1 master -f`
         end
       }
         redirect_to "/list?r="+params[:r] and return
@@ -985,6 +985,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
