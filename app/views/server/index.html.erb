@@ -83,7 +83,7 @@
     
 
 <select name="apps_name">
-<option value="">--Select Apps--</option>
+<option value=""> -- Select Apps -- </option>
 <% if @apps %>
     <% @apps.each do |a| %>
         <option value="<%= a.name %>"><%= a.virtual_name %></option>
