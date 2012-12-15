@@ -1,0 +1,9 @@
+Script started on Sat 15 Dec 2012 05:44:10 PM UTC
+Counting objects: 11, done.
+Compressing objects:  16% (1/6)   Compressing objects:  33% (2/6)   Compressing objects:  50% (3/6)   Compressing objects:  66% (4/6)   Compressing objects:  83% (5/6)   Compressing objects: 100% (6/6)   Compressing objects: 100% (6/6), done.
+Writing objects:  16% (1/6)   Writing objects:  33% (2/6)   Writing objects:  50% (3/6)   Writing objects:  66% (4/6)   Writing objects:  83% (5/6)   Writing objects: 100% (6/6)   Writing objects: 100% (6/6), 592 bytes, done.
+Total 6 (delta 4), reused 0 (delta 0)
+To ubuntu@letspan.com:/home/ubuntu/git-www/devletspan
+   21ebbeb..e612a51  master -> master
+
+Script done on Sat 15 Dec 2012 05:44:10 PM UTC
