@@ -112,7 +112,7 @@
     function clickSync(){
         
         var commit = prompt("ENTER THIS APP NAME: ", "");
-        if (commit != '<%= @apps_name %>') {
+        if (commit == '<%= @apps_name %>') {
             window.location = "/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"           
         }else{
             alert("you enter wrong apps name")
