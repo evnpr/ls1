@@ -25,6 +25,11 @@ class ServerController < ApplicationController
         produrl = params[:produrl]
         appsname = params[:apps_name]
         
+        if (appsname == '')
+            flash[:server] = "please choose your apps"
+            redirect_to "/server/index" and return
+        end
+        
         app = Apps.where(:name => appsname).first
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
@@ -136,6 +141,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
