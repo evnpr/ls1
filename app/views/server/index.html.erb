@@ -83,6 +83,7 @@
     
 
 <select name="apps_name">
+<option value="">--Select Apps--</option>
 <% if @apps %>
     <% @apps.each do |a| %>
         <option value="<%= a.name %>"><%= a.virtual_name %></option>
@@ -145,13 +146,12 @@
         document.getElementById("tableserver").style.display="block";
         document.getElementById("cursortable").style.display="none";
     }
-
-    
 </script>
 
 
 
 <br><br><br>
+
 
 
 
