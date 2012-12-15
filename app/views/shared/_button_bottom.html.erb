@@ -159,6 +159,7 @@
         $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
             alert('success');
             document.getElementById("loading").style.display = 'none';
+            document.getElementById("logbutton").style.display = 'block';
         });
     }
 
@@ -175,6 +176,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
