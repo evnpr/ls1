@@ -152,15 +152,18 @@
 
     function savegit(){
         var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
-        var content = editor.getSession().getValue();
-        thisfile = document.getElementById("thisfile").innerHTML
-        document.getElementById("loading").style.display = 'block';
-        setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
-        $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
-            alert('finish');
-            document.getElementById("loading").style.display = 'none';
-            document.getElementById("logbutton").style.display = 'block';
-        });
+        if (commit != '' && commit != null) {
+            var content = editor.getSession().getValue();
+            thisfile = document.getElementById("thisfile").innerHTML
+            document.getElementById("loading").style.display = 'block';
+            setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
+            $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
+                alert('finish');
+                document.getElementById("loading").style.display = 'none';
+                document.getElementById("logbutton").style.display = 'block';
+            });            
+        }
+
     }
 
 
