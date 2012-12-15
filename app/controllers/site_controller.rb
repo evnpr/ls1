@@ -398,6 +398,7 @@ class SiteController < ApplicationController
         an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         an.notif_id = n.id
         an.save
+        `sudo rm lslogcommit.txt`
         `script lslogcommit.txt -c "git push lsorigin2 master"`
         `git remote add ls1 git@letspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
@@ -975,6 +976,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
