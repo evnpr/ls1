@@ -398,13 +398,7 @@ class SiteController < ApplicationController
         an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         an.notif_id = n.id
         an.save
-        `git push lsorigin2 master -f`
-
-
-        if apps_name == 'ls1'
-            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
-            `git push lsdev master -f`
-        end
+        `script -c typescript.txt "git push lsorigin2 master"`
         `git remote add ls1 git@letspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
     }
@@ -985,6 +979,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
