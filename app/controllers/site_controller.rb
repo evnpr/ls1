@@ -439,7 +439,7 @@ class SiteController < ApplicationController
         `git commit -m '#{@username} push from ls'`
         `git push lsorigin master -f`
     }
-
+    flash[:list] = "succesful push"
     redirect_to "/content?r="+params[:r] and return
   end
 
@@ -456,6 +456,7 @@ class SiteController < ApplicationController
     Dir.chdir(@@directory+"/#{path}"){
         `git pull lsorigin master -f`
     }
+    flash[:list] = "successful pull"
     redirect_to "#{from}" and return
   end
 
@@ -993,6 +994,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
