@@ -7,10 +7,10 @@
     <% unless @title.nil? %>    
         <%= @title %>
     <% else %>
-        <% if request.host = 'www.gitspan.com' %>
+        <% if request.host_with_port = 'www.gitspan.com' %>
             <% @title = 'GitSpan | Cloud Development Framework!' %>
         <% else %>
-            <% @title = 'Letspan | Cloud Development Framework!' %>        
+            <% @title = 'Letspan | Cloud Development Framework! '+request.host_with_port %>        
         <% end %>
         <%= @title %>
     <% end %>
