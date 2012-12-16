@@ -590,11 +590,12 @@ class SiteController < ApplicationController
         redirect_to "/" and return
     end   
     if request.post?
+        apps_name = params[:apps_name]
         if apps_name == ''
             flash[:githubnew] = "please select apps name"
             redirect_to "/site/githubnew" and return           
         end
-        apps_name = params[:apps_name]
+
         yourname = params[:githubname]
         yourproject = params[:githubrepo]
         if Apps.exists?(:githubname => yourname, :githubproject => yourproject)
