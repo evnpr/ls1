@@ -27,7 +27,7 @@
 
 
 
-<div class="offset4 span1" style="margin-left:100px;">
+<div class="offset4 span1" style="margin-left:50px;">
     <form id="githubpull" action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
@@ -38,7 +38,7 @@
 
 
 <% if @showcontent %>
-<div class="span1" style="margin-left:-30px;">
+<div class="span1" style="margin-left:70px;">
     <form id="githubpush" action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
     <p><button class="btn btn-danger btn-large" onClick="githubPush()">push to <%= @repo %> </button></p>
@@ -53,7 +53,7 @@
        <a href="<%= @devurl %>" target="_blank"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
     </div>
     <div id="name" class="span1" style="float: right" onClick="clickSync()">
-       <a ><button class="btn btn-info btn-large">sync</button></a> 
+       <a ><button class="btn btn-danger btn-large">sync</button></a> 
     </div>    
     <div id="name" class="span1" style="float: right" onClick="clickSyncdev()">
        <a><button class="btn btn-info btn-large">pull from dev</button></a> 
