@@ -117,7 +117,13 @@ class SiteController < ApplicationController
     end
     unless back
         redirect_to "/" and return
-    end        
+    end
+    repo_type = Apps.where(:name => @apps_name).first.githubrepo
+    if repo_type == 1
+        @repo = 'GitHub'
+    elsif repo_type == 0
+        @repo = 'BitBucket'
+    end
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 
@@ -179,7 +185,13 @@ class SiteController < ApplicationController
     end
     unless back
         redirect_to "/" and return
-    end     
+    end   
+    repo_type = Apps.where(:name => @apps_name).first.githubrepo
+    if repo_type == 1
+        @repo = 'GitHub'
+    elsif repo_type == 0
+        @repo = 'BitBucket'
+    end
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 

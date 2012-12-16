@@ -31,7 +31,7 @@
     <form id="githubpull" action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
     <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-    <p><button class="btn btn-large btn-info" onClick="githubPull()">pull from GitHub or Bitbucket</button></p>
+    <p><button class="btn btn-large btn-info" onClick="githubPull()">pull from <%= @repo %></button></p>
     </form>
 </div>
 
@@ -41,7 +41,7 @@
 <div class="span1" style="margin-left:-30px;">
     <form id="githubpush" action="/site/github" method="post" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= @r %>" />
-    <p><button class="btn btn-danger btn-large" onClick="githubPush()">push to GitHub or Bitbucket</button></p>
+    <p><button class="btn btn-danger btn-large" onClick="githubPush()">push to <%= @repo %> </button></p>
     </form>
 </div>
 <% end %>
