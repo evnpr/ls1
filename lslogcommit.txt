@@ -1,0 +1,9 @@
+Script started on Sun 16 Dec 2012 08:57:00 AM UTC
+Counting objects: 18, done.
+Compressing objects:   9% (1/11)   Compressing objects:  18% (2/11)   Compressing objects:  27% (3/11)   Compressing objects:  36% (4/11)   Compressing objects:  45% (5/11)   Compressing objects:  54% (6/11)   Compressing objects:  63% (7/11)   Compressing objects:  72% (8/11)   Compressing objects:  81% (9/11)   Compressing objects:  90% (10/11)   Compressing objects: 100% (11/11)   Compressing objects: 100% (11/11), done.
+Writing objects:   9% (1/11)   Writing objects:  18% (2/11)   Writing objects:  27% (3/11)   Writing objects:  36% (4/11)   Writing objects:  45% (5/11)   Writing objects:  54% (6/11)   Writing objects:  63% (7/11)   Writing objects:  72% (8/11)   Writing objects:  81% (9/11)   Writing objects:  90% (10/11)   Writing objects: 100% (11/11)   Writing objects: 100% (11/11), 1.29 KiB, done.
+Total 11 (delta 7), reused 0 (delta 0)
+To ubuntu@letspan.com:/home/ubuntu/git-www/devletspan
+   cacd535..82f63a7  master -> master
+
+Script done on Sun 16 Dec 2012 08:57:01 AM UTC
