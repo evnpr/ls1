@@ -11,7 +11,11 @@ class SiteController < ApplicationController
 
   def index
     if @username
-        redirect_to "/user/index"
+        redirect_to "/user/index" and return
+    end
+    
+    if request.host == 'letspan.com'
+        redirect_to "http://www.gitspan.com" and return
     end
   end
 
@@ -994,6 +998,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 

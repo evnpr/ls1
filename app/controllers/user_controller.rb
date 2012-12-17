@@ -32,6 +32,9 @@ class UserController < ApplicationController
     unless @username
         redirect_to "/" and return
     end
+    if request.host == 'letspan.com'
+        redirect_to "http://www.gitspan.com" and return
+    end
     if User.exists?(:username => @username)
         apps = User.where(:username => @username).first.appss.all(:order => 'name')
         if apps.length > 0
@@ -82,6 +85,7 @@ class UserController < ApplicationController
   end
   
 end
+
 
 
 
