@@ -191,10 +191,16 @@ class LsgitController < ApplicationController
         redirect_to "/list?r=-__-"+@apps_name and return
 
   end
+  
+  def mytest
+  
+        `touch /var/www/ls/upload/ls1/hebat`
+  end
 
 
 
 end
+
 
 
 

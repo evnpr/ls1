@@ -171,12 +171,13 @@ document.onkeydown = checkKeycode
     if (window.event) keycode = window.event.keyCode;
     else if (e) keycode = e.which;
     if(keycode==27){
-        window.location = "/content?r=<%= @r %>&vim=1";
+        alert("vim mode is no longer supported");
     }
 }
     
     
 </script>
+
 
 
 
