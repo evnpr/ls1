@@ -8,13 +8,33 @@ class LsgitController < ApplicationController
 
   @@directory = "/var/www/ls/upload"
 
-  
+
+
+
   def index
-    
 
     r = params[:path]
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
+
+    def event_happen(apps_name)
+        if !Apps.exists? (:name => apps_name)
+            return true
+        end
+        a = Apps.where(:name => apps_name).first
+        u = a.updateapp.first
+        if u.updated == 1
+            u.updated = 0
+            u.save
+            return false 
+        else
+            return true
+        end
+    end
+
+    while event_happen?
+        sleep 2
+    end
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
   #              Apps.where(:name => @apps_name).first.id, 
   #              User.where(:username => @username).first.id, 
@@ -27,15 +47,16 @@ class LsgitController < ApplicationController
         listNotif = User.where(:username => @username).first.notifs.order("id DESC")
         @listNotif = listNotifAll & listNotif
     end
+
     
     render :json => @listNotif.to_json and return
     
-    @r = r
-    
-    render :layout => false
+  # @r = r
+  # render :layout => false
 
-    
   end
+
+
 
 
   def deleteNotif 
@@ -58,7 +79,9 @@ class LsgitController < ApplicationController
     render :layout => false
     
   end
-  
+ 
+
+
   
   def syncdev
         back = params[:back]
