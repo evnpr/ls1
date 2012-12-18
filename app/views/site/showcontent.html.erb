@@ -129,6 +129,10 @@ function retrieveNotif(){
               //  message: { text: result[0].commit_message },
               //  type: 'blackgloss',
               //}).show();
+             if(noUpdate == 1){
+                deleteNotif();
+                return
+             }
              if(result[0] == undefined){
                 return;
              }

@@ -148,7 +148,10 @@
     }
 
 
+var noUpdate = 0;
+
     function savegit(){
+        var noUpdate = 1;
         var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
         if (commit != '' && commit != null) {
             var content = editor.getSession().getValue();
