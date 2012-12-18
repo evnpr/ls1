@@ -4,6 +4,7 @@ class Apps < ActiveRecord::Base
     has_one :server
     has_one :thedatabase
     has_and_belongs_to_many :notifs
+    has_many :updateapps
 end
 
 

@@ -196,8 +196,14 @@ class LsgitController < ApplicationController
   def updateApp
         apps = params[:apps]
         a = Apps.where(:name => apps).first
-        u = Updateapp.find(a.id)
-        u.update = 1
+        if Updateapp.exists? (:apps_id => a.id)
+            u = Updateapp.where(:apps_id => a.id)
+            u.update = 1
+        else
+            u = Updateapp.new
+            u.update = 1
+            u.apps_id = a.id
+        end
         u.save
   end
 
