@@ -19,7 +19,9 @@ class LsgitController < ApplicationController
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
 
-    def event_happen(apps_name)
+    user_id = User.where(:username => @username).first.id
+
+    def event_happen(apps_name, user_id)
         a = Apps.where(:name => apps_name).first
         if !Updateapp.exists?(:apps_id => a.id)
             return true
@@ -28,12 +30,15 @@ class LsgitController < ApplicationController
         if u.updated == true
             u.updated = false
             u.save
-            return false 
+            if NotifsUsers.exists?(:user_id => user_id)
+                return false 
+            end
+            return true
         end
         return true
     end
 
-    while event_happen(apps_name)
+    while event_happen(apps_name, user_id)
         sleep 2
     end
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
@@ -41,7 +46,6 @@ class LsgitController < ApplicationController
   #              User.where(:username => @username).first.id, 
   #              @username)
 
-    user_id = User.where(:username => @username).first.id
     apps_id = Apps.where(:name => @apps_name).first.id
     if NotifsUsers.exists?(:user_id => user_id)
         listNotifAll = Apps.find(apps_id).notifs.order("id DESC")
