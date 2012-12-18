@@ -128,7 +128,7 @@ function retrieveNotif(){
               //  type: 'blackgloss',
               //}).show();
              document.getElementById("notifUpdate").style.display = "block";
-             document.getElementById("notifUpdate").innerHTML = result[0].commit_message;
+             document.getElementById("notifUpdate").innerHTML = result[0].commit_message + " please press <a href='#' onClick='deleteNotif()'>this</a> to delete this notif";
         }
     });    
 }
