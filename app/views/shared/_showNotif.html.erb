@@ -17,9 +17,11 @@
         </span>
         <span style="float: right">
         <% unless n.commit_message == '' or n.commit_message.nil? %>
+            <% if @owner == 1 %>
         <a onClick="if(window.confirm('really want to reset --hard <%= n.commit_message %> ?')){window.location='/lsgit/goToVersion?r=<%= thisUrl %>&c=<%= n.commit_message %>'}" style="cursor : pointer"/>
             go to this version
         </a>
+            <% end %>
         <% end %>
         </span>
     </div>
@@ -48,6 +50,7 @@
 </script>
 
 
+            <% if @owner == 1 %>
 <div class="offset9" style="margin-top: 50px">
     <form action="/lsgit/goToVersion" method="get" accept-charset="utf-8">
     <input type="hidden" name="r" value="<%= thisUrl %>">
@@ -55,4 +58,4 @@
     <p><input type="submit" value="Submit" class="btn btn-danger"></p>
     </form>
 </div>
-
+            <% end %>

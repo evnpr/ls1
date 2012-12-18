@@ -255,6 +255,9 @@ class SiteController < ApplicationController
     end
     @done = 'done rsync!'
     @path = splitpath(r)
+    if @username == Apps.where(:name => @apps_name).first.user.username
+        @owner = 1
+    end
     @notifs = showNotif(@apps_name,@username)
     render :layout => 'editor'
   end
