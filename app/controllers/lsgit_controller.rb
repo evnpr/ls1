@@ -67,7 +67,6 @@ class LsgitController < ApplicationController
 
   def deleteNotif 
     return
-    
     r = params[:path]
     #notif_id = params[:notif_id]
     apps_name = r.split("-__-")[1]
