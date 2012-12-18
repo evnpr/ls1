@@ -27,6 +27,7 @@
 
 
 
+            <% if @owner == 1 %>
 <div class="offset4 span1" style="margin-left:50px;">
     <form id="githubpull" action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
@@ -45,6 +46,7 @@
     </form>
 </div>
 <% end %>
+            <% end %>
 
     <div id="name" class="span1" style="float: right">
        <a href="<%= @produrl %>"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
@@ -52,6 +54,9 @@
     <div id="name" class="span1" style="float: right">
        <a href="<%= @devurl %>" target="_blank"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
     </div>
+
+
+            <% if @owner == 1 %>
     <div id="name" class="span1" style="float: right" onClick="clickSync()">
        <a ><button class="btn btn-danger btn-large">sync</button></a> 
     </div>    
@@ -60,7 +65,7 @@
     </div>
 
 </div>
-
+            <% end %>
 
 
 <div id="name" class="row-fluid" style="display: none">
