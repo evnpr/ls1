@@ -1,6 +1,8 @@
 class LsgitController < ApplicationController
   before_filter :get_users
+
   include SiteHelper
+
   def get_users
     @username = cookies[:username] 
   end
@@ -70,11 +72,11 @@ class LsgitController < ApplicationController
   #              User.where(:username => @username).first.id, 
   #              @username)
 
-    user_id = User.where(:username => @username).first.id
-    apps_id = Apps.where(:name => @apps_name).first.id
+  #  user_id = User.where(:username => @username).first.id
+  #  apps_id = Apps.where(:name => @apps_name).first.id
 
-    nu = NotifsUsers.where(:user_id => user_id, :apps_id => apps_id)
-    nu.destroy_all
+  #  nu = NotifsUsers.where(:user_id => user_id, :apps_id => apps_id)
+  #  nu.destroy_all
 
     return
     
