@@ -203,13 +203,14 @@ class LsgitController < ApplicationController
             u = Updateapp.where(:apps_id => a.id).first
             u.updated = 1
             u.save
-            return
         end
         
-        u = Updateapp.new
-        u.updated = 1
-        u.apps_id = a.id
-        u.save
+        if !Updateapp.exists?(:apps_id => a.id)
+            u = Updateapp.new
+            u.updated = 1
+            u.apps_id = a.id
+            u.save
+        end
 
         n = Notif.new(:committer => @username)
         #n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
