@@ -66,6 +66,7 @@ class LsgitController < ApplicationController
 
 
   def deleteNotif 
+    return
     
     r = params[:path]
     #notif_id = params[:notif_id]
@@ -82,8 +83,6 @@ class LsgitController < ApplicationController
     nu = NotifsUsers.where(:user_id => user_id, :apps_id => apps_id)
     nu.destroy_all
 
-    return
-    
   end
  
 
