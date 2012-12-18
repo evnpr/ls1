@@ -62,7 +62,7 @@
 
   Notification.prototype.show = function () {
     if(this.options.fadeOut.enabled)
-      this.$note.delay(this.options.fadeOut.delay || 3000).fadeOut('slow', $.proxy(onClose, this));
+      this.$note.delay(this.options.fadeOut.delay || 13000).fadeOut('slow', $.proxy(onClose, this));
 
     this.$element.append(this.$note);
     //this.$note.alert();
@@ -70,7 +70,7 @@
 
   Notification.prototype.hide = function () {
     if(this.options.fadeOut.enabled)
-      this.$note.delay(this.options.fadeOut.delay || 3000).fadeOut('slow', $.proxy(onClose, this));
+      this.$note.delay(this.options.fadeOut.delay || 13000).fadeOut('slow', $.proxy(onClose, this));
     else onClose.call(this);
   };
 
@@ -84,7 +84,7 @@
     transition: 'fade',
     fadeOut: {
       enabled: true,
-      delay: 10000
+      delay: 13000
     },
     message: null,
     onClose: function () {
