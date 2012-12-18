@@ -118,7 +118,9 @@ setInterval("retrieveNotif()", 5000);
 <script src="/bootstrap-notify-master/js/bootstrap-notify.js"></script>
 
 <script>
+
 function retrieveNotif(){
+    alert(noUpdate);
     $.ajax({
         type: "POST",
         url: "/lsgit/index",
