@@ -75,8 +75,8 @@ class LsgitController < ApplicationController
 
     nu = NotifsUsers.where(:user_id => user_id, :apps_id => apps_id)
     nu.destroy_all
-    
-    render :layout => false
+
+    return
     
   end
  
