@@ -15,7 +15,6 @@ class LsgitController < ApplicationController
 
   def index
 
-            return false 
     r = params[:path]
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
