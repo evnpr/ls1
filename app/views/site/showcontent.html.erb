@@ -122,6 +122,7 @@ setInterval("retrieveNotif()", 5000);
 function retrieveNotif(){
     if(noUpdate == 1){
        noUpdate = 0
+       deleteNotif();
        return
 
     }
