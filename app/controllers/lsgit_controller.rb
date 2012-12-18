@@ -32,6 +32,9 @@ class LsgitController < ApplicationController
         end
     end
 
+    while event_happen(apps_name)
+        sleep 2
+    end
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
   #              Apps.where(:name => @apps_name).first.id, 
   #              User.where(:username => @username).first.id, 
