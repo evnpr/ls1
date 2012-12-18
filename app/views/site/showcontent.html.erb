@@ -117,7 +117,6 @@ function retrieveNotif(){
         data: "path='<%= @current_path %>-__-'",
         dataType: "json",
         success: function(result){     
-            //alert(result[0].name)
               $('.top-right').notify({
                 message: { text: result[0].commit_message },
                 type: 'blackgloss',
