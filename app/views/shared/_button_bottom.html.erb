@@ -151,7 +151,6 @@
 var noUpdate = 0;
 
     function savegit(){
-        noUpdate = 1;
         var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
         if (commit != '' && commit != null) {
             var content = editor.getSession().getValue();
@@ -162,6 +161,7 @@ var noUpdate = 0;
                 //alert('finish');
                 document.getElementById("loading").style.display = 'none';
                 document.getElementById("logbutton").style.display = 'block';
+        noUpdate = 1;
             });            
         }
 
@@ -180,16 +180,6 @@ document.onkeydown = checkKeycode
     
     
 </script>
-
-
-
-
-
-
-
-
-
-
 
 
 
