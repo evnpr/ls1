@@ -198,13 +198,13 @@ class LsgitController < ApplicationController
         a = Apps.where(:name => apps).first
         if Updateapp.exists?(:apps_id => a.id)
             u = Updateapp.where(:apps_id => a.id)
-            u.update = 1
+            u.updated = 1
             u.save
             return
         end
         
         u = Updateapp.new
-        u.update = 1
+        u.updated = 1
         u.apps_id = a.id
         
   end
