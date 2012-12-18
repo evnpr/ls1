@@ -108,6 +108,7 @@ setInterval("retrieveNotif()", 5000);
       
       function deleteNotif(){        
         $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
+        window.location = '';
       }
   </script>
   
@@ -127,8 +128,11 @@ function retrieveNotif(){
               //  message: { text: result[0].commit_message },
               //  type: 'blackgloss',
               //}).show();
+             if(result[0] == undefined){
+                return;
+             }
              document.getElementById("notifUpdate").style.display = "block";
-             document.getElementById("notifUpdate").innerHTML = result[0].commit_message + " please press <a href='#' onClick='deleteNotif()'>this</a> to delete this notif";
+             document.getElementById("notifUpdate").innerHTML = result[0].commit_message + " please press <a onClick='deleteNotif()'>this</a> to delete this notif";
         }
     });    
 }
