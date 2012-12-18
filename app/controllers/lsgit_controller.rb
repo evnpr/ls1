@@ -19,7 +19,10 @@ class LsgitController < ApplicationController
 
     def event_happen(apps_name)
         a = Apps.where(:name => apps_name).first
-        u = a.updateapp.first
+        if !Updateapp.exists?(:apps_id => a.id)
+            return true
+        end
+        u = Updateapp.where(:apps_id => a.id).first
         if u.updated == 1
             u.updated = 0
             u.save
