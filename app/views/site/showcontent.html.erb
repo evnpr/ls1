@@ -143,6 +143,7 @@ function retrieveNotif(){
              document.getElementById("notifUpdate").style.display = "block";
              document.getElementById("notifUpdate").innerHTML = result[0].commit_message + " <span style='float:right'>please press <a onClick='deleteNotif()' style='cursor:pointer'>this</a> to delete this notif </span>";
 
+            retrieveNotif();
         }
     });    
 
