@@ -65,7 +65,7 @@
       this.$note.delay(this.options.fadeOut.delay || 3000).fadeOut('slow', $.proxy(onClose, this));
 
     this.$element.append(this.$note);
-    this.$note.alert();
+    //this.$note.alert();
   };
 
   Notification.prototype.hide = function () {
@@ -87,7 +87,9 @@
       delay: 4000
     },
     message: null,
-    onClose: function () {deleteNotif();},
+    onClose: function () {
+//deleteNotif();
+    },
     onClosed: function () {}
   }
 }(window.jQuery);

@@ -53,6 +53,12 @@
 <iframe src="/ace-editor/vim?r=<%= @r %>" frameborder="0" width="100%" height="400px"></iframe>
 <% else %>
 <br>
+
+
+    <div class="alert alert-error" id="notifUpdate" style="display : none">
+    </div>
+
+
 <div name="notifyalertcontainer">
     <div name="notifyalert" style="display:none" class="alert alert-info">    
         <p></p>
@@ -90,7 +96,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-//setInterval("retrieveNotif()", 5000);
+setInterval("retrieveNotif()", 5000);
 </script>
 
 <% # render :partial => "shared/notifyjs" %>
@@ -102,6 +108,7 @@
       
       function deleteNotif(){        
         $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
+        window.location = '';
       }
   </script>
   
@@ -117,22 +124,18 @@ function retrieveNotif(){
         data: "path='<%= @current_path %>-__-'",
         dataType: "json",
         success: function(result){     
-            //alert(result[0].name)
-              $('.top-right').notify({
-                message: { text: result[0].name.split("'>")[1].split("</a>")[0] },
-                type: 'blackgloss',
-              }).show();
-
+              //$('.top-right').notify({
+              //  message: { text: result[0].commit_message },
+              //  type: 'blackgloss',
+              //}).show();
+             if(result[0] == undefined){
+                return;
+             }
+             document.getElementById("notifUpdate").style.display = "block";
+             document.getElementById("notifUpdate").innerHTML = result[0].commit_message + " <span style='float:right'>please press <a onClick='deleteNotif()' style='cursor:pointer'>this</a> to delete this notif </span>";
         }
     });    
 }
 
-
+//test
 </script>  
-
-
-
-
-
-
-

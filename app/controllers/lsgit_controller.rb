@@ -40,9 +40,8 @@ class LsgitController < ApplicationController
 
   def deleteNotif 
     
-
     r = params[:path]
-    notif_id = params[:notif_id]
+    #notif_id = params[:notif_id]
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
   #  authenticate(Apps.where(:name => @apps_name).first.user.username, 
@@ -56,9 +55,7 @@ class LsgitController < ApplicationController
     nu = NotifsUsers.where(:user_id => user_id, :apps_id => apps_id)
     nu.destroy_all
     
-    
     render :layout => false
-
     
   end
   
@@ -120,7 +117,7 @@ class LsgitController < ApplicationController
             else
                 if c =~ /^\s*$/
                     bCD = true 
-                else                        #to get the other parameters
+                else                            #to get the other parameters
                 end
             end
             contentReverse << c 
@@ -144,7 +141,7 @@ class LsgitController < ApplicationController
             else
                 if c =~ /^\s*$/
                     bCD = true 
-                else                        #to get the other parameters
+                else                            #to get the other parameters
                     if c.include? "commit"
                         @codeCommit = c.split(" ")[1]
                     elsif c.include? "Author"
@@ -169,7 +166,6 @@ class LsgitController < ApplicationController
                 end
             end
         end
-
         redirect_to "/list?r=-__-"+@apps_name and return
   end
 
@@ -192,19 +188,53 @@ class LsgitController < ApplicationController
 
   end
   
-  def mytest
-  
-        `touch /var/www/ls/upload/ls1/hebat`
+
+
+  def updateApp
+        @username = 'somebody' 
+        apps = params[:apps]
+        @apps_name = apps
+        a = Apps.where(:name => apps).first
+
+        if Updateapp.exists?(:apps_id => a.id)
+            u = Updateapp.where(:apps_id => a.id).first
+            u.updated = 1
+            u.save
+        end
+        
+        if !Updateapp.exists?(:apps_id => a.id)
+            u = Updateapp.new
+            u.updated = 1
+            u.apps_id = a.id
+            u.save
+        end
+
+        n = Notif.new(:committer => @username)
+        #n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
+        n.name = "#{@username}"
+        n.commit_message = "#{@username} push to GitSpan please reload the page if you are editing"
+        n.save
+        
+        owner = Apps.where(:name => @apps_name).first.user.id
+        nu = NotifsUsers.new(:user_id => owner)
+        nu.notif_id = n.id
+        nu.apps_id = Apps.where(:name => @apps_name).first.id
+        nu.save
+        collaborators = Apps.where(:name => @apps_name).first.collaborators
+        collaborators.each do |c|
+            nu = NotifsUsers.new(:user_id => c.user_id)
+            nu.notif_id = n.id
+            nu.apps_id = Apps.where(:name => @apps_name).first.id
+            nu.save
+        end
+        an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
+        an.notif_id = n.id
+        an.save
+        
   end
 
 
 
 end
-
-
-
-
-
-
 
 
