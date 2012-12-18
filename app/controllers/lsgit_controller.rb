@@ -120,7 +120,7 @@ class LsgitController < ApplicationController
             else
                 if c =~ /^\s*$/
                     bCD = true 
-                else                        #to get the other parameters
+                else                            #to get the other parameters
                 end
             end
             contentReverse << c 
@@ -144,7 +144,7 @@ class LsgitController < ApplicationController
             else
                 if c =~ /^\s*$/
                     bCD = true 
-                else                        #to get the other parameters
+                else                            #to get the other parameters
                     if c.include? "commit"
                         @codeCommit = c.split(" ")[1]
                     elsif c.include? "Author"
@@ -169,7 +169,6 @@ class LsgitController < ApplicationController
                 end
             end
         end
-
         redirect_to "/list?r=-__-"+@apps_name and return
   end
 
@@ -192,19 +191,18 @@ class LsgitController < ApplicationController
 
   end
   
-  def mytest
-  
-        `touch /var/www/ls/upload/ls1/hebat`
+
+
+  def updateApp
+        apps = params[:apps]
+        a = Apps.where(:name => apps).first
+        u = Updateapp.find(a.id)
+        u.update = 1
+        u.save
   end
 
 
 
 end
-
-
-
-
-
-
 
 
