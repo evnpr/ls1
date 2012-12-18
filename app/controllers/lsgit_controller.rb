@@ -194,12 +194,14 @@ class LsgitController < ApplicationController
 
 
   def updateApp
+        @username = params[:username]
         apps = params[:apps]
+        @apps_name = apps
         a = Apps.where(:name => apps).first
 
         if Updateapp.exists?(:apps_id => a.id)
             u = Updateapp.where(:apps_id => a.id).first
-            u.updated = 0
+            u.updated = 1
             u.save
             return
         end
@@ -208,6 +210,30 @@ class LsgitController < ApplicationController
         u.updated = 1
         u.apps_id = a.id
         u.save
+
+        n = Notif.new(:committer => @username)
+        #n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
+        n.name = "#{@username}"
+        n.commit_message = 'push to GitSpan'
+        n.save
+        
+        owner = Apps.where(:name => @apps_name).first.user.id
+        nu = NotifsUsers.new(:user_id => owner)
+        nu.notif_id = n.id
+        nu.apps_id = Apps.where(:name => @apps_name).first.id
+        unless owner == User.where(:username => @username).first.id
+            nu.save
+        end
+        collaborators = Apps.where(:name => @apps_name).first.collaborators
+        collaborators.each do |c|
+            nu = NotifsUsers.new(:user_id => c.user_id)
+            nu.notif_id = n.id
+            nu.apps_id = Apps.where(:name => @apps_name).first.id
+            nu.save
+        end
+        an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
+        an.notif_id = n.id
+        an.save
         
   end
 
