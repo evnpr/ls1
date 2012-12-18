@@ -65,7 +65,7 @@ Letspan::Application.routes.draw do
   get "lsgit/gitToDB"
   get "lsgit/goToVersion"
   
-  match "updateApp/:apps" => 'lsgit#updateApp'
+  match "updateApp/:apps/:username" => 'lsgit#updateApp'
   
 
   # The priority is based upon order of creation:
