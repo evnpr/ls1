@@ -120,7 +120,11 @@ setInterval("retrieveNotif()", 5000);
 <script>
 
 function retrieveNotif(){
-    alert(noUpdate);
+    if(noUpdate == 1){
+       noUpdate = 0
+       return
+
+    }
     $.ajax({
         type: "POST",
         url: "/lsgit/index",
@@ -131,11 +135,6 @@ function retrieveNotif(){
               //  message: { text: result[0].commit_message },
               //  type: 'blackgloss',
               //}).show();
-             if(noUpdate == 1){
-                noUpdate = 0
-                return
-
-             }
              if(result[0] == undefined){
                 return;
              }
