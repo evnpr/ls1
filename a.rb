@@ -21,7 +21,7 @@ content.each_line do |c|
     else
         if c =~ /^\s*$/
             bCD = true 
-        else                        #to get the other parameters
+        else                        #to get the other parameter
             if c.include? "commit"
                 codeCommit = c.split(" ")[1]
             elsif c.include? "Author"
@@ -36,21 +36,4 @@ end
 
 puts u
 puts i
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
