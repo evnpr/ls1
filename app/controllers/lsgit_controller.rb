@@ -215,7 +215,7 @@ class LsgitController < ApplicationController
         n = Notif.new(:committer => @username)
         #n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
         n.name = "#{@username}"
-        n.commit_message = 'push to GitSpan'
+        n.commit_message = 'somebody push to GitSpan please reload the page if you are editing'
         n.save
         
         owner = Apps.where(:name => @apps_name).first.user.id
