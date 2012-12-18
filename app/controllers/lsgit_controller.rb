@@ -28,7 +28,7 @@ class LsgitController < ApplicationController
             u.save
             return false 
         else
-            return true
+            return false
         end
     end
 
