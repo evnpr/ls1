@@ -221,9 +221,7 @@ class LsgitController < ApplicationController
         nu = NotifsUsers.new(:user_id => owner)
         nu.notif_id = n.id
         nu.apps_id = Apps.where(:name => @apps_name).first.id
-        unless owner == User.where(:username => @username).first.id
-            nu.save
-        end
+        nu.save
         collaborators = Apps.where(:name => @apps_name).first.collaborators
         collaborators.each do |c|
             nu = NotifsUsers.new(:user_id => c.user_id)
