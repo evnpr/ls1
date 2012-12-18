@@ -103,10 +103,9 @@
       });
       
       function deleteNotif(){        
-        $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' }, function(data){
-            alert('success delete'); 
-        });
+        $.post('/lsgit/deleteNotif', { path: '<%=@current_path%>-__-' });
         document.getElementById("notifUpdate").style.display = "none";
+        
       }
   </script>
   
