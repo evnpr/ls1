@@ -1,9 +1,14 @@
 <h2>Notifications</h2>
+
 <% thisUrl = request.fullpath.split("&notif")[0] %>
-<p><a href=<%= "#{thisUrl}" %>>All</a> 
+
+<p>
+<!--
+<a href=<%= "#{thisUrl}" %>>All</a> 
 | <a href=<%= "#{thisUrl}&notif=me" %>>Me</a> 
 | <a href=<%= "#{thisUrl}&notif=notme" %>>Other People</a>
 | <a href=<%= "#{thisUrl}" %>>Delete Notifications</a>
+-->
             <% if @owner == 1 %>
 <a  style="float:right; cursor: pointer" onClick="clickSyncGit()">Sync Notif with Git</a>    
             <% end %>
@@ -61,3 +66,4 @@
     </form>
 </div>
             <% end %>
+
