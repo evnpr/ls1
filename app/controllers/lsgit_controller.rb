@@ -115,7 +115,7 @@ class LsgitController < ApplicationController
         }
 
         Dir.chdir("/home/git/repositories/#{@apps_name}.git"){
-           `git log > loggit` 
+           `git log -101 > loggit` 
         }
 
 
@@ -263,5 +263,6 @@ class LsgitController < ApplicationController
 
 
 end
+
 
 
