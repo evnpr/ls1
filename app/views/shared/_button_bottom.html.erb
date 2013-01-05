@@ -20,11 +20,7 @@
     <% end %>
 
 
-
-
-
 <% end %>
-
 
 
             <% if @owner == 1 %>
@@ -156,7 +152,7 @@
 var noUpdate = 0;
 
     function savegit(){
-        var commit = prompt("Commit: ", "just edit <%= @current_path.split("-__-").join("/") %>");
+        var commit = prompt("Commit: ", "<%= @commit_message %>");
         if (commit != '' && commit != null) {
             var content = editor.getSession().getValue();
             thisfile = document.getElementById("thisfile").innerHTML
@@ -185,6 +181,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 

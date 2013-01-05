@@ -258,6 +258,7 @@ class SiteController < ApplicationController
     if @username == Apps.where(:name => @apps_name).first.user.username
         @owner = 1
     end
+    @commit_message = session[:commit]
     @notifs = showNotif(@apps_name,@username)
     render :layout => 'editor'
   end
@@ -368,6 +369,7 @@ class SiteController < ApplicationController
     end
     r = params[:thisfile]
     commit = params[:commit]
+    session[:commit] = commit
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
@@ -394,7 +396,7 @@ class SiteController < ApplicationController
         `git pull ls1 master -f`
         n = Notif.new(:committer => @username)
         #n.name = "<a href='/content?r=#{r}'>[commited] #{@username} edited #{path}</a>"
-        n.name = "[commited] #{@username} edited #{path}"
+        n.name = "[commited] #{@username} edited #{path} - #{commit}"
         n.committer = @username
         n.commit_message = `git log --pretty=format:'%h' -n 1`
         n.save
@@ -1001,6 +1003,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
