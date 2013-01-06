@@ -267,7 +267,13 @@ class SiteController < ApplicationController
     @commit_message = session["commit_#{@apps_name}"]
     @notifs = showNotif(@apps_name,@username)
     @githubname = Apps.where(:name => @apps_name).first.githubname
+    if @githubname.nil?
+        @githubname = ""
+    end
     @githubproject = Apps.where(:name => @apps_name).first.githubproject
+    if @githubproject.nil?
+        @githubproject = ""
+    end
     render :layout => 'editor'
   end
 
