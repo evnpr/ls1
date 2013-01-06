@@ -205,6 +205,8 @@ class SiteController < ApplicationController
     if Apps.where(:name => @apps_name).first.server
         @devurl = Apps.where(:name => @apps_name).first.server.devurl
         @produrl = Apps.where(:name => @apps_name).first.server.produrl
+        @devserver = Apps.where(:name => @apps_name).first.server.devserver
+        @prodserver = Apps.where(:name => @apps_name).first.server.prodserver
         if @devurl == '' or @devurl.nil?
             @devurl = ""
         end
@@ -1005,6 +1007,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 

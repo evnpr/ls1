@@ -55,14 +55,14 @@
     </div>
     <% end %>
 
-            <% if @owner == 1 %>
+    <% if @owner == 1 and @prodserver != '' and @devserver != '' %>
     <div id="name" class="span1" style="float: right" onClick="clickSync()">
        <a ><button class="btn btn-danger btn-large">sync</button></a> 
     </div>    
     <div id="name" class="span1" style="float: right" onClick="clickSyncdev()">
        <a><button class="btn btn-info btn-large">pull from dev</button></a> 
     </div>
-            <% end %>
+    <% end %>
 
 </div>
 
@@ -186,6 +186,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
