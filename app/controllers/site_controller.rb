@@ -170,15 +170,11 @@ class SiteController < ApplicationController
         @owner = 1
     end
     @notifs = showNotif(@apps_name,@username)
+    @githubname = Apps.where(:name => @apps_name).first.githubname
+    @githubproject = Apps.where(:name => @apps_name).first.githubproject
   end
 
 
-  def listapps
-    if(request.GET[:r].nil?) then
-        @listfolder = Dir.glob("#{@@directory}/*/").sort
-        @listfile = {}
-    end
-  end
 
 
   def showcontent
@@ -270,6 +266,8 @@ class SiteController < ApplicationController
     end
     @commit_message = session["commit_#{@apps_name}"]
     @notifs = showNotif(@apps_name,@username)
+    @githubname = Apps.where(:name => @apps_name).first.githubname
+    @githubproject = Apps.where(:name => @apps_name).first.githubproject
     render :layout => 'editor'
   end
 
@@ -1013,6 +1011,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
