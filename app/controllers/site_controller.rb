@@ -371,7 +371,7 @@ class SiteController < ApplicationController
     commit = params[:commit]
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
-    session["commit_@{@apps_name}"] = commit
+    session["commit_#{@apps_name}"] = commit
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 
@@ -1003,6 +1003,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
