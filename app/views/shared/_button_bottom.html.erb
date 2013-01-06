@@ -24,7 +24,7 @@
 
 
             <% if @owner == 1 %>
-            <% unless @githubname and @githubproject %>
+            <% unless @githubname == "" %>
 <div class="offset4 span1" style="margin-left:50px;">
     <form id="githubpull" action="/site/githubpull" method="post">
     <input type="hidden" name="l" value="<%= @apps_name %>" />
