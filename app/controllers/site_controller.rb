@@ -258,7 +258,7 @@ class SiteController < ApplicationController
     if @username == Apps.where(:name => @apps_name).first.user.username
         @owner = 1
     end
-    @commit_message = session["commit"]
+    @commit_message = session["commit_#{@apps_name}"]
     @notifs = showNotif(@apps_name,@username)
     render :layout => 'editor'
   end
@@ -369,9 +369,9 @@ class SiteController < ApplicationController
     end
     r = params[:thisfile]
     commit = params[:commit]
-    session["commit"] = commit
     apps_name = r.split("-__-")[1]
     @apps_name = apps_name
+    session["commit_@{@apps_name}"] = commit
     authenticate(Apps.where(:name => @apps_name).first.user.username, 
                 Apps.where(:name => @apps_name).first.id, 
                 User.where(:username => @username).first.id, 
@@ -1003,6 +1003,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
