@@ -44,13 +44,16 @@
 <% end %>
             <% end %>
 
+    <% if @produrl != '' %>
     <div id="name" class="span1" style="float: right; margin: 0 10px;">
        <a href="<%= @produrl %>"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
     </div>
+    <% end %>
+    <% if @devurl != '' %>
     <div id="name" class="span1" style="float: right; margin: 0 10px;">
        <a href="<%= @devurl %>" target="_blank"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
     </div>
-
+    <% end %>
 
             <% if @owner == 1 %>
     <div id="name" class="span1" style="float: right" onClick="clickSync()">
@@ -183,6 +186,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
