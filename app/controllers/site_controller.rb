@@ -145,10 +145,10 @@ class SiteController < ApplicationController
         end
     else
         if @devurl == '' or @devurl.nil?
-            @devurl = "http://dev.#{@apps_name}.letspan.com"
+            @devurl = ""
         end
         if @produrl == '' or @produrl.nil?
-            @produrl = "http://#{@apps_name}.letspan.com"
+            @produrl = ""
         end
     end
     back.pop
@@ -206,17 +206,17 @@ class SiteController < ApplicationController
         @devurl = Apps.where(:name => @apps_name).first.server.devurl
         @produrl = Apps.where(:name => @apps_name).first.server.produrl
         if @devurl == '' or @devurl.nil?
-            @devurl = "http://dev.#{@apps_name}.letspan.com"
+            @devurl = ""
         end
         if @produrl == '' or @produrl.nil?
-            @produrl = "http://#{@apps_name}.letspan.com"
+            @produrl = ""
         end
     else
         if @devurl == '' or @devurl.nil?
-            @devurl = "http://dev.#{@apps_name}.letspan.com"
+            @devurl = ""
         end
         if @produrl == '' or @produrl.nil?
-            @produrl = "http://#{@apps_name}.letspan.com"
+            @produrl = ""
         end
     end
     back.pop
