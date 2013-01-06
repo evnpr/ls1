@@ -214,6 +214,8 @@ class SiteController < ApplicationController
             @produrl = ""
         end
     else
+        @devserver = ""
+        @prodserver = ""
         if @devurl == '' or @devurl.nil?
             @devurl = ""
         end
