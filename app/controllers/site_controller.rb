@@ -171,7 +171,13 @@ class SiteController < ApplicationController
     end
     @notifs = showNotif(@apps_name,@username)
     @githubname = Apps.where(:name => @apps_name).first.githubname
+    if @githubname.nil?
+        @githubname = ""
+    end
     @githubproject = Apps.where(:name => @apps_name).first.githubproject
+    if @githubproject.nil?
+        @githubproject = ""
+    end
   end
 
 
