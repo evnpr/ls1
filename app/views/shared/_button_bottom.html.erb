@@ -153,9 +153,9 @@
 
 
 var noUpdate = 0;
-
+var commit_message = "<%= @commit_message %>"
     function savegit(){
-        var commit = prompt("Commit: ", "<%= @commit_message %>");
+        var commit = prompt("Commit: ", commit_message);
         if (commit != '' && commit != null) {
             var content = editor.getSession().getValue();
             thisfile = document.getElementById("thisfile").innerHTML
@@ -166,6 +166,7 @@ var noUpdate = 0;
                 document.getElementById("loading").style.display = 'none';
                 document.getElementById("logbutton").style.display = 'block';
         noUpdate = 1;
+        commit_message = commit
             });            
         }else if(commit != null){
             alert("commit message can not be blank")
