@@ -1000,11 +1000,12 @@ class SiteController < ApplicationController
         
     a = Apps.where(:name => @apps_name).first
     a.destroy
-    `rm #{@@directory}/#{@apps_name}`
+    `rm -R #{@@directory}/#{@apps_name}`
     redirect_to "/" and return
   end
 
 end
+
 
 
 
