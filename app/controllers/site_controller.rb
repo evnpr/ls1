@@ -170,6 +170,7 @@ class SiteController < ApplicationController
         @owner = 1
     end
     @notifs = showNotif(@apps_name,@username)
+    @commit_message = session["commit_#{@apps_name}"]
     @githubname = Apps.where(:name => @apps_name).first.githubname
     if @githubname.nil?
         @githubname = ""
@@ -1025,6 +1026,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
