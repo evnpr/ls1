@@ -79,11 +79,11 @@
 <% unless @username == 'guest' %>
 <pre>
     $ git init
-    $ git remote add letspan git@letspan.com:<%= @apps_name %>.git
-    $ git pull letspan master
+    $ git remote add gitspan git@gitspan.com:<%= @apps_name %>.git
+    $ git pull gitspan master
     $ git add . -A
     $ git commit -m 'first commit'
-    $ git push letspan master
+    $ git push gitspan master
 </pre>
     <% if @owner %>
     <form action="/site/collaborator" method="post" accept-charset="utf-8">    
@@ -177,6 +177,7 @@
     //notiftimer=setInterval("retrieveNotif();",10000);
 </script>
 <% # render :partial => "shared/notifyjs" %>
+
 
 
 
