@@ -398,11 +398,13 @@ class SiteController < ApplicationController
                 @username)
     path = r.gsub(/\-\_\_\-/, "\/")
     `sudo chmod -R 777 #{@@directory}/#{path}`
-    file = File.open("#{@@directory}/#{path}", "w")
     c = params[:content]
-    content = c.gsub("\r",'')
-    file.write(content)
-    file.close
+    if c != "gitspan"
+        file = File.open("#{@@directory}/#{path}", "w")
+        content = c.gsub("\r",'')
+        file.write(content)
+        file.close
+    end
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         #`sudo chmod -R 755 .` 
@@ -1023,6 +1025,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
