@@ -82,8 +82,8 @@ class SiteController < ApplicationController
     Dir.chdir("#{@@directory}/#{apps_name}"){
         `git init`
         `git add .`
-        `git commit -m 'welcome to letspan #{@username}'`
-        `git remote add lsorigin2 git@letspan.com:#{apps_name}.git`
+        `git commit -m 'welcome to GitSpan #{@username}'`
+        `git remote add lsorigin2 git@gitspan.com:#{apps_name}.git`
         `git push lsorigin2 master`
         `sudo chmod -R 777 #{@@directory}/#{apps_name}`
         `sudo chmod -R 777 #{gitdirectory}/#{apps_name}.git/`
@@ -248,16 +248,16 @@ class SiteController < ApplicationController
             @language = "ruby"
         when "jpg"
             `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
-            @image = "http://dev.img.letspan.com/#{r}"
+            @image = "http://dev.img.gitspan.com/#{r}"
         when "png"
             `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
-            @image = "http://dev.img.letspan.com/#{r}"
+            @image = "http://dev.img.gitspan.com/#{r}"
         when "gif"
             `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
-            @image = "http://dev.img.letspan.com/#{r}"
+            @image = "http://dev.img.gitspan.com/#{r}"
         when "pdf"
             `cp #{@@directory}/#{path} /var/www/ls/upload/img/#{r}`
-            redirect_to "http://dev.img.letspan.com/#{r}" and return
+            redirect_to "http://dev.img.gitspan.com/#{r}" and return
         else
             @language = "html"
     end
@@ -288,7 +288,7 @@ class SiteController < ApplicationController
     unless @username
         redirect_to "/"
     end
-    @title = 'Letspan!'
+    @title = 'GitSpan!'
     r = request.GET[:r]
     @r = r 
     back = r.split("-__-")
@@ -441,7 +441,7 @@ class SiteController < ApplicationController
         an.notif_id = n.id
         an.save
         `script lslogcommit.txt -c "git push lsorigin2 master"`
-        `git remote add ls1 git@letspan.com:#{@apps_name}.git`
+        `git remote add ls1 git@gitspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
     }
     render :nothing => true
@@ -748,7 +748,7 @@ class SiteController < ApplicationController
         `git commit -m '#{@username} rename #{oldfile} to #{n}'`
         `git push lsorigin2 master -f`
         if apps_name == 'ls1'
-            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git remote add lsdev ubuntu@gitspan.com:/home/ubuntu/git-www/devletspan`
             `git push lsdev master -f`
         end
     }
@@ -793,7 +793,7 @@ class SiteController < ApplicationController
         `git commit -m '#{@username} upload file #{uploaded_files}'`
         `git push ls1 master`
         if apps_name == 'ls1'
-            `git remote add lsdev ubuntu@letspan.com:/home/ubuntu/git-www/devletspan`
+            `git remote add lsdev ubuntu@gitspan.com:/home/ubuntu/git-www/devletspan`
             `git push ls1 master -f`
         end
       }
@@ -895,7 +895,7 @@ class SiteController < ApplicationController
         `rm /var/www/ls/upload/img/#{apps_name}.zip`
         IO.popen("zip /var/www/ls/upload/img/#{apps_name} * ")
     }
-    redirect_to "http://dev.img.letspan.com/#{apps_name}.zip" and return
+    redirect_to "http://dev.img.gitspan.com/#{apps_name}.zip" and return
   end
 
   def rsync 
@@ -932,7 +932,7 @@ class SiteController < ApplicationController
             `sudo chmod -R 755 /var/www/ls/prod/#{apps_name}` 
             `git add . -A`
             `git commit -m '#{@username}'`
-            `git remote add lsprod ubuntu@letspan.com:/home/ubuntu/git-www/letspan`
+            `git remote add lsprod ubuntu@gitspan.com:/home/ubuntu/git-www/letspan`
             `git push lsprod master -f`
         }
     end
@@ -1023,6 +1023,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
