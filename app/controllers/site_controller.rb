@@ -443,7 +443,11 @@ class SiteController < ApplicationController
         an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         an.notif_id = n.id
         an.save
-        `script lslogcommit.txt -c "git push lsorigin2 master"`
+        if commit == 'revert'
+            `script lslogcommit.txt -c "git push lsorigin2 master -f"`   
+        else
+            `script lslogcommit.txt -c "git push lsorigin2 master"`        
+        end
         `git remote add ls1 git@gitspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
     }
@@ -1026,6 +1030,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
