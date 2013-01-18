@@ -477,7 +477,7 @@ class SiteController < ApplicationController
         `git push lsorigin master -f`
     }
     flash[:list] = "succesful push"
-    redirect_to "/content?r="+params[:r] and return
+    redirect_to "/list?r=-__-"+apps_name and return
   end
 
 
