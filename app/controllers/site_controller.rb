@@ -113,6 +113,7 @@ class SiteController < ApplicationController
     end
     @root = 'pull'
     r = request.GET[:r]
+    @r = r
     @path = splitpath(r)
     back = r.split("-__-")
     @apps_name = back[1]
@@ -1030,6 +1031,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
