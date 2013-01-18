@@ -443,7 +443,7 @@ class SiteController < ApplicationController
         an = AppsNotifs.new(:apps_id => Apps.where(:name => @apps_name).first.id)
         an.notif_id = n.id
         an.save
-        if commit == 'revert'
+        if commit == 'force'
             `script lslogcommit.txt -c "git push lsorigin2 master -f"`   
         else
             `script lslogcommit.txt -c "git push lsorigin2 master"`        
@@ -1030,6 +1030,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
