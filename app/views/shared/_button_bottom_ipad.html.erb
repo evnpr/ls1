@@ -1,0 +1,234 @@
+<div class="row-fluid" style="margin-top: 30px;">
+    <% if flash[:note] %>
+    <div class="well">
+    <%= @done %>
+    </div>
+    <% end %>
+    
+<% if request.GET['vim'].nil? then %>
+
+    <% if @showcontent %>
+    <div class="span2">
+        <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
+    </div>
+
+
+    <div class="span2">
+        <button class="btn btn-large btn-inverse" onClick="savegit()">Commit</button>
+    </div>
+
+    <% else %>
+    
+    <span id="thisfile" style="display: none"><%= @current_path %>-__-</span>
+    <div class="span2">
+        <button class="btn btn-large btn-inverse" onClick="savegitlist()">Commit</button>
+    </div>
+    
+    <% end %>
+
+
+<% end %>
+
+
+            <% if @owner == 1 and @githubname != "" and @githubproject != "" %>
+<div class="offset4 span1" style="margin-left:50px;">
+    <form id="githubpull" action="/site/githubpull" method="post">
+    <input type="hidden" name="l" value="<%= @apps_name %>" />
+    <input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+    <p><button class="btn btn-large btn-info" onClick="githubPull()">pull from <%= @repo %></button></p>
+    </form>
+</div>
+
+
+<div class="span1" style="margin-left:70px;">
+    <form id="githubpush" action="/site/github" method="post" accept-charset="utf-8">
+    <input type="hidden" name="r" value="<%= @r %>-__-" />
+    <p><button class="btn btn-danger btn-large" onClick="githubPush()">push to <%= @repo %> </button></p>
+    </form>
+</div>
+
+
+            <% end %>
+
+    <% if @produrl != '' %>
+    <div id="name" class="span1" style="float: right; margin: 0 10px;">
+       <a href="<%= @produrl %>"><button class="btn btn-primary btn-large">Go to Prod App</button></a> 
+    </div>
+    <% end %>
+    <% if @devurl != '' %>
+    <div id="name" class="span1" style="float: right; margin: 0 10px;">
+       <a href="<%= @devurl %>" target="_blank"><button class="btn btn-primary btn-large">Go to Dev App</button></a> 
+    </div>
+    <% end %>
+
+    <% if @owner == 1 and @prodserver != '' and @devserver != '' %>
+    <div id="name" class="span1" style="float: right" onClick="clickSync()">
+       <a ><button class="btn btn-danger btn-large">sync</button></a> 
+    </div>    
+    <% end %>
+
+    <% if @owner == 1 and @devserver != '' %>
+    <div id="name" class="span1" style="float: right" onClick="clickSyncdev()">
+       <a><button class="btn btn-info btn-large">pull from dev</button></a> 
+    </div>
+    <% end %>
+
+</div>
+
+
+<div id="name" class="row-fluid" style="display: none">
+
+
+<div id="name" style="float:left">
+<form action="/site/bitbucketpull" method="post">
+<input type="hidden" name="l" value="<%= @apps_name %>" />
+<input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
+<p><input type="submit" value="pull from bitbucket" class="btn btn-large btn-info"></p>
+</form>
+    <div id="name" class="" style="float:left">
+<form action="/site/bitbucket" method="post" accept-charset="utf-8">
+<input type="hidden" name="r" value="<%= @r %>" />
+<p><input type="submit" value="push bitbucket" class="btn btn-danger btn-large"></p>
+</form>
+        
+    </div>
+</div>
+
+</div>
+
+<script>
+    
+    function githubPull(){
+        var r=confirm("really want to Pull (it is force pull)");
+        if (r==true)
+          {
+          document.getElementById("githubpull").submit();
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+    }
+    
+    function githubPush(){
+        var r=confirm("really want to Push (it is force push)");
+        if (r==true)
+          {
+          document.getElementById("githubpush").submit();
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+    }
+    
+    function clickSync(){
+        
+        var commit = prompt("ENTER THIS APP NAME: ", "");
+        if (commit == '<%= @apps_name %>') {
+            window.location = "/rsync?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"           
+        }else if(commit != null){
+            alert("you enter wrong apps name")
+        }
+        
+    }
+    
+    function clickSyncdev(){
+        var r=confirm("really want to pull from development server");
+        if (r==true)
+          {
+          window.location = "/syncdev?r=<%= @current_path %>&back=<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>"
+          }
+        else
+          {
+          x="You pressed Cancel!";
+          }
+        
+    }
+    
+    
+
+    function save(){
+        var commit = "just edit <%= @current_path.split("-__-").join("/") %>";
+        var content = document.getElementById("editorIpad").value;
+        thisfile = document.getElementById("thisfile").innerHTML
+        $.post('/site/savecontent', { content: content, thisfile: thisfile, commit: commit });
+        setTimeout(function(){
+        $('.top-right').notify({
+                message: { text: 'successfully saved' },
+                type: 'info',
+        }).show();}, 200);
+    }
+
+
+var noUpdate = 0;
+var commit_message = "<%= @commit_message %>"
+    function savegit(){
+        var commit = prompt("Commit: ", commit_message);
+        if (commit != '' && commit != null) {
+            var content = editor.getSession().getValue();
+            thisfile = document.getElementById("thisfile").innerHTML
+            document.getElementById("loading").style.display = 'block';
+            setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
+            $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
+                //alert('finish');
+                document.getElementById("loading").style.display = 'none';
+                document.getElementById("logbutton").style.display = 'block';
+        noUpdate = 1;
+        commit_message = commit
+            });            
+        }else if(commit != null){
+            alert("commit message can not be blank")
+        }
+
+    }
+
+    function savegitlist(){
+            var commit = prompt("Commit: ", commit_message);
+            if (commit != '' && commit != null) {
+                var content = "gitspan";
+                thisfile = document.getElementById("thisfile").innerHTML
+                document.getElementById("loading").style.display = 'block';
+                setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
+                $.post('/site/savecontentgit', { content: content, thisfile: thisfile, commit: commit }, function(data){
+                    //alert('finish');
+                    document.getElementById("loading").style.display = 'none';
+                    document.getElementById("logbutton").style.display = 'block';
+            noUpdate = 1;
+            commit_message = commit
+                });            
+            }else if(commit != null){
+                alert("commit message can not be blank")
+            }
+    
+    }
+
+
+document.onkeydown = checkKeycode
+    function checkKeycode(e) {
+    var keycode;
+    if (window.event) keycode = window.event.keyCode;
+    else if (e) keycode = e.which;
+    if(keycode==27){
+        alert("vim mode is no longer supported");
+    }
+}
+    
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
