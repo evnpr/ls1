@@ -9,12 +9,12 @@
 
     <% if @showcontent %>
     <div class="span2">
-        <button class="btn btn-large btn-inverse" onClick="save()">Save</button>
+        <button class="btn btn-large btn-inverse" onClick="saveTablet()">Save</button>
     </div>
 
 
     <div class="span2">
-        <button class="btn btn-large btn-inverse" onClick="savegit()">Commit</button>
+        <button class="btn btn-large btn-inverse" onClick="savegitTablet()">Commit</button>
     </div>
 
     <% else %>
@@ -148,7 +148,7 @@
     
     
 
-    function save(){
+    function saveTablet(){
         var commit = "just edit <%= @current_path.split("-__-").join("/") %>";
         var content = document.getElementById("editorIpad").value;
         thisfile = document.getElementById("thisfile").innerHTML
@@ -165,7 +165,7 @@ var noUpdate = 0;
 var commit_message = "<%= @commit_message %>"
 
 
-    function savegit(){
+    function savegitTablet(){
         var commit = prompt("Commit: ", commit_message);
         if (commit != '' && commit != null) {
             var content = document.getElementById("editorIpad").value;
@@ -218,6 +218,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
