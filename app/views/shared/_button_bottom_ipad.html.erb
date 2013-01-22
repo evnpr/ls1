@@ -163,10 +163,12 @@
 
 var noUpdate = 0;
 var commit_message = "<%= @commit_message %>"
+
+
     function savegit(){
         var commit = prompt("Commit: ", commit_message);
         if (commit != '' && commit != null) {
-            var content = editor.getSession().getValue();
+            var content = document.getElementById("editorIpad").value;
             thisfile = document.getElementById("thisfile").innerHTML
             document.getElementById("loading").style.display = 'block';
             setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
@@ -216,6 +218,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
