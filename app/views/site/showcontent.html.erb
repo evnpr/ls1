@@ -67,8 +67,9 @@
 <% if @image %>
     <img src="<%= @image %>" />
 <% else %>
-<pre id="editor"><%= @contents %>
+<pre id="editor" class="visible-desktop"><%= @contents %>
 </pre>
+<textarea id="editorIpad" class="hidden-desktop"><%= contents %></textarea>
 <% end %>
 
 
@@ -78,9 +79,9 @@
 
 <% end %>
 
-
+<span class="visible-desktop">
 <%= render :partial => "shared/button_bottom" %>
-
+</span>
 <%= render :partial => "shared/showNotif" %>
 
 
@@ -148,3 +149,4 @@ function retrieveNotif(){
 
 //test
 </script>  
+
