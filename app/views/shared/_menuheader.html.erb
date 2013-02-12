@@ -6,6 +6,10 @@
       .brand :hover{
         color: #fff;
       }
+      .header-menu-font{
+        font-decoration:bold;
+        color:white;
+      }
     </style>
 
 <div class="navbar navbar-fixed-top">
@@ -32,7 +36,7 @@
               <span style="float: right; margin-top: 10px; margin-left: 13px;"> | <a href="/user/logout">Logout</a></span>
               <span style="float: right; margin-top: 10px;">welcome, <%= @username %></span>
           <% else %>
-              <span style="float: right; margin-top: 10px; margin-left: 13px;">  <span>Login</span></span>
+              <span style="float: right; margin-top: 10px; margin-left: 13px;">  <span class="header-menu-font">Login</span></span>
           <% end %>
           </div><!--/.nav-collapse -->
         </div>
