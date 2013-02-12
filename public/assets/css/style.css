@@ -1,3 +1,6 @@
 .brand :hover{
 color: #fff;
 }
+.inlineblock{
+display:inline-block;
+}
