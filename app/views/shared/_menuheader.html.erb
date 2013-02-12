@@ -16,6 +16,27 @@
       #login-pop-out{
         width:210px;
         height:157px;
+        position: absolute;
+        left:1000px;
+        top:140px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4.545454502105713px 0px, rgb(0, 0, 0) 0px 0px 0px 0px inset;
+        border-bottom-color: rgb(129, 198, 255);
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-style: solid;
+        border-bottom-width: 0.9090908765792847px;
+        border-left-color: rgb(129, 198, 255);
+        border-left-style: solid;
+        border-left-width: 0.9090908765792847px;
+        border-right-color: rgb(129, 198, 255);
+        border-right-style: solid;
+        border-right-width: 0.9090908765792847px;
+        border-top-color: rgb(129, 198, 255);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-top-style: solid;
+        border-top-width: 0.9090908765792847px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4.545454502105713px 0px, rgb(0, 0, 0) 0px 0px 0px 0px inset;
       }
     </style>
 
@@ -44,19 +65,19 @@
               <span style="float: right; margin-top: 10px;">welcome, <%= @username %></span>
           <% else %>
               <span style="float: right; margin-top: 10px; margin-left: 13px;">  <span class="login-menu">Login <span class="icon-chevron-down icon-white"></span></span></span>
-              <div id="login-pop-out">
-                  <form>
-                      <fieldset>
-                        <input type="text" placeholder="User Name"/>      
-                        <input type="password"  placeholder="Password"/>          
-                        <button type="submit" class="btn btn-primary">Sign In</button>
-                      </fieldset>
-                </form>
-              </div>
           <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
+    </div>
+    <div id="login-pop-out">
+        <form>
+            <fieldset>
+                <input type="text" placeholder="User Name"/>      
+                <input type="password"  placeholder="Password"/>          
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </fieldset>
+        </form>
     </div>
 
 
