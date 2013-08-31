@@ -103,7 +103,7 @@
 <input type="text" name="ftp_username" style="height: 35px; width: 450px;" placeholder="your ftp username"><br>
 <input type="text" name="ftp_password" style="height: 35px; width: 450px;" placeholder="your ftp password"><br>
 <input type="text" name="ftp_host" style="height: 35px; width: 450px;" placeholder="your ftp host"><br>
-<select name="server_type">
+<select name="type_server">
     <option value="git">Git</option>
     <option value="sftp">Sftp</option>
     <option value="ftp">ftp</option>
@@ -151,7 +151,7 @@
             <td><font color="blue"><%= a.server.prodserver %></font></td>
             <td><font color="brown"><a href="<%= a.server.produrl %>"><%= a.server.produrl %></a></font></td>        
             <td><%= a.server.sftp_username %>, <%= a.server.sftp_password %>, <%= a.server.sftp_host %>, <%= a.server.sftp_location %>  </td>
-            <td><%= a.server_type %></td>
+            <td><%= a.type_server %></td>
         <% end %>
     </tr>
     <% end %>
@@ -172,6 +172,7 @@
 
 
 <br><br><br>
+
 
 
 
