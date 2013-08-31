@@ -428,6 +428,7 @@ class SiteController < ApplicationController
             !`
         end
         
+        
         #`sudo chmod -R 755 .` 
         `sudo rm lslogcommit.txt`
         `git add . -A`
@@ -1052,6 +1053,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
