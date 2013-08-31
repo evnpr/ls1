@@ -451,6 +451,20 @@ class SiteController < ApplicationController
         end
         `git remote add ls1 git@gitspan.com:#{@apps_name}.git`
         `git push ls1 master -f`
+        
+        @input = `git diff --name-only`
+        
+        sftp_files = ""
+        @input.split().each do |ai|
+            sftp_files += %{put #{ai}
+            }
+        end
+        
+        `SSHPASS=nw11i4412s1ae1 sshpass -e sftp -oBatchMode=no -b - ecxs06gy5gpa06@sftp.ibm.dal.zippykidnetwork.com << !
+        cd /htdocs
+        #{sftp_files}
+        bye
+        !`
     }
     render :nothing => true
   end
@@ -1031,6 +1045,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
