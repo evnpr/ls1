@@ -128,6 +128,7 @@
 <th>Development URL</th>
 <th>Production  Server</th>
 <th>Production  URL</th>
+<th>SFTP</th>
 </tr>
 
 <% if @apps %>
@@ -139,11 +140,13 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         <% else %>
             <td><font color="blue"><%= a.server.devserver %></font></td>
             <td><font color="brown"><a href="<%= a.server.devurl %>"><%= a.server.devurl %></a></font></td>        
             <td><font color="blue"><%= a.server.prodserver %></font></td>
             <td><font color="brown"><a href="<%= a.server.produrl %>"><%= a.server.produrl %></a></font></td>        
+            <td><%= a.server.sftp_username %>, <%= a.server.sftp_password %>, <%= a.server.sftp_host %> </td>
         <% end %>
     </tr>
     <% end %>
@@ -163,6 +166,7 @@
 
 
 <br><br><br>
+
 
 
 
