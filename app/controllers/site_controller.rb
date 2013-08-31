@@ -413,7 +413,6 @@ class SiteController < ApplicationController
         if Apps.where(:name => @apps_name).first.type_server == "sftp"
             @input = `git diff --name-only`
             @sftp_location = Apps.where(:name => @apps_name).first.sftp_location
-            @server = Apps.find_by_name(@apps_name).server
             sftp_files = ""
             @input.split().each do |ai|
                 sftp_files += %{put #{ai}
