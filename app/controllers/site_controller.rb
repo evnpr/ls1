@@ -410,20 +410,21 @@ class SiteController < ApplicationController
     `sudo chmod -R 777 #{@@directory}/#{apps_name}`
     Dir.chdir(@@directory+"/"+apps_name){
         
-        @input = `git diff --name-only`
-        
-        sftp_files = ""
-        @input.split().each do |ai|
-            sftp_files += %{put #{ai}
-            }
+        if Apps.where(:name => @apps_name).first.type_server == "sftp"
+            @input = `git diff --name-only`
+            @sftp_location = Apps.where(:name => @apps_name).first.sftp_location
+            sftp_files = ""
+            @input.split().each do |ai|
+                sftp_files += %{put #{ai}
+                }
+            end
+            
+            `SSHPASS=nw11i4412s1ae1 sshpass -e sftp -oBatchMode=no -b - ecxs06gy5gpa06@sftp.ibm.dal.zippykidnetwork.com << !
+            cd #{@sftp_location}
+            #{sftp_files}
+            bye
+            !`
         end
-        
-        `SSHPASS=nw11i4412s1ae1 sshpass -e sftp -oBatchMode=no -b - ecxs06gy5gpa06@sftp.ibm.dal.zippykidnetwork.com << !
-        cd /htdocs
-        #{sftp_files}
-        bye
-        !`
-        
         
         #`sudo chmod -R 755 .` 
         `sudo rm lslogcommit.txt`
@@ -1049,6 +1050,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
