@@ -27,6 +27,7 @@ class ServerController < ApplicationController
         sftp_password = params[:sftp_password]
         sftp_host = params[:sftp_host]
         sftp_location = params[:sftp_location]
+        server_type = params[:server_type]
         appsname = params[:apps_name]
         
         if (appsname == '')
@@ -35,10 +36,9 @@ class ServerController < ApplicationController
         end
         
         app = Apps.where(:name => appsname).first
-        if sftp_username != ""
-            app.sftp_location = sftp_location
-            app.type_server = "sftp"
-        end
+        
+        app.type_server = server_type
+        
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
             s.devserver = devserver
@@ -49,10 +49,16 @@ class ServerController < ApplicationController
         end
         
         if sftp_username != ""
-                app.server.sftp_username = sftp_username
+                app.server.sftp_username = sftp_username           
+        end
+        unless sftp_password == ""
                 app.server.sftp_password = sftp_password
+        end
+        unless sftp_host == ""
                 app.server.sftp_host = sftp_host
-                app.server.sftp_location = sftp_location                
+        end
+        unless sftp_location == ""
+                app.server.sftp_location = sftp_location     
         end
         Dir.chdir(@@directory+"/"+appsname){
             unless devserver == ''
@@ -154,6 +160,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
