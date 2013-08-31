@@ -43,14 +43,6 @@ gem 'therubyracer'
 
 gem 'rubyzip'
 gem 'aws-s3'
-
-
-
-
-
-
-
-
-
+gem 'pusher'
 
 

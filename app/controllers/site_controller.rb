@@ -1,4 +1,11 @@
 require 'zip/zip'
+
+require 'pusher'
+
+Pusher.app_id = '37276'
+Pusher.key    = 'b59a769e8cef6904774b'
+Pusher.secret = 'b8344b41cc1b47154657'
+
 class SiteController < ApplicationController
   before_filter :get_users
   include SiteHelper
@@ -1050,40 +1057,6 @@ class SiteController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
