@@ -4,6 +4,7 @@
 </div>
 <% end %>
 
+
 <br><br><br>
 <!--
 <h2>Database settings</h2><br>
@@ -146,11 +147,12 @@
             <td><font color="brown"><a href="<%= a.server.devurl %>"><%= a.server.devurl %></a></font></td>        
             <td><font color="blue"><%= a.server.prodserver %></font></td>
             <td><font color="brown"><a href="<%= a.server.produrl %>"><%= a.server.produrl %></a></font></td>        
-            <td><%= a.server.sftp_username %>, <%= a.server.sftp_password %>, <%= a.server.sftp_host %> </td>
+            <td><%= a.server.sftp_username %>, <%= a.server.sftp_password %>, <%= a.server.sftp_host %>, <%= a.server.sftp_location %>  </td>
         <% end %>
     </tr>
     <% end %>
 <% end %>
+
 
 </table>
 </div>
@@ -166,6 +168,9 @@
 
 
 <br><br><br>
+
+
+
 
 
 
