@@ -27,7 +27,7 @@ class ServerController < ApplicationController
         sftp_password = params[:sftp_password]
         sftp_host = params[:sftp_host]
         sftp_location = params[:sftp_location]
-        server_type = params[:server_type]
+        type_server = params[:type_server]
         appsname = params[:apps_name]
         
         if (appsname == '')
@@ -37,7 +37,7 @@ class ServerController < ApplicationController
         
         app = Apps.where(:name => appsname).first
         
-        app.type_server = server_type
+        app.type_server = type_server
         
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
