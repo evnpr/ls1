@@ -45,16 +45,15 @@ class ServerController < ApplicationController
             s.devurl = devurl
             s.prodserver = prodserver  
             s.produrl = produrl
-            if sftp_username != ""
-                s.sftp_username = sftp_username
-                s.sftp_password = sftp_password
-                s.sftp_host = sftp_host
-                s.sftp_location = sftp_location                
-            end
             s.save
         end
         
-        
+        if sftp_username != ""
+                app.server.sftp_username = sftp_username
+                app.server.sftp_password = sftp_password
+                app.server.sftp_host = sftp_host
+                app.server.sftp_location = sftp_location                
+        end
         Dir.chdir(@@directory+"/"+appsname){
             unless devserver == ''
                 `git remote rm lsorigin2`
@@ -155,6 +154,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
