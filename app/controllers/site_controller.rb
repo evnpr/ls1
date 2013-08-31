@@ -423,7 +423,7 @@ class SiteController < ApplicationController
 
             
             `SSHPASS=nw11i4412s1ae1 sshpass -e sftp -oBatchMode=no -b - ecxs06gy5gpa06@sftp.ibm.dal.zippykidnetwork.com << !
-            cd #{@sftp_location}
+            cd /htdocs
             #{sftp_files}
             bye
             !`
