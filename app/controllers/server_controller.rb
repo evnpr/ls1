@@ -23,6 +23,11 @@ class ServerController < ApplicationController
         devurl = params[:devurl]
         prodserver = params[:prodserver]
         produrl = params[:produrl]
+        sftp_username = params[:sftp_username]
+        sftp_password = params[:sftp_password]
+        sftp_host = params[:sftp_host]
+        sftp_location = params[:sftp_location]
+        server_type = params[:server_type]
         appsname = params[:apps_name]
         
         if (appsname == '')
@@ -31,6 +36,9 @@ class ServerController < ApplicationController
         end
         
         app = Apps.where(:name => appsname).first
+        
+        app.type_server = server_type
+        
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
             s.devserver = devserver
@@ -40,7 +48,18 @@ class ServerController < ApplicationController
             s.save
         end
         
-        
+        if sftp_username != ""
+                app.server.sftp_username = sftp_username           
+        end
+        unless sftp_password == ""
+                app.server.sftp_password = sftp_password
+        end
+        unless sftp_host == ""
+                app.server.sftp_host = sftp_host
+        end
+        unless sftp_location == ""
+                app.server.sftp_location = sftp_location     
+        end
         Dir.chdir(@@directory+"/"+appsname){
             unless devserver == ''
                 `git remote rm lsorigin2`
@@ -141,6 +160,11 @@ class ServerController < ApplicationController
 
 
 end
+
+
+
+
+
 
 
 

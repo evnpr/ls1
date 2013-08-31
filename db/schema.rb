@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121218002425) do
+ActiveRecord::Schema.define(:version => 20130831150807) do
 
   create_table "apps", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20121218002425) do
     t.string   "githubproject"
     t.string   "virtual_name"
     t.integer  "githubrepo",    :default => 1, :null => false
+    t.string   "type_server"
   end
 
   create_table "apps_notifs", :force => true do |t|
@@ -58,11 +59,15 @@ ActiveRecord::Schema.define(:version => 20121218002425) do
   create_table "servers", :force => true do |t|
     t.string   "devserver"
     t.string   "prodserver"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "apps_id"
     t.string   "devurl"
     t.string   "produrl"
+    t.string   "sftp_username"
+    t.string   "sftp_password"
+    t.string   "sftp_host"
+    t.string   "sftp_location"
   end
 
   create_table "thedatabases", :force => true do |t|
@@ -78,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20121218002425) do
     t.integer  "apps_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.binary   "updated"
+    t.boolean  "updated"
   end
 
   create_table "userkeys", :force => true do |t|

@@ -4,6 +4,7 @@
 </div>
 <% end %>
 
+
 <br><br><br>
 <!--
 <h2>Database settings</h2><br>
@@ -95,12 +96,25 @@
 <input type="text" name="devurl" style="height: 35px; width: 450px;" placeholder="your dev URL (e.g http://dev.myweb.com)"><br>
 <input type="text" name="prodserver" style="height: 35px; width: 450px;" placeholder="your prod server (e.g ubuntu@myweb.com:www/mybare.git)"><br>
 <input type="text" name="produrl" style="height: 35px; width: 450px;" placeholder="your prod URL (e.g http://www.myweb.com)"><br>
+<input type="text" name="sftp_username" style="height: 35px; width: 450px;" placeholder="your sftp username"><br>
+<input type="text" name="sftp_password" style="height: 35px; width: 450px;" placeholder="your sftp password"><br>
+<input type="text" name="sftp_host" style="height: 35px; width: 450px;" placeholder="your sftp host"><br>
+<input type="text" name="sftp_location" style="height: 35px; width: 450px;" placeholder="your sftp location"><br>
+<input type="text" name="ftp_username" style="height: 35px; width: 450px;" placeholder="your ftp username"><br>
+<input type="text" name="ftp_password" style="height: 35px; width: 450px;" placeholder="your ftp password"><br>
+<input type="text" name="ftp_host" style="height: 35px; width: 450px;" placeholder="your ftp host"><br>
+<select name="server_type">
+    <option value="git">Git</option>
+    <option value="sftp">Sftp</option>
+    <option value="ftp">ftp</option>
+</select>
 <p><input type="submit" value="Save" class="btn btn-large btn-primary"></p>
 </form>
 <br><br>
+
 <h3><font color="red">Put this public key so we can push to your remote server</font></h3>
 <pre>
-    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+9KINbhIdW0WWrzg+7efwSVs0Jgjzs5quOtPSpHAOfj75xe+Mh4CL8aBhHaFZR459nVqfDrycq/Uoxug2kChMtosxu3Bnkkaeae8GJkKOHPgnD/50LkkE1wPrP+3NPPcl6qfbHz+2kYzBQGHwj3KfFI4y8z61/Ywvgiu7TaCmNZlOUEUxnAtKJ8KXb8Q4v78gDZwhBxkUPQ7iHb2irjOV4ClMFVgutEX3snv/pBI6VNC63FM1Galj4rJ2CEtYzw5+BBy+H2vRqoK/Hdi1LG0fEHWMkFcKNtS4l81s8LyNhJfiyD4SAN85vRWc9bgKTMzx5ZWnUO6vZ9a9TZQCIIXv evan@evan-Lenovo
+    ssh-rsa fEHWMkFcKNtS4l81s8LyNhJfiyD4SAN85vRWc9bgKTMzx5ZWnUO6vZ9a9TZQCIIXv 
 </pre>
 
 
@@ -116,6 +130,8 @@
 <th>Development URL</th>
 <th>Production  Server</th>
 <th>Production  URL</th>
+<th>SFTP</th>
+<th>Server Type</th>
 </tr>
 
 <% if @apps %>
@@ -127,15 +143,20 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
+            <td></td>
         <% else %>
             <td><font color="blue"><%= a.server.devserver %></font></td>
             <td><font color="brown"><a href="<%= a.server.devurl %>"><%= a.server.devurl %></a></font></td>        
             <td><font color="blue"><%= a.server.prodserver %></font></td>
             <td><font color="brown"><a href="<%= a.server.produrl %>"><%= a.server.produrl %></a></font></td>        
+            <td><%= a.server.sftp_username %>, <%= a.server.sftp_password %>, <%= a.server.sftp_host %>, <%= a.server.sftp_location %>  </td>
+            <td><%= a.server_type %></td>
         <% end %>
     </tr>
     <% end %>
 <% end %>
+
 
 </table>
 </div>
@@ -151,6 +172,13 @@
 
 
 <br><br><br>
+
+
+
+
+
+
+
 
 
 
