@@ -52,6 +52,7 @@ class ServerController < ApplicationController
                 app.server.sftp_username = sftp_username
                 app.server.sftp_password = sftp_password
                 app.server.sftp_host = sftp_host
+                #app.server.sftp_location = sftp_location                
         end
         Dir.chdir(@@directory+"/"+appsname){
             unless devserver == ''
