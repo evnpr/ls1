@@ -419,7 +419,7 @@ class SiteController < ApplicationController
                 sftp_files += %{put #{ai}
                 }
             end
-            
+
             
             `SSHPASS=#{@server.sftp_password} sshpass -e sftp -oBatchMode=no -b - #{@server.sftp_username}@#{@server.sftp_host} << !
             cd #{@sftp_location}
