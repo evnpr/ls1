@@ -415,7 +415,7 @@ class SiteController < ApplicationController
             @server = Apps.find_by_name(@apps_name).server
             sftp_files = ""
             @input.split().each do |ai|
-                sftp_files += %{put #{ai}
+                sftp_files += %{put #{ai} #{ai}
                 }
             end
             
@@ -1050,6 +1050,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
