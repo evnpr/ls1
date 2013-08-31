@@ -413,6 +413,7 @@ class SiteController < ApplicationController
         if Apps.where(:name => @apps_name).first.type_server == "sftp"
             @input = `git diff --name-only`
             @sftp_location = Apps.where(:name => @apps_name).first.sftp_location
+            @server = Server.find_by_apps_id(Apps.find_by_name(@apps_name).id)
             sftp_files = ""
             @input.split().each do |ai|
                 sftp_files += %{put #{ai}
@@ -420,7 +421,7 @@ class SiteController < ApplicationController
             end
             
             
-            `SSHPASS=nw11i4412s1ae1 sshpass -e sftp -oBatchMode=no -b - ecxs06gy5gpa06@sftp.ibm.dal.zippykidnetwork.com << !
+            `SSHPASS=#{@server.sftp_password} sshpass -e sftp -oBatchMode=no -b - #{@server.sftp_username}@#{@server.sftp_host} << !
             cd #{@sftp_location}
             #{sftp_files}
             bye
@@ -1051,6 +1052,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 

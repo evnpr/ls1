@@ -23,6 +23,10 @@ class ServerController < ApplicationController
         devurl = params[:devurl]
         prodserver = params[:prodserver]
         produrl = params[:produrl]
+        sftp_username = params[:sftp_username]
+        sftp_password = params[:sftp_password]
+        sftp_host = params[:sftp_host]
+        sftp_location = params[:sftp_location]
         appsname = params[:apps_name]
         
         if (appsname == '')
@@ -31,12 +35,22 @@ class ServerController < ApplicationController
         end
         
         app = Apps.where(:name => appsname).first
+        if sftp_username != ""
+            app.sftp_location = sftp_location
+            app.type_server = "sftp"
+        end
         if app.server.nil?
             s = Server.new(:apps_id => app.id)
             s.devserver = devserver
             s.devurl = devurl
             s.prodserver = prodserver  
             s.produrl = produrl
+            if sftp_username != ""
+                s.sftp_username = sftp_username
+                s.sftp_password = sftp_password
+                s.sftp_host = sftp_host
+                s.sftp_location = sftp_location                
+            end
             s.save
         end
         
@@ -141,6 +155,7 @@ class ServerController < ApplicationController
 
 
 end
+
 
 
 
