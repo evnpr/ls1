@@ -699,17 +699,18 @@ class SiteController < ApplicationController
         Dir.chdir(@@directory+"/"+apps_name){
            `git init`
            `git remote rm lsorigin`
-           u = Apps.where(:name => apps_name).first
+           a = Apps.where(:name => apps_name).first
            if params[:which_repo] == 'bitbucket'
                 `git remote add lsorigin git@bitbucket.org:#{yourname}/#{yourproject}.git`
-                u.githubrepo = 0
+                a.githubrepo = 0
            else
                 `git remote add lsorigin git@github.com:#{yourname}/#{yourproject}.git`
+                a.githubrepo = 1
            end
            
-           u.githubname = yourname
-           u.githubproject = yourproject
-           u.save
+           a.githubname = yourname
+           a.githubproject = yourproject
+           a.save
         }
         redirect_to "/site/githubnew" and return
     else
@@ -1075,6 +1076,7 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
 
