@@ -495,14 +495,14 @@ class SiteController < ApplicationController
             #`sudo chmod -R 755 .` 
             `git add . -A`
             `git commit -m '#{@username} push from ls'`
-            `git push lsorigin #{branch} -f`
+            `git push lsorigin master:#{branch} -f`
         }   
     else
         Dir.chdir(@@directory+"/#{apps_name}"){
             #`sudo chmod -R 755 .` 
             `git add . -A`
             `git commit -m '#{@username} push from ls'`
-            `git push lsorigin #{branch}`
+            `git push lsorigin master:#{branch}`
         }
     end
 
@@ -528,11 +528,11 @@ class SiteController < ApplicationController
 
     if @force == "true" 
         Dir.chdir(@@directory+"/#{path}"){
-                `git pull lsorigin #{branch} -f`
+                `git pull lsorigin #{branch}:master -f`
         }    
     else
         Dir.chdir(@@directory+"/#{path}"){
-            `git pull lsorigin #{branch}`
+            `git pull lsorigin #{branch}:master`
         }
     end
     flash[:list] = "successful pull"
@@ -1073,5 +1073,6 @@ class SiteController < ApplicationController
   end
 
 end
+
 
 
