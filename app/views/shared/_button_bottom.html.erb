@@ -76,22 +76,7 @@
 </div>
 
 
-<div id="name" class="row-fluid" style="display: none">
 
-
-<div id="name" style="float:left">
-<form action="/site/bitbucketpull" method="post">
-<input type="hidden" name="l" value="<%= @apps_name %>" />
-<input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-<p><input type="submit" value="pull from bitbucket" class="btn btn-large btn-info"></p>
-</form>
-    <div id="name" class="" style="float:left">
-<form action="/site/bitbucket" method="post" accept-charset="utf-8">
-<input type="hidden" name="r" value="<%= @r %>" />
-<p><input type="submit" value="push bitbucket" class="btn btn-danger btn-large"></p>
-</form>
-        
-    </div>
 </div>
 
 </div>
@@ -99,27 +84,37 @@
 <script>
     
     function githubPull(){
-        var r=confirm("really want to Pull (it is force pull)");
-        if (r==true)
-          {
-          document.getElementById("githubpull").submit();
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
+        var branch = prompt("Branch on <%= @repo %>: ");
+        if (branch != '' && branch != null) {
+           
+            document.getElementById("loading").style.display = 'block';
+            setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
+            $.post('/site/githubpull', { branch: branch, l: '<%= @apps_name %>', r: <%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>  }, function(data){
+                //alert('finish');
+                document.getElementById("loading").style.display = 'none';
+                document.getElementById("logbutton").style.display = 'block';
+       
+            });            
+        }else if(branch != null){
+            alert("branch can not be blank")
+        }
     }
     
     function githubPush(){
-        var r=confirm("really want to Push (it is force push)");
-        if (r==true)
-          {
-          document.getElementById("githubpush").submit();
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
+         var branch = prompt("Branch on <%= @repo %>: ");
+        if (branch != '' && branch != null) {
+           
+            document.getElementById("loading").style.display = 'block';
+            setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
+            $.post('/site/github', { branch: branch,  r: <%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>  }, function(data){
+                //alert('finish');
+                document.getElementById("loading").style.display = 'none';
+                document.getElementById("logbutton").style.display = 'block';
+       
+            });            
+        }else if(branch != null){
+            alert("branch can not be blank")
+        }
     }
     
     function clickSync(){
@@ -216,6 +211,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 

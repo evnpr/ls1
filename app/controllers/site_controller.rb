@@ -479,22 +479,34 @@ class SiteController < ApplicationController
         redirect_to "/"
     end
     r = params[:r]
+    branch = params[:branch]
     back = r.split("-__-")
     apps_name = back[1]
     back.pop
     r = back.join("-__-")
     path = r.gsub(/\-\_\_\-/, "\/")
-    if(request.GET[:g].nil?) then
-        Dir.chdir(@@directory+"/#{path}"){
-           # `git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
+    
+    if branch.include? "--force"
+        @force = branch.split("--force")[1].strip #> branch = "staging --force true"
+    end
+
+    if @force == "true" 
+        Dir.chdir(@@directory+"/#{apps_name}"){
+            #`sudo chmod -R 755 .` 
+            `git add . -A`
+            `git commit -m '#{@username} push from ls'`
+            `git push lsorigin #{branch} -f`
+        }   
+    else
+        Dir.chdir(@@directory+"/#{apps_name}"){
+            #`sudo chmod -R 755 .` 
+            `git add . -A`
+            `git commit -m '#{@username} push from ls'`
+            `git push lsorigin #{branch}`
         }
     end
-    Dir.chdir(@@directory+"/#{apps_name}"){
-        #`sudo chmod -R 755 .` 
-        `git add . -A`
-        `git commit -m '#{@username} push from ls'`
-        `git push lsorigin master -f`
-    }
+
+
     flash[:list] = "succesful push"
     redirect_to "/list?r=-__-"+apps_name and return
   end
@@ -506,12 +518,23 @@ class SiteController < ApplicationController
     end
     path = params[:l]
     from = params[:r]
+    branch = params[:branch]
     username = 'evnpr'
     namerepos = 'lst'
     #`git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
-    Dir.chdir(@@directory+"/#{path}"){
-        `git pull lsorigin master -f`
-    }
+    if branch.include? "--force"
+        @force = branch.split("--force")[1].strip #> branch = "staging --force true"
+    end
+
+    if @force == "true" 
+        Dir.chdir(@@directory+"/#{path}"){
+                `git pull lsorigin #{branch} -f`
+        }    
+    else
+        Dir.chdir(@@directory+"/#{path}"){
+            `git pull lsorigin #{branch}`
+        }
+    end
     flash[:list] = "successful pull"
     redirect_to "#{from}" and return
   end
@@ -1050,43 +1073,5 @@ class SiteController < ApplicationController
   end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
