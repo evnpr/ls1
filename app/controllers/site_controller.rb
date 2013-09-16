@@ -479,7 +479,7 @@ class SiteController < ApplicationController
         redirect_to "/"
     end
     r = params[:r]
-    branch = params[:branch]
+    branch = params[:branch].strip
     back = r.split("-__-")
     apps_name = back[1]
     back.pop
@@ -488,6 +488,7 @@ class SiteController < ApplicationController
     
     if branch.include? "--force"
         @force = branch.split("--force")[1].strip #> branch = "staging --force true"
+        branch = branch.split("--force")[0].strip
     end
 
     if @force == "true" 
@@ -518,12 +519,13 @@ class SiteController < ApplicationController
     end
     path = params[:l]
     from = params[:r]
-    branch = params[:branch]
+    branch = params[:branch].strip
     username = 'evnpr'
     namerepos = 'lst'
     #`git remote add lsorigin git@github.com:#{username}/#{namerepos}.git`
     if branch.include? "--force"
         @force = branch.split("--force")[1].strip #> branch = "staging --force true"
+        branch = branch.split("--force")[0].strip
     end
 
     if @force == "true" 
