@@ -76,51 +76,13 @@
 </div>
 
 
-<div id="name" class="row-fluid" style="display: none">
-
-
-<div id="name" style="float:left">
-<form action="/site/bitbucketpull" method="post">
-<input type="hidden" name="l" value="<%= @apps_name %>" />
-<input type="hidden" name="r" value="<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>" />
-<p><input type="submit" value="pull from bitbucket" class="btn btn-large btn-info"></p>
-</form>
-    <div id="name" class="" style="float:left">
-<form action="/site/bitbucket" method="post" accept-charset="utf-8">
-<input type="hidden" name="r" value="<%= @r %>" />
-<p><input type="submit" value="push bitbucket" class="btn btn-danger btn-large"></p>
-</form>
-        
-    </div>
 </div>
 
 </div>
 
 <script>
     
-    function githubPull(){
-        var r=confirm("really want to Pull (it is force pull)");
-        if (r==true)
-          {
-          document.getElementById("githubpull").submit();
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
-    }
-    
-    function githubPush(){
-        var r=confirm("really want to Push (it is force push)");
-        if (r==true)
-          {
-          document.getElementById("githubpush").submit();
-          }
-        else
-          {
-          x="You pressed Cancel!";
-          }
-    }
+   
     
     function clickSync(){
         
@@ -218,6 +180,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
