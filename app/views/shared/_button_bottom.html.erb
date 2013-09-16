@@ -89,7 +89,7 @@
            
             document.getElementById("loading").style.display = 'block';
             setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
-            $.post('/site/githubpull', { branch: branch, l: '<%= @apps_name %>', r: <%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>  }, function(data){
+            $.post('/site/githubpull', { branch: branch, l: '<%= @apps_name %>', r: '<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>'  }, function(data){
                 //alert('finish');
                 document.getElementById("loading").style.display = 'none';
                 document.getElementById("logbutton").style.display = 'block';
@@ -106,7 +106,7 @@
            
             document.getElementById("loading").style.display = 'block';
             setTimeout(function(){document.getElementById("loading").style.display = 'none';}, 120000);
-            $.post('/site/github', { branch: branch,  r: <%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>  }, function(data){
+            $.post('/site/github', { branch: branch,  r: '<%= "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>'  }, function(data){
                 //alert('finish');
                 document.getElementById("loading").style.display = 'none';
                 document.getElementById("logbutton").style.display = 'block';
@@ -211,6 +211,7 @@ document.onkeydown = checkKeycode
     
     
 </script>
+
 
 
 
